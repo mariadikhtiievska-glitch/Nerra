@@ -1,0 +1,118 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "cleo_newsletter": {
+      "type": "cleo-newsletter",
+      "settings": {
+        "heading": "Start Your Wellness Ritual Today",
+        "placeholder": "E-mail",
+        "button_label": "Sign up",
+        "section_height": 185,
+        "overlay_opacity": 54
+      }
+    },
+    "cleo_footer": {
+      "type": "cleo-footer",
+      "blocks": {
+        "footer_main": {
+          "type": "menu",
+          "settings": {
+            "heading": "",
+            "menu": "",
+            "link_1_label": "Home",
+            "link_1_url": "/",
+            "link_2_label": "Shop",
+            "link_2_url": "shopify://collections/all",
+            "link_3_label": "Contact",
+            "link_3_url": "shopify://pages/contact",
+            "link_4_label": "Track Order",
+            "link_4_url": "https://neera-living.myshopify.com/apps/17TRACK",
+            "link_5_label": "About",
+            "link_5_url": "shopify://pages/about",
+            "link_6_label": "Accessibility Assistant",
+            "link_6_url": "#add-aacc-link",
+            "custom_links": "<p><a href=\"/\">Home</a><br/><a href=\"/collections/all\">Shop</a><br/><a href=\"/pages/contact\">Contact</a><br/><a href=\"/pages/about\" title=\"About\">About</a></p>"
+          }
+        },
+        "app_terms": {
+          "type": "menu",
+          "disabled": true,
+          "settings": {
+            "heading": "Info",
+            "menu": "",
+            "link_1_label": "Contact",
+            "link_1_url": "shopify://pages/contact",
+            "link_2_label": "Faq",
+            "link_2_url": "shopify://pages/faq",
+            "link_3_label": "How to clean",
+            "link_3_url": "shopify://pages/how-to-clean",
+            "link_4_label": "",
+            "link_4_url": "",
+            "link_5_label": "",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": "",
+            "custom_links": "<p><a href=\"/pages/terms-of-service-cleo-community-ios\">Terms of Service (iOS)</a><br/><a href=\"/pages/terms-of-service-cleo-community-android\">Terms of Service (Android)</a><br/><a href=\"/pages/privacy-policy-cleo-community-ios\">Privacy Policy (iOS)</a><br/><a href=\"/pages/privacy-policy-cleo-lifestyle-android\">Privacy Policy (Android)</a><br/><a href=\"/pages/account-deletion\">Account & Data Deletion</a></p>"
+          }
+        },
+        "policies": {
+          "type": "menu",
+          "settings": {
+            "heading": "Policies",
+            "menu": "",
+            "link_1_label": "Privacy policy",
+            "link_1_url": "shopify://policies/privacy-policy",
+            "link_2_label": "Refund Policy",
+            "link_2_url": "shopify://policies/refund-policy",
+            "link_3_label": "Shipping Policy",
+            "link_3_url": "shopify://policies/shipping-policy",
+            "link_4_label": "Terms of Service",
+            "link_4_url": "shopify://policies/terms-of-service",
+            "link_5_label": "",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": "",
+            "custom_links": "<p><a href=\"/policies/privacy-policy\">Privacy policy</a><br/><a href=\"/policies/refund-policy\">Refund Policy</a><br/><a href=\"/policies/shipping-policy\">Shipping Policy</a><br/><a href=\"/policies/terms-of-service\">Terms of Service</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "footer_main",
+        "app_terms",
+        "policies"
+      ],
+      "settings": {
+        "logo": "shopify://shop_images/Horizontal_logo_neera_living_white.svg",
+        "description": "<p>Ancient wellness wisdom for modern life. Handcrafted copper bottles designed for your daily ritual.</p>",
+        "background_color": "#4b2d20",
+        "text_color": "#fff7ee",
+        "logo_width": 200,
+        "description_size": 18,
+        "mobile_description_size": 16,
+        "copyright_text": "© [year] - Neera Living",
+        "show_powered_by": true,
+        "show_socials": false,
+        "facebook_url": "https://www.facebook.com/cleolifestyleofficial",
+        "twitter_url": "https://x.com/Cleolifestyle",
+        "instagram_url": "https://www.instagram.com/cleo.lifestyle_/",
+        "pinterest_url": "https://www.pinterest.com/Cleolifestyleofficial/",
+        "youtube_url": "https://www.youtube.com/@Cleo-Lifestyle",
+        "tiktok_url": "https://www.tiktok.com/@cleo_home"
+      }
+    }
+  },
+  "order": [
+    "cleo_newsletter",
+    "cleo_footer"
+  ]
+}

@@ -1,0 +1,2436 @@
+{%- liquid
+  assign menu = section.settings.menu
+  if menu == blank
+    assign menu = linklists['main-menu']
+  endif
+  assign logo_tag = 'div'
+  if request.page_type == 'index'
+    assign logo_tag = 'h1'
+  endif
+  assign logo_alt = section.settings.logo_alt | default: 'Cleo Lifestyle'
+-%}
+
+<style>
+  :root {
+    --header-is-sticky: {% if section.settings.enable_sticky %}1{% else %}0{% endif %};
+  }
+
+  /*
+    Reference-style sticky header:
+    - keeps the same header size before and after scrolling
+    - stays below a sticky announcement bar
+    - prevents the active/clicked menu line
+  */
+  #shopify-section-{{ section.id }} {
+    --header-grid: "primary-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 7fr);
+    --header-padding-block: {{ section.settings.mobile_padding_y | divided_by: 16.0 }}rem;
+    --header-logo-width: {{ section.settings.mobile_logo_width }}px;
+    --header-transparent-header-text-color: 255 255 255;
+    --header-separation-border-color: 255 255 255 / 0.15;
+
+    position: relative;
+    z-index: 40;
+    width: 100%;
+    isolation: isolate;
+    background: {{ section.settings.background_color }};
+  }
+
+  {%- if section.settings.enable_sticky -%}
+    /*
+      Keep only the header sticky. The announcement bar is not changed.
+      JavaScript below measures the real announcement-bar height and stores it
+      in --cleo-announcement-offset, so the bar can never overlap/crop the header.
+    */
+    #shopify-section-{{ section.id }} {
+      position: sticky !important;
+      top: var(--cleo-announcement-offset, 0px) !important;
+    }
+
+    .shopify-section--announcement-bar ~ #shopify-section-{{ section.id }} {
+      top: var(
+        --cleo-announcement-offset,
+        calc(
+          var(--announcement-bar-is-sticky, 0) *
+          var(--announcement-bar-height, 0px)
+        )
+      ) !important;
+    }
+  {%- endif -%}
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-{{ section.id }} {
+      --header-padding-block: {{ section.settings.desktop_padding_y | divided_by: 16.0 }}rem;
+      --header-logo-width: {{ section.settings.logo_width }}px;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} {
+      --header-grid: "logo primary-nav secondary-nav" / minmax(max-content, 1fr) auto minmax(max-content, 1fr);
+    }
+  }
+
+  #shopify-section-{{ section.id }} height-observer {
+    display: block;
+    width: 100%;
+    background: {{ section.settings.background_color }};
+  }
+
+  /*
+    Keep the natural theme header height, exactly like the reference code.
+    The previous fixed height rules were making the sticky header appear
+    unusually tall after scrolling.
+  */
+  #shopify-section-{{ section.id }} .header,
+  #shopify-section-{{ section.id }} .header.is-solid,
+  #shopify-section-{{ section.id }} .header.is-scrolled,
+  #shopify-section-{{ section.id }} .header.is-compact,
+  #shopify-section-{{ section.id }} .header.is-hidden,
+  #shopify-section-{{ section.id }} .header[sticky],
+  #shopify-section-{{ section.id }} .header[data-sticky] {
+    --icon-stroke-width: 1.5;
+
+    position: relative !important;
+    inset: auto !important;
+    z-index: 2;
+    width: 100%;
+    min-height: 0 !important;
+    height: auto !important;
+    padding-block: var(--header-padding-block) !important;
+    overflow: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    translate: none !important;
+    background: {{ section.settings.background_color }} !important;
+    color: {{ section.settings.text_color }} !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .header__logo {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    line-height: 0;
+    overflow: visible;
+  }
+
+  #shopify-section-{{ section.id }} .header__logo a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .header__logo-image:not(.header__logo-image--transparent) {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    width: var(--header-logo-width);
+    max-width: var(--header-logo-width);
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  /*
+    This is a solid header in both normal and sticky states,
+    so only the main logo should be visible.
+  */
+  #shopify-section-{{ section.id }} .header__logo-image--transparent {
+    display: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav,
+  #shopify-section-{{ section.id }} .header__secondary-nav {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav {
+    justify-self: center;
+  }
+
+  #shopify-section-{{ section.id }} .header__secondary-nav {
+    justify-self: end;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item > a,
+  #shopify-section-{{ section.id }} .header__primary-nav-item summary {
+    color: {{ section.settings.text_color }};
+    font-weight: 600 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+  }
+
+  /*
+    Remove the incorrect top line and keep the clean underline below the
+    active/hovered menu item, matching the reference header.
+  */
+  #shopify-section-{{ section.id }} .header__primary-nav-item > a,
+  #shopify-section-{{ section.id }} .header__primary-nav-item summary {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item > a::before,
+  #shopify-section-{{ section.id }} .header__primary-nav-item summary::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item > a::after,
+  #shopify-section-{{ section.id }} .header__primary-nav-item summary::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: auto 0 -18px 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 2px !important;
+    border: 0 !important;
+    background: currentColor !important;
+    box-shadow: none !important;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: opacity 180ms ease, transform 180ms ease;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item > a[aria-current="page"]::after,
+  #shopify-section-{{ section.id }} .header__menu-disclosure[open] > summary::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  @media (hover: hover) {
+    #shopify-section-{{ section.id }} .header__primary-nav-item > a:hover::after,
+    #shopify-section-{{ section.id }} .header__primary-nav-item summary:hover::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item > a:focus:not(:focus-visible),
+  #shopify-section-{{ section.id }} .header__primary-nav-item summary:focus:not(:focus-visible) {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item > a[aria-current="page"],
+  #shopify-section-{{ section.id }} .header__menu-disclosure[open] > summary {
+    border: 0 !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .header__secondary-nav svg,
+  #shopify-section-{{ section.id }} .header__account-link svg {
+    width: 30px;
+    height: 30px;
+    color: {{ section.settings.text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .header__cart-link svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  /*
+    Keep the custom controls independent from the theme's built-in header
+    controller, especially across the 700px-989px tablet breakpoint.
+  */
+  #shopify-section-{{ section.id }} .header__search-link,
+  #shopify-section-{{ section.id }} .header__cart-link,
+  #shopify-section-{{ section.id }} .header__account-link {
+    position: relative;
+    z-index: 6;
+    pointer-events: auto !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search-toggle {
+    -webkit-appearance: none;
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    color: {{ section.settings.text_color }};
+    background: transparent;
+    box-shadow: none;
+    line-height: 0;
+    cursor: pointer;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search-toggle svg {
+    pointer-events: none;
+  }
+
+  /*
+    Page content and category cards should scroll underneath the sticky header.
+  */
+  .cleo-category-strip {
+    position: relative;
+    z-index: 1 !important;
+  }
+
+
+  /* Mobile header: hamburger + logo + search/cart/account, matching reference */
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} {
+      --header-grid:
+        "primary-nav logo secondary-nav" /
+        auto minmax(0, 1fr) auto;
+      --header-logo-width: clamp(118px, 35vw, {{ section.settings.mobile_logo_width }}px);
+    }
+
+    #shopify-section-{{ section.id }} .header,
+    #shopify-section-{{ section.id }} .header.is-solid,
+    #shopify-section-{{ section.id }} .header.is-scrolled,
+    #shopify-section-{{ section.id }} .header.is-compact {
+      display: grid !important;
+      grid-template-areas: "primary-nav logo secondary-nav" !important;
+      grid-template-columns: auto minmax(0, 1fr) auto !important;
+      align-items: center !important;
+      column-gap: clamp(10px, 3vw, 16px) !important;
+      width: 100% !important;
+      padding-inline: clamp(16px, 4vw, 22px) !important;
+      padding-block: var(--header-padding-block) !important;
+    }
+
+    #shopify-section-{{ section.id }} .header__primary-nav {
+      grid-area: primary-nav !important;
+      display: block !important;
+      width: auto !important;
+      min-width: 24px;
+      justify-self: start !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-menu-toggle {
+      position: relative;
+      z-index: 5;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 30px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: {{ section.settings.text_color }};
+      cursor: pointer;
+      pointer-events: auto !important;
+      touch-action: manipulation;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-menu-toggle svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+      pointer-events: none;
+    }
+
+    #shopify-section-{{ section.id }} .header__logo {
+      grid-area: logo !important;
+      min-width: 0;
+      justify-self: start !important;
+    }
+
+    #shopify-section-{{ section.id }} .header__logo a {
+      justify-content: flex-start;
+      max-width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .header__logo-image:not(.header__logo-image--transparent) {
+      width: var(--header-logo-width) !important;
+      max-width: 100% !important;
+    }
+
+    #shopify-section-{{ section.id }} .header__secondary-nav {
+      grid-area: secondary-nav !important;
+      display: flex !important;
+      min-width: 0;
+      justify-self: end !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #shopify-section-{{ section.id }} .header__secondary-nav > ul {
+      display: flex !important;
+      align-items: center;
+      justify-content: flex-end;
+      gap: clamp(9px, 2.8vw, 14px);
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    #shopify-section-{{ section.id }} .header__secondary-nav li,
+    #shopify-section-{{ section.id }} .header__search-link,
+    #shopify-section-{{ section.id }} .header__cart-link,
+    #shopify-section-{{ section.id }} .header__account-link {
+      display: block !important;
+      width: auto !important;
+      height: auto !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #shopify-section-{{ section.id }} .header__secondary-nav a,
+    #shopify-section-{{ section.id }} .header__secondary-nav .cleo-search-toggle {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 30px;
+      color: {{ section.settings.text_color }};
+    }
+
+    #shopify-section-{{ section.id }} .header__secondary-nav svg,
+    #shopify-section-{{ section.id }} .header__cart-link svg,
+    #shopify-section-{{ section.id }} .header__account-link svg {
+      display: block !important;
+      width: 23px !important;
+      height: 23px !important;
+      min-width: 23px;
+    }
+
+    #shopify-section-{{ section.id }} .header__cart-dot {
+      position: absolute;
+    }
+  }
+
+  /*
+    Tablet interaction bridge: the theme switches to its drawer-style header
+    below 990px, so the custom menu and search controls must stay active there.
+    This intentionally changes functionality only, not the visual layout.
+  */
+  @media screen and (min-width: 700px) and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .header__primary-nav,
+    #shopify-section-{{ section.id }} .header__secondary-nav {
+      position: relative;
+      z-index: 7;
+      pointer-events: auto !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-menu-toggle {
+      position: relative;
+      z-index: 8;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      color: {{ section.settings.text_color }};
+      background: transparent;
+      cursor: pointer;
+      pointer-events: auto !important;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-menu-toggle svg {
+      pointer-events: none;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-desktop-menu {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .header__search-link,
+    #shopify-section-{{ section.id }} .header__search-link .cleo-search-toggle,
+    #shopify-section-{{ section.id }} .header__cart-link,
+    #shopify-section-{{ section.id }} .header__cart-link > a,
+    #shopify-section-{{ section.id }} .header__account-link,
+    #shopify-section-{{ section.id }} .header__account-link > a {
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+  }
+
+  /* Reliable self-contained mobile drawer */
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer:not([open]) {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer::backdrop {
+    background: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgb(0 0 0 / 0.45);
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__panel {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: min(88vw, 360px);
+    height: 100%;
+    padding: 0;
+    overflow-y: auto;
+    background: {{ section.settings.mobile_drawer_background }};
+    color: {{ section.settings.mobile_drawer_text }};
+    box-shadow: 12px 0 34px rgb(0 0 0 / 0.18);
+    outline: none;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 82px;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgb(77 46 32 / 0.14);
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__logo {
+    display: flex;
+    align-items: center;
+    max-width: 165px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: currentColor;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__close svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__nav {
+    flex: 1 1 auto;
+    padding: 12px 20px 28px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__list,
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__details ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__list > li {
+    border-bottom: 1px solid rgb(77 46 32 / 0.14);
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__list > li > a,
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 58px;
+    color: currentColor;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__details > summary {
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__details > summary svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 180ms ease;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__details[open] > summary svg {
+    transform: rotate(90deg);
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__details ul {
+    padding: 0 0 14px 16px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__details li a {
+    display: block;
+    padding: 9px 0;
+    color: currentColor;
+    font-size: 15px;
+    text-decoration: none;
+    opacity: 0.82;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__footer {
+    padding: 18px 20px 24px;
+    border-top: 1px solid rgb(77 46 32 / 0.14);
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__account {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: currentColor;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-mobile-drawer__account svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  html.cleo-mobile-menu-open,
+  body.cleo-mobile-menu-open {
+    overflow: hidden !important;
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .cleo-mobile-drawer[open] {
+      display: block !important;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .cleo-mobile-drawer {
+      display: none !important;
+    }
+  }
+/* =========================================================
+   CLEO DESKTOP HOVER DROPDOWN — REFERENCE STYLE
+========================================================= */
+
+@media screen and (min-width: 990px) {
+  #shopify-section-{{ section.id }} .cleo-desktop-menu {
+    overflow: visible !important;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav,
+  #shopify-section-{{ section.id }} .header__primary-nav > ul {
+    overflow: visible !important;
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav-item {
+    position: relative;
+    overflow: visible;
+  }
+
+  /*
+    Dropdown is hidden by default and opens only when the
+    parent menu item is hovered or keyboard-focused.
+  */
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown {
+    position: absolute !important;
+    top: calc(100% + 34px) !important;
+    left: 0 !important;
+    z-index: 1000 !important;
+
+    display: block !important;
+    width: max-content;
+    min-width: 250px;
+    max-width: 310px;
+
+    margin: 0 !important;
+    padding: 20px 30px 22px !important;
+
+    list-style: none;
+    background: {{ section.settings.background_color }} !important;
+    border: 0 !important;
+    border-top: 2px solid {{ section.settings.text_color }} !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(4px);
+    transition:
+      opacity 150ms ease,
+      visibility 150ms ease,
+      transform 150ms ease;
+  }
+
+  /*
+    Invisible bridge between parent link and dropdown so it
+    does not close while moving the mouse downward.
+  */
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    height: 36px;
+    background: transparent;
+  }
+
+  /*
+    Hover only dropdown behavior.
+  */
+  #shopify-section-{{ section.id }}
+    .header__primary-nav-item.has-submenu:hover
+    > .cleo-hover-dropdown,
+  #shopify-section-{{ section.id }}
+    .header__primary-nav-item.has-submenu:focus-within
+    > .cleo-hover-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown__item {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown__link {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 9px 0;
+
+    color: {{ section.settings.text_color }} !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-decoration: none !important;
+    text-transform: none;
+    white-space: nowrap;
+
+    opacity: 1;
+    transition: opacity 150ms ease;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown__link::before,
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown__link::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown__link:hover,
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown__link:focus-visible,
+  #shopify-section-{{ section.id }}
+    .cleo-hover-dropdown__link[aria-current="page"] {
+    color: {{ section.settings.text_color }} !important;
+    background: transparent !important;
+    opacity: 0.72;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-hover-dropdown__sublist {
+    display: block;
+    margin: 0;
+    padding: 0 0 4px 14px;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }}
+    .cleo-hover-dropdown__link--child {
+    padding-block: 7px;
+    font-size: 14px;
+    opacity: 0.82;
+  }
+
+  /*
+    Keep dropdown inside the screen when the menu is near
+    the right side of the header.
+  */
+  #shopify-section-{{ section.id }}
+    .header__primary-nav-item:last-child
+    > .cleo-hover-dropdown {
+    right: 0 !important;
+    left: auto !important;
+  }
+}
+
+/* =========================================================
+   CLEO SEARCH - INLINE BAR + PREDICTIVE RESULTS
+========================================================= */
+#shopify-section-{{ section.id }} .cleo-search {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 120;
+  display: none;
+  width: 100%;
+  color: #ffffff;
+  background: {{ section.settings.background_color }};
+  border-top: 1px solid rgb(255 255 255 / 0.15);
+  box-shadow: 0 16px 28px rgb(0 0 0 / 0.08);
+}
+
+#shopify-section-{{ section.id }} .cleo-search.is-open {
+  display: block;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__bar {
+  min-height: 76px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.14);
+}
+
+#shopify-section-{{ section.id }} .cleo-search__container {
+  width: min(calc(100% - 64px), 1728px);
+  margin-inline: auto;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__form,
+#shopify-section-{{ section.id }} .cleo-search__form-control {
+  width: 100%;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__form-control {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 40px;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__icon,
+#shopify-section-{{ section.id }} .cleo-search__close svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__input {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: #ffffff;
+  background: transparent;
+  box-shadow: none;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  appearance: none;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__input::placeholder {
+  color: rgb(255 255 255 / 0.72);
+  opacity: 1;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #ffffff;
+  background: transparent;
+  cursor: pointer;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__results {
+  display: none;
+  max-height: calc(100vh - var(--header-height, 108px) - var(--cleo-announcement-offset, 0px) - 76px);
+  min-height: 430px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: {{ section.settings.background_color }};
+}
+
+#shopify-section-{{ section.id }} .cleo-search.has-query .cleo-search__results {
+  display: block;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__results-inner {
+  display: grid;
+  grid-template-columns: minmax(210px, 250px) minmax(0, 1fr);
+  gap: 40px;
+  padding-block: 28px 78px;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__suggestions {
+  min-width: 0;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__eyebrow {
+  margin: 0 0 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.24);
+  color: rgb(255 255 255 / 0.72);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__suggestion-list,
+#shopify-section-{{ section.id }} .cleo-search__page-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__suggestion-link,
+#shopify-section-{{ section.id }} .cleo-search__page-link {
+  display: block;
+  padding-block: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__suggestion-link:hover,
+#shopify-section-{{ section.id }} .cleo-search__page-link:hover {
+  opacity: 0.72;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__main {
+  min-width: 0;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 68px;
+  margin: 0 0 30px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.24);
+}
+
+#shopify-section-{{ section.id }} .cleo-search__tab {
+  position: relative;
+  margin: 0;
+  padding: 0 0 15px;
+  border: 0;
+  color: rgb(255 255 255 / 0.58);
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__tab::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: #ffffff;
+  opacity: 0;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__tab.is-active {
+  color: #ffffff;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__tab.is-active::after {
+  opacity: 1;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__panel[hidden] {
+  display: none !important;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 20px;
+}
+
+#shopify-section-{{ section.id }} .cleo-search-card {
+  position: relative;
+  min-width: 0;
+  color: #4b2024;
+}
+
+#shopify-section-{{ section.id }} .cleo-search-card__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 0.16);
+  box-shadow: 0 9px 18px rgb(0 0 0 / 0.12);
+}
+
+#shopify-section-{{ section.id }} .cleo-search-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#shopify-section-{{ section.id }} .cleo-search-card__badge {
+  position: absolute;
+  top: -4px;
+  left: -8px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 4px 12px;
+  border-radius: 0 6px 6px 0;
+  color: #ffffff;
+  background: {{ section.settings.background_color }};
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+#shopify-section-{{ section.id }} .cleo-search-card__title {
+  display: -webkit-box;
+  margin: 22px 0 10px;
+  overflow: hidden;
+  color: #fff;
+  font-size: clamp(16px, 1.2vw, 20px);
+  font-weight: 700;
+  line-height: 1.55;
+  text-decoration: none;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+#shopify-section-{{ section.id }} .cleo-search-card__price {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+#shopify-section-{{ section.id }} .cleo-search-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 6px;
+  color: #49372f;
+  background: #eee4df;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#shopify-section-{{ section.id }} .cleo-search-card__action.is-disabled {
+  cursor: default;
+  opacity: 0.9;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__empty,
+#shopify-section-{{ section.id }} .cleo-search__loading {
+  margin: 0;
+  padding: 28px 0;
+  color: rgb(255 255 255 / 0.82);
+  font-size: 15px;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__view-all-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+#shopify-section-{{ section.id }} .cleo-search__view-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 168px;
+  min-height: 44px;
+  padding: 10px 24px;
+  color: {{ section.settings.background_color }};
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1199px) {
+  #shopify-section-{{ section.id }} .cleo-search__product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 899px) {
+  #shopify-section-{{ section.id }} .cleo-search__container {
+    width: calc(100% - 36px);
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__results-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__suggestions {
+    padding-bottom: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 699px) {
+  #shopify-section-{{ section.id }} .cleo-search__bar,
+  #shopify-section-{{ section.id }} .cleo-search__form-control {
+    min-height: 64px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__form-control {
+    grid-template-columns: 20px minmax(0, 1fr) 36px;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__input {
+    font-size: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__results {
+    max-height: calc(100vh - var(--header-height, 70px) - var(--cleo-announcement-offset, 0px) - 64px);
+    min-height: 360px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__results-inner {
+    padding-block: 22px 48px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__tabs {
+    gap: 42px;
+    margin-bottom: 22px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search__product-grid {
+    gap: 24px 12px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search-card__title {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search-card__price {
+    font-size: 15px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-search-card__action {
+    min-height: 40px;
+    font-size: 12px;
+  }
+}
+
+</style>
+
+<height-observer variable="header">
+  <x-header
+    class="header color-scheme is-solid"
+    style="
+      --background: 75 45 32;
+      --text-color: 151 143 138;
+      --border-color: 255 255 255 / 0.12;
+      background: {{ section.settings.background_color }};
+      color: {{ section.settings.text_color }};
+    "
+    {{ section.shopify_attributes }}
+  >
+    <{{ logo_tag }} class="header__logo">
+      <a href="{{ routes.root_url }}">
+        <span class="sr-only">{{ logo_alt }}</span>
+        {%- if section.settings.logo != blank -%}
+          <img
+            src="{{ section.settings.logo | image_url: width: 556 }}"
+            alt="{{ logo_alt | escape }}"
+            width="{{ section.settings.logo.width }}"
+            height="{{ section.settings.logo.height }}"
+            sizes="{{ section.settings.logo_width }}px"
+            class="header__logo-image"
+            loading="eager"
+          >
+        {%- else -%}
+          <img
+            src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}"
+            alt="{{ logo_alt | escape }}"
+            srcset="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 440w, {{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 556w"
+            width="556"
+            height="141"
+            sizes="{{ section.settings.logo_width }}px"
+            class="header__logo-image"
+            loading="eager"
+          >
+        {%- endif -%}
+
+        {%- if section.settings.transparent_logo != blank -%}
+          <img
+            src="{{ section.settings.transparent_logo | image_url: width: 220 }}"
+            alt=""
+            width="{{ section.settings.transparent_logo.width }}"
+            height="{{ section.settings.transparent_logo.height }}"
+            sizes="{{ section.settings.logo_width }}px"
+            class="header__logo-image header__logo-image--transparent"
+            loading="eager"
+          >
+        {%- else -%}
+          <img
+            src="{{ 'cleo-static-d20425c87685.png' | asset_url }}"
+            alt=""
+            width="193"
+            height="49"
+            sizes="{{ section.settings.logo_width }}px"
+            class="header__logo-image header__logo-image--transparent"
+            loading="eager"
+          >
+        {%- endif -%}
+      </a>
+    </{{ logo_tag }}>
+
+    <nav class="header__primary-nav header__primary-nav--center" aria-label="Primary navigation">
+      <button
+        type="button"
+        class="md:hidden cleo-mobile-menu-toggle"
+        aria-controls="cleo-mobile-menu-{{ section.id }}"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+        data-cleo-menu-toggle
+      >
+        <span class="sr-only">Navigation menu</span>
+        {{ 'icon-menu.svg' | inline_asset_content }}
+      </button>
+
+    <ul class="contents unstyled-list md-max:hidden cleo-desktop-menu">
+  {%- for link in menu.links -%}
+    <li class="header__primary-nav-item{% if link.links != blank %} has-submenu{% endif %}">
+
+      <a
+        href="{{ link.url }}"
+        data-title="{{ link.title | escape }}"
+        class="block h6 c-h__pnt-font-size"
+        {% if link.links != blank %}
+          aria-haspopup="true"
+        {% endif %}
+        {% if link.current or link.child_active %}
+          aria-current="page"
+        {% endif %}
+      >
+        {{ link.title }}
+      </a>
+
+      {%- if link.links != blank -%}
+        <ul
+          class="cleo-hover-dropdown unstyled-list"
+          role="list"
+          aria-label="{{ link.title | escape }} submenu"
+        >
+          {%- for child in link.links -%}
+            <li class="cleo-hover-dropdown__item">
+              <a
+                href="{{ child.url }}"
+                class="cleo-hover-dropdown__link"
+                {% if child.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{ child.title }}
+              </a>
+
+              {%- if child.links != blank -%}
+                <ul class="cleo-hover-dropdown__sublist unstyled-list" role="list">
+                  {%- for grandchild in child.links -%}
+                    <li>
+                      <a
+                        href="{{ grandchild.url }}"
+                        class="cleo-hover-dropdown__link cleo-hover-dropdown__link--child"
+                        {% if grandchild.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ grandchild.title }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+    </li>
+  {%- endfor -%}
+</ul>
+    </nav>
+
+    <nav class="header__secondary-nav" aria-label="Secondary navigation">
+      <ul class="contents unstyled-list">
+        {%- if section.settings.show_search -%}
+          <li class="header__search-link">
+            <button
+              type="button"
+              class="cleo-search-toggle"
+              aria-controls="header-search-{{ section.id }}"
+              aria-expanded="false"
+              aria-label="Open search"
+              data-cleo-search-toggle
+            >
+              <span class="sr-only">Search</span>
+              <svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-search" viewBox="0 0 24 24">
+                <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path>
+                <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path>
+              </svg>
+            </button>
+          </li>
+        {%- endif -%}
+        <li class="relative header__cart-link">
+          <a href="{{ routes.cart_url }}" aria-controls="cart-drawer" data-no-instant>
+            <span class="sr-only">Cart</span>
+            <svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-cart" viewBox="0 0 24 24">
+              <path d="M10 7h13l-4 9H7.5L5 3H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <circle cx="9" cy="20" r="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+              <circle cx="17" cy="20" r="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+            </svg>
+            <cart-dot class="header__cart-dot{% if cart.item_count > 0 %} is-visible{% endif %}"></cart-dot>
+          </a>
+        </li>
+        {%- if section.settings.show_account -%}
+          <li class="header__account-link">
+            <a href="{{ routes.account_url }}">
+              <span class="sr-only">Account</span>
+              <svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-account" viewBox="0 0 24 24">
+                <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path>
+              </svg>
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </nav>
+
+    {%- if section.settings.show_search -%}
+      <div
+        id="header-search-{{ section.id }}"
+        class="cleo-search"
+        aria-hidden="true"
+        data-cleo-search
+      >
+        <div class="cleo-search__bar">
+          <div class="cleo-search__container">
+            <form action="{{ routes.search_url }}" method="get" role="search" class="cleo-search__form" data-cleo-search-form>
+              <div class="cleo-search__form-control">
+                <svg class="cleo-search__icon" aria-hidden="true" fill="none" focusable="false" viewBox="0 0 24 24">
+                  <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path>
+                  <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path>
+                </svg>
+
+                <input
+                  type="search"
+                  name="q"
+                  spellcheck="false"
+                  autocomplete="off"
+                  class="cleo-search__input"
+                  aria-label="Search"
+                  aria-autocomplete="list"
+                  aria-controls="cleo-search-results-{{ section.id }}"
+                  aria-expanded="false"
+                  placeholder="{{ section.settings.search_placeholder }}"
+                  data-cleo-search-input
+                >
+
+                <button type="button" class="cleo-search__close" aria-label="Close search" data-cleo-search-close>
+                  {{ 'icon-close.svg' | inline_asset_content }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div
+          id="cleo-search-results-{{ section.id }}"
+          class="cleo-search__results"
+          role="region"
+          aria-label="Search suggestions"
+          data-cleo-search-results
+        >
+          <div class="cleo-search__container cleo-search__results-inner">
+            <aside class="cleo-search__suggestions">
+              <p class="cleo-search__eyebrow">Suggestions</p>
+              <ul class="cleo-search__suggestion-list" role="list" data-cleo-search-suggestions></ul>
+            </aside>
+
+            <div class="cleo-search__main">
+              <div class="cleo-search__tabs" role="tablist" aria-label="Search result types">
+                <button
+                  type="button"
+                  class="cleo-search__tab is-active"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="cleo-search-products-{{ section.id }}"
+                  data-cleo-search-tab="products"
+                >
+                  Products
+                </button>
+                <button
+                  type="button"
+                  class="cleo-search__tab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="cleo-search-pages-{{ section.id }}"
+                  data-cleo-search-tab="pages"
+                >
+                  Pages
+                </button>
+              </div>
+
+              <div
+                id="cleo-search-products-{{ section.id }}"
+                class="cleo-search__panel"
+                role="tabpanel"
+                data-cleo-search-panel="products"
+              >
+                <div class="cleo-search__product-grid" data-cleo-search-products></div>
+              </div>
+
+              <div
+                id="cleo-search-pages-{{ section.id }}"
+                class="cleo-search__panel"
+                role="tabpanel"
+                data-cleo-search-panel="pages"
+                hidden
+              >
+                <ul class="cleo-search__page-list" role="list" data-cleo-search-pages></ul>
+              </div>
+
+              <div class="cleo-search__view-all-wrap">
+                <a href="{{ routes.search_url }}" class="cleo-search__view-all" data-cleo-search-view-all>
+                  View all results
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <dialog
+      id="cleo-mobile-menu-{{ section.id }}"
+      class="cleo-mobile-drawer"
+      aria-label="Mobile navigation"
+    >
+      <button
+        type="button"
+        class="cleo-mobile-drawer__overlay"
+        aria-label="Close navigation menu"
+        data-cleo-menu-close
+      ></button>
+
+      <div
+        class="cleo-mobile-drawer__panel"
+        role="document"
+        tabindex="-1"
+      >
+        <div class="cleo-mobile-drawer__header">
+          <a
+            href="{{ routes.root_url }}"
+            class="cleo-mobile-drawer__logo"
+            aria-label="{{ logo_alt | escape }}"
+          >
+            {%- if section.settings.logo != blank -%}
+              <img
+                src="{{ section.settings.logo | image_url: width: 360 }}"
+                alt="{{ logo_alt | escape }}"
+                width="{{ section.settings.logo.width }}"
+                height="{{ section.settings.logo.height }}"
+                loading="eager"
+              >
+            {%- else -%}
+              <img
+                src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}"
+                alt="{{ logo_alt | escape }}"
+                width="556"
+                height="141"
+                loading="eager"
+              >
+            {%- endif -%}
+          </a>
+
+          <button
+            type="button"
+            class="cleo-mobile-drawer__close"
+            aria-label="Close navigation menu"
+            data-cleo-menu-close
+          >
+            {{ 'icon-close.svg' | inline_asset_content }}
+          </button>
+        </div>
+
+        <nav class="cleo-mobile-drawer__nav" aria-label="Mobile primary navigation">
+          <ul class="cleo-mobile-drawer__list" role="list">
+            {%- if section.blocks.size > 0 -%}
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'nav_link' -%}
+                  <li {{ block.shopify_attributes }}>
+                    <a
+                      href="{{ block.settings.url | default: routes.root_url }}"
+                      {% if block.settings.open_new_tab %}
+                        target="_blank"
+                        rel="noopener"
+                      {% endif %}
+                    >
+                      {{ block.settings.title }}
+                    </a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- else -%}
+              {%- for link in menu.links -%}
+                <li>
+                  {%- if link.links != blank -%}
+                    <details class="cleo-mobile-drawer__details">
+                      <summary>
+                        <span>{{ link.title }}</span>
+                        {{ 'icon-chevron-right.svg' | inline_asset_content }}
+                      </summary>
+
+                      <ul role="list">
+                        <li>
+                          <a href="{{ link.url }}">{{ link.title }}</a>
+                        </li>
+
+                        {%- for child in link.links -%}
+                          <li>
+                            <a href="{{ child.url }}">{{ child.title }}</a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </details>
+                  {%- else -%}
+                    <a
+                      href="{{ link.url }}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            {%- endif -%}
+          </ul>
+        </nav>
+
+        {%- if section.settings.show_account -%}
+          <div class="cleo-mobile-drawer__footer">
+            <a href="{{ routes.account_url }}" class="cleo-mobile-drawer__account">
+              {{ 'icon-account.svg' | inline_asset_content }}
+              <span>Login</span>
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </dialog>
+
+  </x-header>
+</height-observer>
+
+<script>
+  (() => {
+    const sectionElement = document.getElementById('shopify-section-{{ section.id }}');
+
+    if (!sectionElement) return;
+
+    let measuredAnnouncement = null;
+    let resizeObserver = null;
+
+    const getAnnouncementElement = () => {
+      const selectors = [
+        '.shopify-section--announcement-bar',
+        '[id*="announcement-bar"]',
+        '[class*="announcement-bar"]'
+      ];
+
+      const candidates = Array.from(
+        document.querySelectorAll(selectors.join(','))
+      );
+
+      const precedingSections = candidates
+        .filter((candidate) => {
+          if (!candidate || candidate === sectionElement || candidate.contains(sectionElement)) {
+            return false;
+          }
+
+          return Boolean(
+            candidate.compareDocumentPosition(sectionElement) &
+            Node.DOCUMENT_POSITION_FOLLOWING
+          );
+        })
+        .map((candidate) => candidate.closest('.shopify-section') || candidate)
+        .filter((candidate, index, array) => array.indexOf(candidate) === index)
+        .filter((candidate) => {
+          const rect = candidate.getBoundingClientRect();
+          const styles = window.getComputedStyle(candidate);
+
+          return (
+            rect.height > 0 &&
+            styles.display !== 'none' &&
+            styles.visibility !== 'hidden'
+          );
+        });
+
+      return precedingSections[precedingSections.length - 1] || null;
+    };
+
+    const updateHeaderMeasurements = () => {
+      const announcementElement = getAnnouncementElement();
+      const headerElement = sectionElement.querySelector('.header');
+      const headerRect = (headerElement || sectionElement).getBoundingClientRect();
+
+      let announcementOffset = 0;
+
+      if (announcementElement) {
+        announcementOffset = announcementElement.getBoundingClientRect().height;
+      }
+
+      sectionElement.style.setProperty(
+        '--cleo-announcement-offset',
+        `${Math.max(0, announcementOffset).toFixed(2)}px`
+      );
+
+      document.documentElement.style.setProperty(
+        '--header-height',
+        `${Math.max(0, headerRect.height).toFixed(2)}px`
+      );
+
+      if (
+        resizeObserver &&
+        announcementElement &&
+        announcementElement !== measuredAnnouncement
+      ) {
+        if (measuredAnnouncement) {
+          resizeObserver.unobserve(measuredAnnouncement);
+        }
+
+        resizeObserver.observe(announcementElement);
+        measuredAnnouncement = announcementElement;
+      }
+    };
+
+    const queueMeasurement = () => {
+      window.requestAnimationFrame(updateHeaderMeasurements);
+    };
+
+    if ('ResizeObserver' in window) {
+      resizeObserver = new ResizeObserver(queueMeasurement);
+      resizeObserver.observe(sectionElement);
+    }
+
+    queueMeasurement();
+
+    window.addEventListener('load', queueMeasurement, { once: true });
+    window.addEventListener('resize', queueMeasurement, { passive: true });
+    document.addEventListener('shopify:section:load', queueMeasurement);
+    document.addEventListener('shopify:section:reorder', queueMeasurement);
+    document.addEventListener('shopify:block:select', queueMeasurement);
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(queueMeasurement);
+    }
+  })();
+</script>
+
+
+<script>
+  (() => {
+    const sectionElement = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionElement || sectionElement.dataset.cleoMenuReady === 'true') return;
+
+    const toggleButton = sectionElement.querySelector('[data-cleo-menu-toggle]');
+    const drawer = sectionElement.querySelector('#cleo-mobile-menu-{{ section.id }}');
+
+    if (!toggleButton || !drawer) return;
+
+    sectionElement.dataset.cleoMenuReady = 'true';
+
+    const panel = drawer.querySelector('.cleo-mobile-drawer__panel');
+    const closeButtons = drawer.querySelectorAll('[data-cleo-menu-close]');
+    const drawerLinks = drawer.querySelectorAll('a');
+    const tabletMedia = window.matchMedia('(max-width: 989px)');
+
+    const setLocked = (locked) => {
+      document.documentElement.classList.toggle('cleo-mobile-menu-open', locked);
+      document.body.classList.toggle('cleo-mobile-menu-open', locked);
+    };
+
+    const isOpen = () => drawer.hasAttribute('open') || drawer.open === true;
+
+    const openDrawer = () => {
+      if (!tabletMedia.matches || isOpen()) return;
+
+      sectionElement.dispatchEvent(new CustomEvent('cleo:search-close'));
+
+      try {
+        if (typeof drawer.showModal === 'function') {
+          drawer.showModal();
+        } else {
+          drawer.setAttribute('open', '');
+        }
+      } catch (error) {
+        drawer.setAttribute('open', '');
+      }
+
+      toggleButton.setAttribute('aria-expanded', 'true');
+      setLocked(true);
+
+      window.requestAnimationFrame(() => {
+        if (panel && typeof panel.focus === 'function') {
+          panel.focus({ preventScroll: true });
+        }
+      });
+    };
+
+    const closeDrawer = ({ restoreFocus = true } = {}) => {
+      if (!isOpen()) {
+        setLocked(false);
+        toggleButton.setAttribute('aria-expanded', 'false');
+        return;
+      }
+
+      try {
+        if (typeof drawer.close === 'function' && drawer.open) {
+          drawer.close();
+        } else {
+          drawer.removeAttribute('open');
+        }
+      } catch (error) {
+        drawer.removeAttribute('open');
+      }
+
+      toggleButton.setAttribute('aria-expanded', 'false');
+      setLocked(false);
+
+      if (restoreFocus && typeof toggleButton.focus === 'function') {
+        toggleButton.focus({ preventScroll: true });
+      }
+    };
+
+    toggleButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openDrawer();
+    }, { capture: true });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        closeDrawer();
+      }, { capture: true });
+    });
+
+    drawerLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closeDrawer({ restoreFocus: false });
+      });
+    });
+
+    drawer.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeDrawer();
+    });
+
+    drawer.addEventListener('close', () => {
+      toggleButton.setAttribute('aria-expanded', 'false');
+      setLocked(false);
+    });
+
+    sectionElement.addEventListener('cleo:menu-close', () => {
+      closeDrawer({ restoreFocus: false });
+    });
+
+    const handleBreakpointChange = (event) => {
+      if (!event.matches) {
+        closeDrawer({ restoreFocus: false });
+      }
+    };
+
+    if (typeof tabletMedia.addEventListener === 'function') {
+      tabletMedia.addEventListener('change', handleBreakpointChange);
+    } else if (typeof tabletMedia.addListener === 'function') {
+      tabletMedia.addListener(handleBreakpointChange);
+    }
+
+    document.addEventListener('shopify:section:unload', (event) => {
+      if (event.detail?.sectionId === '{{ section.id }}') {
+        closeDrawer({ restoreFocus: false });
+      }
+    });
+  })();
+</script>
+
+<script>
+  (() => {
+    const sectionElement = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionElement || sectionElement.dataset.cleoSearchReady === 'true') return;
+
+    const searchRoot = sectionElement.querySelector('[data-cleo-search]');
+    const openButton = sectionElement.querySelector('[data-cleo-search-toggle]');
+
+    if (!searchRoot || !openButton) return;
+
+    sectionElement.dataset.cleoSearchReady = 'true';
+
+    const form = searchRoot.querySelector('[data-cleo-search-form]');
+    const input = searchRoot.querySelector('[data-cleo-search-input]');
+    const closeButton = searchRoot.querySelector('[data-cleo-search-close]');
+    const suggestionsList = searchRoot.querySelector('[data-cleo-search-suggestions]');
+    const productsGrid = searchRoot.querySelector('[data-cleo-search-products]');
+    const pagesList = searchRoot.querySelector('[data-cleo-search-pages]');
+    const viewAllLink = searchRoot.querySelector('[data-cleo-search-view-all]');
+    const tabs = Array.from(searchRoot.querySelectorAll('[data-cleo-search-tab]'));
+    const panels = Array.from(searchRoot.querySelectorAll('[data-cleo-search-panel]'));
+
+    let debounceTimer = null;
+    let activeRequest = null;
+    let latestQuery = '';
+
+    const searchUrl = '{{ routes.search_url }}';
+    const rootUrl = window.Shopify?.routes?.root || '{{ routes.root_url }}';
+    const normalizedRootUrl = rootUrl.endsWith('/') ? rootUrl : `${rootUrl}/`;
+
+    const clearElement = (element) => {
+      while (element.firstChild) element.removeChild(element.firstChild);
+    };
+
+    const createMessage = (text, className = 'cleo-search__empty') => {
+      const paragraph = document.createElement('p');
+      paragraph.className = className;
+      paragraph.textContent = text;
+      return paragraph;
+    };
+
+    const normalizeImageUrl = (image) => {
+      if (!image) return '';
+      if (typeof image === 'string') return image;
+      return image.url || image.src || '';
+    };
+
+    const formatPrice = (price) => {
+      if (price === null || price === undefined || price === '') return '';
+
+      if (typeof price === 'string') return price;
+
+      const numericPrice = Number(price);
+      if (!Number.isFinite(numericPrice)) return String(price);
+
+      const currency = window.Shopify?.currency?.active || 'USD';
+      const locale = document.documentElement.lang || 'en-US';
+
+      try {
+        return new Intl.NumberFormat(locale, {
+          style: 'currency',
+          currency
+        }).format(numericPrice / 100);
+      } catch (error) {
+        return String(numericPrice / 100);
+      }
+    };
+
+    const getSuggestionText = (suggestion) => {
+      if (typeof suggestion === 'string') return suggestion;
+      return suggestion?.text || suggestion?.styled_text || suggestion?.title || '';
+    };
+
+    const getProductBadge = (product) => {
+      const tags = Array.isArray(product?.tags)
+        ? product.tags.join(' ')
+        : String(product?.tags || '');
+
+      return /best[\s-]?seller/i.test(tags) ? 'Bestseller' : '';
+    };
+
+    const setActiveTab = (tabName) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.cleoSearchTab === tabName;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', String(isActive));
+      });
+
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.cleoSearchPanel !== tabName;
+      });
+    };
+
+    const openSearch = () => {
+      sectionElement.dispatchEvent(new CustomEvent('cleo:menu-close'));
+
+      searchRoot.classList.add('is-open');
+      searchRoot.setAttribute('aria-hidden', 'false');
+      openButton.setAttribute('aria-expanded', 'true');
+
+      window.requestAnimationFrame(() => {
+        if (input && typeof input.focus === 'function') {
+          input.focus({ preventScroll: true });
+        }
+      });
+    };
+
+    const resetResults = () => {
+      latestQuery = '';
+      searchRoot.classList.remove('has-query');
+      input.setAttribute('aria-expanded', 'false');
+      clearElement(suggestionsList);
+      clearElement(productsGrid);
+      clearElement(pagesList);
+      setActiveTab('products');
+    };
+
+    const closeSearch = ({ restoreFocus = true } = {}) => {
+      if (activeRequest) {
+        activeRequest.abort();
+        activeRequest = null;
+      }
+
+      window.clearTimeout(debounceTimer);
+      input.value = '';
+      resetResults();
+      searchRoot.classList.remove('is-open');
+      searchRoot.setAttribute('aria-hidden', 'true');
+      openButton.setAttribute('aria-expanded', 'false');
+
+      if (restoreFocus) {
+        openButton.focus({ preventScroll: true });
+      }
+    };
+
+    const renderSuggestions = (suggestions, products, query) => {
+      clearElement(suggestionsList);
+
+      const seen = new Set();
+      const suggestionTexts = [];
+
+      suggestions.forEach((suggestion) => {
+        const text = getSuggestionText(suggestion).replace(/<[^>]*>/g, '').trim();
+        const key = text.toLowerCase();
+
+        if (text && !seen.has(key)) {
+          seen.add(key);
+          suggestionTexts.push(text);
+        }
+      });
+
+      if (!suggestionTexts.length) {
+        products.slice(0, 8).forEach((product) => {
+          const title = String(product?.title || '').trim();
+          const key = title.toLowerCase();
+
+          if (title && !seen.has(key)) {
+            seen.add(key);
+            suggestionTexts.push(title);
+          }
+        });
+      }
+
+      if (!suggestionTexts.length) {
+        suggestionTexts.push(query);
+      }
+
+      suggestionTexts.slice(0, 10).forEach((text) => {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+
+        link.className = 'cleo-search__suggestion-link';
+        link.href = `${searchUrl}?q=${encodeURIComponent(text)}`;
+        link.textContent = text;
+
+        listItem.appendChild(link);
+        suggestionsList.appendChild(listItem);
+      });
+    };
+
+    const renderProducts = (products) => {
+      clearElement(productsGrid);
+
+      if (!products.length) {
+        productsGrid.appendChild(createMessage('No products found.'));
+        return;
+      }
+
+      products.slice(0, 8).forEach((product) => {
+        const card = document.createElement('article');
+        const mediaLink = document.createElement('a');
+        const titleLink = document.createElement('a');
+        const price = document.createElement('p');
+        const action = product.available === false
+          ? document.createElement('span')
+          : document.createElement('a');
+
+        const productUrl = product.url || `${searchUrl}?q=${encodeURIComponent(product.title || '')}`;
+        const imageUrl = normalizeImageUrl(product.featured_image || product.image || product.images?.[0]);
+        const badgeText = getProductBadge(product);
+
+        card.className = 'cleo-search-card';
+
+        mediaLink.className = 'cleo-search-card__media';
+        mediaLink.href = productUrl;
+        mediaLink.setAttribute('aria-label', product.title || 'View product');
+
+        if (imageUrl) {
+          const image = document.createElement('img');
+          image.src = imageUrl;
+          image.alt = product.featured_image?.alt || product.title || '';
+          image.loading = 'lazy';
+          mediaLink.appendChild(image);
+        }
+
+        if (badgeText) {
+          const badge = document.createElement('span');
+          badge.className = 'cleo-search-card__badge';
+          badge.textContent = badgeText;
+          mediaLink.appendChild(badge);
+        }
+
+        titleLink.className = 'cleo-search-card__title';
+        titleLink.href = productUrl;
+        titleLink.textContent = product.title || 'Product';
+
+        price.className = 'cleo-search-card__price';
+        price.textContent = formatPrice(product.price || product.price_min);
+
+        action.className = 'cleo-search-card__action';
+
+        if (product.available === false) {
+          action.classList.add('is-disabled');
+          action.textContent = 'Sold out';
+          action.setAttribute('aria-disabled', 'true');
+        } else {
+          action.href = productUrl;
+          action.textContent = 'View product';
+        }
+
+        card.append(mediaLink, titleLink);
+
+        if (price.textContent) {
+          card.appendChild(price);
+        }
+
+        card.appendChild(action);
+        productsGrid.appendChild(card);
+      });
+    };
+
+    const renderPages = (pages) => {
+      clearElement(pagesList);
+
+      if (!pages.length) {
+        const listItem = document.createElement('li');
+        listItem.appendChild(createMessage('No pages found.'));
+        pagesList.appendChild(listItem);
+        return;
+      }
+
+      pages.slice(0, 12).forEach((page) => {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+
+        link.className = 'cleo-search__page-link';
+        link.href = page.url || `${searchUrl}?q=${encodeURIComponent(page.title || '')}`;
+        link.textContent = page.title || 'Page';
+
+        listItem.appendChild(link);
+        pagesList.appendChild(listItem);
+      });
+    };
+
+    const renderLoading = () => {
+      clearElement(suggestionsList);
+      clearElement(productsGrid);
+      clearElement(pagesList);
+
+      productsGrid.appendChild(createMessage('Searching...', 'cleo-search__loading'));
+    };
+
+    const renderError = () => {
+      clearElement(suggestionsList);
+      clearElement(productsGrid);
+      clearElement(pagesList);
+
+      productsGrid.appendChild(createMessage('Search results could not be loaded. Please try again.'));
+    };
+
+    const fetchPredictiveSearch = async (query) => {
+      if (activeRequest) activeRequest.abort();
+
+      activeRequest = new AbortController();
+      renderLoading();
+
+      const params = new URLSearchParams();
+      params.set('q', query);
+      params.set('resources[type]', 'query,product,page');
+      params.set('resources[limit]', '8');
+      params.set('resources[limit_scope]', 'each');
+      params.set('resources[options][unavailable_products]', 'last');
+
+      try {
+        const response = await fetch(`${normalizedRootUrl}search/suggest.json?${params.toString()}`, {
+          signal: activeRequest.signal,
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        if (!response.ok) throw new Error(`Predictive search failed: ${response.status}`);
+
+        const data = await response.json();
+
+        if (query !== latestQuery) return;
+
+        const resources = data?.resources?.results || data?.resources || {};
+        const suggestions = Array.isArray(resources.queries) ? resources.queries : [];
+        const products = Array.isArray(resources.products) ? resources.products : [];
+        const pages = Array.isArray(resources.pages) ? resources.pages : [];
+
+        renderSuggestions(suggestions, products, query);
+        renderProducts(products);
+        renderPages(pages);
+      } catch (error) {
+        if (error.name !== 'AbortError' && query === latestQuery) {
+          renderError();
+        }
+      } finally {
+        activeRequest = null;
+      }
+    };
+
+    const handleInput = () => {
+      const query = input.value.trim();
+      latestQuery = query;
+      window.clearTimeout(debounceTimer);
+
+      if (!query) {
+        resetResults();
+        return;
+      }
+
+      searchRoot.classList.add('has-query');
+      input.setAttribute('aria-expanded', 'true');
+      viewAllLink.href = `${searchUrl}?q=${encodeURIComponent(query)}`;
+
+      debounceTimer = window.setTimeout(() => {
+        fetchPredictiveSearch(query);
+      }, 220);
+    };
+
+    openButton.setAttribute('aria-expanded', 'false');
+
+    openButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (searchRoot.classList.contains('is-open')) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    }, { capture: true });
+
+    closeButton.addEventListener('click', () => {
+      closeSearch();
+    });
+
+    input.addEventListener('input', handleInput);
+
+    form.addEventListener('submit', (event) => {
+      if (!input.value.trim()) {
+        event.preventDefault();
+        input.focus();
+      }
+    });
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        setActiveTab(tab.dataset.cleoSearchTab);
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && searchRoot.classList.contains('is-open')) {
+        event.preventDefault();
+        closeSearch();
+      }
+    });
+
+    document.addEventListener('pointerdown', (event) => {
+      if (!searchRoot.classList.contains('is-open')) return;
+      if (searchRoot.contains(event.target) || openButton.contains(event.target)) return;
+
+      closeSearch({ restoreFocus: false });
+    });
+
+    sectionElement.addEventListener('cleo:search-close', () => {
+      if (searchRoot.classList.contains('is-open')) {
+        closeSearch({ restoreFocus: false });
+      }
+    });
+
+    document.addEventListener('shopify:section:unload', (event) => {
+      if (event.detail?.sectionId === '{{ section.id }}') {
+        if (activeRequest) activeRequest.abort();
+        closeSearch({ restoreFocus: false });
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cleo header",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Logo alt text",
+      "default": "Neera Living"
+    },
+    {
+      "type": "image_picker",
+      "id": "transparent_logo",
+      "label": "Transparent logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Sticky header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search for..."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#4b2d20"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#97908a"
+    },
+    {
+      "type": "color",
+      "id": "mobile_drawer_background",
+      "label": "Mobile drawer background",
+      "default": "#fffaf5"
+    },
+    {
+      "type": "color",
+      "id": "mobile_drawer_text",
+      "label": "Mobile drawer text",
+      "default": "#4d2e20"
+    },
+    {
+      "type": "range",
+      "id": "desktop_header_height",
+      "label": "Desktop header height",
+      "min": 70,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "default": 108
+    },
+    {
+      "type": "range",
+      "id": "mobile_header_height",
+      "label": "Mobile header height",
+      "min": 56,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_y",
+      "label": "Desktop vertical padding",
+      "min": 8,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_y",
+      "label": "Mobile vertical padding",
+      "min": 8,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Desktop logo width",
+      "min": 120,
+      "max": 320,
+      "step": 5,
+      "unit": "px",
+      "default": 220
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "label": "Mobile logo width",
+      "min": 90,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "default": 150
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Navigation link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Home"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open in new tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo header"
+    }
+  ]
+}
+{% endschema %}

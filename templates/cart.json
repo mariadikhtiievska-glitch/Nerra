@@ -1,0 +1,46 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cleo-main-cart",
+      "settings": {
+        "heading": "Your Shopping Cart",
+        "free_shipping_threshold": 75,
+        "discount_message": "Discounts and shipping calculated at checkout.",
+        "show_cart_note": true
+      }
+    },
+    "recommended": {
+      "type": "cleo-product-grid",
+      "settings": {
+        "heading": "Complete your ritual",
+        "products_to_show": 4,
+        "show_quick_add": true,
+        "image_ratio": "1 / 1",
+        "columns": 4,
+        "tablet_columns": 2,
+        "mobile_columns": 2,
+        "mobile_grid_gap": 14,
+        "card_radius": 0,
+        "heading_alignment": "center",
+        "background_color": "#ffffff",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30
+      }
+    }
+  },
+  "order": [
+    "main",
+    "recommended"
+  ]
+}

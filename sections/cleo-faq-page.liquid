@@ -1,0 +1,649 @@
+{% comment %}
+  Section: CLEO FAQ Page
+  File: sections/cleo-faq-page.liquid
+{% endcomment %}
+
+{%- liquid
+  assign section_heading = section.settings.heading
+  assign intro_text = section.settings.intro_text
+-%}
+
+<section
+  id="CleoFaqSection-{{ section.id }}"
+  class="cleo-faq-section color-{{ section.settings.color_scheme }}"
+>
+  <div class="cleo-faq-section__container">
+    <div class="cleo-faq-section__stack">
+      {% if section_heading != blank %}
+        <header class="cleo-faq-section__header">
+          <h1 class="cleo-faq-section__heading">
+            {{ section_heading | escape }}
+          </h1>
+        </header>
+      {% endif %}
+
+      <div class="cleo-faq-section__content">
+        {% if intro_text != blank %}
+          <div class="cleo-faq-section__intro rte">
+            {{ intro_text }}
+          </div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="cleo-faq-section__questions">
+            {% for block in section.blocks %}
+              <div
+                class="cleo-faq-section__item"
+                {{ block.shopify_attributes }}
+              >
+                {% if block.settings.question != blank %}
+                  <div class="cleo-faq-section__question">
+                    {% if section.settings.show_numbers %}
+                      <span class="cleo-faq-section__number">
+                        {{ forloop.index }}.
+                      </span>
+                    {% endif %}
+
+                    <span class="cleo-faq-section__question-text">
+                      {{ block.settings.question | escape }}
+                    </span>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.answer != blank %}
+                  <div class="cleo-faq-section__answer rte">
+                    {{ block.settings.answer }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="cleo-faq-section__empty">
+            Add FAQ blocks through the Theme Editor.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  #CleoFaqSection-{{ section.id }} {
+    --cleo-faq-content-width: {{ section.settings.content_width }}px;
+    --cleo-faq-heading-size: {{ section.settings.heading_size }}px;
+    --cleo-faq-body-size: {{ section.settings.body_size }}px;
+    --cleo-faq-heading-color: {{ section.settings.heading_color }};
+    --cleo-faq-text-color: {{ section.settings.text_color }};
+    --cleo-faq-link-color: {{ section.settings.link_color }};
+    --cleo-faq-item-gap: {{ section.settings.item_spacing }}px;
+
+    width: 100%;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+    color: var(--cleo-faq-text-color);
+  }
+
+  #CleoFaqSection-{{ section.id }} *,
+  #CleoFaqSection-{{ section.id }} *::before,
+  #CleoFaqSection-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__container {
+    width: 100%;
+    max-width: calc(var(--cleo-faq-content-width) + 40px);
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__stack {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.header_content_gap }}px;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__header {
+    width: 100%;
+    text-align: center;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__heading {
+    margin: 0;
+    padding: 0;
+    color: var(--cleo-faq-heading-color);
+    font-family: inherit;
+    font-size: var(--cleo-faq-heading-size);
+    font-weight: {{ section.settings.heading_weight }};
+    line-height: 1.15;
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+    text-align: center;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__content {
+    width: 100%;
+    max-width: var(--cleo-faq-content-width);
+    margin: 0 auto;
+    color: var(--cleo-faq-text-color);
+    font-size: var(--cleo-faq-body-size);
+    line-height: {{ section.settings.line_height }};
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__intro {
+    margin-bottom: {{ section.settings.intro_bottom_spacing }}px;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__intro > *:first-child,
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__answer > *:first-child {
+    margin-top: 0;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__intro > *:last-child,
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__answer > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__questions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cleo-faq-item-gap);
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__item {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__question {
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    color: var(--cleo-faq-text-color);
+    font-size: inherit;
+    font-weight: 700;
+    line-height: inherit;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__number {
+    flex: 0 0 auto;
+    margin-right: 4px;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__question-text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__answer {
+    margin-top: {{ section.settings.question_answer_gap }}px;
+    color: var(--cleo-faq-text-color);
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__answer p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #CleoFaqSection-{{ section.id }} .rte p + p {
+    margin-top: 14px;
+  }
+
+  #CleoFaqSection-{{ section.id }} .rte ul,
+  #CleoFaqSection-{{ section.id }} .rte ol {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-left: 24px;
+  }
+
+  #CleoFaqSection-{{ section.id }} .rte li + li {
+    margin-top: 6px;
+  }
+
+  #CleoFaqSection-{{ section.id }} .rte a {
+    color: var(--cleo-faq-link-color);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+  }
+
+  #CleoFaqSection-{{ section.id }} .rte a:hover {
+    opacity: 0.7;
+  }
+
+  #CleoFaqSection-{{ section.id }} .cleo-faq-section__empty {
+    padding: 20px;
+    border: 1px dashed currentColor;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  @media screen and (max-width: 749px) {
+    #CleoFaqSection-{{ section.id }} {
+      --cleo-faq-heading-size: {{ section.settings.mobile_heading_size }}px;
+      --cleo-faq-body-size: {{ section.settings.mobile_body_size }}px;
+
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #CleoFaqSection-{{ section.id }} .cleo-faq-section__container {
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+
+    #CleoFaqSection-{{ section.id }} .cleo-faq-section__stack {
+      gap: {{ section.settings.mobile_header_content_gap }}px;
+    }
+
+    #CleoFaqSection-{{ section.id }} .cleo-faq-section__content {
+      line-height: {{ section.settings.mobile_line_height }};
+    }
+
+    #CleoFaqSection-{{ section.id }} .cleo-faq-section__intro {
+      margin-bottom: {{ section.settings.mobile_intro_bottom_spacing }}px;
+    }
+
+    #CleoFaqSection-{{ section.id }} .cleo-faq-section__questions {
+      gap: {{ section.settings.mobile_item_spacing }}px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "CLEO FAQ page",
+  "tag": "section",
+  "class": "shopify-section--main-page",
+  "max_blocks": 30,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FAQs"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction",
+      "default": "<p>We have listed frequently answered questions here. Please do get in touch with us if you have any questions.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_numbers",
+      "label": "Show question numbers",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 500,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "header_content_gap",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading to content spacing",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_header_content_gap",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile heading to content spacing",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "intro_bottom_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Introduction bottom spacing",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_intro_bottom_spacing",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile introduction bottom spacing",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "min": 8,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "FAQ spacing",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_item_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile FAQ spacing",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "question_answer_gap",
+      "min": 0,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Question to answer spacing",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "min": 22,
+      "max": 46,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile heading size",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "default": "600",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": -2,
+      "max": 4,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Heading letter spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Body text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_body_size",
+      "min": 13,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile body text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "min": 1.2,
+      "max": 2,
+      "step": 0.1,
+      "label": "Line height",
+      "default": 1.6
+    },
+    {
+      "type": "range",
+      "id": "mobile_line_height",
+      "min": 1.2,
+      "max": 2,
+      "step": 0.1,
+      "label": "Mobile line height",
+      "default": 1.6
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Theme color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop top spacing",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop bottom spacing",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile top spacing",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile bottom spacing",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Enter your question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Enter the answer to this frequently asked question.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CLEO FAQ page",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How can I verify that my CLEO copper product is 100% authentic, and why does it look like the copper is peeling?",
+            "answer": "<p>Every CLEO product is meticulously handcrafted by skilled artisans using high-grade, pure Ayurvedic copper. Because each piece is individually shaped rather than mass-produced by machines, you may notice unique structural variations. Sometimes, customers notice natural surface flakes or standard oxidation scales that look like peeling. Rest assured, our vessels are completely solid, pure copper and do not have any synthetic coatings or artificial chemical linings that could peel off. What you are seeing is simply a characteristic of raw, natural copper reacting to its environment, which is the true hallmark of authentic craftsmanship.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Why is my copper bottle changing color inside, and what should I do about oxidation?",
+            "answer": "<p>Please don't worry—this color change is entirely safe and a wonderful sign of pure copper! Pure copper undergoes a natural process called oxidation when it comes into contact with water and oxygen, leading to a darker patina or faint dark spots. This is a definitive indicator that your bottle is untreated and completely real. You can easily restore its natural inner glow by swirling a gentle mixture of lemon juice or tamarind and a tablespoon of salt inside the bottle, rinsing it thoroughly with lukewarm water, and drying it completely with a soft cloth.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "The cap's O-ring or threading doesn't seem to align perfectly. How can I fix this?",
+            "answer": "<p>Because our bottles are individually handcrafted, the precision threading and silicone O-ring seals can occasionally require a brief break-in period to align flawlessly. If you experience resistance or minor misalignment when twisting the cap, press down evenly on the cap before turning and twist it slowly to help the threads align naturally. Ensuring the silicone O-ring is seated completely flat inside the cap will also help create a secure, leak-proof seal.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I store water in my CLEO bottle and keep it in the refrigerator?",
+            "answer": "<p>We generally recommend keeping your CLEO copper bottle at room temperature to fully maximize the traditional Ayurvedic benefits of copper-infused water. However, if you prefer chilled water, you can place the bottle in the refrigerator. Never place the bottle in the freezer, as the expansion of freezing water can warp or permanently damage the handcrafted copper structure.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Where is CLEO based, and do you ship internationally?",
+            "answer": "<p>CLEO is proudly headquartered in the United States, where we manage our primary operations and design. To bring the holistic benefits of the Ayurvedic lifestyle to a global community, we have also expanded our presence and fulfillment networks across multiple countries, including Germany, Canada, and India. This allows us to serve US customers efficiently while smoothly handling international logistics.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my international order?",
+            "answer": "<p>Once your order is processed, you will automatically receive an email confirmation containing your unique tracking number. We primarily partner with premium global couriers such as FedEx to ensure reliable delivery. You can track your shipment through the courier's portal using the direct link provided in your email.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I change my shipping address after placing an order?",
+            "answer": "<p>We process and dispatch orders promptly. If you need to update your shipping destination, contact our support team immediately. We can modify the address as long as the package has not left our facility. Unfortunately, we cannot reroute a shipment after it has been handed over to the courier.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "I received an incomplete order with missing items. How will this be resolved?",
+            "answer": "<p>Please accept our sincere apologies for the oversight. Contact our support team with your order details, and we will arrange shipment of the missing items as quickly as possible. You will receive a new tracking number by email when the remaining items leave our facility.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "I received the wrong order. What are the next steps to get my correct product?",
+            "answer": "<p>We are very sorry for the delivery mix-up. Please contact our support team and provide a clear photo of the items you received. We will arrange a replacement of your correct order and coordinate the return of the incorrectly received product at no additional cost.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "My tracking status hasn't updated in a few days. Should I be concerned?",
+            "answer": "<p>There is usually no need to worry. International shipments can experience temporary tracking pauses while moving through sorting hubs, customs checkpoints, or regional delivery networks. If your tracking status remains unchanged for more than five business days, contact our support team so we can investigate it with the carrier.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What inspires the CLEO lifestyle movement?",
+            "answer": "<p>CLEO was founded with a deep respect for personal wellness, mindful living, and ancestral wisdom. Our venture is fueled by a commitment to bringing the time-tested, holistic benefits of the Ayurvedic lifestyle into modern homes. Every piece is designed to support everyday well-being while honoring and preserving the heritage of traditional handcrafted artistry.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

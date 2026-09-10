@@ -1,0 +1,233 @@
+<section
+  id="CleoVideos-{{ section.id }}"
+  class="cleo-videos{% if section.settings.show_on_desktop %} cleo-videos--desktop{% endif %}"
+  style="
+    --cleo-videos-background: {{ section.settings.background_color }};
+    --cleo-videos-height: {{ section.settings.mobile_height }}px;
+    --cleo-videos-card-width: {{ section.settings.card_width }}px;
+    --cleo-videos-slide-width: {{ section.settings.slide_width }}px;
+  "
+>
+  {%- if section.settings.heading != blank -%}
+    <h2 class="cleo-videos__heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  <div class="cleo-videos__track" data-cleo-video-track>
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign card_product = block.settings.product
+        if card_product == blank
+          assign card_product = collections.all.products[forloop.index0]
+        endif
+      -%}
+      <article
+        class="cleo-videos__slide{% if block.settings.featured %} is-featured{% endif %}"
+        {% if block.settings.featured %}data-cleo-video-featured{% endif %}
+        {{ block.shopify_attributes }}
+      >
+        <div class="cleo-videos__card">
+          <video
+            class="cleo-videos__media"
+            data-cleo-shoppable-video
+            {% if block.settings.poster_url != blank %}poster="{{ block.settings.poster_url }}"{% endif %}
+            preload="metadata"
+            playsinline
+            muted
+            loop
+            {% if section.settings.autoplay %}autoplay{% endif %}
+            tabindex="0"
+            role="button"
+            aria-label="Play or pause {{ card_product.title | default: block.settings.fallback_title | escape }} video"
+          >
+            {%- if block.settings.video_url != blank -%}
+              <source src="{{ block.settings.video_url }}" type="video/mp4">
+            {%- endif -%}
+          </video>
+
+          {%- if card_product != blank -%}
+            <a class="cleo-videos__product" href="{{ card_product.url }}">
+              <span class="cleo-videos__product-image">
+                {%- if card_product.featured_image != blank -%}
+                  {{
+                    card_product.featured_image
+                    | image_url: width: 96
+                    | image_tag: loading: 'lazy', widths: '42, 84, 96', sizes: '42px', alt: card_product.title
+                  }}
+                {%- endif -%}
+              </span>
+              <span class="cleo-videos__product-info">
+                <span class="cleo-videos__product-title">{{ card_product.title }}</span>
+                <strong>{{ card_product.price | money }}</strong>
+              </span>
+            </a>
+          {%- else -%}
+            <div class="cleo-videos__product">
+              <span class="cleo-videos__product-image"></span>
+              <span class="cleo-videos__product-info">
+                <span class="cleo-videos__product-title">{{ block.settings.fallback_title }}</span>
+                <strong>{{ block.settings.fallback_price }}</strong>
+              </span>
+            </div>
+          {%- endif -%}
+        </div>
+      </article>
+    {%- endfor -%}
+  </div>
+</section>
+
+<style>
+  #CleoVideos-{{ section.id }} {
+    display: none;
+    overflow: hidden;
+    background: var(--cleo-videos-background);
+  }
+
+  @media screen and (max-width: 749px) {
+    #CleoVideos-{{ section.id }} {
+      display: block;
+      height: var(--cleo-videos-height);
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__heading {
+      margin: 0;
+      padding: 12px 16px 0;
+      color: #895737;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__track {
+      display: flex;
+      width: 100%;
+      height: calc(var(--cleo-videos-height) - 1px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-inline: calc((100vw - var(--cleo-videos-slide-width)) / 2);
+      scroll-padding-inline: calc((100vw - var(--cleo-videos-slide-width)) / 2);
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__slide {
+      display: flex;
+      width: var(--cleo-videos-slide-width);
+      min-width: var(--cleo-videos-slide-width);
+      height: 100%;
+      justify-content: center;
+      scroll-snap-align: center;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__card {
+      width: var(--cleo-videos-card-width);
+      margin-top: 12px;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__media {
+      display: block;
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 4px;
+      background: #ffffff;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.28);
+      cursor: pointer;
+      object-fit: cover;
+    }
+
+    #CleoVideos-{{ section.id }} .is-featured .cleo-videos__media {
+      height: 329px;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__product {
+      display: grid;
+      width: 100%;
+      height: 66px;
+      grid-template-columns: 42px minmax(0, 1fr);
+      align-items: center;
+      gap: 6px;
+      padding: 12px 4px;
+      color: #111111;
+      text-decoration: none;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__product-image,
+    #CleoVideos-{{ section.id }} .cleo-videos__product-image img {
+      display: block;
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__product-info {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__product-title {
+      display: block;
+      overflow: hidden;
+      font-size: 10px;
+      line-height: 14px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #CleoVideos-{{ section.id }} .cleo-videos__product-info strong {
+      font-size: 13px;
+      line-height: 18px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    #CleoVideos-{{ section.id }}.cleo-videos--desktop {
+      display: block;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cleo shoppable videos",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#efefef" },
+    { "type": "checkbox", "id": "autoplay", "label": "Autoplay muted videos", "default": true },
+    { "type": "checkbox", "id": "show_on_desktop", "label": "Show on desktop", "default": false },
+    { "type": "range", "id": "mobile_height", "label": "Mobile section height", "min": 360, "max": 520, "step": 2, "unit": "px", "default": 422 },
+    { "type": "range", "id": "card_width", "label": "Video card width", "min": 140, "max": 190, "step": 2, "unit": "px", "default": 168 },
+    { "type": "range", "id": "slide_width", "label": "Slide width", "min": 170, "max": 230, "step": 1, "unit": "px", "default": 195 }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video product",
+      "settings": [
+        { "type": "url", "id": "video_url", "label": "MP4 video URL" },
+        { "type": "url", "id": "poster_url", "label": "Poster image URL" },
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "checkbox", "id": "featured", "label": "Use taller center card", "default": false },
+        { "type": "text", "id": "fallback_title", "label": "Fallback title", "default": "Cleo copper drinkware" },
+        { "type": "text", "id": "fallback_price", "label": "Fallback price", "default": "$49.99" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo shoppable videos",
+      "blocks": [
+        { "type": "video" },
+        { "type": "video", "settings": { "featured": true } },
+        { "type": "video" }
+      ]
+    }
+  ]
+}
+{% endschema %}

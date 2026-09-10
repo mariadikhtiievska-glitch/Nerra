@@ -1,0 +1,486 @@
+<style data-cleo-component-css="collection">
+  #CleoMainCollection-{{ section.id }} {
+    --product-list-horizontal-spacing-factor: 1.6;
+    --product-list-vertical-spacing-factor: 1;
+    --collection-items-per-row-medium: {{ section.settings.mobile_columns | default: 2 }};
+    --collection-items-per-row-large: 1;
+  }
+
+  #CleoMainCollection-{{ section.id }} > .color-scheme > .container {
+    --distance-to-bleed: var(--container-gutter);
+  }
+
+  #CleoMainCollection-{{ section.id }} .collection-toolbar {
+    border-top: 2px solid #895737;
+    border-bottom: 1px solid rgba(137, 87, 55, 0.18);
+    background: #f5eadc;
+    color: #895737;
+  }
+
+  #CleoMainCollection-{{ section.id }} .collection-toolbar__button-list,
+  #CleoMainCollection-{{ section.id }} .collection-toolbar__layout-switch-list {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  #CleoMainCollection-{{ section.id }} .collection {
+    gap: clamp(30px, 4vw, 64px);
+  }
+
+  #CleoMainCollection-{{ section.id }} .facets-sidebar {
+    color: #895737;
+  }
+
+  #CleoMainCollection-{{ section.id }} .product-list {
+    --product-list-max-items-per-row-allowed: 99 !important;
+  }
+
+  #CleoMainCollection-{{ section.id }} facets-drawer[data-cleo-filter-panel] {
+    display: block;
+  }
+
+  #CleoMainCollection-{{ section.id }} .cleo-filter-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  #CleoMainCollection-{{ section.id }} .cleo-filter-drawer__header .h4 {
+    margin: 0;
+  }
+
+  html.cleo-filter-open #CleoMainCollection-{{ section.id }} .cleo-filter-overlay {
+    display: block;
+  }
+
+  #CleoMainCollection-{{ section.id }} [data-cleo-popover] {
+    display: none;
+  }
+
+  #CleoMainCollection-{{ section.id }} [data-cleo-popover].cleo-sort-popover--open {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #CleoMainCollection-{{ section.id }} #sort-by-popover-{{ section.id }} {
+    width: 280px;
+    min-width: 280px;
+    max-width: calc(100vw - 24px);
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: rgb(var(--background, 255 255 255));
+    color: rgb(var(--text-color, 30 30 30));
+    border: 1px solid rgb(var(--border-color, 0 0 0) / 0.12);
+    border-radius: 0;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.14);
+    z-index: 1000;
+  }
+
+  #CleoMainCollection-{{ section.id }} #sort-by-popover-{{ section.id }} [slot="header"] {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 14px 16px 10px;
+    color: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.3;
+    box-sizing: border-box;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-list {
+    display: block;
+    width: 100%;
+    max-height: min(430px, calc(100vh - 130px));
+    margin: 0;
+    padding: 0 0 8px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: rgb(var(--background, 255 255 255));
+    scrollbar-width: thin;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-list::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-list::-webkit-scrollbar-thumb {
+    background: rgb(var(--text-color, 0 0 0) / 0.25);
+    border-radius: 20px;
+  }
+ .accordion-list {
+    margin-bottom: 10px;
+}
+  #CleoMainCollection-{{ section.id }} .popover__value-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 38px;
+    margin: 0;
+    padding: 9px 44px 9px 16px;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    box-sizing: border-box;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.18s ease, color 0.18s ease;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-option:hover {
+    background: rgb(var(--text-color, 0 0 0) / 0.06);
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-option:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -3px;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-option .reversed-link {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0.78;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-option[aria-selected="true"],
+  #CleoMainCollection-{{ section.id }} .popover__value-option.is-selected {
+    background: rgb(143 91 61 / 0.12);
+    color: rgb(var(--text-color, 30 30 30));
+    font-weight: 700;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-option[aria-selected="true"] .reversed-link,
+  #CleoMainCollection-{{ section.id }} .popover__value-option.is-selected .reversed-link {
+    color: inherit;
+    font-weight: 700;
+    opacity: 1;
+  }
+
+  #CleoMainCollection-{{ section.id }} .popover__value-option[aria-selected="true"]::after,
+  #CleoMainCollection-{{ section.id }} .popover__value-option.is-selected::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 17px;
+    width: 7px;
+    height: 12px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-60%) rotate(45deg);
+  }
+
+  #CleoMainCollection-{{ section.id }} .collection__main {
+    transition: opacity 0.2s ease;
+  }
+
+  #CleoMainCollection-{{ section.id }}.is-sorting .collection__main {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  #CleoMainCollection-{{ section.id }}.is-sorting .collection-toolbar__button {
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 699px) {
+    #CleoMainCollection-{{ section.id }} .collection-toolbar,
+    #CleoMainCollection-{{ section.id }} .collection-toolbar__button-list,
+    #CleoMainCollection-{{ section.id }} .collection-toolbar__layout-switch-list[device="mobile"] {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #CleoMainCollection-{{ section.id }} .collection-toolbar__layout-switch-list[device="desktop"] {
+      display: none !important;
+    }
+
+    /* Keep the original mobile toolbar unchanged. Only improve the opened sort panel. */
+    #CleoMainCollection-{{ section.id }} #sort-by-popover-{{ section.id }} {
+      position: fixed !important;
+      top: auto !important;
+      right: 12px !important;
+      {% comment %} bottom: max(12px, env(safe-area-inset-bottom)) !important; {% endcomment %}
+      left: 12px !important;
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      max-height: min(76vh, 540px);
+      max-height: min(76dvh, 540px);
+      margin: 0 !important;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow:
+        0 0 0 100vmax rgb(0 0 0 / 0.34),
+        0 18px 50px rgb(0 0 0 / 0.22);
+      transform: none !important;
+      z-index: 0;
+    }
+
+    #CleoMainCollection-{{ section.id }} #sort-by-popover-{{ section.id }} [slot="header"] {
+      position: relative;
+      padding: 22px 16px 11px;
+      border-bottom: 1px solid rgb(var(--border-color, 0 0 0) / 0.1);
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    #CleoMainCollection-{{ section.id }} #sort-by-popover-{{ section.id }} [slot="header"]::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: 38px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgb(var(--text-color, 30 30 30) / 0.22);
+      transform: translateX(-50%);
+    }
+
+    #CleoMainCollection-{{ section.id }} .popover__value-list {
+      max-height: calc(min(76vh, 540px) - 58px);
+      max-height: calc(min(76dvh, 540px) - 58px);
+      padding-bottom: max(8px, env(safe-area-inset-bottom));
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #CleoMainCollection-{{ section.id }} .popover__value-option {
+      min-height: 44px;
+      padding: 11px 46px 11px 16px;
+      font-size: 14px;
+      white-space: normal;
+    }
+
+    #CleoMainCollection-{{ section.id }} .popover__value-option .reversed-link {
+      white-space: normal;
+    }
+
+    #CleoMainCollection-{{ section.id }} .popover__value-option[aria-selected="true"]::after,
+    #CleoMainCollection-{{ section.id }} .popover__value-option.is-selected::after {
+      right: 18px;
+    }
+
+    #CleoMainCollection-{{ section.id }} facets-drawer[data-cleo-filter-panel] {
+      display: block !important;
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 240;
+      width: min(390px, 88vw);
+      max-width: 100vw;
+      padding: 24px;
+      overflow-y: auto;
+      background: #ffffff;
+      box-shadow: 18px 0 45px rgba(32, 24, 20, 0.18);
+      transform: translateX(-105%);
+      transition: transform 220ms ease;
+    }
+
+    html.cleo-filter-open #CleoMainCollection-{{ section.id }} facets-drawer[data-cleo-filter-panel] {
+      transform: translateX(0);
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    #CleoMainCollection-{{ section.id }} {
+      --collection-items-per-row-compact: {{ section.settings.tablet_columns | default: 2 }};
+      --collection-items-per-row-medium: {{ section.settings.tablet_columns | default: 2 }};
+      --collection-items-per-row-large: {{ section.settings.tablet_columns | default: 2 }};
+    }
+
+    #CleoMainCollection-{{ section.id }} .collection-toolbar,
+    #CleoMainCollection-{{ section.id }} .collection-toolbar__button-list,
+    #CleoMainCollection-{{ section.id }} .collection-toolbar__layout-switch-list[device="desktop"] {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #CleoMainCollection-{{ section.id }} .collection-toolbar__layout-switch-list[device="mobile"] {
+      display: none !important;
+    }
+
+    #CleoMainCollection-{{ section.id }} .collection-toolbar__button-container:last-child,
+    #CleoMainCollection-{{ section.id }} [data-cleo-popover-toggle],
+    #CleoMainCollection-{{ section.id }} .collection-toolbar__layout-switch-list[device="desktop"] .collection-toolbar__button {
+      visibility: visible !important;
+    }
+
+    #CleoMainCollection-{{ section.id }} facets-drawer[data-cleo-filter-panel] {
+      display: none !important;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    #CleoMainCollection-{{ section.id }} {
+      --collection-items-per-row-compact: {{ section.settings.columns | default: 3 }};
+      --collection-items-per-row-medium: {{ section.settings.columns | default: 3 }};
+      --collection-items-per-row-large: {{ section.settings.columns | default: 3 }};
+    }
+
+    #CleoMainCollection-{{ section.id }} .collection {
+      --collection-grid-template: var(--collection-sidebar-width, 0) minmax(0, 1fr);
+    }
+  }
+</style>
+
+{%- render 'cleo-dynamic-collection-main', section: section -%}
+
+{% schema %}
+{
+  "name": "Main collection",
+  "tag": "section",
+  "class": "section-main-collection",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 4,
+      "max": 48,
+      "step": 4,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "tablet_columns",
+      "label": "Tablet columns",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        },
+        {
+          "value": "4",
+          "label": "4 columns"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Desktop columns",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        },
+        {
+          "value": "4",
+          "label": "4 columns"
+        },
+        {
+          "value": "5",
+          "label": "5 columns"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "label": "Show quick add",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_desktop_filters",
+      "label": "Show desktop filters",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_layout_switcher",
+      "label": "Show layout switcher",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "filter_label",
+      "label": "Filter button label",
+      "default": "Filter"
+    },
+    {
+      "type": "text",
+      "id": "filter_heading",
+      "label": "Filter drawer heading",
+      "default": "Filters"
+    },
+    {
+      "type": "text",
+      "id": "sort_label",
+      "label": "Sort label",
+      "default": "Sort by"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty collection message",
+      "default": "No products found"
+    }
+  ]
+}
+{% endschema %}

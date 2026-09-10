@@ -1,0 +1,228 @@
+<style data-cleo-component-css="category">
+  .cleo-category-strip {
+    background: var(--cleo-cream);
+    overflow: hidden;
+    padding: var(--cleo-category-padding, 20px) 0;
+  }
+  
+  @media screen and (min-width: 750px) {
+  
+  .cleo-category-strip {
+      padding-bottom: calc(var(--cleo-category-padding, 20px) + 12px);
+    }
+  }
+  
+  .cleo-category-strip__wrap {
+    display: flex;
+    justify-content: center;
+    gap: var(--cleo-category-gap, 18px);
+    padding: 0 20px;
+  }
+  
+  .cleo-category-card {
+    display: block;
+    width: var(--cleo-category-card-width, 180px);
+    min-width: var(--cleo-category-card-width, 180px);
+    flex-shrink: 0;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .cleo-category-card__image {
+    height: var(--cleo-category-card-height, 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    border-radius: var(--cleo-category-radius, 56px);
+    background: var(--cleo-white);
+    overflow: hidden;
+  }
+  
+  .cleo-category-card__image img {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+  }
+  
+  .cleo-category-card__label {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 16px;
+    color: var(--cleo-copper);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: 0.8px;
+  }
+  
+  @media (max-width: 749px) {
+  
+  .cleo-category-strip {
+      padding: 10px 0;
+      padding-left: 14px;
+    }
+  
+  .cleo-category-strip__wrap {
+      justify-content: flex-start;
+      overflow-x: auto;
+      gap: 9px;
+      padding-left: 20px;
+      padding-right: 14px;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+  
+  .cleo-category-strip__wrap::-webkit-scrollbar {
+      display: none;
+    }
+  
+  .cleo-category-card {
+      width: calc((100vw - 14px - (9px * 2.5)) / 3.5);
+      min-width: calc((100vw - 14px - (9px * 2.5)) / 3.5);
+      margin-left: 8px;
+      scroll-snap-align: start;
+    }
+  
+  .cleo-category-card__image {
+      height: 115px;
+      border-radius: 35px;
+      padding: 10px;
+    }
+  
+  .cleo-category-card__label {
+      font-size: 14px;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+      padding-top: 10px;
+    }
+  }
+</style>
+
+<section
+  class="cleo-category-strip"
+  style="
+    --cleo-category-padding: {{ section.settings.padding_y }}px;
+    --cleo-category-gap: {{ section.settings.gap }}px;
+    --cleo-category-card-width: {{ section.settings.card_width }}px;
+    --cleo-category-card-height: {{ section.settings.card_height }}px;
+    --cleo-category-radius: {{ section.settings.card_radius }}px;
+  "
+>
+  <div class="cleo-category-strip__wrap">
+    {%- for block in section.blocks -%}
+      <a class="cleo-category-card" href="{{ block.settings.link | default: routes.all_products_collection_url }}" {{ block.shopify_attributes }}>
+        <span class="cleo-category-card__image">
+          {%- render 'cleo-image',
+            image: block.settings.image,
+            asset: block.settings.fallback_asset,
+            width: 500,
+            sizes: '180px',
+            alt: block.settings.title
+          -%}
+        </span>
+        <span class="cleo-category-card__label">{{ block.settings.title }}</span>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cleo category strip",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Card gap",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Desktop card width",
+      "min": 120,
+      "max": 260,
+      "step": 5,
+      "unit": "px",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "label": "Desktop card image height",
+      "min": 120,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card radius",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Bottles"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_asset",
+          "label": "Fallback asset filename",
+          "default": "cleo-category-bottles.png"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo category strip",
+      "blocks": [
+        { "type": "category", "settings": { "title": "Bottles", "fallback_asset": "cleo-category-bottles.png" } },
+        { "type": "category", "settings": { "title": "Carafes", "fallback_asset": "cleo-category-carafes.png" } },
+        { "type": "category", "settings": { "title": "Dispensers", "fallback_asset": "cleo-category-dispensers.png" } },
+        { "type": "category", "settings": { "title": "Tumblers & Pitchers", "fallback_asset": "cleo-category-tumblers.png" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

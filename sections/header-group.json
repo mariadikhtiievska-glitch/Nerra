@@ -1,0 +1,155 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "cleo_announcement": {
+      "type": "cleo-announcement-bar",
+      "blocks": {
+        "announcement_1": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>Use code <strong>NEERA10</strong> for an extra 10% off at checkout</p>"
+          }
+        },
+        "announcement_tpGWYG": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p><strong>Free Shipping</strong> on All Orders</p>"
+          }
+        },
+        "announcement_qQDhig": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p><strong>Buy More, Save More — Up to 15% Off</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_1",
+        "announcement_tpGWYG",
+        "announcement_qQDhig"
+      ],
+      "settings": {
+        "show_bar": true,
+        "show_arrows": true,
+        "background_color": "#2a2520",
+        "text_color": "{{ settings.color_palette.background }}",
+        "bar_height": 46,
+        "font_size": 11,
+        "desktop_font_size": 12,
+        "transition_style": "slide",
+        "transition_speed": 350,
+        "autoplay_seconds": 2,
+        "pause_on_hover": true
+      }
+    },
+    "cleo_header": {
+      "type": "cleo-header",
+      "blocks": {
+        "home": {
+          "type": "nav_link",
+          "disabled": true,
+          "settings": {
+            "title": "Home",
+            "url": "/",
+            "open_new_tab": false
+          }
+        },
+        "shop": {
+          "type": "nav_link",
+          "disabled": true,
+          "settings": {
+            "title": "Shop",
+            "url": "/collections/all",
+            "open_new_tab": false
+          }
+        },
+        "contact": {
+          "type": "nav_link",
+          "disabled": true,
+          "settings": {
+            "title": "Contact",
+            "url": "/pages/contact",
+            "open_new_tab": false
+          }
+        },
+        "track_order": {
+          "type": "nav_link",
+          "disabled": true,
+          "settings": {
+            "title": "Track Order",
+            "url": "/apps/track-order",
+            "open_new_tab": false
+          }
+        },
+        "about": {
+          "type": "nav_link",
+          "disabled": true,
+          "settings": {
+            "title": "About",
+            "url": "shopify://pages/about",
+            "open_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "home",
+        "shop",
+        "contact",
+        "track_order",
+        "about"
+      ],
+      "settings": {
+        "logo": "shopify://shop_images/Horizontal_logo_neera_living_white.svg",
+        "logo_alt": "Neera Living",
+        "menu": "main-menu-new",
+        "show_search": true,
+        "show_account": true,
+        "enable_sticky": true,
+        "search_placeholder": "Search for...",
+        "background_color": "#4b2d20",
+        "text_color": "#ffffff",
+        "mobile_drawer_background": "#fffaf5",
+        "mobile_drawer_text": "#4d2e20",
+        "desktop_header_height": 108,
+        "mobile_header_height": 70,
+        "desktop_padding_y": 26,
+        "mobile_padding_y": 16,
+        "logo_width": 220,
+        "mobile_logo_width": 150
+      }
+    },
+    "cleo_popup": {
+      "type": "cleo-popup",
+      "disabled": true,
+      "settings": {
+        "enabled": false,
+        "heading": "You've got",
+        "discount_heading": "10% off",
+        "subheading": "your first order",
+        "email_placeholder": "Email",
+        "button_label": "Claim 10% off",
+        "decline_label": "No thank you",
+        "tab_label": "10% OFF",
+        "background_color": "#ead0be",
+        "text_color": "#4f392b",
+        "button_background": "#5a4228",
+        "button_text_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "cleo_announcement",
+    "cleo_header",
+    "cleo_popup"
+  ]
+}

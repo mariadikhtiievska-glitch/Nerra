@@ -1,0 +1,724 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cleo-main-product",
+      "blocks": {
+        "product_usp_4xJe8G": {
+          "type": "product_usp",
+          "settings": {
+            "image": "shopify://shop_images/Icon_5.webp",
+            "title": "Express USA Shipping",
+            "text": "Ships in 1–2 business days"
+          }
+        },
+        "product_usp_nDGaxj": {
+          "type": "product_usp",
+          "settings": {
+            "image": "shopify://shop_images/Icon_6.webp",
+            "title": "Lab-Tested Pure Copper",
+            "text": "99.9% purity verified"
+          }
+        },
+        "product_usp_Pmyzfp": {
+          "type": "product_usp",
+          "settings": {
+            "image": "shopify://shop_images/Icon_11.png",
+            "title": "Copper Care Brush and Travel Sleeve",
+            "text": "Included with every bottle"
+          }
+        },
+        "product_usp_JiaYU9": {
+          "type": "product_usp",
+          "settings": {
+            "image": "shopify://shop_images/Icon_8.webp",
+            "title": "Leak-proof",
+            "text": "Leak-proof threaded cap"
+          }
+        }
+      },
+      "block_order": [
+        "product_usp_4xJe8G",
+        "product_usp_nDGaxj",
+        "product_usp_Pmyzfp",
+        "product_usp_JiaYU9"
+      ],
+      "settings": {
+        "show_vendor": false,
+        "review_text": "4.8 (380 reviews)",
+        "show_quantity": true,
+        "show_dynamic_checkout": true,
+        "show_sticky_add_to_cart": true,
+        "auto_open_cart_drawer": true,
+        "atc_loading_text": "Adding...",
+        "atc_added_text": "Added to cart",
+        "show_stock_urgency": true,
+        "stock_low_threshold": 10,
+        "stock_low_text": "6k plus sold last month",
+        "stock_in_stock_text": "6k plus sold last month",
+        "stock_preorder_text": "6k plus sold last month",
+        "stock_out_text": "6k plus sold last month"
+      }
+    },
+    "product_accordion_YXEiXT": {
+      "type": "product-accordion",
+      "blocks": {
+        "accordion_EpVQWy": {
+          "type": "accordion",
+          "settings": {
+            "title": "Product specifications",
+            "icon": "award",
+            "use_product_description": true,
+            "content": "<p>Add accordion content here.</p>",
+            "open_by_default": false
+          }
+        },
+        "accordion_xpgejN": {
+          "type": "accordion",
+          "settings": {
+            "title": "Is it safe?",
+            "icon": "shield",
+            "use_product_description": false,
+            "content": "<p>Yes. The Neera copper hammered tumbler is made from pure, food-grade copper and is safe for use as everyday drinkware.<br/><br/>Here is what you need to know:<br/>✓ Every batch is lab-tested after manufacturing for material purity<br/>- No mixed metals, no alloys, no chemical coatings of any kind<br/>✓ Use with clean, filtered, room-temperature or cool water for best results<br/>✓ Hand wash only — mild soap and lukewarm water, or lemon juice and salt for a deeper clean<br/>✓ Do not put it in Dishwasher or Refrigerator<br/>✓ Natural patina (color change or darkening) that develops over time is a normal characteristic of pure copper and is not a sign of damage or contamination<br/>✓ Not recommended for hot beverages, carbonated drinks, or acidic liquids stored for long periods<br/>✓ You might get slight metallic taste in the water once it is charged with copper<br/><br/></p>",
+            "open_by_default": false
+          }
+        },
+        "accordion_gpDM3X": {
+          "type": "accordion",
+          "settings": {
+            "title": "What Can I Expect?",
+            "icon": "sparkles",
+            "use_product_description": false,
+            "content": "<p>Here is what most Neera copper drinkware owners tell us they experience day to day:<br/>✓ A noticeably clean, fresh taste from a glass that is free of plastic and chemical residue<br/>✓ A hydration ritual that feels intentional, not just a habit<br/>Inspired by the centuries-old Ayurvedic practice of drinking water stored in copper vessels, the Neera copper drinkware is designed to make your daily hydration feel like a considered choice, not an afterthought.<br/><br/>*Individual experiences vary. The Neera copper tumbler is everyday drinkware. These statements have not been evaluated by the FDA and are not intended as medical claims.<br/><br/></p>",
+            "open_by_default": false
+          }
+        },
+        "accordion_EFb7YW": {
+          "type": "accordion",
+          "disabled": true,
+          "settings": {
+            "title": "Shipping & Returns",
+            "icon": "truck",
+            "use_product_description": false,
+            "content": "<p><strong>Shipping</strong>:</p><p>✓   All Cleo orders ship within 1–2 business days from our USA warehouses</p><p>✓    Standard delivery: 3–5 business days across the USA</p><p><strong>Returns</strong>:</p><p> If you are not satisfied with your copper water bottle, you may return<br/>it in its original, unused condition within 7 days of delivery</p><p>✓    To start a return, contact our support team at <a href=\"mailto:Hello@cleolifestyle.com\" target=\"_blank\" title=\"mailto:Hello@cleolifestyle.com\">Hello@cleolifestyle.com</a></p><p>✓   Refunds are processed within 5–7 business days of receiving the return</p>",
+            "open_by_default": false
+          }
+        },
+        "accordion_yVYtTC": {
+          "type": "accordion",
+          "settings": {
+            "title": "Our Promise To You",
+            "icon": "heart",
+            "use_product_description": false,
+            "content": "<p>✓   We built Neera around one idea that everyday drinkware should be made with natural materials, craftsmanship, and integrity.</p><p>✓   All Neera Products are Good for you and Better for the planet.</p><p>✓   We are a small brand that takes every order seriously. If something is not right with your Neera product when it arrives,<br/>reach out to us and we will make it right, no run-around, no hassle.</p><p>That is the Neera promise.<br/><br/>*<strong> Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent anydisease</strong>.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "accordion_EpVQWy",
+        "accordion_xpgejN",
+        "accordion_gpDM3X",
+        "accordion_EFb7YW",
+        "accordion_yVYtTC"
+      ],
+      "name": "Product accordions",
+      "settings": {
+        "max_width": 1100,
+        "item_gap": 10,
+        "card_radius": 9,
+        "heading_size": 18,
+        "content_size": 15,
+        "mobile_heading_size": 16,
+        "mobile_content_size": 14,
+        "padding_top": 76,
+        "padding_bottom": 40,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 28,
+        "background_color": "#f2e8da",
+        "card_background": "#ffffff",
+        "text_color": "#96512d",
+        "icon_background": "#f5f3f0",
+        "border_color": "#d7c9b8",
+        "enable_faq_schema": true
+      }
+    },
+    "cleo_artisan_banner_DLdMmM": {
+      "type": "cleo-artisan-banner",
+      "name": "Cleo artisan banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/pdp49_01.jpg",
+        "mobile_image": "shopify://shop_images/pdp49_01.jpg",
+        "image_alt": "Handcrafted by skilled artisans",
+        "eager_load": true,
+        "background_color": "#f3e9dc",
+        "max_width": 1348,
+        "border_radius": 0,
+        "padding_top": 30,
+        "padding_bottom": 0,
+        "side_padding": 24,
+        "mobile_border_radius": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_side_padding": 0
+      }
+    },
+    "cleo_artisan_banner_7xgp8H": {
+      "type": "cleo-artisan-banner",
+      "name": "Cleo artisan banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Home_Page_PC_v2.png",
+        "mobile_image": "shopify://shop_images/Home_Page_PC_v2.png",
+        "image_alt": "Handcrafted by skilled artisans",
+        "eager_load": true,
+        "background_color": "#f3e9dc",
+        "max_width": 1348,
+        "border_radius": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "side_padding": 24,
+        "mobile_border_radius": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_side_padding": 0
+      }
+    },
+    "cleo_artisan_banner_qrYenq": {
+      "type": "cleo-artisan-banner",
+      "name": "Cleo artisan banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/pdp49_02.jpg",
+        "mobile_image": "shopify://shop_images/pdp49_02.jpg",
+        "image_alt": "Handcrafted by skilled artisans",
+        "eager_load": true,
+        "background_color": "#f3e9dc",
+        "max_width": 1348,
+        "border_radius": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "side_padding": 24,
+        "mobile_border_radius": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_side_padding": 0
+      }
+    },
+    "cleo_artisan_banner_xnKcxE": {
+      "type": "cleo-artisan-banner",
+      "name": "Cleo artisan banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/pdp49_04.jpg",
+        "mobile_image": "shopify://shop_images/pdp49_04.jpg",
+        "image_alt": "Handcrafted by skilled artisans",
+        "eager_load": true,
+        "background_color": "#f3e9dc",
+        "max_width": 1348,
+        "border_radius": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "side_padding": 24,
+        "mobile_border_radius": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "mobile_side_padding": 0
+      }
+    },
+    "comparison": {
+      "type": "cleo-comparison-table",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "feature": "Naturally Antimicrobial",
+            "cleo_value": "check",
+            "steel_value": "cross",
+            "plastic_value": "cross"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "feature": "Naturally Alkalizes Water",
+            "cleo_value": "check",
+            "steel_value": "cross",
+            "plastic_value": "cross"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "feature": "100% Plastic & BPA Free",
+            "cleo_value": "check",
+            "steel_value": "check",
+            "plastic_value": "cross"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "feature": "Supports Ayurvedic Rituals",
+            "cleo_value": "check",
+            "steel_value": "cross",
+            "plastic_value": "cross"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "feature": "Zero Microplastic Risk",
+            "cleo_value": "check",
+            "steel_value": "check",
+            "plastic_value": "cross"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5"
+      ],
+      "settings": {
+        "heading": "Why Choose Copper Over Regular Bottles?",
+        "description": "<p>Embrace the ancient practice of Tamra Jal and create a Hydration Ritual</p>",
+        "feature_heading": "Feature/ Benefit",
+        "cleo_heading": "NEERA Copper Drinkware",
+        "steel_heading": "Stainless Steel Bottle",
+        "plastic_heading": "Plastic Bottles",
+        "background_color": "#f3e9dc",
+        "accent_color": "#895737",
+        "cleo_background": "#ffffff",
+        "other_background": "#f2dac4",
+        "max_width": 1440,
+        "padding_top": 72,
+        "padding_bottom": 24
+      }
+    },
+    "cleo_artisan_banner_PTJUTX": {
+      "type": "cleo-artisan-banner",
+      "name": "Cleo artisan banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Home_Page_PC.jpg",
+        "mobile_image": "shopify://shop_images/Home_Page_PC_1.jpg",
+        "image_alt": "Handcrafted by skilled artisans",
+        "eager_load": true,
+        "background_color": "#f3e9dc",
+        "max_width": 1348,
+        "border_radius": 25,
+        "padding_top": 30,
+        "padding_bottom": 24,
+        "side_padding": 24,
+        "mobile_border_radius": 16,
+        "mobile_padding_top": 16,
+        "mobile_padding_bottom": 16,
+        "mobile_side_padding": 12
+      }
+    },
+    "cleo_copper_care_KkPQAd": {
+      "type": "cleo-copper-care",
+      "name": "Cleo copper care",
+      "settings": {
+        "heading": "Steps To Clean Your Neera Copper Drinkware",
+        "heading_alignment": "left",
+        "desktop_image": "shopify://shop_images/image_33389443.jpg",
+        "mobile_image": "shopify://shop_images/image_33389442.jpg",
+        "image_alt": "Copper drinkware cleaning instructions",
+        "eager_load": false,
+        "background_color": "#f3e9dc",
+        "heading_color": "#895737",
+        "max_width": 1348,
+        "heading_size": 50,
+        "heading_weight": "800",
+        "heading_gap": 24,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "side_padding": 24,
+        "mobile_heading_size": 32,
+        "mobile_heading_gap": 18,
+        "mobile_padding_top": 25,
+        "mobile_padding_bottom": 0,
+        "mobile_side_padding": 16
+      }
+    },
+    "cleo_benefits_9qnt7U": {
+      "type": "cleo-benefits",
+      "blocks": {
+        "benefit_z9FTJq": {
+          "type": "benefit",
+          "settings": {
+            "fallback_asset": "cleo-static-bdcccf9367f6.png",
+            "icon_text": "",
+            "heading": "Pure Copper",
+            "text": "Lab Tested 99.9%\nPure Food\nGrade Copper"
+          }
+        },
+        "benefit_tF8w8y": {
+          "type": "benefit",
+          "settings": {
+            "fallback_asset": "cleo-static-529af8e3ffbc.png",
+            "icon_text": "",
+            "heading": "Better Hydration",
+            "text": "Makes Water Alkaline\nand Naturally\nAnti-microbial"
+          }
+        },
+        "benefit_k69JYw": {
+          "type": "benefit",
+          "settings": {
+            "fallback_asset": "cleo-static-b4ad7f07384d.png",
+            "icon_text": "",
+            "heading": "Handcrafted",
+            "text": "Hand-Hammered to\nPreserve Contact\nArea with Water"
+          }
+        },
+        "benefit_XGzQHX": {
+          "type": "benefit",
+          "settings": {
+            "fallback_asset": "cleo-static-960b63633c72.png",
+            "icon_text": "",
+            "heading": "Eco-Friendly",
+            "text": "Reusable and Helps\nYou Reduce\nSingle-Use Plastic"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_z9FTJq",
+        "benefit_tF8w8y",
+        "benefit_k69JYw",
+        "benefit_XGzQHX"
+      ],
+      "settings": {
+        "heading": "",
+        "background_color": "#f3e9dc",
+        "text_color": "#6b6158",
+        "heading_color": "#4e222d",
+        "separator_color": "#e3d3c2",
+        "show_separators": true,
+        "max_width": 1000,
+        "columns": 4,
+        "tablet_columns": 2,
+        "mobile_columns": 2,
+        "gap": 40,
+        "icon_size": 88,
+        "mobile_icon_size": 64,
+        "heading_size": 22,
+        "mobile_heading_size": 17,
+        "text_size": 20,
+        "mobile_text_size": 13,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "cleo_stats_e79Xn6": {
+      "type": "cleo-stats",
+      "blocks": {
+        "stat_tbYwdL": {
+          "type": "stat",
+          "settings": {
+            "value": "100,000 +",
+            "label": "Customers"
+          }
+        },
+        "stat_bb4LYq": {
+          "type": "stat",
+          "settings": {
+            "value": "10 +",
+            "label": "Countries\nReached"
+          }
+        },
+        "stat_cCKUY7": {
+          "type": "stat",
+          "settings": {
+            "value": "400,000 +",
+            "label": "Products Sold"
+          }
+        },
+        "stat_y7t4CH": {
+          "type": "stat",
+          "settings": {
+            "value": "4.8/5",
+            "label": "Rating across Website and other Marketplaces"
+          }
+        }
+      },
+      "block_order": [
+        "stat_tbYwdL",
+        "stat_bb4LYq",
+        "stat_cCKUY7",
+        "stat_y7t4CH"
+      ],
+      "settings": {
+        "heading": "Trusted Globally",
+        "background_color": "#f3e9dc",
+        "heading_color": "#895737",
+        "text_color": "#2a2520",
+        "separator_color": "#e3d3c2",
+        "max_width": 1200,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "cleo_review_cards_ULCfyF": {
+      "type": "cleo-review-cards",
+      "blocks": {
+        "review_pyV6hW": {
+          "type": "review",
+          "settings": {
+            "fallback_asset": "cleo-static-6495e98ca899.png",
+            "customer_fallback_asset": "cleo-static-dd0dcfd057b4.jpg",
+            "rating": 5,
+            "quote": "\"I've been loving this copper water bottle set! The quality is fantastic, and the hammered design gives it a stylish touch. It keeps my water fresh, and the included brush makes cleaning super easy.\"",
+            "name": "Lexy",
+            "country": "US",
+            "badge": "Verified"
+          }
+        },
+        "review_UVCk8i": {
+          "type": "review",
+          "settings": {
+            "fallback_asset": "cleo-static-17b0edb58f29.png",
+            "customer_fallback_asset": "cleo-static-09b26ecf431a.jpg",
+            "rating": 5,
+            "quote": "\"Size is ideal to care with you anytime, quality is better than expected. Easy cleaning with side brush. To make change in your life and keep yourself hydrated, its worth for money\"",
+            "name": "Isabelle",
+            "country": "UK",
+            "badge": "Verified"
+          }
+        },
+        "review_eEEede": {
+          "type": "review",
+          "settings": {
+            "fallback_asset": "cleo-static-d3d11484487a.png",
+            "customer_fallback_asset": "cleo-static-96c5abab68bc.jpg",
+            "rating": 5,
+            "quote": "\"I really love this water bottle! It’s beautiful, stylish, and always with me—at the gym, at home, or in the car. It feels comfortable in my hand, the lid is secure, and I’ve even received a few compliments on it! Highly recommend!\"",
+            "name": "AJ",
+            "country": "US",
+            "badge": "Verified"
+          }
+        },
+        "review_dA8Kya": {
+          "type": "review",
+          "settings": {
+            "fallback_asset": "cleo-static-9b7ac28eb8fc.png",
+            "customer_fallback_asset": "cleo-static-84d33b8e0ad2.png",
+            "rating": 5,
+            "quote": "\"Love the look of this. First thought the bag was impractical but my phone fits in the pocket and cards (license/credit card) would fit in the leather slit pocket. This could be all you need for a hike.\"",
+            "name": "Vincent",
+            "country": "US",
+            "badge": "Verified"
+          }
+        },
+        "review_UXqQU4": {
+          "type": "review",
+          "settings": {
+            "fallback_asset": "cleo-static-01ce44ddbe2e.png",
+            "customer_fallback_asset": "cleo-static-947424fa0815.jpg",
+            "rating": 5,
+            "quote": "\"What delicious water from this jar. I pour already filtered water and it turns out to be just the purest taste, like from a spring. It also looks very beautiful. Not big, but enough for one.\"",
+            "name": "Alex",
+            "country": "US",
+            "badge": "Verified"
+          }
+        },
+        "review_myxhgk": {
+          "type": "review",
+          "settings": {
+            "fallback_asset": "cleo-static-26365a9e118d.png",
+            "customer_fallback_asset": "cleo-static-d8c86ed92571.png",
+            "rating": 4,
+            "quote": "\"Durable. Nice bag but mine had some cracks on the lid and is missing the bottle pad. Watch the video and decide for yourself. I hope it’s a 100 real copper\"",
+            "name": "Natalie",
+            "country": "US",
+            "badge": "Verified"
+          }
+        },
+        "review_GQp9xY": {
+          "type": "review",
+          "settings": {
+            "fallback_asset": "cleo-static-973357e4533a.png",
+            "customer_fallback_asset": "cleo-static-93630606be97.jpg",
+            "rating": 5,
+            "quote": "\"This bottle is beautiful detailed by hand brings a brush as a gift, I bought it for its multiple health benefits thank you very much!\"",
+            "name": "Max",
+            "country": "US",
+            "badge": "Verified"
+          }
+        }
+      },
+      "block_order": [
+        "review_pyV6hW",
+        "review_UVCk8i",
+        "review_eEEede",
+        "review_dA8Kya",
+        "review_UXqQU4",
+        "review_myxhgk",
+        "review_GQp9xY"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Real Customers, Real Results",
+        "background_color": "#f8eadc",
+        "max_width": 1180,
+        "card_gap": 24,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "1784121263c3838de2": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_preview_badge_4z8gUx": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "judge_me_reviews_review_widget_zmMg6D": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_4z8gUx",
+        "judge_me_reviews_review_widget_zmMg6D"
+      ],
+      "custom_css": [
+        ".jdgm-widget.jdgm-widget {display: block; padding: 0 20px;}"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "product_faq": {
+      "type": "cleo-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "How does it work?",
+            "answer": "<p>Copper naturally has antimicrobial properties that help keep water fresh. When water is stored in the bottle for a few hours, it absorbs trace benefits of copper.</p>",
+            "open": false
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "Will it rust?",
+            "answer": "<p>No. Copper does not rust, but it naturally oxidizes over time and can be cleaned easily.</p>",
+            "open": false
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I clean Neera Copper Water Bottle?",
+            "answer": "<p>Clean gently using lemon, salt, or mild soap with a soft bottle brush. Avoid harsh chemicals.</p>",
+            "open": false
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "What health benefits can I expect?",
+            "answer": "<p>Many customers say the ritual supports better hydration and mindful daily routines.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ],
+      "settings": {
+        "eyebrow": "Common Questions",
+        "heading": "Everything You Need to Know",
+        "single_open": true,
+        "show_view_more": true,
+        "view_more_label": "View More",
+        "view_more_link": "shopify://pages/faq",
+        "background_color": "#f8eadc",
+        "eyebrow_color": "#4e232d",
+        "heading_color": "#895737",
+        "question_color": "#89573a",
+        "answer_color": "#5f5149",
+        "card_color": "#ffffff",
+        "border_color": "#ffffff",
+        "link_color": "#89573a",
+        "content_width": 900,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "eyebrow_size": 22,
+        "heading_size": 60,
+        "question_size": 18,
+        "question_weight": "400",
+        "answer_size": 16,
+        "row_height": 52,
+        "card_padding_x": 40,
+        "card_gap": 10,
+        "card_radius": 8,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "mobile_heading_size": 34,
+        "mobile_question_size": 16,
+        "mobile_answer_size": 14,
+        "mobile_card_padding_x": 20
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_accordion_YXEiXT",
+    "cleo_artisan_banner_DLdMmM",
+    "cleo_artisan_banner_7xgp8H",
+    "cleo_artisan_banner_qrYenq",
+    "cleo_artisan_banner_xnKcxE",
+    "comparison",
+    "cleo_artisan_banner_PTJUTX",
+    "cleo_copper_care_KkPQAd",
+    "cleo_benefits_9qnt7U",
+    "cleo_stats_e79Xn6",
+    "cleo_review_cards_ULCfyF",
+    "1784121263c3838de2",
+    "product_faq"
+  ]
+}

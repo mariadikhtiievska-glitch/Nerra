@@ -1,0 +1,103 @@
+{%- liquid
+  assign form_id = 'cleo-facets-sidebar'
+  if drawer
+    assign form_id = 'cleo-facets-drawer'
+  endif
+-%}
+
+<facets-form {% unless drawer %}update-on-change{% endunless %} section-id="template--21732444438668__main">
+  <form method="get" action="{{ collection.url }}" class="facets" id="{{ form_id }}">
+    <input type="hidden" name="page" value="">
+    {%- if collection.sort_by != blank -%}
+      <input type="hidden" name="sort_by" value="{{ collection.sort_by }}">
+    {%- endif -%}
+
+    <div class="accordion-list">
+      {%- for filter in collection.filters -%}
+        <accordion-disclosure class="accordion custom-faq-accordion">
+          <details class="accordion__disclosure group" aria-expanded="false">
+            <summary>
+              <span class="accordion__toggle h6 custom-accordion-css">
+                <span class="text-with-icon gap-4"><div class="accordion-background"></div>{{ filter.label }}</span>
+                <svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+                  <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+                </svg>
+              </span>
+            </summary>
+
+            <div class="accordion__content custom-accordion-css">
+              {%- case filter.type -%}
+                {%- when 'list' -%}
+                  {%- for value in filter.values -%}
+                    <div class="checkbox-control">
+                      <input
+                        id="{{ form_id }}-{{ filter.param_name | handle }}-{{ forloop.index }}"
+                        type="checkbox"
+                        class="switch"
+                        name="{{ value.param_name }}"
+                        value="{{ value.value }}"
+                        {% if value.active %}checked{% endif %}
+                        {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                        {% unless drawer %}onchange="this.form.submit()"{% endunless %}
+                      >
+                      <label for="{{ form_id }}-{{ filter.param_name | handle }}-{{ forloop.index }}" class="text-subdued">
+                        {{ value.label }}{% if value.count > 0 %} ({{ value.count }}){% endif %}
+                      </label>
+                    </div>
+                  {%- endfor -%}
+                {%- when 'price_range' -%}
+                  <price-range class="price-range">
+                    <div class="input-group">
+                      <label class="input-prefix text-sm">
+                        <span class="prefix text-subdued">{{ cart.currency.symbol }}</span>
+                        <input
+                          aria-label="From price"
+                          class="field"
+                          type="number"
+                          inputmode="numeric"
+                          name="{{ filter.min_value.param_name }}"
+                          value="{{ filter.min_value.value | money_without_currency }}"
+                          min="0"
+                          placeholder="0"
+                          autocomplete="off"
+                          {% unless drawer %}onchange="this.form.submit()"{% endunless %}
+                        >
+                      </label>
+
+                      <span class="text-subdued text-sm">to</span>
+
+                      <label class="input-prefix text-sm">
+                        <span class="prefix text-subdued">{{ cart.currency.symbol }}</span>
+                        <input
+                          aria-label="To price"
+                          class="field"
+                          type="number"
+                          inputmode="numeric"
+                          name="{{ filter.max_value.param_name }}"
+                          value="{{ filter.max_value.value | money_without_currency }}"
+                          min="0"
+                          placeholder="{{ filter.range_max | money_without_currency }}"
+                          autocomplete="off"
+                          {% unless drawer %}onchange="this.form.submit()"{% endunless %}
+                        >
+                      </label>
+                    </div>
+                  </price-range>
+              {%- endcase -%}
+            </div>
+          </details>
+        </accordion-disclosure>
+      {%- endfor -%}
+    </div>
+
+    <noscript style="display: block; margin-top: 20px;">
+      <button type="submit" class="button w-full">View results</button>
+    </noscript>
+
+    {%- if drawer -%}
+      <div slot="footer">
+        <button type="submit" class="button w-full">View results</button>
+      </div>
+    {%- endif -%}
+  </form>
+</facets-form>

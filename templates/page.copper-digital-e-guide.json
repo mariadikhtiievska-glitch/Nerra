@@ -1,0 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cleo-image-banner",
+      "settings": {
+        "fallback_asset": "cleo-banner-desktop.png",
+        "mobile_fallback_asset": "cleo-banner-mobile.png",
+        "heading": "Copper Digital E-Guide",
+        "text": "<p>Your guide to mindful copper care and daily hydration rituals.</p>",
+        "button_label": "Shop Cleo",
+        "button_link": "/collections/all",
+        "background_color": "#f3e9dc",
+        "text_color": "#ffffff",
+        "desktop_height": 420,
+        "content_width": 720,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center"
+      }
+    }
+  },
+  "order": ["main"]
+}

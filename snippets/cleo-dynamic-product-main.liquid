@@ -1,0 +1,323 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'product-form-main-' | append: product.id | append: '-template--21732445290636__main'
+  assign gallery_id = 'product-gallery-carousel-' | append: product.id | append: '-template--21732445290636__main'
+  assign badge_text = product.metafields.custom.badge.value | default: product.metafields.custom.product_badge.value
+  assign subtitle = product.metafields.custom.subtitle.value | default: product.metafields.custom.short_description.value | default: 'With Copper Care Brush and Travel Sleeve'
+  assign sold_message = product.metafields.custom.sold_message.value | default: '9k plus sold last month'
+  assign review_text = section.settings.review_text | default: '4.8 (380 reviews)'
+
+  if badge_text == blank
+    if product.tags contains 'Signature Ritual Set'
+      assign badge_text = 'Signature Ritual Set'
+    elsif product.tags contains 'Limited Edition'
+      assign badge_text = 'Limited Edition'
+    elsif product.tags contains 'New Arrival'
+      assign badge_text = 'New Arrival'
+    elsif product.tags contains 'Bestseller'
+      assign badge_text = 'Bestseller'
+    elsif product.tags contains 'Sale'
+      assign badge_text = 'Sale'
+    elsif product.compare_at_price > product.price
+      assign badge_text = 'Sale'
+    else
+      assign badge_text = blank
+    endif
+  endif
+-%}
+
+<section id="shopify-section-template--21732445290636__main" class="shopify-section shopify-section--main-product cleo-product-page">
+  <style>
+    #shopify-section-template--21732445290636__main {
+      --product-grid: "product-gallery" "product-info" / minmax(0, 1fr);
+    }
+
+    @media screen and (min-width: 1000px) {
+      #shopify-section-template--21732445290636__main {
+        --product-grid: "product-gallery product-info" / minmax(0, 0.55fr) minmax(0, 0.45fr);
+      }
+    }
+  </style>
+
+  <div class="section-spacing section-spacing--tight color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c color-scheme--bg-f733170f8e26ef0af87b024124e087d4">
+    <div class="container">
+      <product-rerender id="product-info-{{ product.id }}-template--21732445290636__main" observe-form="{{ product_form_id }}" allow-partial-rerender>
+        <div class="product cleo-product-layout">
+          <product-gallery class="product-gallery cleo-product-gallery" form="{{ product_form_id }}" filtered-indexes="[]">
+            <div class="cleo-product-gallery__frame">
+              {%- if badge_text != blank -%}
+                <span class="badge badge--custom badge--{{ badge_text | handleize }} cleo-product-gallery__badge">{{ badge_text }}</span>
+              {%- endif -%}
+
+              <div class="product-gallery__image-list">
+                <div class="contents">
+                  <scroll-carousel adaptive-height id="{{ gallery_id }}" class="product-gallery__carousel scroll-area full-bleed md:unbleed" role="region">
+                    {%- for media in product.media -%}
+                      {%- liquid
+                        assign image_loading = 'lazy'
+                        assign image_fetchpriority = 'auto'
+                        if forloop.first
+                          assign image_loading = 'eager'
+                          assign image_fetchpriority = 'high'
+                        endif
+                      -%}
+                      <div class="product-gallery__media snap-center {% if forloop.first %}is-initial{% endif %}" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}" role="group" aria-label="Item {{ forloop.index }} of {{ product.media.size }}">
+                        {%- case media.media_type -%}
+                          {%- when 'image' -%}
+                            {{
+                              media.preview_image
+                              | image_url: width: 1800
+                              | image_tag:
+                                loading: image_loading,
+                                fetchpriority: image_fetchpriority,
+                                sizes: '(max-width: 699px) calc(100vw - 32px), (max-width: 999px) calc(100vw - 64px), calc(54vw - 72px)',
+                                alt: media.alt | default: product.title
+                            }}
+                          {%- when 'video', 'external_video' -%}
+                            {{ media | media_tag: image_size: '1400x', controls: true }}
+                          {%- when 'model' -%}
+                            {{ media | media_tag: image_size: '1400x', toggleable: true }}
+                        {%- endcase -%}
+                      </div>
+                    {%- else -%}
+                      <div class="product-gallery__media snap-center is-initial">
+                        {%- if product.featured_image != blank -%}
+                          {{ product.featured_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(max-width: 999px) calc(100vw - 40px), calc(54vw - 72px)', alt: product.title }}
+                        {%- endif -%}
+                      </div>
+                    {%- endfor -%}
+                  </scroll-carousel>
+                </div>
+              </div>
+            </div>
+
+            {%- if product.media.size > 1 -%}
+              <safe-sticky class="product-gallery__thumbnail-list md:block">
+                <product-gallery-navigation align-selected aria-controls="{{ gallery_id }}" class="product-gallery__thumbnail-scroller bleed custom-paddings-thumbnail md:unbleed cleo-product-thumbs">
+                  {%- for media in product.media -%}
+                    <button type="button" class="product-gallery__thumbnail" data-cleo-gallery-thumb="#{{ gallery_id }}" data-media-position="{{ forloop.index }}" data-media-id="{{ media.id }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="Go to item {{ forloop.index }}">
+                      {%- if media.preview_image != blank -%}
+                        {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', sizes: '88px', class: 'object-cover', alt: media.alt | default: product.title }}
+                      {%- endif -%}
+                    </button>
+                  {%- endfor -%}
+                </product-gallery-navigation>
+              </safe-sticky>
+            {%- endif -%}
+          </product-gallery>
+
+          <safe-sticky class="product-info cleo-product-info">
+            <div class="product-info__block-list cleo-product-info__stack">
+              <div class="stock-urgency-block stock-urgency-stock_urgency_7Q68yN cleo-product-sold">
+                <span class="stock-urgency-dot"></span>
+                <span class="stock-urgency-text">{{ sold_message }}</span>
+              </div>
+
+              {%- if section.settings.show_vendor and product.vendor != blank -%}
+                <p class="text-subdued">{{ product.vendor }}</p>
+              {%- endif -%}
+
+              <h1 class="product-title h1 cleo-product-title">{{ product.title }}</h1>
+
+             {%- if subtitle != blank and template.suffix != 'without_free_gifts' -%}
+             <div class="product-subtitle-subtitle_text_J86TTR cleo-product-subtitle">{{ subtitle }}</div>
+             {%- endif -%}
+
+              <!-- Start of Judge.me code --> 
+                <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+              {{ product.metafields.judgeme.badge }} 
+              </div> 
+              <!-- End of Judge.me code -->
+
+
+              <div class="custom-product-price-box cleo-product-price-box">
+                <price-list class="price-list price-list--product">
+                  <sale-price class="h4 product-page-custom-price" data-cleo-product-price>
+                    <span class="sr-only">Sale price</span>{{ current_variant.price | money }}
+                  </sale-price>
+                  <compare-at-price class="h5 text-subdued line-through" data-cleo-product-compare {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}>
+                    {{ current_variant.compare_at_price | money }}
+                  </compare-at-price>
+                </price-list>
+                <div class="custom-extra-offer-text cleo-product-offer">
+                  <span class="cleo-offer-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-4 0-7-2.7-7-6.7 0-3 1.7-5.1 4-7.2.2 2.2 1.1 3.5 2.7 4.3-.2-3.3 1.1-6.2 4.1-8.4.2 3 1.3 4.7 2.7 6.5 1 1.3 1.5 2.8 1.5 4.8 0 4-3 6.7-8 6.7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 16.2c0 1.8 1.2 3 2.8 3 1.8 0 3.1-1.1 3.1-3 0-1.2-.5-2.1-1.4-3.1-.8 1.3-1.7 2-3.1 2.2.2-1.1.1-2.1-.3-3.1-1 .9-1.1 2.3-1.1 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p>Use code <strong>CLEO10</strong> for an extra 10% off at checkout</p>
+                </div>
+              </div>
+
+              {%- unless product.has_only_default_variant -%}
+                <div class="product-info__block-item" data-block-id="variants" data-block-type="variant-picker">
+                  <div class="cleo-static-variants">
+                    {%- for option in product.options_with_values -%}
+                      <fieldset class="cleo-option" data-cleo-option-index="{{ forloop.index0 }}">
+                        <legend>{{ option.name }}</legend>
+                        <div class="cleo-option__values">
+                          {%- for value in option.values -%}
+                            <label>
+                              <input type="radio" name="option-{{ option.position }}" value="{{ value | escape }}" data-cleo-option form="{{ product_form_id }}" {% if option.selected_value == value %}checked{% endif %}>
+                              <span>{{ value }}</span>
+                            </label>
+                          {%- endfor -%}
+                        </div>
+                      </fieldset>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endunless -%}
+
+              <div class="pills-container">
+                <div class="product-pills cleo-product-pills" style="--pill-text: #895737;">
+                  <span>Leak-proof</span><span>Durable</span><span>Pure Copper</span><span>Handcrafted</span>
+                </div>
+              </div>
+              {% comment %} <div class="cleo-bundle">
+                <div class="cleo-bundle__heading"><span></span><strong>Bundle &amp; Save &middot; Limited Time Offer</strong><span></span></div>
+                <div class="cleo-bundle__cards">
+                  {%- liquid
+                    assign couple_price = current_variant.price | times: 3 | divided_by: 2.0 | ceil
+                    assign couple_compare = current_variant.price | times: 2
+                    assign family_price = current_variant.price | times: 2
+                    assign family_compare = current_variant.price | times: 3
+                  -%}
+                  <label class="cleo-bundle-card is-selected">
+                    <input type="radio" name="cleo-bundle" value="{{ current_variant.id }}" form="{{ product_form_id }}" data-cleo-bundle-variant data-price="{{ current_variant.price }}" data-compare="{{ current_variant.compare_at_price }}" data-available="{{ current_variant.available }}" data-quantity="1" data-price-multiplier="1" data-compare-multiplier="1" checked>
+                    <span class="cleo-bundle-card__image">{%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 96 | image_tag: loading: 'lazy', alt: product.title }}{%- endif -%}</span>
+                    <span class="cleo-bundle-card__body"><strong>Essential Bundle</strong><small>( 1 Product )</small></span>
+                    <span class="cleo-bundle-card__price"><strong data-cleo-bundle-price>{{ current_variant.price | money }}</strong><s data-cleo-bundle-compare {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}>{{ current_variant.compare_at_price | money }}</s></span>
+                    <span class="cleo-bundle-card__perk">+ Free Copper Care Brush + FREE Travel Sleeve</span>
+                  </label>
+                  <label class="cleo-bundle-card">
+                    <input type="radio" name="cleo-bundle" value="{{ current_variant.id }}" form="{{ product_form_id }}" data-cleo-bundle-variant data-price="{{ couple_price }}" data-compare="{{ couple_compare }}" data-available="{{ current_variant.available }}" data-quantity="2" data-price-multiplier="1.5" data-compare-multiplier="2">
+                    <span class="cleo-bundle-card__image">{%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 96 | image_tag: loading: 'lazy', alt: product.title }}{%- endif -%}</span>
+                    <span class="cleo-bundle-card__body"><strong>Couple Bundle <em>Second Bottle 50%</em></strong><small>( 2 Products )</small></span>
+                    <span class="cleo-bundle-card__price"><strong data-cleo-bundle-price>{{ couple_price | money }}</strong><s data-cleo-bundle-compare>{{ couple_compare | money }}</s></span>
+                    <span class="cleo-bundle-card__perk">+ FREE 2 Copper Care Brushes + 2 Travel Sleeve</span>
+                  </label>
+                  <label class="cleo-bundle-card">
+                    <input type="radio" name="cleo-bundle" value="{{ current_variant.id }}" form="{{ product_form_id }}" data-cleo-bundle-variant data-price="{{ family_price }}" data-compare="{{ family_compare }}" data-available="{{ current_variant.available }}" data-quantity="3" data-price-multiplier="2" data-compare-multiplier="3">
+                    <span class="cleo-bundle-card__image">{%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 96 | image_tag: loading: 'lazy', alt: product.title }}{%- endif -%}</span>
+                    <span class="cleo-bundle-card__body"><strong>Family Bundle <em>Buy 2, Get 1 FREE</em></strong><small>( 3 Products )</small></span>
+                    <span class="cleo-bundle-card__price"><strong data-cleo-bundle-price>{{ family_price | money }}</strong><s data-cleo-bundle-compare>{{ family_compare | money }}</s></span>
+                    <span class="cleo-bundle-card__perk">+ FREE 3 Copper Care Brushes + 3 Travel Sleeve + Cleo Copper Wellness E-Book</span>
+                  </label>
+                </div>
+              </div> {% endcomment %}
+
+              <product-form>
+                {%- form 'product', product, id: product_form_id, class: 'shopify-product-form cleo-product-form', enctype: 'multipart/form-data' -%}
+                  <input type="hidden" name="id" value="{{ current_variant.id }}">
+                  <input type="hidden" name="quantity" value="1" data-cleo-product-quantity>
+                  <script type="application/json" data-cleo-variants>{{ product.variants | json }}</script>
+
+                  <kaching-bundle product-id="{{ product.id }}"></kaching-bundle>
+
+                  <div class="cleo-product-actions">
+                    <button type="submit" class="button w-full cleo-product-atc" {% unless current_variant.available %}disabled{% endunless %}>
+                      <span class="atc-btn-content">
+                        <svg class="atc-btn-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                          <path d="M8 10V7C8 4.8 9.8 3 12 3s4 1.8 4 4v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        <span data-cleo-submit-text>{%- if current_variant.available -%}Add to cart{%- else -%}Sold out{%- endif -%}</span>
+                      </span>
+                    </button>
+                    {%- if section.settings.show_dynamic_checkout -%}
+                      <div class="cleo-payment-button">
+                        {{ form | payment_button }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                  <input type="hidden" name="product-id" value="{{ product.id }}">
+                  <input type="hidden" name="section-id" value="template--21732445290636__main">
+                {%- endform -%}
+              </product-form>
+
+              <div class="feature-bar cleo-product-feature-bar">
+                <div class="feature-item"><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v9H3V7Zm11 3h4l3 3v3h-7v-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 18.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/></svg></span><span>Free shipping on all orders</span></div>
+                <span class="feature-divider">&bull;</span>
+                <div class="feature-item"><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9h16v4H4V9Zm2 4h12v8H6v-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 9v12M12 9c-2.5 0-4-1-4-2.5S10.8 4 12 9Zm0 0c2.5 0 4-1 4-2.5S13.2 4 12 9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span>Makes a great gift</span></div>
+                <span class="feature-divider">&bull;</span>
+                <div class="feature-item"><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="10" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 10V7a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span>Secure checkout</span></div>
+              </div>
+
+              <div class="certificate-pdf-block cleo-certificate">
+                <div class="certificate-pdf-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v4h4M9 10h6M9 13h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="17" cy="16" r="2.2" stroke="currentColor" stroke-width="1.5"/><path d="m15.8 18-.6 3 1.8-1 1.8 1-.6-3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="certificate-pdf-content">
+                  <div class="certificate-pdf-title">Access Your Certificate of Authenticity</div>
+                  <div class="certificate-pdf-subtitle">Verified lab certification PDF &darr;</div>
+                </div>
+                <div class="certificate-pdf-stars">&#9733;<br>&#9733;<br>&#9733;</div>
+              </div>
+
+              <div class="product-usp-grid cleo-product-usp-grid">
+                <div class="product-usp-grid__item"><span class="cleo-usp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v9H3V7Zm11 3h4l3 3v3h-7v-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 18.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/></svg></span><div class="product-usp-grid__content"><p class="product-usp-grid__title">Express USA Shipping</p><p class="product-usp-grid__text">Ships in 1-2 business days</p></div></div>
+                <div class="product-usp-grid__item"><span class="cleo-usp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2.2 0 4 1.8 4 4 0 3-4 7-4 7s-4-4-4-7c0-2.2 1.8-4 4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 14v7l3-2 3 2v-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="product-usp-grid__content"><p class="product-usp-grid__title">Lab-Tested Pure Copper</p><p class="product-usp-grid__text">99.9% purity verified</p></div></div>
+                <div class="product-usp-grid__item"><span class="cleo-usp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 8 4-8 4-8-4 8-4Zm-8 4v10l8 4 8-4V7M12 11v10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="product-usp-grid__content"><p class="product-usp-grid__title">Copper Care Brush and Travel Sleeve</p><p class="product-usp-grid__text">Included with every bottle</p></div></div>
+                <div class="product-usp-grid__item"><span class="cleo-usp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 19 6v5c0 4.6-2.8 8.3-7 10-4.2-1.7-7-5.4-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="product-usp-grid__content"><p class="product-usp-grid__title">Leak-proof</p><p class="product-usp-grid__text">Leak-proof threaded cap</p></div></div>
+              </div>
+
+              {%- if product.description != blank -%}
+                <div class="accordion-list cleo-product-description">
+                  <accordion-disclosure class="accordion custom-faq-accordion">
+                    <details class="accordion__disclosure group" open>
+                      <summary>
+                        <span class="accordion__toggle h6 custom-accordion-css">
+                          <span class="text-with-icon gap-4">Product details</span>
+                          <svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+                            <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+                          </svg>
+                        </span>
+                      </summary>
+                      <div class="accordion__content custom-accordion-css rte">{{ product.description }}</div>
+                    </details>
+                  </accordion-disclosure>
+                </div>
+              {%- endif -%}
+
+              {%- if section.blocks.size > 0 -%}
+                <div class="accordion-list cleo-product-description">
+                  {%- for block in section.blocks -%}
+                    <accordion-disclosure class="accordion custom-faq-accordion" {{ block.shopify_attributes }}>
+                      <details class="accordion__disclosure group"{% if block.settings.open %} open{% endif %}>
+                        <summary>
+                          <span class="accordion__toggle h6 custom-accordion-css">
+                            <span class="text-with-icon gap-4">{{ block.settings.heading }}</span>
+                            <svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+                              <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+                            </svg>
+                          </span>
+                        </summary>
+                        <div class="accordion__content custom-accordion-css rte">{{ block.settings.content }}</div>
+                      </details>
+                    </accordion-disclosure>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </safe-sticky>
+        </div>
+      </product-rerender>
+    </div>
+  </div>
+
+  {%- if section.settings.show_sticky_add_to_cart -%}
+    <product-rerender id="{{ product_form_id }}-sticky-bar" observe-form="{{ product_form_id }}">
+      <product-sticky-bar form="{{ product_form_id }}" class="product-sticky-bar">
+        <div class="product-sticky-bar__info">
+          {%- if product.featured_image != blank -%}
+            {{ product.featured_image | image_url: width: 96 | image_tag: loading: 'lazy', alt: product.title }}
+          {%- endif -%}
+          <div class="v-stack">
+            <span class="h6">{{ product.title }}</span>
+            <span class="text-subdued">{{ current_variant.price | money }}</span>
+          </div>
+        </div>
+        <button type="submit" class="button" form="{{ product_form_id }}" {% unless current_variant.available %}disabled{% endunless %}>Add to cart</button>
+      </product-sticky-bar>
+    </product-rerender>
+  {%- endif -%}
+</section>

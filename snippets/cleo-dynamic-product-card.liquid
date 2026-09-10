@@ -1,0 +1,308 @@
+{%- liquid
+  assign card_product = product
+  assign show_quick_add = show_quick_add | default: true, allow_false: true
+  assign image_sizes = image_sizes | default: '(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))'
+  assign section_id = section_id | default: 'template--cleo-dynamic'
+  assign fallback_handle = fallback_handle | default: card_product.handle
+  assign fallback_title = fallback_title | default: card_product.title
+  assign fallback_price = fallback_price | default: ''
+  assign fallback_badge = fallback_badge | default: ''
+  assign fallback_primary_asset = fallback_primary_asset | default: ''
+  assign fallback_secondary_asset = fallback_secondary_asset | default: ''
+  assign fallback_product_url = '/products/' | append: fallback_handle
+
+  assign primary_image = card_product.featured_media.preview_image
+  assign secondary_image = blank
+  assign selected_variant = card_product.selected_or_first_available_variant
+  assign badge_text = card_product.metafields.custom.badge.value | default: card_product.metafields.custom.product_badge.value
+
+  if card_product != blank
+    for product_media in card_product.media
+      if product_media.media_type == 'image' and product_media.id != card_product.featured_media.id
+        assign secondary_image = product_media.preview_image
+        break
+      endif
+    endfor
+  endif
+
+  assign has_secondary_image = false
+
+  if secondary_image != blank or fallback_secondary_asset != blank
+    assign has_secondary_image = true
+  endif
+
+  if badge_text == blank
+    if card_product.tags contains 'Signature Ritual Set'
+      assign badge_text = 'Signature Ritual Set'
+    elsif card_product.tags contains 'Limited Edition'
+      assign badge_text = 'Limited Edition'
+    elsif card_product.tags contains 'New Arrival'
+      assign badge_text = 'New Arrival'
+    elsif card_product.tags contains 'Bestseller'
+      assign badge_text = 'Bestseller'
+    elsif card_product.compare_at_price > card_product.price
+      assign badge_text = 'Sale'
+    endif
+  endif
+
+  if badge_text == blank
+    assign badge_text = fallback_badge
+  endif
+-%}
+
+<product-card
+  class="product-card"
+  reveal-on-scroll="true"
+  handle="{{ card_product.handle | default: fallback_handle }}"
+>
+  <div class="product-card__figure">
+    {%- if badge_text != blank -%}
+      <badge-list class="badge-list badge-list--vertical">
+        <span class="badge badge--custom badge--{{ badge_text | handleize }}">
+          {{ badge_text }}
+        </span>
+      </badge-list>
+    {%- endif -%}
+
+    <a
+      href="{{ card_product.url | default: fallback_product_url }}"
+      class="product-card__media{% if has_secondary_image %} product-card__media--has-secondary{% endif %}"
+      draggable="false"
+      data-instant
+    >
+      {%- if primary_image != blank -%}
+        <img
+          src="{{ primary_image | image_url: width: 1200 }}"
+          srcset="
+            {{ primary_image | image_url: width: 400 }} 400w,
+            {{ primary_image | image_url: width: 600 }} 600w,
+            {{ primary_image | image_url: width: 800 }} 800w,
+            {{ primary_image | image_url: width: 1000 }} 1000w,
+            {{ primary_image | image_url: width: 1200 }} 1200w
+          "
+          alt="{{ primary_image.alt | default: card_product.title | escape }}"
+          width="{{ primary_image.width }}"
+          height="{{ primary_image.height }}"
+          loading="lazy"
+          sizes="{{ image_sizes }}"
+          draggable="false"
+          class="product-card__image product-card__image--primary aspect-natural"
+        >
+      {%- elsif fallback_primary_asset != blank -%}
+        <img
+          src="{{ fallback_primary_asset | asset_url }}"
+          alt="{{ fallback_title | escape }}"
+          width="1254"
+          height="1254"
+          loading="lazy"
+          sizes="{{ image_sizes }}"
+          draggable="false"
+          class="product-card__image product-card__image--primary aspect-natural"
+        >
+      {%- endif -%}
+
+      {%- if secondary_image != blank -%}
+        <img
+          src="{{ secondary_image | image_url: width: 1200 }}"
+          srcset="
+            {{ secondary_image | image_url: width: 400 }} 400w,
+            {{ secondary_image | image_url: width: 600 }} 600w,
+            {{ secondary_image | image_url: width: 800 }} 800w,
+            {{ secondary_image | image_url: width: 1000 }} 1000w,
+            {{ secondary_image | image_url: width: 1200 }} 1200w
+          "
+          alt="{{ secondary_image.alt | default: card_product.title | escape }}"
+          width="{{ secondary_image.width }}"
+          height="{{ secondary_image.height }}"
+          loading="lazy"
+          fetchpriority="low"
+          sizes="{{ image_sizes }}"
+          draggable="false"
+          aria-hidden="true"
+          class="product-card__image product-card__image--secondary"
+        >
+      {%- elsif fallback_secondary_asset != blank -%}
+        <img
+          src="{{ fallback_secondary_asset | asset_url }}"
+          alt="{{ fallback_title | escape }}"
+          width="1254"
+          height="1254"
+          loading="lazy"
+          fetchpriority="low"
+          sizes="{{ image_sizes }}"
+          draggable="false"
+          aria-hidden="true"
+          class="product-card__image product-card__image--secondary"
+        >
+      {%- endif -%}
+    </a>
+  </div>
+
+  <div class="product-card__info empty:hidden">
+    <div class="v-stack justify-items-start gap-2">
+      <div class="v-stack justify-items-start gap-2">
+        <a
+          href="{{ card_product.url | default: fallback_product_url }}"
+          class="product-title card-product-title h6 line-clamp"
+          style="--line-clamp-count: 2"
+          data-instant
+        >
+          {{ card_product.title | default: fallback_title }}
+        </a>
+
+        <price-list class="price-list">
+          <sale-price class="custom-card-sale-price h6 text-subdued">
+            <span class="sr-only">Sale price</span>
+
+            {%- if card_product != blank -%}
+              {{ card_product.price | money }}
+            {%- else -%}
+              {{ fallback_price }}
+            {%- endif -%}
+          </sale-price>
+
+          {%- if card_product.compare_at_price > card_product.price -%}
+            <compare-at-price class="h6 text-subdued line-through">
+              <span class="sr-only">Regular price</span>
+              {{ card_product.compare_at_price | money }}
+            </compare-at-price>
+          {%- endif -%}
+        </price-list>
+      </div>
+    </div>
+
+    {%- if show_quick_add and card_product != blank -%}
+      <product-form class="product-card__form">
+        <form
+          method="post"
+          action="{{ routes.cart_add_url }}"
+          accept-charset="UTF-8"
+          class="shopify-product-form"
+          enctype="multipart/form-data"
+          data-cleo-ajax-cart
+        >
+          <input type="hidden" name="quantity" value="1">
+          <input type="hidden" name="id" value="{{ selected_variant.id }}">
+
+          <button
+            type="submit"
+            class="product-card__quick-add-button"
+            {% unless selected_variant.available %}
+              disabled
+            {% endunless %}
+          >
+            <span>
+              {%- if selected_variant.available -%}
+                Add to cart
+              {%- else -%}
+                Sold out
+              {%- endif -%}
+            </span>
+          </button>
+
+          <input type="hidden" name="product-id" value="{{ card_product.id }}">
+          <input type="hidden" name="section-id" value="{{ section_id }}">
+        </form>
+      </product-form>
+    {%- elsif show_quick_add -%}
+      <a
+        href="{{ fallback_product_url }}"
+        class="product-card__quick-add-button"
+        data-instant
+      >
+        <span>Add to cart</span>
+      </a>
+    {%- endif -%}
+  </div>
+</product-card>
+
+<style>
+  product-card.product-card .product-card__media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    {% comment %} background-color: #ffffff; {% endcomment %}
+    isolation: isolate;
+  }
+
+  product-card.product-card .product-card__image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease;
+  }
+
+  product-card.product-card .product-card__image--primary {
+    position: relative;
+    z-index: 1;
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  product-card.product-card .product-card__image--secondary {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    object-fit: contain;
+    object-position: center;
+    pointer-events: none;
+  }
+
+  @media screen and (hover: hover) and (pointer: fine) {
+    product-card.product-card:hover
+      .product-card__media--has-secondary
+      .product-card__image--primary {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    product-card.product-card:hover
+      .product-card__media--has-secondary
+      .product-card__image--secondary {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    product-card.product-card:focus-within
+      .product-card__media--has-secondary
+      .product-card__image--primary {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    product-card.product-card:focus-within
+      .product-card__media--has-secondary
+      .product-card__image--secondary {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @media screen and (hover: none), screen and (pointer: coarse) {
+    product-card.product-card .product-card__image--primary {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    product-card.product-card .product-card__image--secondary {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    product-card.product-card .product-card__image {
+      transition: none;
+    }
+  }
+</style>

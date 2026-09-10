@@ -1,0 +1,160 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    --content-over-media-overlay: 0 0 0 / {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+
+  #shopify-section-{{ section.id }} .newsletter {
+    min-height: {{ section.settings.section_height }}px;
+  }
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-{{ section.id }} .newsletter {
+      height: {{ section.settings.section_height }}px;
+      overflow: hidden;
+    }
+  }
+</style>
+
+<div
+  class="color-scheme color-scheme--with-image-overlay"
+  style="
+    --background: 75 45 32;
+    --text-color: 255 247 238;
+    --border-color: 255 255 255 / 0.15;
+  "
+  {{ section.shopify_attributes }}
+>
+  <div class="newsletter content-over-media content-over-media--auto">
+    <picture>
+      {%- if section.settings.mobile_background_image != blank -%}
+        <source
+          media="(max-width: 699px)"
+          srcset="{{ section.settings.mobile_background_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_background_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_background_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_background_image | image_url: width: 1000 }} 1000w"
+          width="{{ section.settings.mobile_background_image.width }}"
+          height="{{ section.settings.mobile_background_image.height }}"
+        >
+      {%- else -%}
+        <source
+          media="(max-width: 699px)"
+          srcset="{{ 'cleo-static-7f11eb353252.png' | asset_url }} 400w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 600w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 800w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 1000w"
+          width="393"
+          height="383"
+        >
+      {%- endif -%}
+
+      {%- if section.settings.background_image != blank -%}
+        <img
+          src="{{ section.settings.background_image | image_url: width: 1918 }}"
+          alt="{{ section.settings.heading | escape }}"
+          width="{{ section.settings.background_image.width }}"
+          height="{{ section.settings.background_image.height }}"
+          sizes="100vw"
+          loading="lazy"
+        >
+      {%- else -%}
+        <img
+          src="{{ 'cleo-static-a656d4ae97f6.png' | asset_url }}"
+          alt=""
+          srcset="{{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 400w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 800w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1200w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1600w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1800w"
+          width="1918"
+          height="235"
+          sizes="100vw"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </picture>
+
+    <div class="content section-stack gap-8 text-center flex m-w-934 align-item-center">
+      <div class="section-header justify-self-center text-center">
+        <div class="prose">
+          <h2 class="h2 custom-heading">{{ section.settings.heading }}</h2>
+        </div>
+      </div>
+
+      {%- form 'customer', class: 'form justify-self-center' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="form-row">
+          <div class="form-control">
+            <input
+              id="input--{{ section.id }}--contact-email"
+              class="input"
+              type="email"
+              dir="ltr"
+              placeholder="{{ section.settings.placeholder }}"
+              name="contact[email]"
+              autocomplete="email"
+              enterkeyhint="send"
+              required
+            >
+            <label for="input--{{ section.id }}--contact-email" class="sr-only">{{ section.settings.placeholder }}</label>
+          </div>
+          <button type="submit" class="button">{{ section.settings.button_label }}</button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cleo newsletter",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Start Your Wellness Ritual Today"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background_image",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "E-mail"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Sign up"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section height",
+      "min": 160,
+      "max": 420,
+      "step": 5,
+      "unit": "px",
+      "default": 235
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "%",
+      "default": 54
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo newsletter"
+    }
+  ]
+}
+{% endschema %}

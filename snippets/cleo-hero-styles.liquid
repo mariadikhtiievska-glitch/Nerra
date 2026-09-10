@@ -1,0 +1,93 @@
+<style data-cleo-component-css="heroShared">
+  .cleo-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: var(--cleo-hero-height, 520px);
+    min-height: 0;
+    background: var(--cleo-cream);
+  }
+  
+  .cleo-hero--adaptive {
+    height: auto;
+    aspect-ratio: 3360 / 1225;
+  }
+  
+  .cleo-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+  }
+  
+  .cleo-hero picture {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .cleo-hero img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .cleo-hero__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: var(--cleo-hero-align-y, center);
+    justify-content: var(--cleo-hero-align-x, flex-start);
+    width: var(--cleo-page);
+    margin-inline: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: var(--cleo-hero-text-align, left);
+    color: var(--cleo-hero-color, var(--cleo-white));
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .cleo-hero__box {
+    max-width: var(--cleo-hero-content-width, 520px);
+    pointer-events: auto;
+  }
+  
+  .cleo-hero__heading {
+    margin: 0 0 14px;
+    font-size: clamp(36px, 5vw, var(--cleo-hero-heading-size, 68px));
+    line-height: 1;
+    font-weight: 800;
+  }
+  
+  .cleo-hero__text {
+    font-size: var(--cleo-hero-text-size, 18px);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  
+  @media (max-width: 749px) {
+  
+  .cleo-hero {
+      height: var(--cleo-mobile-hero-height, 430px);
+    }
+  
+  .cleo-hero--adaptive {
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+  
+  .cleo-hero__content {
+      align-items: var(--cleo-mobile-hero-align-y, flex-end);
+      padding-bottom: 34px;
+    }
+  
+  .cleo-hero__heading {
+      font-size: var(--cleo-mobile-hero-heading-size, 38px);
+    }
+  }
+</style>

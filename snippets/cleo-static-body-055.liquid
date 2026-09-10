@@ -1,0 +1,3924 @@
+<body class="state-page state-search-drawer features--zoom-image  color-scheme color-scheme--scheme-1"><div class="state-overlay"></div><div class="state-panel state-search-panel color-scheme color-scheme--scheme-1" aria-label="Search drawer preview"><header-search id="header-search-sections--21732440211596__header" class="header-search">
+  <div class="container">
+    <form id="predictive-search-form" action="/search" method="GET" aria-owns="header-predictive-search" class="header-search__form" role="search">
+      <div class="header-search__form-control"><svg aria-hidden="true" fill="none" focusable="false" width="20" class="icon icon-search" viewBox="0 0 24 24">
+      <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+      <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg><input
+          type="search"
+          name="q"
+          spellcheck="false"
+          class="header-search__input h5 sm:h4"
+          aria-label="Search"
+          placeholder="Search for..."
+        >
+
+        <dialog-close-button class="contents">
+          <button type="button">
+            <span class="sr-only">Close</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </div>
+    </form>
+
+    <predictive-search id="header-predictive-search" class="predictive-search">
+      <div class="predictive-search__content" slot="results"></div>
+    </predictive-search>
+  </div>
+</header-search></div><template id="drawer-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+
+      <footer part="footer">
+        <slot name="footer"></slot>
+      </footer>
+    </div>
+  </div>
+</template><template id="modal-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template><template id="popover-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template><template id="header-search-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <slot></slot>
+    </div>
+  </div>
+</template><template id="video-media-default-template">
+  <slot></slot>
+
+  <svg part="play-button" fill="none" width="48" height="48" viewBox="0 0 48 48">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M48 24c0 13.255-10.745 24-24 24S0 37.255 0 24 10.745 0 24 0s24 10.745 24 24Zm-18 0-9-6.6v13.2l9-6.6Z" fill="var(--play-button-background, #efefef)"/>
+  </svg>
+</template>
+<loading-bar class="loading-bar" aria-hidden="true"></loading-bar>
+    <a href="#main" allow-hash-change class="skip-to-content sr-only">Skip to content</a><div class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+      <span id="status-announcement"></span>
+    </div>
+
+    <div class="sr-only" role="alert" aria-live="assertive" aria-atomic="true">
+      <span id="error-announcement"></span>
+    </div>
+
+    <span id="header-scroll-tracker" style="position: absolute; width: 1px; height: 1px; top: var(--header-scroll-tracker-offset, 10px); left: 0;"></span><!-- BEGIN sections: header-group -->
+<aside id="shopify-section-sections--21732440211596__announcement_bar_d3tA7z" class="shopify-section shopify-section-group-header-group shopify-section--announcement-bar"><style>
+    :root {
+      --announcement-bar-is-sticky: 1;}#shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+
+      .shopify-section--header ~ #shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        top: calc(var(--header-is-sticky, 0) * var(--header-height, 0px));
+        z-index: 4; /* We have to lower the z-index in case the announcement bar is displayed after the header */
+      }#shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+      --announcement-bar-font-size: 0.625rem;
+    }
+
+    @media screen and (min-width: 999px) {
+      #shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        --announcement-bar-font-size: 0.75rem;
+      }
+    }
+  </style>
+
+  <height-observer variable="announcement-bar">
+    <div class="announcement-bar color-scheme color-scheme--scheme-2ce84c52-5a2f-46a9-8178-3124763aa3f7"><announcement-bar-carousel
+        allow-swipe
+        
+          autoplay="5"
+        
+        id="carousel-sections--21732440211596__announcement_bar_d3tA7z"
+        class="announcement-bar__carousel"
+      ><p class="prose heading is-selected" >Use code <strong>CLEO10</strong> for an extra 10% off at checkout</p></announcement-bar-carousel></div>
+  </height-observer>
+
+  
+</aside><header id="shopify-section-sections--21732440211596__header" class="shopify-section shopify-section-group-header-group shopify-section--header"><style>
+  :root {
+    --header-is-sticky: 1;
+  }
+
+  #shopify-section-sections--21732440211596__header {
+    --header-grid: "primary-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 7fr);
+    --header-padding-block: 1rem;
+    --header-transparent-header-text-color: 255 255 255;
+    --header-separation-border-color: 255 255 255 / 0.15;
+
+    position: relative;
+    z-index: 4;
+  }
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-sections--21732440211596__header {
+      --header-padding-block: 1.6rem;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-sections--21732440211596__header {--header-grid: "logo primary-nav secondary-nav" / minmax(max-content, 1fr) auto minmax(max-content, 1fr);}
+  }#shopify-section-sections--21732440211596__header {
+      position: sticky;
+      top: 0;
+    }
+
+    .shopify-section--announcement-bar ~ #shopify-section-sections--21732440211596__header {
+      top: calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px));
+    }#shopify-section-sections--21732440211596__header {
+      --header-logo-width: 150px;
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-sections--21732440211596__header {
+        --header-logo-width: 220px;
+      }
+    }</style>
+
+<height-observer variable="header">
+  <x-header
+    
+    class="header color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75"
+  ><h1 class="header__logo">
+        <a href="/"><span class="sr-only">Cleo Home</span><img src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}" alt="Cleo Home" srcset="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 440w, {{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 556w" width="556" height="141" sizes="220px" class="header__logo-image"><img src="{{ 'cleo-static-d20425c87685.png' | asset_url }}" alt="" width="193" height="49" sizes="220px" class="header__logo-image header__logo-image--transparent"></a>
+      </h1>
+    
+<nav
+        class="header__primary-nav header__primary-nav--center"
+        aria-label="Primary navigation"
+      >
+        <button
+          type="button"
+          aria-controls="sidebar-menu"
+          
+            class="md:hidden"
+          
+        >
+          <span class="sr-only">Navigation menu</span><svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-hamburger" viewBox="0 0 24 24">
+      <path d="M1 19h22M1 12h22M1 5h22" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+    </svg></button><ul class="contents unstyled-list md-max:hidden">
+
+              <li class="header__primary-nav-item"><a
+                    href="/"
+                    data-title="Home"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                      aria-current="page"
+                    
+                  >Home</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="/collections/all"
+                    data-title="Shop"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Shop</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="/pages/contact"
+                    data-title="Contact"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Contact</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0MzU2ODU5LCJuYmYiOjE3ODM3NTIwNTl9.sJsI2ij_eaWlYe1n4CXFEC5kTSzSHyC37HPIT2iOsHA&region_country=US"
+                    data-title="Track Order"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Track Order</a></li>
+
+              <li class="header__primary-nav-item"><dropdown-menu-disclosure follow-summary-link trigger="hover"><details class="header__menu-disclosure">
+                      <summary data-follow-link="/pages/our-story" class="h6 c-h__pnt-font-size" data-title="About">About</summary><ul class="header__dropdown-menu header__dropdown-menu--restrictable unstyled-list" role="list"><li><a href="/pages/faqs" class="link-faded-reverse" >FAQs</a></li><li><a href="/pages/how-to-clean" class="link-faded-reverse" >How to clean</a></li></ul></details></dropdown-menu-disclosure></li></ul></nav><nav class="header__secondary-nav" aria-label="Secondary navigation"><ul class="contents unstyled-list"><li class="header__search-link">
+            <a href="/search" aria-controls="header-search-sections--21732440211596__header">
+              <span class="sr-only">Search</span><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-search" viewBox="0 0 24 24">
+      <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+      <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg></a>
+          </li><li class="relative header__cart-link">
+          <a
+            href="/cart"
+            
+              aria-controls="cart-drawer"
+            
+            data-no-instant
+          >
+            <span class="sr-only">Cart</span><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-cart" viewBox="0 0 24 24"><path d="M10 7h13l-4 9H7.5L5 3H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9" cy="20" r="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="17" cy="20" r="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><cart-dot class="header__cart-dot  "></cart-dot>
+          </a>
+        </li><li class="header__account-link ">
+            <shopify-store store-domain="https://cleolifestyle.com" country="US" language="en"></shopify-store>
+<shopify-account menu="customer-account-main-menu">
+              <div slot="signed-out-avatar"><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-account" viewBox="0 0 24 24">
+      <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+    </svg></div>
+            </shopify-account>
+          </li></ul>
+    </nav><header-search id="header-search-sections--21732440211596__header" class="header-search">
+  <div class="container">
+    <form id="predictive-search-form" action="/search" method="GET" aria-owns="header-predictive-search" class="header-search__form" role="search">
+      <div class="header-search__form-control"><svg aria-hidden="true" fill="none" focusable="false" width="20" class="icon icon-search" viewBox="0 0 24 24">
+      <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+      <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg><input
+          type="search"
+          name="q"
+          spellcheck="false"
+          class="header-search__input h5 sm:h4"
+          aria-label="Search"
+          placeholder="Search for..."
+        >
+
+        <dialog-close-button class="contents">
+          <button type="button">
+            <span class="sr-only">Close</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </div>
+    </form>
+
+    <predictive-search id="header-predictive-search" class="predictive-search">
+      <div class="predictive-search__content" slot="results"></div>
+    </predictive-search>
+  </div>
+</header-search>
+<template id="header-sidebar-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <dialog-close-button class="contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="panel-list">
+        <slot name="main-panel"></slot><slot name="collapsible-panel"></slot></div>
+    </div>
+  </div>
+</template>
+
+<header-sidebar id="sidebar-menu" class="header-sidebar drawer drawer--sm color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c" template="header-sidebar-template" open-from="left"><div class="header-sidebar__main-panel" slot="main-panel">
+    <div class="header-sidebar__scroller">
+      <ul class="header-sidebar__linklist  unstyled-list" role="list"><li class ="custom-seperator"><a href="/" class="header-sidebar__linklist-button h6">Home</a></li><li class ="custom-seperator"><a href="/collections/all" class="header-sidebar__linklist-button h6">Shop</a></li><li class ="custom-seperator"><a href="/pages/contact" class="header-sidebar__linklist-button h6">Contact</a></li><li class ="custom-seperator"><a href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0MzU2ODU5LCJuYmYiOjE3ODM3NTIwNTl9.sJsI2ij_eaWlYe1n4CXFEC5kTSzSHyC37HPIT2iOsHA&region_country=US" class="header-sidebar__linklist-button h6">Track Order</a></li><li class ="custom-seperator"><button
+                type="button"
+                class="header-sidebar__linklist-button h6"
+                aria-controls="header-panel-5"
+                aria-expanded="false"
+              >About<svg aria-hidden="true" focusable="false" fill="none" width="12" class="icon icon-chevron-right  icon--direction-aware" viewBox="0 0 10 10">
+      <path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></button></li></ul>
+    </div><div class="header-sidebar__footer"><shopify-account menu="customer-account-main-menu">
+            <div slot="signed-out-avatar">
+              <div class="text-with-icon smallcaps sm:hidden font-15"><svg aria-hidden="true" fill="none" focusable="false" width="20" class="icon icon-account" viewBox="0 0 24 24">
+      <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+    </svg>Login</div>
+            </div>
+          </shopify-account></div></div><header-sidebar-collapsible-panel class="header-sidebar__collapsible-panel" slot="collapsible-panel">
+      <div class="header-sidebar__scroller"><div id="header-panel-5" class="header-sidebar__sub-panel" hidden>
+              <button
+                type="button"
+                class="header-sidebar__back-button link-faded  text-with-icon h6 md:hidden"
+                data-action="close-panel"
+              ><svg aria-hidden="true" focusable="false" fill="none" width="12" class="icon icon-chevron-left  icon--direction-aware" viewBox="0 0 10 10">
+      <path d="M7 1 3 5l4 4" stroke="currentColor" stroke-linecap="square"/>
+    </svg>About</button>
+
+              <ul class="header-sidebar__linklist  unstyled-list" role="list"><li class ="custom-seperator"><a href="/pages/faqs" class="header-sidebar__linklist-button h6">FAQs</a></li><li class ="custom-seperator"><a href="/pages/how-to-clean" class="header-sidebar__linklist-button h6">How to clean</a></li></ul></div></div>
+    </header-sidebar-collapsible-panel></header-sidebar>
+</x-header>
+</height-observer>
+
+
+
+
+
+</header>
+<!-- END sections: header-group --><!-- BEGIN sections: overlay-group -->
+{% render 'cleo-dynamic-cart-drawer' %}
+<!-- END sections: overlay-group --><main id="main" class="anchor">
+      <section id="shopify-section-template--21732444799116__slideshow" class="shopify-section shopify-section--slideshow"><slideshow-carousel
+    id="carousel-template--21732444799116__slideshow"
+    class="slideshow"
+    allow-swipe
+    
+    cell-selector=".slideshow__slide"
+    
+      autoplay="5"
+    
+    
+      autoplay-pause-on-video
+    
+    role="region"
+    style="--background: 28 28 28
+  ; background-color: rgb(var(--background));--border-color: var(--text-color) / 0.15;"
+  >
+<div class=""><a
+          href="/collections/all"
+          class="slideshow__slide is-selected"
+          media-type="image"
+          
+            reveal-on-scroll="true"
+          
+          role="group"
+          
+          style="border-radius:0px; overflow:hidden;"
+        ><div class="content-over-media content-over-media--auto" style="--content-over-media-content-max-width: 400px; --content-over-media-gradient-overlay: "><picture><source
+                        media="(max-width: 699px)"
+                        srcset="{{ 'cleo-static-ba9f7637fa2a.jpg' | asset_url }} 800w, {{ 'cleo-static-ba9f7637fa2a.jpg' | asset_url }} 1000w, {{ 'cleo-static-ba9f7637fa2a.jpg' | asset_url }} 1200w"
+                        width="2295"
+                        height="2295"
+                    ><img src="{{ 'cleo-static-5065d09665c2.jpg' | asset_url }}" alt="" srcset="{{ 'cleo-static-5065d09665c2.jpg' | asset_url }} 800w, {{ 'cleo-static-5065d09665c2.jpg' | asset_url }} 1200w, {{ 'cleo-static-5065d09665c2.jpg' | asset_url }} 1800w, {{ 'cleo-static-5065d09665c2.jpg' | asset_url }} 2400w, {{ 'cleo-static-5065d09665c2.jpg' | asset_url }} 2800w, {{ 'cleo-static-5065d09665c2.jpg' | asset_url }} 3200w" width="3360" height="1225" fetchpriority="high" sizes="100vw"></picture>
+
+          <div class="slideshow__slide-content    place-self-end-start text-start sm:place-self-center-start sm:text-start" style="--text-color: 255 255 255; color: rgb(var(--text-color));--border-color: var(--text-color) / 0.15;">
+            <div class="prose custom-center">
+</div>
+          </div>
+        </div></a></div>
+  </slideshow-carousel>
+</section><div id="shopify-section-template--21732444799116__wave_text_banner_VjEMPN" class="shopify-section">
+
+
+
+<style data-shopify>
+  #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner {
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0,0,0,0);
+    margin-top: -75px;
+    position: relative;
+  }
+@media (max-width: 1140px) {
+ #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner {
+    margin-top: -32px;
+  }
+
+}
+  #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner svg {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: block;
+  }
+
+  #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner__desktop {
+    display: block !important;
+  }
+
+  #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner__mobile {
+    display: none !important;
+  }
+  #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner textPath {
+  animation: cleoWaveTextMove-template--21732444799116__wave_text_banner_VjEMPN 60s linear infinite;
+}
+
+
+
+@keyframes cleoWaveTextMove-template--21732444799116__wave_text_banner_VjEMPN {
+  from {
+    start-offset: 0%;
+  }
+  to {
+    start-offset: -100%;
+  }
+}
+
+  @media screen and (max-width: 700px) {
+    #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner {
+      margin-top: -40px;
+    }
+
+    #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner__desktop {
+      display: none !important;
+    }
+
+    #shopify-section-template--21732444799116__wave_text_banner_VjEMPN .cleo-wave-banner__mobile {
+      display: block !important;
+    }
+  }
+</style>
+
+<section class="cleo-wave-banner">
+  <svg class="cleo-wave-banner__desktop" viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <path id="waveTextD-template--21732444799116__wave_text_banner_VjEMPN" d="M0,48 Q225,18 450,48 Q675,78 900,48 Q1125,18 1350,48 Q1575,78 1800,48" fill="none" />
+      <clipPath id="clipD-template--21732444799116__wave_text_banner_VjEMPN">
+        <rect x="0" y="0" width="900" height="120" />
+      </clipPath>
+    </defs>
+
+    <path d="M0,18 Q225,-12 450,18 Q675,48 900,18 L900,78 Q675,108 450,78 Q225,48 0,78 Z" fill="#895737" />
+    <path d="M0,78 Q225,48 450,78 Q675,108 900,78 L900,120 L0,120 Z" fill="#f3e9dc" />
+
+    <text
+      font-family="Inter, Arial, sans-serif"
+      font-size="16"
+      fill="#ffffff"
+     style="letter-spacing: 0 !important;"
+      dominant-baseline="middle"
+      text-rendering="geometricPrecision"
+      clip-path="url(#clipD-template--21732444799116__wave_text_banner_VjEMPN)"
+    >
+     <textPath href="#waveTextD-template--21732444799116__wave_text_banner_VjEMPN" xlink:href="#waveTextD-template--21732444799116__wave_text_banner_VjEMPN">
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+
+  
+    <animate attributeName="startOffset" from="0%" to="-100%" dur="60s" repeatCount="indefinite" />
+  
+</textPath>
+    </text>
+  </svg>
+
+  <svg class="cleo-wave-banner__mobile" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <path id="waveTextM-template--21732444799116__wave_text_banner_VjEMPN" d="M0,38 Q200,68 400,38 Q600,68 800,38" fill="none" />
+      <clipPath id="clipM-template--21732444799116__wave_text_banner_VjEMPN">
+        <rect x="0" y="0" width="400" height="100" />
+      </clipPath>
+    </defs>
+
+    <path d="M0,8 Q200,38 400,8 L400,68 Q200,98 0,68 Z" fill="#895737" />
+    <path d="M0,68 Q200,98 400,68 L400,100 L0,100 Z" fill="#f3e9dc" />
+
+    <text
+      font-family="Inter, Arial, sans-serif"
+      font-size="16"
+      fill="#ffffff"
+      style="letter-spacing: 0 !important;"
+      dominant-baseline="middle"
+      text-rendering="geometricPrecision"
+      clip-path="url(#clipM-template--21732444799116__wave_text_banner_VjEMPN)"
+    >
+   <textPath href="#waveTextM-template--21732444799116__wave_text_banner_VjEMPN" xlink:href="#waveTextM-template--21732444799116__wave_text_banner_VjEMPN">
+ 
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+  
+    
+      Anti-Microbial&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Alkaline-Water&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Better-Hydration&#160;&#160;&#160;&#160;&#160;
+    
+  
+    
+      Leak-Proof&#160;&#160;&#160;&#160;&#160;
+    
+  
+
+
+  
+    <animate attributeName="startOffset" from="0%" to="-100%" dur="60s" repeatCount="indefinite" />
+  
+</textPath>
+    </text>
+  </svg>
+</section>
+
+</div><div id="shopify-section-template--21732444799116__category_icon_tabs_hcTzRn" class="shopify-section"><section class="cleo-category-strip cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn">
+  <div class="cleo-category-strip__wrap">
+    
+      <a href="/collections/bottles" class="cleo-category-card" >
+        <div class="cleo-category-card__image">
+          
+            <img
+              src="{{ 'cleo-static-bb191d20ae85.png' | asset_url }}"
+              alt="Bottles"
+              loading="lazy"
+            >
+          
+        </div>
+
+        
+          <div class="cleo-category-card__label">
+            Bottles
+          </div>
+        
+      </a>
+    
+      <a href="/products/ava-designz-100-pure-copper-pitcher-water-copper-vessel-leak-proof-bedside-carafe-bedroom-jar-with-copper-glass-vessel-1-liter-10-year-warranty" class="cleo-category-card" >
+        <div class="cleo-category-card__image">
+          
+            <img
+              src="{{ 'cleo-static-4e1e630e78e4.png' | asset_url }}"
+              alt="Carafes"
+              loading="lazy"
+            >
+          
+        </div>
+
+        
+          <div class="cleo-category-card__label">
+            Carafes
+          </div>
+        
+      </a>
+    
+      <a href="/collections/dispenser" class="cleo-category-card" >
+        <div class="cleo-category-card__image">
+          
+            <img
+              src="{{ 'cleo-static-e24b6a13e275.png' | asset_url }}"
+              alt="Dispensers"
+              loading="lazy"
+            >
+          
+        </div>
+
+        
+          <div class="cleo-category-card__label">
+            Dispensers
+          </div>
+        
+      </a>
+    
+      <a href="/collections/tumblers-and-pitchers" class="cleo-category-card" >
+        <div class="cleo-category-card__image">
+          
+            <img
+              src="{{ 'cleo-static-6028687a53b0.png' | asset_url }}"
+              alt="Tumblers &amp; &lt;br&gt; Pitchers"
+              loading="lazy"
+            >
+          
+        </div>
+
+        
+          <div class="cleo-category-card__label">
+            Tumblers & <br> Pitchers
+          </div>
+        
+      </a>
+    
+  </div>
+</section>
+
+<style>
+  .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn {
+    background: #f3e9dc;
+    padding: 20px 0 20px;
+    overflow: hidden;
+  }
+
+  .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-strip__wrap {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 18px;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-card {
+    width: 180px;
+    min-width: 180px;
+    text-decoration: none;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  /* IMAGE CARD */
+  .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-card__image {
+    width: 100%;
+    height: 200px;
+    background: #ffffff;
+    border-radius: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 14px;
+    box-sizing: border-box;
+  }
+
+  .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-card__image img {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* LABEL BELOW CARD */
+  .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-card__label {
+    width: 100%;
+    background: transparent;
+    color: #895737;
+    text-align: center;
+    padding-top: 16px;
+    box-sizing: border-box;
+
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.15;
+    text-transform: capitalize;
+    letter-spacing: .8px;
+
+    min-height: auto;
+    border-radius: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+
+    .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn {
+      padding:
+        10px
+        0
+        10px;
+        padding-left: 14px;
+    }
+
+    .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-strip__wrap {
+      justify-content: flex-start;
+      gap: 9px;
+
+      
+      padding-right: 14px;
+
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+
+      scroll-snap-type: x proximity;
+    }
+
+    .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-strip__wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-card {
+      width: calc(
+        (100vw - 14px -
+        (9px * 2.5)) / 3.5
+      );
+
+      min-width: calc(
+        (100vw - 14px -
+        (9px * 2.5)) / 3.5
+      );
+
+      scroll-snap-align: start;
+      margin-left:8px;
+    }
+
+    .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-card__image {
+      height: 115px;
+
+      border-radius: 35px;
+
+      padding: 10px;
+    }
+
+    .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-card__image img {
+      width: 82%;
+      height: 82%;
+    }
+
+    .cleo-category-strip-template--21732444799116__category_icon_tabs_hcTzRn .cleo-category-card__label {
+      background: transparent;
+      color: #895737;
+
+      padding-top: 10px;
+
+      font-size: 18px;
+
+      font-weight: 800;
+      line-height: 1.2;
+
+      text-transform: capitalize;
+      letter-spacing: .5px;
+
+      border-radius: 0;
+      min-height: auto;
+    }
+  }
+</style>
+
+</div><section id="shopify-section-template--21732444799116__featured-collections-1" class="shopify-section shopify-section--featured-collections"><style>
+    #shopify-section-template--21732444799116__featured-collections-1 {
+      --product-list-items-per-row: 2;
+      --product-list-horizontal-spacing-factor: 1.3;
+      --product-list-vertical-spacing-factor: 1;
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-template--21732444799116__featured-collections-1 {
+        --product-list-items-per-row: 4;
+      }
+    }
+  </style><div class="section-spacings custom-fc color-scheme color-scheme--scheme-da62a118-22e7-49ef-8ce6-b3d06255bd44 color-scheme--bg-f733170f8e26ef0af87b024124e087d4 ">
+    <div class="container"><div class="section-stack"><div class="v-stack justify-self-start gap-4 text-center sm:gap-5"><h2 class="h2 c-fc-heading">Best Sellers</h2></div><featured-collections-carousel id="featured-collections-carousel-template--21732444799116__featured-collections-1" class="featured-collections-carousel" style="background: #ffffff;"><div class="featured-collections-carousel__item is-selected" ><product-list class="floating-controls-container floating-controls-container--inside floating-controls-container--on-hover">
+                  <carousel-prev-button class="floating-controls-container__control" aria-controls="featured-collections-product-list-carousel-collection-1">
+                    <button type="button" class="prev-next-button prev-next-button--prev circle-button hover:animate-icon-inline" disabled>
+                      <span class="sr-only">Previous</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-arrow-left  icon--direction-aware" viewBox="0 0 16 18">
+      <path d="M11 1 3 9l8 8" stroke="currentColor" stroke-linecap="square"/>
+    </svg></button>
+                  </carousel-prev-button>
+
+                  <scroll-carousel
+                    id="featured-collections-product-list-carousel-collection-1"
+                    group-cells
+                    allow-drag
+                    class="product-list  product-list--carousel scroll-area c-p bleed md:unbleed"
+                  ><product-card
+  class="product-card"
+  
+    reveal-on-scroll="true"
+  
+  handle="handcrafted-ayurvedic-copper-daily-essentials-kit"
+><div class="product-card__figure"><badge-list class="badge-list badge-list--vertical"><span class="badge badge--custom badge--bestseller ">Bestseller</span></badge-list><a href="/products/handcrafted-ayurvedic-copper-daily-essentials-kit" class="product-card__media" draggable="false" data-instant><img src="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 200w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 300w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 400w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 500w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 600w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 700w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 800w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 1000w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" class="product-card__image product-card__image--primary  aspect-natural"><img src="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 200w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 300w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 400w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 500w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 600w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 700w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 800w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 1000w" width="1003" height="1003" loading="lazy" class="product-card__image product-card__image--secondary" fetchpriority="low" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" aria-hidden="true"></a>
+
+      
+    </div><div class="product-card__info empty:hidden"><div class="v-stack justify-items-start gap-2"><div class="v-stack justify-items-start gap-2"><a
+                href="/products/handcrafted-ayurvedic-copper-daily-essentials-kit"
+                class="product-title card-product-title h6 line-clamp"
+                
+                  style="--line-clamp-count: 2"
+                
+                data-instant
+              >Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz</a><price-list class="price-list "><sale-price class="custom-card-sale-price h6 text-subdued">
+        <span class="sr-only">Sale price</span>$64.99</sale-price></price-list>
+</div></div>
+
+           <product-form class="product-card__form"><form method="post" action="/cart/add" id="product_form_8371961102476" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="on_success" value="force_open_drawer">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" value="45623418650764">
+              <button type="submit" class="product-card__quick-add-button">
+                <span class="srr-only">Add to cart</span>
+                
+              </button><input type="hidden" name="product-id" value="8371961102476" /><input type="hidden" name="section-id" value="template--21732444799116__featured-collections-1" /></form></product-form></div>
+</product-card>
+<product-card
+  class="product-card"
+  
+    reveal-on-scroll="true"
+  
+  handle="cleo-copper-cascade-dispenser-with-2-glasses-169-oz"
+><div class="product-card__figure"><badge-list class="badge-list badge-list--vertical"><span class="badge badge--custom badge--signature-ritual-set ">Signature Ritual Set</span></badge-list><a href="/products/cleo-copper-cascade-dispenser-with-2-glasses-169-oz" class="product-card__media" draggable="false" data-instant><img src="{{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }}" alt="Cleo Copper Water Dispenser with 2 Glasses  | Handcrafted from Pure Copper | 271 Oz" srcset="{{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 200w, {{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 300w, {{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 400w, {{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 500w, {{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 600w, {{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 700w, {{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 800w, {{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 1000w, {{ 'cleo-static-72d6055c7fc9.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" class="product-card__image product-card__image--primary  aspect-natural"><img src="{{ 'cleo-static-9eb14fb26135.jpg' | asset_url }}" alt="Cleo Copper Water Dispenser with 2 Glasses  | Handcrafted from Pure Copper | 271 Oz" srcset="{{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 200w, {{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 300w, {{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 400w, {{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 500w, {{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 600w, {{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 700w, {{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 800w, {{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 1000w, {{ 'cleo-static-9eb14fb26135.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" class="product-card__image product-card__image--secondary" fetchpriority="low" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" aria-hidden="true"></a>
+
+      
+    </div><div class="product-card__info empty:hidden"><div class="v-stack justify-items-start gap-2"><div class="v-stack justify-items-start gap-2"><a
+                href="/products/cleo-copper-cascade-dispenser-with-2-glasses-169-oz"
+                class="product-title card-product-title h6 line-clamp"
+                
+                  style="--line-clamp-count: 2"
+                
+                data-instant
+              >Cleo Copper Water Dispenser with 2 Glasses  | Handcrafted from Pure Copper | 271 Oz</a><price-list class="price-list "><sale-price class="custom-card-sale-price h6 text-subdued">
+        <span class="sr-only">Sale price</span>$249.00</sale-price></price-list>
+</div></div>
+
+           <product-form class="product-card__form"><form method="post" action="/cart/add" id="product_form_9336292212876" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="on_success" value="force_open_drawer">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" value="49347746201740">
+              <button type="submit" class="product-card__quick-add-button">
+                <span class="srr-only">Add to cart</span>
+                
+              </button><input type="hidden" name="product-id" value="9336292212876" /><input type="hidden" name="section-id" value="template--21732444799116__featured-collections-1" /></form></product-form></div>
+</product-card>
+<product-card
+  class="product-card"
+  
+    reveal-on-scroll="true"
+  
+  handle="cleo-handcrafted-copper-water-bottle-100-pure-copper-34-oz"
+><div class="product-card__figure"><badge-list class="badge-list badge-list--vertical"><span class="badge badge--custom badge--bestseller ">Bestseller</span></badge-list><a href="/products/cleo-handcrafted-copper-water-bottle-100-pure-copper-34-oz" class="product-card__media" draggable="false" data-instant><img src="{{ 'cleo-static-87a5a6982652.jpg' | asset_url }}" alt="Cleo Copper Water Bottle | Handcrafted from Pure Copper | 34 oz" srcset="{{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 200w, {{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 300w, {{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 400w, {{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 500w, {{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 600w, {{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 700w, {{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 800w, {{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 1000w, {{ 'cleo-static-87a5a6982652.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" class="product-card__image product-card__image--primary  aspect-natural"><img src="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }}" alt="Cleo Copper Water Bottle | Handcrafted from Pure Copper | 34 oz" srcset="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 200w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 300w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 400w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 500w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 600w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 700w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 800w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 1000w" width="1003" height="1003" loading="lazy" class="product-card__image product-card__image--secondary" fetchpriority="low" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" aria-hidden="true"></a>
+
+      
+    </div><div class="product-card__info empty:hidden"><div class="v-stack justify-items-start gap-2"><div class="v-stack justify-items-start gap-2"><a
+                href="/products/cleo-handcrafted-copper-water-bottle-100-pure-copper-34-oz"
+                class="product-title card-product-title h6 line-clamp"
+                
+                  style="--line-clamp-count: 2"
+                
+                data-instant
+              >Cleo Copper Water Bottle | Handcrafted from Pure Copper | 34 oz</a><price-list class="price-list "><sale-price class="custom-card-sale-price h6 text-subdued">
+        <span class="sr-only">Sale price</span>$49.99</sale-price></price-list>
+</div></div>
+
+           <product-form class="product-card__form"><form method="post" action="/cart/add" id="product_form_8376689033356" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="on_success" value="force_open_drawer">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" value="49463998283916">
+              <button type="submit" class="product-card__quick-add-button">
+                <span class="srr-only">Add to cart</span>
+                
+              </button><input type="hidden" name="product-id" value="8376689033356" /><input type="hidden" name="section-id" value="template--21732444799116__featured-collections-1" /></form></product-form></div>
+</product-card>
+<product-card
+  class="product-card"
+  
+    reveal-on-scroll="true"
+  
+  handle="handcrafted-ayurvedic-copper-water-bottle-copy"
+><div class="product-card__figure"><badge-list class="badge-list badge-list--vertical"><span class="badge badge--custom badge--limited-edition ">Limited Edition</span></badge-list><a href="/products/handcrafted-ayurvedic-copper-water-bottle-copy" class="product-card__media" draggable="false" data-instant><img src="{{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }}" alt="Cleo Moonlight Copper Water Bottle | Handcrafted from Pure Copper | 34 oz" srcset="{{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 200w, {{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 300w, {{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 400w, {{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 500w, {{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 600w, {{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 700w, {{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 800w, {{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 1000w, {{ 'cleo-static-c853f7fd7cd4.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" class="product-card__image product-card__image--primary  aspect-natural"><img src="{{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }}" alt="Cleo Moonlight Copper Water Bottle | Handcrafted from Pure Copper | 34 oz" srcset="{{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }} 200w, {{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }} 300w, {{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }} 400w, {{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }} 500w, {{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }} 600w, {{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }} 700w, {{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }} 800w, {{ 'cleo-static-f3dc8953f6a8.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" class="product-card__image product-card__image--secondary" fetchpriority="low" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" aria-hidden="true"></a>
+
+      
+    </div><div class="product-card__info empty:hidden"><div class="v-stack justify-items-start gap-2"><div class="v-stack justify-items-start gap-2"><a
+                href="/products/handcrafted-ayurvedic-copper-water-bottle-copy"
+                class="product-title card-product-title h6 line-clamp"
+                
+                  style="--line-clamp-count: 2"
+                
+                data-instant
+              >Cleo Moonlight Copper Water Bottle | Handcrafted from Pure Copper | 34 oz</a><price-list class="price-list "><sale-price class="custom-card-sale-price h6 text-subdued">
+        <span class="sr-only">Sale price</span>$54.99</sale-price></price-list>
+</div></div>
+
+           <product-form class="product-card__form"><form method="post" action="/cart/add" id="product_form_8261213814924" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="on_success" value="force_open_drawer">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" value="44482084569228">
+              <button type="submit" class="product-card__quick-add-button">
+                <span class="srr-only">Add to cart</span>
+                
+              </button><input type="hidden" name="product-id" value="8261213814924" /><input type="hidden" name="section-id" value="template--21732444799116__featured-collections-1" /></form></product-form></div>
+</product-card>
+<product-card
+  class="product-card"
+  
+    reveal-on-scroll="true"
+  
+  handle="copper-hammered-coller-glass"
+><div class="product-card__figure"><badge-list class="badge-list badge-list--vertical"><span class="badge badge--custom badge--bestseller ">Bestseller</span></badge-list><a href="/products/copper-hammered-coller-glass" class="product-card__media" draggable="false" data-instant><img src="{{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }}" alt="Cleo Copper Hammered Tumbler | Set of 3 | Handcrafted from Pure Copper | 8.8 Oz" srcset="{{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 200w, {{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 300w, {{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 400w, {{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 500w, {{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 600w, {{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 700w, {{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 800w, {{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 1000w, {{ 'cleo-static-1f6cfe14b1ca.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" class="product-card__image product-card__image--primary  aspect-natural"><img src="{{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }}" alt="Cleo Copper Hammered Tumbler | Set of 3 | Handcrafted from Pure Copper | 8.8 Oz" srcset="{{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 200w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 300w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 400w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 500w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 600w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 700w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 800w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 1000w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 1200w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 1400w, {{ 'cleo-static-0ac786a5ead6.jpg' | asset_url }} 1600w" width="1600" height="1600" loading="lazy" class="product-card__image product-card__image--secondary" fetchpriority="low" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" aria-hidden="true"></a>
+
+      
+    </div><div class="product-card__info empty:hidden"><div class="v-stack justify-items-start gap-2"><div class="v-stack justify-items-start gap-2"><a
+                href="/products/copper-hammered-coller-glass"
+                class="product-title card-product-title h6 line-clamp"
+                
+                  style="--line-clamp-count: 2"
+                
+                data-instant
+              >Cleo Copper Hammered Tumbler | Set of 3 | Handcrafted from Pure Copper | 8.8 Oz</a><price-list class="price-list "><sale-price class="custom-card-sale-price h6 text-subdued">
+        <span class="sr-only">Sale price</span>$39.99</sale-price></price-list>
+</div></div>
+
+           <product-form class="product-card__form"><form method="post" action="/cart/add" id="product_form_8227383214220" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="on_success" value="force_open_drawer">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" value="44351594070156">
+              <button type="submit" class="product-card__quick-add-button">
+                <span class="srr-only">Add to cart</span>
+                
+              </button><input type="hidden" name="product-id" value="8227383214220" /><input type="hidden" name="section-id" value="template--21732444799116__featured-collections-1" /></form></product-form></div>
+</product-card>
+<product-card
+  class="product-card"
+  
+    reveal-on-scroll="true"
+  
+  handle="copper-cascade-dispenser"
+><div class="product-card__figure"><badge-list class="badge-list badge-list--vertical"><span class="badge badge--custom badge--signature-ritual-set ">Signature Ritual Set</span></badge-list><a href="/products/copper-cascade-dispenser" class="product-card__media" draggable="false" data-instant><img src="{{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }}" alt="Cleo Copper Water Dispenser with 2 Glasses and 1 Wooden Stand | Handcrafted from Pure Copper | 271 Oz" srcset="{{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 200w, {{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 300w, {{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 400w, {{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 500w, {{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 600w, {{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 700w, {{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 800w, {{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 1000w, {{ 'cleo-static-d9bc9d4ebc40.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" class="product-card__image product-card__image--primary  aspect-natural"><img src="{{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }}" alt="Cleo Copper Water Dispenser with 2 Glasses and 1 Wooden Stand | Handcrafted from Pure Copper | 271 Oz" srcset="{{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 200w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 300w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 400w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 500w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 600w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 700w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 800w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 1000w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 1200w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 1400w, {{ 'cleo-static-4f50dc66dfbb.jpg' | asset_url }} 1600w" width="1600" height="1600" loading="lazy" class="product-card__image product-card__image--secondary" fetchpriority="low" sizes="(max-width: 699px) 74vw, (max-width: 999px) 38vw, calc((100vw - 96px) / 4 - (24px / 4 * 3))" draggable="false" aria-hidden="true"></a>
+
+      
+    </div><div class="product-card__info empty:hidden"><div class="v-stack justify-items-start gap-2"><div class="v-stack justify-items-start gap-2"><a
+                href="/products/copper-cascade-dispenser"
+                class="product-title card-product-title h6 line-clamp"
+                
+                  style="--line-clamp-count: 2"
+                
+                data-instant
+              >Cleo Copper Water Dispenser with 2 Glasses and 1 Wooden Stand | Handcrafted from Pure Copper | 271 Oz</a><price-list class="price-list "><sale-price class="custom-card-sale-price h6 text-subdued">
+        <span class="sr-only">Sale price</span>$299.00</sale-price></price-list>
+</div></div>
+
+           <product-form class="product-card__form"><form method="post" action="/cart/add" id="product_form_8273761763468" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="on_success" value="force_open_drawer">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" value="44516398891148">
+              <button type="submit" class="product-card__quick-add-button">
+                <span class="srr-only">Add to cart</span>
+                
+              </button><input type="hidden" name="product-id" value="8273761763468" /><input type="hidden" name="section-id" value="template--21732444799116__featured-collections-1" /></form></product-form></div>
+</product-card>
+</scroll-carousel>
+
+                  <carousel-next-button class="floating-controls-container__control" aria-controls="featured-collections-product-list-carousel-collection-1">
+                    <button type="button" class="prev-next-button prev-next-button--next circle-button hover:animate-icon-inline">
+                      <span class="sr-only">Next</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-arrow-right  icon--direction-aware" viewBox="0 0 16 18">
+      <path d="m5 17 8-8-8-8" stroke="currentColor" stroke-linecap="square"/>
+    </svg></button>
+                  </carousel-next-button>
+                </product-list></div></featured-collections-carousel>
+      </div>
+    </div>
+  </div>
+</section><div id="shopify-section-template--21732444799116__icon_text_blocks_dx7xmx" class="shopify-section"><section
+  class="icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx"
+  style="
+    background: #f3e9dc;
+    color: #6b6158;
+  "
+>
+  <div class="icon-text-blocks__container">
+    
+
+    <div class="icon-text-blocks__inner">
+      
+        <div class="icon-text-blocks__item" >
+          
+            <div class="icon-text-blocks__icon-wrap">
+              <img
+                src="{{ 'cleo-static-bdcccf9367f6.png' | asset_url }}"
+                alt="Pure Copper"
+                loading="lazy"
+                class="icon-text-blocks__icon"
+              >
+            </div>
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              Pure Copper
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Lab Tested 99.9%<br/> Pure Food<br/> Grade Copper</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+            <div class="icon-text-blocks__icon-wrap">
+              <img
+                src="{{ 'cleo-static-529af8e3ffbc.png' | asset_url }}"
+                alt="Better Hydration"
+                loading="lazy"
+                class="icon-text-blocks__icon"
+              >
+            </div>
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              Better Hydration
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Makes Water Alkaline <br/>and Naturally <br/>Anti-microbial</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+            <div class="icon-text-blocks__icon-wrap">
+              <img
+                src="{{ 'cleo-static-b4ad7f07384d.png' | asset_url }}"
+                alt="Handcrafted"
+                loading="lazy"
+                class="icon-text-blocks__icon"
+              >
+            </div>
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              Handcrafted
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Hand-Hammered to <br/>Preserve Contact <br/>Area with Water</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+            <div class="icon-text-blocks__icon-wrap">
+              <img
+                src="{{ 'cleo-static-960b63633c72.png' | asset_url }}"
+                alt="Eco-Friendly"
+                loading="lazy"
+                class="icon-text-blocks__icon"
+              >
+            </div>
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              Eco-Friendly
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Reusable and Helps<br/>You Reduce<br/> Single-Use Plastic</p>
+            </div>
+          
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__main-heading {
+    margin: 0 0 34px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #8b5a35;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items:
+      
+        center
+      ;
+  }
+
+  
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: calc(-40px / 2);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 70px;
+      background: #e3d3c2;
+    }
+  
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__icon-wrap {
+    width: 88px;
+    height: 88px;
+    margin-bottom: 8px;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__heading {
+    margin: 0 0 4px;
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #4e222d;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__desc {
+    font-size: 20px;
+    line-height: 1.35;
+    color: #6b6158;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__desc p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__main-heading {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__inner {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__item {
+      align-items:
+        
+          center
+        ;
+    }
+
+    
+      .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__item::after {
+        display: none;
+      }
+
+      
+        .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__item:nth-child(odd)::after {
+          content: "";
+          display: block;
+          position: absolute;
+          right: calc(-20px / 2);
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 60px;
+          background: #e3d3c2;
+        }
+      
+    
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__icon-wrap {
+      width: 64px;
+      height: 64px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__heading {
+      font-size: 17px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__desc {
+      font-size: 13px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+  
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_dx7xmx .icon-text-blocks__item:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 50%;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+}
+</style>
+
+</div><div id="shopify-section-template--21732444799116__circular_image_text_UCxjgj" class="shopify-section"><section class="ciwt ciwt-template--21732444799116__circular_image_text_UCxjgj">
+  <div class="ciwt__container">
+
+    
+      <h2 class="ciwt__heading">
+        Why Choose Copper?
+      </h2>
+    
+
+    <div class="ciwt__grid ciwt__desktop-right ciwt__mobile-bottom">
+
+      <div class="ciwt__content">
+        
+          <div class="ciwt__text">
+            <p>Inspired by the centuries-old Ayurvedic practice of "Tamra Jal," storing water in pure copper vessels is a ritual designed to transform basic hydration into an intentional wellness choice.</p>
+          </div>
+        
+
+       
+  <div class="ciwt__points">
+    
+      <div class="ciwt__point" >
+        <span class="ciwt__point-icon">✓</span>
+
+        <div class="ciwt__point-text">
+          Storing water in a pure copper vessel for 6–8 hours naturally alkalizes the water.
+        </div>
+      </div>
+    
+      <div class="ciwt__point" >
+        <span class="ciwt__point-icon">✓</span>
+
+        <div class="ciwt__point-text">
+          Alkaline Water is traditionally believed to help balance your body&rsquo;s pH levels.
+        </div>
+      </div>
+    
+      <div class="ciwt__point" >
+        <span class="ciwt__point-icon">✓</span>
+
+        <div class="ciwt__point-text">
+          Alkaline water is valued for supporting systemic health and helping to restore overall vitality in a modern, high-stress environment.
+        </div>
+      </div>
+    
+  </div>
+
+
+        
+          <div class="ciwt__disclaimer">
+            <p>Disclaimer : Information shared is for cultural and lifestyle context only. These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease</p>
+          </div>
+        
+      </div>
+
+      <div class="ciwt__image-wrapper ciwt__image-style-circle">
+        
+          <img
+            src="{{ 'cleo-static-416ed2bd75f4.png' | asset_url }}"
+            alt=""
+            loading="lazy"
+            class="ciwt__image"
+          >
+        
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj {
+    background: #895737;
+    color: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__heading {
+    margin: 0 0 40px;
+    text-align: center;
+    font-size: 60px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__desktop-left .ciwt__content {
+    order: 2;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__desktop-left .ciwt__image-wrapper {
+    order: 1;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__desktop-right .ciwt__content {
+    order: 1;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__desktop-right .ciwt__image-wrapper {
+    order: 2;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__content {
+    text-align: left;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__text {
+    font-size: 27px;
+    line-height: 1.5;
+    color: #ffffff;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__text p {
+    margin: 0;
+  }
+.ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__points {
+  margin-top: 20px;
+}
+
+.ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__point {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__point-icon {
+  font-size: 14px;
+  font-weight: 700;
+  
+   margin-top:5px;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+.ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__point-text {
+  font-size: 27px;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+
+
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__disclaimer {
+    margin-top: 24px;
+    font-size: 18px;
+    line-height: 1.5;
+    font-style: italic;
+    color: #ffffff;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__image-wrapper {
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    overflow: hidden;
+    background: #f5f5f5;
+    margin: 0 auto;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__image-style-circle {
+    border-radius: 50%;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__image-style-square {
+    border-radius: 0;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__image-style-rounded {
+    border-radius: 20px;
+  }
+
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__image {
+    width: 100%;
+    height: 100%;
+    object-fit:
+      
+        contain
+      ;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__heading {
+      font-size: 30px;
+      margin-bottom: 24px;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__mobile-top .ciwt__image-wrapper {
+      order: 1;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__mobile-top .ciwt__content {
+      order: 2;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__mobile-bottom .ciwt__content {
+      order: 1;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__mobile-bottom .ciwt__image-wrapper {
+      order: 2;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__content {
+      text-align: left;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__text {
+      font-size: 17px;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__point-text {
+    font-size: 17px;
+  }
+  .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__point-icon{margin:0;}
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__disclaimer {
+      font-size: 14px;
+    }
+
+    .ciwt-template--21732444799116__circular_image_text_UCxjgj .ciwt__image-wrapper {
+      
+      
+       width:100%;
+       height:100%;
+
+    }
+  }
+</style>
+
+</div><section id="shopify-section-template--21732444799116__1778486618e41d3f37" class="shopify-section shopify-section--apps"><div class="color-scheme color-scheme--scheme-1 color-scheme--bg-609ecfcfee2f667ac6c12366fc6ece56  bordered-section">
+    <div
+      
+    ><div id="shopify-block-AQnYydDBNR3l1ajRBS__whatmore_shoppable_videos_app_block_ichng3" class="shopify-block shopify-app-block">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- DEBUG: widget_id = wgt_default, count = 0, is_active = false -->
+
+
+
+
+
+
+<div class="whatmore-base" data-wht-widget="wgt_default" style="position: relative; overflow: hidden; min-height:0px">
+  <div id="whatmoreShopId" data-wh="71141359756"> </div>
+  <div id="whatmoreProductId" data-wh=""> </div><div id="whatmoreHeading" data-wh=""> </div><div id="whatmoreTitleFontSize" data-wh="40"> </div><div id="whatmoreTitleFontSizePortrait" data-wh="24"> </div><div id="whatmoreLandscapePadding" data-wh="0"> </div><div id="whatmoreTopBottomPadding" data-wh="0"> </div><div id="whatmoreVideoTileSize" data-wh="80"> </div><div id="whatmoreVideoTileSizePortrait" data-wh="80"> </div><div class="whatmore-template-type" data-wh="template-h"> </div><div id="whatmoreWidgetIdentity" data-wh="wgt_default"> </div>
+
+  
+    <div id="whatmoreIsInDesignMode" data-wh='false'> </div>
+  
+  <div id="whatmoreExtensionType" data-wh="index"> </div>
+  <div class="whatmore-widget" data-wh="carousel"></div>
+  <div class="whatmore-render-root"></div>
+
+</div>
+<!-- BEGIN app snippet: whatmore-init -->
+<!-- END app snippet -->
+
+</div></div>
+  </div>
+</section><div id="shopify-section-template--21732444799116__icon_text_blocks_B33GJx" class="shopify-section"><section
+  class="icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx"
+  style="
+    background: #f3e9dc;
+    color: #2a2520;
+  "
+>
+  <div class="icon-text-blocks__container">
+    
+      <h2 class="icon-text-blocks__main-heading">
+        Trusted Globally
+      </h2>
+    
+
+    <div class="icon-text-blocks__inner">
+      
+        <div class="icon-text-blocks__item" >
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              100,000 +
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Customers</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              10 +
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Countries <br/>Reached</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              400,000 +
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Products Sold</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              4.8/5
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Rating across Website and other Marketplaces</p>
+            </div>
+          
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__main-heading {
+    margin: 0 0 34px;
+    text-align: center;
+    font-size: 58px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #895737;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items:
+      
+        center
+      ;
+  }
+
+  
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: calc(-40px / 2);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 120px;
+      background: #e3d3c2;
+    }
+  
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__icon-wrap {
+    width: 0px;
+    height: 0px;
+    margin-bottom: 8px;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__heading {
+    margin: 0 0 8px;
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #895737;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__desc {
+    font-size: 23px;
+    line-height: 1.35;
+    color: #2a2520;
+  }
+
+  .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__desc p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx {
+      padding-top: 36px;
+      padding-bottom: 36px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__main-heading {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__inner {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__item {
+      align-items:
+        
+          center
+        ;
+    }
+
+    
+      .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__item::after {
+        display: none;
+      }
+
+      
+        .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__item:nth-child(odd)::after {
+          content: "";
+          display: block;
+          position: absolute;
+          right: calc(-20px / 2);
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 80px;
+          background: #e3d3c2;
+        }
+      
+    
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__icon-wrap {
+      width: 0px;
+      height: 0px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__heading {
+      font-size: 26px;
+    }
+
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__desc {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+  
+    .icon-text-blocks-template--21732444799116__icon_text_blocks_B33GJx .icon-text-blocks__item:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 50%;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+}
+</style>
+
+</div><div id="shopify-section-template--21732444799116__image_review_cards_w9cwJx" class="shopify-section"><section class="irc-section-template--21732444799116__image_review_cards_w9cwJx">
+  <div class="irc-container">
+    
+
+    <div class="irc-slider-wrap">
+      
+        <button class="irc-arrow irc-prev" type="button" aria-label="Previous">
+          ‹
+        </button>
+      
+
+      <div class="irc-grid" id="IrcSlider-template--21732444799116__image_review_cards_w9cwJx">
+        
+          <div class="irc-card" >
+            
+              <div class="irc-main-img-wrap">
+                <img
+                  src="{{ 'cleo-static-6495e98ca899.png' | asset_url }}"
+                  alt=""
+                  class="irc-main-img"
+                  loading="lazy"
+                >
+              </div>
+            
+
+            <div class="irc-review-box">
+              <div class="irc-top">
+                <div class="irc-stars">
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                </div>
+
+                
+                  <img
+                    src="{{ 'cleo-static-dd0dcfd057b4.jpg' | asset_url }}"
+                    alt="Lexy"
+                    class="irc-customer-img"
+                    loading="lazy"
+                  >
+                
+              </div>
+
+              
+                <div class="irc-review">"I&rsquo;ve been loving this copper water bottle set! The quality is fantastic, and the hammered design gives it a stylish touch. It keeps my water fresh, and the included brush makes cleaning super easy."</div>
+              
+
+              <div class="irc-bottom">
+                <div class="irc-name-wrap">
+                  
+                    <span class="irc-name">Lexy</span>
+                  
+
+                  
+                   <div class="prof-country">
+                  
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect><path d="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z" fill="#a62842"></path><path d="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z" fill="#a62842"></path><path fill="#a62842" d="M2 11.385H31V13.231H2z"></path><path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path><path fill="#a62842" d="M1 18.769H31V20.615H1z"></path><path d="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z" fill="#a62842"></path><path d="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z" fill="#a62842"></path><path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path><path fill="#fff" d="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z"></path><path fill="#fff" d="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z"></path><path fill="#fff" d="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z"></path><path fill="#fff" d="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z"></path><path fill="#fff" d="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z"></path><path fill="#fff" d="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z"></path><path fill="#fff" d="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z"></path><path fill="#fff" d="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z"></path><path fill="#fff" d="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z"></path><path fill="#fff" d="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z"></path><path fill="#fff" d="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z"></path><path fill="#fff" d="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z"></path><path fill="#fff" d="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z"></path><path fill="#fff" d="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z"></path><path fill="#fff" d="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z"></path><path fill="#fff" d="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z"></path><path fill="#fff" d="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z"></path><path fill="#fff" d="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z"></path>
+</svg>
+
+                    
+                </div>
+                </div>
+
+                
+                  <span class="irc-verified">✓ Verified</span>
+                
+              </div>
+            </div>
+          </div>
+        
+          <div class="irc-card" >
+            
+              <div class="irc-main-img-wrap">
+                <img
+                  src="{{ 'cleo-static-17b0edb58f29.png' | asset_url }}"
+                  alt=""
+                  class="irc-main-img"
+                  loading="lazy"
+                >
+              </div>
+            
+
+            <div class="irc-review-box">
+              <div class="irc-top">
+                <div class="irc-stars">
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                </div>
+
+                
+                  <img
+                    src="{{ 'cleo-static-09b26ecf431a.jpg' | asset_url }}"
+                    alt="Isabelle"
+                    class="irc-customer-img"
+                    loading="lazy"
+                  >
+                
+              </div>
+
+              
+                <div class="irc-review">"Size is ideal to care with you anytime, quality is better than expected. Easy cleaning with side brush. To make change in your life and keep yourself hydrated, its worth for money"</div>
+              
+
+              <div class="irc-bottom">
+                <div class="irc-name-wrap">
+                  
+                    <span class="irc-name">Isabelle</span>
+                  
+
+                  
+                   <div class="prof-country">
+                  
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#071b65"></rect><path d="M5.101,4h-.101c-1.981,0-3.615,1.444-3.933,3.334L26.899,28h.101c1.981,0,3.615-1.444,3.933-3.334L5.101,4Z" fill="#fff"></path><path d="M22.25,19h-2.5l9.934,7.947c.387-.353,.704-.777,.929-1.257l-8.363-6.691Z" fill="#b92932"></path><path d="M1.387,6.309l8.363,6.691h2.5L2.316,5.053c-.387,.353-.704,.777-.929,1.257Z" fill="#b92932"></path><path d="M5,28h.101L30.933,7.334c-.318-1.891-1.952-3.334-3.933-3.334h-.101L1.067,24.666c.318,1.891,1.952,3.334,3.933,3.334Z" fill="#fff"></path><rect x="13" y="4" width="6" height="24" fill="#fff"></rect><rect x="1" y="13" width="30" height="6" fill="#fff"></rect><rect x="14" y="4" width="4" height="24" fill="#b92932"></rect><rect x="14" y="1" width="4" height="30" transform="translate(32) rotate(90)" fill="#b92932"></rect><path d="M28.222,4.21l-9.222,7.376v1.414h.75l9.943-7.94c-.419-.384-.918-.671-1.471-.85Z" fill="#b92932"></path><path d="M2.328,26.957c.414,.374,.904,.656,1.447,.832l9.225-7.38v-1.408h-.75L2.328,26.957Z" fill="#b92932"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path>
+</svg>
+
+                  
+                </div>
+                </div>
+
+                
+                  <span class="irc-verified">✓ Verified</span>
+                
+              </div>
+            </div>
+          </div>
+        
+          <div class="irc-card" >
+            
+              <div class="irc-main-img-wrap">
+                <img
+                  src="{{ 'cleo-static-d3d11484487a.png' | asset_url }}"
+                  alt=""
+                  class="irc-main-img"
+                  loading="lazy"
+                >
+              </div>
+            
+
+            <div class="irc-review-box">
+              <div class="irc-top">
+                <div class="irc-stars">
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                </div>
+
+                
+                  <img
+                    src="{{ 'cleo-static-96c5abab68bc.jpg' | asset_url }}"
+                    alt="AJ"
+                    class="irc-customer-img"
+                    loading="lazy"
+                  >
+                
+              </div>
+
+              
+                <div class="irc-review">"I really love this water bottle! It&rsquo;s beautiful, stylish, and always with me—at the gym, at home, or in the car. It feels comfortable in my hand, the lid is secure, and I&rsquo;ve even received a few compliments on it! Highly recommend!"</div>
+              
+
+              <div class="irc-bottom">
+                <div class="irc-name-wrap">
+                  
+                    <span class="irc-name">AJ</span>
+                  
+
+                  
+                   <div class="prof-country">
+                  
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect><path d="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z" fill="#a62842"></path><path d="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z" fill="#a62842"></path><path fill="#a62842" d="M2 11.385H31V13.231H2z"></path><path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path><path fill="#a62842" d="M1 18.769H31V20.615H1z"></path><path d="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z" fill="#a62842"></path><path d="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z" fill="#a62842"></path><path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path><path fill="#fff" d="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z"></path><path fill="#fff" d="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z"></path><path fill="#fff" d="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z"></path><path fill="#fff" d="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z"></path><path fill="#fff" d="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z"></path><path fill="#fff" d="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z"></path><path fill="#fff" d="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z"></path><path fill="#fff" d="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z"></path><path fill="#fff" d="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z"></path><path fill="#fff" d="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z"></path><path fill="#fff" d="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z"></path><path fill="#fff" d="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z"></path><path fill="#fff" d="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z"></path><path fill="#fff" d="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z"></path><path fill="#fff" d="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z"></path><path fill="#fff" d="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z"></path><path fill="#fff" d="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z"></path><path fill="#fff" d="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z"></path>
+</svg>
+
+                    
+                </div>
+                </div>
+
+                
+                  <span class="irc-verified">✓ Verified</span>
+                
+              </div>
+            </div>
+          </div>
+        
+          <div class="irc-card" >
+            
+              <div class="irc-main-img-wrap">
+                <img
+                  src="{{ 'cleo-static-9b7ac28eb8fc.png' | asset_url }}"
+                  alt=""
+                  class="irc-main-img"
+                  loading="lazy"
+                >
+              </div>
+            
+
+            <div class="irc-review-box">
+              <div class="irc-top">
+                <div class="irc-stars">
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                </div>
+
+                
+                  <img
+                    src="{{ 'cleo-static-84d33b8e0ad2.png' | asset_url }}"
+                    alt="Vincent"
+                    class="irc-customer-img"
+                    loading="lazy"
+                  >
+                
+              </div>
+
+              
+                <div class="irc-review">"Love the look of this. First thought the bag was impractical but my phone fits in the pocket and cards (license/credit card) would fit in the leather slit pocket. This could be all you need for a hike."</div>
+              
+
+              <div class="irc-bottom">
+                <div class="irc-name-wrap">
+                  
+                    <span class="irc-name">Vincent</span>
+                  
+
+                  
+                   <div class="prof-country">
+                  
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect><path d="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z" fill="#a62842"></path><path d="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z" fill="#a62842"></path><path fill="#a62842" d="M2 11.385H31V13.231H2z"></path><path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path><path fill="#a62842" d="M1 18.769H31V20.615H1z"></path><path d="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z" fill="#a62842"></path><path d="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z" fill="#a62842"></path><path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path><path fill="#fff" d="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z"></path><path fill="#fff" d="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z"></path><path fill="#fff" d="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z"></path><path fill="#fff" d="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z"></path><path fill="#fff" d="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z"></path><path fill="#fff" d="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z"></path><path fill="#fff" d="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z"></path><path fill="#fff" d="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z"></path><path fill="#fff" d="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z"></path><path fill="#fff" d="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z"></path><path fill="#fff" d="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z"></path><path fill="#fff" d="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z"></path><path fill="#fff" d="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z"></path><path fill="#fff" d="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z"></path><path fill="#fff" d="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z"></path><path fill="#fff" d="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z"></path><path fill="#fff" d="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z"></path><path fill="#fff" d="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z"></path>
+</svg>
+
+                    
+                </div>
+                </div>
+
+                
+                  <span class="irc-verified">✓ Verified</span>
+                
+              </div>
+            </div>
+          </div>
+        
+          <div class="irc-card" >
+            
+              <div class="irc-main-img-wrap">
+                <img
+                  src="{{ 'cleo-static-01ce44ddbe2e.png' | asset_url }}"
+                  alt=""
+                  class="irc-main-img"
+                  loading="lazy"
+                >
+              </div>
+            
+
+            <div class="irc-review-box">
+              <div class="irc-top">
+                <div class="irc-stars">
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                </div>
+
+                
+                  <img
+                    src="{{ 'cleo-static-947424fa0815.jpg' | asset_url }}"
+                    alt="Alex"
+                    class="irc-customer-img"
+                    loading="lazy"
+                  >
+                
+              </div>
+
+              
+                <div class="irc-review">"What delicious water from this jar. I pour already filtered water and it turns out to be just the purest taste, like from a spring. It also looks very beautiful. Not big, but enough for one."</div>
+              
+
+              <div class="irc-bottom">
+                <div class="irc-name-wrap">
+                  
+                    <span class="irc-name">Alex</span>
+                  
+
+                  
+                   <div class="prof-country">
+                  
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect><path d="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z" fill="#a62842"></path><path d="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z" fill="#a62842"></path><path fill="#a62842" d="M2 11.385H31V13.231H2z"></path><path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path><path fill="#a62842" d="M1 18.769H31V20.615H1z"></path><path d="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z" fill="#a62842"></path><path d="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z" fill="#a62842"></path><path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path><path fill="#fff" d="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z"></path><path fill="#fff" d="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z"></path><path fill="#fff" d="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z"></path><path fill="#fff" d="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z"></path><path fill="#fff" d="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z"></path><path fill="#fff" d="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z"></path><path fill="#fff" d="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z"></path><path fill="#fff" d="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z"></path><path fill="#fff" d="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z"></path><path fill="#fff" d="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z"></path><path fill="#fff" d="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z"></path><path fill="#fff" d="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z"></path><path fill="#fff" d="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z"></path><path fill="#fff" d="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z"></path><path fill="#fff" d="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z"></path><path fill="#fff" d="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z"></path><path fill="#fff" d="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z"></path><path fill="#fff" d="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z"></path>
+</svg>
+
+                    
+                </div>
+                </div>
+
+                
+                  <span class="irc-verified">✓ Verified</span>
+                
+              </div>
+            </div>
+          </div>
+        
+          <div class="irc-card" >
+            
+              <div class="irc-main-img-wrap">
+                <img
+                  src="{{ 'cleo-static-26365a9e118d.png' | asset_url }}"
+                  alt=""
+                  class="irc-main-img"
+                  loading="lazy"
+                >
+              </div>
+            
+
+            <div class="irc-review-box">
+              <div class="irc-top">
+                <div class="irc-stars">
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                </div>
+
+                
+                  <img
+                    src="{{ 'cleo-static-d8c86ed92571.png' | asset_url }}"
+                    alt="Natalie"
+                    class="irc-customer-img"
+                    loading="lazy"
+                  >
+                
+              </div>
+
+              
+                <div class="irc-review">"Durable. Nice bag but mine had some cracks on the lid and is missing the bottle pad. Watch the video and decide for yourself. I hope it&rsquo;s a 100 real copper"</div>
+              
+
+              <div class="irc-bottom">
+                <div class="irc-name-wrap">
+                  
+                    <span class="irc-name">Natalie</span>
+                  
+
+                  
+                   <div class="prof-country">
+                  
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect><path d="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z" fill="#a62842"></path><path d="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z" fill="#a62842"></path><path fill="#a62842" d="M2 11.385H31V13.231H2z"></path><path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path><path fill="#a62842" d="M1 18.769H31V20.615H1z"></path><path d="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z" fill="#a62842"></path><path d="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z" fill="#a62842"></path><path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path><path fill="#fff" d="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z"></path><path fill="#fff" d="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z"></path><path fill="#fff" d="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z"></path><path fill="#fff" d="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z"></path><path fill="#fff" d="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z"></path><path fill="#fff" d="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z"></path><path fill="#fff" d="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z"></path><path fill="#fff" d="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z"></path><path fill="#fff" d="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z"></path><path fill="#fff" d="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z"></path><path fill="#fff" d="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z"></path><path fill="#fff" d="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z"></path><path fill="#fff" d="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z"></path><path fill="#fff" d="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z"></path><path fill="#fff" d="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z"></path><path fill="#fff" d="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z"></path><path fill="#fff" d="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z"></path><path fill="#fff" d="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z"></path>
+</svg>
+
+                    
+                </div>
+                </div>
+
+                
+                  <span class="irc-verified">✓ Verified</span>
+                
+              </div>
+            </div>
+          </div>
+        
+          <div class="irc-card" >
+            
+              <div class="irc-main-img-wrap">
+                <img
+                  src="{{ 'cleo-static-973357e4533a.png' | asset_url }}"
+                  alt=""
+                  class="irc-main-img"
+                  loading="lazy"
+                >
+              </div>
+            
+
+            <div class="irc-review-box">
+              <div class="irc-top">
+                <div class="irc-stars">
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                    ★
+                  
+                </div>
+
+                
+                  <img
+                    src="{{ 'cleo-static-93630606be97.jpg' | asset_url }}"
+                    alt="Max"
+                    class="irc-customer-img"
+                    loading="lazy"
+                  >
+                
+              </div>
+
+              
+                <div class="irc-review">"This bottle is beautiful detailed by hand brings a brush as a gift, I bought it for its multiple health benefits thank you very much!"</div>
+              
+
+              <div class="irc-bottom">
+                <div class="irc-name-wrap">
+                  
+                    <span class="irc-name">Max</span>
+                  
+
+                  
+                   <div class="prof-country">
+                  
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect><path d="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z" fill="#a62842"></path><path d="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z" fill="#a62842"></path><path fill="#a62842" d="M2 11.385H31V13.231H2z"></path><path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path><path fill="#a62842" d="M1 18.769H31V20.615H1z"></path><path d="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z" fill="#a62842"></path><path d="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z" fill="#a62842"></path><path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path><path fill="#fff" d="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z"></path><path fill="#fff" d="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z"></path><path fill="#fff" d="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z"></path><path fill="#fff" d="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z"></path><path fill="#fff" d="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z"></path><path fill="#fff" d="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z"></path><path fill="#fff" d="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z"></path><path fill="#fff" d="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z"></path><path fill="#fff" d="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z"></path><path fill="#fff" d="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z"></path><path fill="#fff" d="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z"></path><path fill="#fff" d="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z"></path><path fill="#fff" d="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z"></path><path fill="#fff" d="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z"></path><path fill="#fff" d="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z"></path><path fill="#fff" d="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z"></path><path fill="#fff" d="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z"></path><path fill="#fff" d="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z"></path>
+</svg>
+
+                    
+                </div>
+                </div>
+
+                
+                  <span class="irc-verified">✓ Verified</span>
+                
+              </div>
+            </div>
+          </div>
+        
+      </div>
+
+      
+        <button class="irc-arrow irc-next" type="button" aria-label="Next">
+          ›
+        </button>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx {
+    background: #f8eadc;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-heading {
+    text-align: center;
+    font-size: 32px;
+    color: #895737;
+    margin: 0 0 28px;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-slider-wrap {
+    position: relative;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-grid {
+    
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    
+      flex: 0 0 calc((100% - (2 * 24px)) / 3);
+      scroll-snap-align: start;
+    
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-main-img-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: #eee;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-review-box {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    margin-top: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-stars {
+    color: #c08552;
+    font-size: 16px;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-customer-img {
+    width: 58px;
+    height: 58px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-review {
+    margin-top: 14px;
+    margin-bottom: 18px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2a2520;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-bottom {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-name-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #895737;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-flag {
+    font-size: 18px;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-verified {
+    font-size: 12px;
+    background: #f6eee7;
+    color: #895737;
+    border-radius: 20px;
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 0;
+    background: #ffffff;
+    color: #8b5635;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-prev {
+    left: -20px;
+  }
+
+  .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-next {
+    right: -20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx {
+      padding-top: 28px;
+      padding-bottom: 28px;
+    }
+
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-container {
+      padding: 0;
+    }
+
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-heading {
+      font-size: 24px;
+      padding: 0 16px;
+    }
+
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 14px;
+      padding: 0 16px 14px;
+      scrollbar-width: none;
+      align-items: stretch;
+    }
+
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-card {
+      flex: 0 0 88%;
+      scroll-snap-align: start;
+    }
+
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-review-box {
+      padding: 16px;
+      flex: 1;
+    }
+
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-review {
+      font-size: 14px;
+    }
+
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-customer-img {
+      width: 52px;
+      height: 52px;
+    }
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-name{
+    
+    font-size:12px;
+  }
+.irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-verified {
+font-size:10px;
+}
+.irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-stars {
+font-size:12px;
+}
+    .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-arrow {
+      display: none;
+    }
+     .irc-section-template--21732444799116__image_review_cards_w9cwJx .irc-slider-wrap {
+    padding-left:10px;
+  }
+  }
+</style>
+
+
+
+</div><section id="shopify-section-template--21732444799116__slideshow_p6QAkL" class="shopify-section shopify-section--slideshow"><slideshow-carousel
+    id="carousel-template--21732444799116__slideshow_p6QAkL"
+    class="slideshow"
+    allow-swipe
+    
+    cell-selector=".slideshow__slide"
+    
+      autoplay="5"
+    
+    
+      autoplay-pause-on-video
+    
+    role="region"
+    style="--background: 0 0 0
+  ; background-color: rgb(var(--background));--border-color: var(--text-color) / 0.15;"
+  >
+<div class=""><div
+          class="slideshow__slide is-selected"
+          media-type="image"
+          
+          role="group"
+          
+          style="border-radius:0px; overflow:hidden;"
+        ><div class="content-over-media content-over-media--auto" style="--content-over-media-content-max-width: 540px; --content-over-media-gradient-overlay: radial-gradient(rgba(54, 54, 54, 0.1294) 50%, rgba(4, 4, 4, 0.65) 100%)"><picture><source
+                        media="(max-width: 699px)"
+                        srcset="{{ 'cleo-static-f44a4128fbad.png' | asset_url }} 800w, {{ 'cleo-static-f44a4128fbad.png' | asset_url }} 1000w, {{ 'cleo-static-f44a4128fbad.png' | asset_url }} 1200w"
+                        width="393"
+                        height="693"
+                    ><img src="{{ 'cleo-static-b1a60cb89e1d.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-b1a60cb89e1d.png' | asset_url }} 800w, {{ 'cleo-static-b1a60cb89e1d.png' | asset_url }} 1200w, {{ 'cleo-static-b1a60cb89e1d.png' | asset_url }} 1800w" width="1918" height="776" loading="lazy" fetchpriority="high" sizes="100vw"></picture>
+
+          <div class="slideshow__slide-content    place-self-start-center text-center sm:place-self-center-end sm:text-end" style="--text-color: 255 255 255; color: rgb(var(--text-color));--border-color: var(--text-color) / 0.15;">
+            <div class="prose custom-center">
+                 
+
+<p class="h1 ssc-slide-heading">
+  Turn hydration into   a daily ritual
+</p>
+  <div class="ssc-slide-content  m-left " >
+    <p>Our #1 Bestseller — For a Reason<br/>The Ayurvedic copper bottle that&rsquo;s gone viral</p>
+  </div>
+
+<div class="button-group justify-center sm:justify-end">
+<a  class="button" style="--button-background: 255 255 255;--button-outline-color: 255 255 255;--button-text-color: 78 34 45;" href="/products/handcrafted-ayurvedic-copper-water-bottle-copy" >Shop now</a></div></div>
+          </div>
+        </div></div></div>
+  </slideshow-carousel>
+</section><div id="shopify-section-template--21732444799116__copper_comparison_table_dnAFck" class="shopify-section"><style data-shopify>
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-section {
+    background: #f3e9dc;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-container {
+    /* max-width: 1280px; */
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-content {
+    width: 38%;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-title {
+    margin: 0 0 28px;
+    font-size: 60px;
+    line-height: 95%;
+    color: #895737;
+    font-weight: 700;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-description {
+    margin: 0;
+    font-size: 30px;
+    line-height: 130%;
+    color: #111111;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table-wrap {
+    width: 54%;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    table-layout: fixed;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th,
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td {
+    padding: 13px 14px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    box-shadow: none !important;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th:not(:last-child),
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td:not(:last-child) {
+    border-right: 2px solid #f3e9dc;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table thead th {
+    border-bottom: 2px solid #f3e9dc;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table tbody tr:not(:last-child) .cct-col-feature {
+    border-bottom: 1px solid #f3e9dc;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th {
+    font-size: 18px;
+    line-height: 120%;
+    font-weight: 500;
+    background-image: none !important;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td {
+    font-size: 18px;
+    line-height: 120%;
+    font-weight: 600;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-col-feature {
+    width: 38%;
+    background-color: #895737 !important;
+    color: #ffffff !important;
+    text-align: left !important;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-col-feature * {
+    color: #ffffff !important;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-col-second {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-col-other {
+    background-color: #f2dac4 !important;
+    color: #111111 !important;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-row-title {
+    text-align: left !important;
+    font-weight: 700;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(18px * 0.58);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-icon.tick {
+    background: #895737;
+    color: #ffffff;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-icon.cross {
+    background: #c08552;
+    color: #ffffff;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-order-top .cct-table-wrap {
+    order: 1;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-order-top .cct-content {
+    order: 2;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-order-bottom .cct-content {
+    order: 1;
+  }
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-order-bottom .cct-table-wrap {
+    order: 2;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-section {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-container {
+      padding: 0 4px;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-content,
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table-wrap {
+      width: 100%;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-title {
+      font-size: 42px;
+      margin-bottom: 18px;
+      margin-left:10px;
+      max-width:85%;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-description {
+      font-size: 20px;
+      margin-left:10px;
+      max-width:90%;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table-wrap {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border-radius: 8px;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table {
+      display: block;
+      width: max-content;
+      min-width: unset;
+      table-layout: auto;
+      border-radius: 8px;
+      overflow: visible;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table thead,
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table tbody {
+      display: block;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table tr {
+      display: flex;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th,
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 10px 4px;
+      white-space: normal;
+      text-align: center;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th {
+      font-size: 13px;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td {
+      font-size: 13px;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th:nth-child(1),
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td:nth-child(1) {
+      position: sticky;
+      left: 0;
+      z-index: 3;
+      width: 140px;
+      min-width: 140px;
+      max-width: 20px;
+      background-color: #895737 !important;
+      color: #ffffff !important;
+      /* justify-content: flex-start; */
+      text-align: center !important;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th:nth-child(1) {
+      z-index: 3;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th:nth-child(2),
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td:nth-child(2) {
+      width: 140px;
+      min-width: 140px;
+      max-width: 140px;
+      background-color: #ffffff !important;
+      color: #111111 !important;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th:nth-child(3),
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td:nth-child(3),
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th:nth-child(4),
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td:nth-child(4) {
+      width: 140px;
+      min-width: 140px;
+      max-width: 140px;
+      background-color: #f2dac4 !important;
+      color: #111111 !important;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-icon {
+      width: 14px;
+      height: 14px;
+      font-size: calc(14px * 0.58);
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-mobile-top .cct-table-wrap {
+      order: 1;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-mobile-top .cct-content {
+      order: 2;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-mobile-bottom .cct-content {
+      order: 1;
+    }
+
+    #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-mobile-bottom .cct-table-wrap {
+      order: 2;
+    }
+  }
+
+
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table,
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table thead,
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table tbody,
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table tr,
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th,
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td {
+  border-color: #f3e9dc !important;
+  box-shadow: none !important;
+}
+
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th,
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td {
+  padding: 13px 14px !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table .cct-col-feature {
+  background: #895737 !important;
+  color: #ffffff !important;
+}
+
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table .cct-col-second {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table .cct-col-other {
+  background: #f2dac4 !important;
+  color: #111111 !important;
+}
+
+@media screen and (max-width: 749px) {
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th,
+  #shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td {
+    padding: 10px 4px !important;
+  }
+}
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th.cct-col-feature,
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td.cct-col-feature {
+  background-color: #895737 !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  border-bottom:none;
+}
+
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th.cct-col-feature *,
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table td.cct-col-feature * {
+  color: #ffffff !important;
+}
+
+#shopify-section-template--21732444799116__copper_comparison_table_dnAFck .cct-table th {
+  background-image: none !important;
+  box-shadow: none !important;
+}
+</style>
+
+<section class="cct-section">
+  <div class="container">
+  <div class="cct-container cct-mobile-bottom">
+    <div class="cct-content">
+      
+        <h2 class="cct-title">Why Choose Copper Over Regular Bottles?</h2>
+      
+
+      
+        <div class="cct-description"><p>Embrace the ancient practice of "Tamra Jal" and create a Hydration Ritual</p></div>
+      
+    </div>
+
+    <div class="cct-table-wrap">
+     <table class="cct-table table-bordered">
+        <thead>
+          <tr>
+            <th class="cct-col-feature" style="  border-right: 2px solid #f3e9dc !important; border-bottom: 2px solid #f3e9dc !important;" >Feature/ Benefit</th>
+            <th class="cct-col-second"style="  border-right: 2px solid #f3e9dc !important; border-bottom: 2px solid #f3e9dc !important;">CLEO Copper Drinkware</th>
+            <th class="cct-col-other"style="  border-right: 2px solid #f3e9dc !important; border-bottom: 2px solid #f3e9dc !important;">Stainless Steel Bottle</th>
+            <th class="cct-col-other"style="   border-bottom: 2px solid #f3e9dc !important;">Plastic Bottles</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">Naturally Antimicrobial</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">Naturally Alkalizes Water</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">100% Plastic & BPA Free</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">Supports Ayurvedic Rituals</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">Zero Microplastic Risk</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+</div><div id="shopify-section-template--21732444799116__custom_text_icon_e96Pcz" class="shopify-section"><style data-shopify>
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-section{
+  background: #f3e9dc;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  
+    border-top: 1px solid #d8c7b5;
+  
+
+  
+}
+
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-container{
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-wrapper{
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-heading{
+  margin: 0;
+  color: #895737;
+  font-size: 60px;
+  line-height: 110%;
+  font-weight: 600;
+}
+
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-items{
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-item{
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1;
+}
+
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-icon{
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+}
+
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-icon img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+#shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-text{
+  margin: 0;
+  color: #111111;
+  font-size: 32px;
+  line-height: 145%;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 749px){
+
+  #shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-section{
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  #shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-container{
+    padding: 0 16px;
+  }
+
+  #shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-wrapper{
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  #shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-heading{
+    font-size: 40px;
+  }
+
+  #shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-items{
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  #shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-item{
+    gap: 10px;
+  }
+
+  #shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-icon{
+    width: 39px;
+    height: 39px;
+    flex: 0 0 39px;
+  }
+
+  #shopify-section-template--21732444799116__custom_text_icon_e96Pcz .cp-text{
+    font-size: 21px;
+  }
+}
+</style>
+
+<section class="cp-section">
+  <div class="cp-container">
+    <div class="cp-wrapper">
+
+      
+        <h2 class="cp-heading">Cleo&rsquo;s Promise</h2>
+      
+
+      <div class="cp-items">
+        
+          <div class="cp-item" >
+
+            
+              <div class="cp-icon">
+                <img
+                  src="{{ 'cleo-static-865cd75fee7b.png' | asset_url }}"
+                  alt=""
+                  loading="lazy"
+                  width=""
+                  height=""
+                >
+              </div>
+            
+
+            
+              <div class="cp-text">
+                All Cleo Products are Premium Quality and Handcrafted
+              </div>
+            
+
+          </div>
+        
+          <div class="cp-item" >
+
+            
+              <div class="cp-icon">
+                <img
+                  src="{{ 'cleo-static-865cd75fee7b.png' | asset_url }}"
+                  alt=""
+                  loading="lazy"
+                  width=""
+                  height=""
+                >
+              </div>
+            
+
+            
+              <div class="cp-text">
+                All Cleo Products are Good for you and Better for the planet.
+              </div>
+            
+
+          </div>
+        
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div><section id="shopify-section-template--21732444799116__slideshow_W687bF" class="shopify-section shopify-section--slideshow"><slideshow-carousel
+    id="carousel-template--21732444799116__slideshow_W687bF"
+    class="slideshow"
+    allow-swipe
+    
+    cell-selector=".slideshow__slide"
+    
+      autoplay="5"
+    
+    
+      autoplay-pause-on-video
+    
+    role="region"
+    style="--background: 0 0 0
+  ; background-color: rgb(var(--background));--border-color: var(--text-color) / 0.15;"
+  >
+<div class=""><div
+          class="slideshow__slide is-selected"
+          media-type="image"
+          
+          role="group"
+          
+          style="border-radius:0px; overflow:hidden;"
+        ><div class="content-over-media content-over-media--fill" style="--content-over-media-content-max-width: 620px; --content-over-media-gradient-overlay: linear-gradient(180deg, rgba(NaN, NaN, NaN, 0), rgba(4, 4, 4, 0.65) 100%)"><picture><img src="{{ 'cleo-static-7822d66fdfa8.gif' | asset_url }}" alt="" width="400" height="711" loading="lazy" fetchpriority="high" sizes="100vw"></picture>
+
+          <div class="slideshow__slide-content    place-self-center text-center sm:place-self-center sm:text-center" style="--text-color: 255 255 255; color: rgb(var(--text-color));--border-color: var(--text-color) / 0.15;">
+            <div class="prose custom-center">
+                 
+
+<p class="h1 ssc-slide-heading">
+  Experience Cleaner, <span class="ssc-highlight-word">Healthier</span> Hydration
+</p>
+  <div class="ssc-slide-content  m-left " >
+    <p>Go beyond basic hydration and rediscover the ancient Ayurvedic science of Tamra Jal. Explore how pure copper naturally alkalizes your water to support your gut health and your daily wellness ritual</p>
+  </div>
+
+<div class="button-group justify-center sm:justify-center">
+<a  class="button" style="--button-background: 255 255 255;--button-outline-color: 255 255 255;--button-text-color: 78 34 45;" href="/products/handcrafted-ayurvedic-copper-daily-essentials-kit" >Know More</a></div></div>
+          </div>
+        </div></div></div>
+  </slideshow-carousel>
+</section><section id="shopify-section-template--21732444799116__faq_tGKymx" class="shopify-section shopify-section--faq"><div class="section-spacing color-scheme color-scheme--scheme-da62a118-22e7-49ef-8ce6-b3d06255bd44 color-scheme--bg-f733170f8e26ef0af87b024124e087d4 bordered-section">
+    <div class="container container--md">
+      <div class="section-stack Faq-section custom-gap-faq">
+  <div class="section-header  justify-self-center text-center"><div class="prose"><h2 class="h2 custom-heading  ">Frequently Asked Questions</h2></div></div><div class="faq"><div class="faq__content"><accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>Why do I need a cleaning brush?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>A cleaning brush helps clean the inside of your copper bottle properly, removes buildup, and keeps it hygienic and shiny for daily use.</p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>Can I use the bottle without these accessories?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>Yes, the copper bottle can be used without these accessories, but they help make cleaning, carrying, and daily use more convenient.</p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>How does it work?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>Copper naturally has antimicrobial properties that help keep water fresh. When water is stored in the bottle for a few hours, it absorbs trace benefits of copper, making it a healthier way to stay hydrated.</p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>Will it rust</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>No, copper bottles do not rust. Over time, they may naturally develop slight tarnish or darkening, which is normal and can be cleaned easily.</p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>How do I clean Cleo Copper Water Bottle?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>Clean your Cleo Copper Water Bottle gently using lemon, salt, or mild soap with a soft bottle brush. Avoid harsh chemicals and do not scrub aggressively.</p></div></div>
+  </details>
+</accordion-disclosure>
+</div>
+        
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section><section id="shopify-section-template--21732444799116__custom_liquid_UbWf3H" class="shopify-section shopify-section--custom-liquid"><div class=" color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c color-scheme--bg-f733170f8e26ef0af87b024124e087d4 ">
+    <div class="container">
+      <div class="text-center"><style>
+.below-text {
+  font-size: 10px;
+ opacity:0.5;
+  padding: 0 32px;
+  line-height: 1.5; 
+max-width:1000px;
+}
+
+@media (max-width: 768px) {
+  .below-text {
+    font-size: 7px;
+    padding: 0 16px; /* better for mobile */
+  }
+}
+</style>
+
+<div style="display:flex;align-items:center; justify-content:center; padding:20px 0;"><p class= "below-text"> *Information shared is for cultural and lifestyle context only. These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.*</p></div></div>
+    </div>
+  </div>
+</section>
+<!-- BEGIN sections: footer-group -->
+<section id="shopify-section-sections--21732440113292__newsletter_H8CGGU" class="shopify-section shopify-section-group-footer-group shopify-section--newsletter"><style>
+  #shopify-section-sections--21732440113292__newsletter_H8CGGU {--content-over-media-overlay: 0 0 0 / 0.54;}
+</style><div class="color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75 color-scheme--bg-7eb689cfb117fe317faa299210e9fb5a color-scheme--with-image-overlay">
+  <div class="newsletter content-over-media content-over-media--auto"><picture><source
+            media="(max-width: 699px)"
+            srcset="{{ 'cleo-static-7f11eb353252.png' | asset_url }} 400w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 600w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 800w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 1000w"
+            width="393"
+            height="383"
+          ><img src="{{ 'cleo-static-a656d4ae97f6.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 200w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 300w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 400w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 500w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 600w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 700w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 800w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 900w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1000w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1200w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1400w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1600w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1800w" width="1918" height="235" sizes="100vw"></picture><div class="content section-stack gap-8 text-center flex m-w-934 align-item-center">
+  <div class="section-header  justify-self-center text-center"><div class="prose"><h2 class="h2 custom-heading  ">Start Your Wellness Ritual Today</h2></div></div><form method="post" action="/contact#newsletter-form-sections--21732440113292__newsletter_H8CGGU" id="newsletter-form-sections--21732440113292__newsletter_H8CGGU" accept-charset="UTF-8" class="form justify-self-center"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="contact[tags]" value="newsletter">
+
+          <div class="form-row"><div class="form-control" ><input
+        id="input--sections--21732440113292__newsletter_H8CGGU--contactemail"
+        class="input"
+        type="email"
+        
+          dir="ltr"
+        
+        
+          placeholder="E-mail"
+        
+        
+  name="contact[email]"
+  
+  
+  
+  
+  
+  autocomplete="email"
+  
+  enterkeyhint="send"
+  required
+  
+  
+  
+
+      ><label for="input--sections--21732440113292__newsletter_H8CGGU--contactemail" class="sr-only">E-mail</label></div>
+<button type="submit"  class="button" >Sign up</button></div></form></div>
+  </div>
+</div>
+
+
+</section><footer id="shopify-section-sections--21732440113292__footer" class="shopify-section shopify-section-group-footer-group shopify-section--footer"><style>
+  #shopify-section-sections--21732440113292__footer {
+    --footer-content-justify-items: space-between;
+  }
+</style><div class="footer color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75 color-scheme--bg-7eb689cfb117fe317faa299210e9fb5a ">
+  <div class="container">
+    <div class="footer__inner"><div class="footer__block-list"><div class="footer__block footer__block--image" ><div
+    class="footer-image-block"
+    style="
+      --footer-image-text-size-desktop: 18px;
+      --footer-image-text-size-mobile: 16px;
+    "
+  ><img src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 200w, {{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 400w" width="556" height="141" sizes="200px" style="--image-max-width: 200px" class="constrained-image"><div class="footer-image-block__text">
+        <p>Ancient wellness wisdom for modern life. Handcrafted copper bottles designed for your daily ritual.</p>
+      </div></div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">Footer Main</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/" class="link-faded">Home</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/collections/all" class="link-faded">Shop</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/contact" class="link-faded">Contact</a>
+                          </li><li class="footer-custom-link">
+                            <a href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0MzU2ODU5LCJuYmYiOjE3ODM3NTIwNTl9.sJsI2ij_eaWlYe1n4CXFEC5kTSzSHyC37HPIT2iOsHA&region_country=US" class="link-faded">Track Order</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/our-story" class="link-faded">About</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/blogs/news" class="link-faded">Blogs</a>
+                          </li></ul>
+                    </div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">App terms & policies</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/pages/terms-of-service-cleo-community-ios" class="link-faded">Terms of Service  (iOS)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/terms-of-service-cleo-community-android" class="link-faded">Terms of Service  (Android)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/privacy-policy-cleo-community-ios" class="link-faded">Privacy Policy  (iOS)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/privacy-policy-cleo-lifestyle-android" class="link-faded">Privacy Policy — (Android)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/account-deletion" class="link-faded">Account & Data Deletion</a>
+                          </li></ul>
+                    </div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">Policies</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/policies/privacy-policy" class="link-faded">Privacy policy </a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/refund-policy" class="link-faded">Refund Policy</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/shipping-policy" class="link-faded">Shipping Policy</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/terms-of-service" class="link-faded">Terms of Service</a>
+                          </li></ul>
+                    </div></div></div><div class="footer-social-aside"><ul class="social-media social-media--list unstyled-list" role="list"><li class="social-media__item branding-colors--facebook">
+      <a href="https://www.facebook.com/cleolifestyleofficial" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Facebook"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-facebook" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M10.183 21.85v-8.868H7.2V9.526h2.983V6.982a4.17 4.17 0 0 1 4.44-4.572 22.33 22.33 0 0 1 2.667.144v3.084h-1.83a1.44 1.44 0 0 0-1.713 1.68v2.208h3.423l-.447 3.456h-2.97v8.868h-3.57Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--twitter">
+      <a href="https://x.com/Cleolifestyle" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Twitter"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-twitter" viewBox="0 0 24 24">
+      <path d="M16.94 4h2.715l-5.93 6.777L20.7 20h-5.462l-4.278-5.593L6.065 20H3.35l6.342-7.25L3 4h5.6l3.868 5.113L16.94 4Zm-.952 14.375h1.504L7.784 5.54H6.17l9.818 12.836Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--instagram">
+      <a href="https://www.instagram.com/cleo.lifestyle_/" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Instagram"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-instagram" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4c-2.607 0-2.934.011-3.958.058-1.022.046-1.72.209-2.33.446a4.705 4.705 0 0 0-1.7 1.107 4.706 4.706 0 0 0-1.108 1.7c-.237.611-.4 1.31-.446 2.331C2.41 9.066 2.4 9.392 2.4 12c0 2.607.011 2.934.058 3.958.046 1.022.209 1.72.446 2.33a4.706 4.706 0 0 0 1.107 1.7c.534.535 1.07.863 1.7 1.108.611.237 1.309.4 2.33.446 1.025.047 1.352.058 3.959.058s2.934-.011 3.958-.058c1.022-.046 1.72-.209 2.33-.446a4.706 4.706 0 0 0 1.7-1.107 4.706 4.706 0 0 0 1.108-1.7c.237-.611.4-1.31.446-2.33.047-1.025.058-1.352.058-3.959s-.011-2.934-.058-3.958c-.047-1.022-.209-1.72-.446-2.33a4.706 4.706 0 0 0-1.107-1.7 4.705 4.705 0 0 0-1.7-1.108c-.611-.237-1.31-.4-2.331-.446C14.934 2.41 14.608 2.4 12 2.4Zm0 1.73c2.563 0 2.867.01 3.88.056.935.042 1.443.199 1.782.33.448.174.768.382 1.104.718.336.336.544.656.718 1.104.131.338.287.847.33 1.783.046 1.012.056 1.316.056 3.879 0 2.563-.01 2.867-.056 3.88-.043.935-.199 1.444-.33 1.782a2.974 2.974 0 0 1-.719 1.104 2.974 2.974 0 0 1-1.103.718c-.339.131-.847.288-1.783.33-1.012.046-1.316.056-3.88.056-2.563 0-2.866-.01-3.878-.056-.936-.042-1.445-.199-1.783-.33a2.974 2.974 0 0 1-1.104-.718 2.974 2.974 0 0 1-.718-1.104c-.131-.338-.288-.847-.33-1.783-.047-1.012-.056-1.316-.056-3.879 0-2.563.01-2.867.056-3.88.042-.935.199-1.443.33-1.782.174-.448.382-.768.718-1.104a2.974 2.974 0 0 1 1.104-.718c.338-.131.847-.288 1.783-.33C9.133 4.14 9.437 4.13 12 4.13Zm0 11.07a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm0-8.13a4.93 4.93 0 1 0 0 9.86 4.93 4.93 0 0 0 0-9.86Zm6.276-.194a1.152 1.152 0 1 1-2.304 0 1.152 1.152 0 0 1 2.304 0Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--pinterest">
+      <a href="https://www.pinterest.com/Cleolifestyleofficial/" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Pinterest"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-pinterest" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.765 2.401c3.59-.054 5.837 1.4 6.895 3.95.349.842.722 2.39.442 3.675-.112.512-.144 1.048-.295 1.53-.308.983-.708 1.853-1.238 2.603-.72 1.02-1.81 1.706-3.182 2.052-1.212.305-2.328-.152-2.976-.643-.206-.156-.483-.36-.56-.643h-.029c-.046.515-.244 1.062-.383 1.531-.193.65-.23 1.321-.472 1.929a12.345 12.345 0 0 1-.942 1.868c-.184.302-.692 1.335-1.061 1.347-.04-.078-.057-.108-.06-.245-.118-.19-.035-.508-.087-.766-.082-.4-.145-1.123-.06-1.53v-.643c.096-.442.092-.894.207-1.317.25-.92.39-1.895.648-2.848.249-.915.477-1.916.678-2.847.045-.21-.21-.815-.265-1.041-.174-.713-.042-1.7.176-2.236.275-.674 1.08-1.703 2.122-1.439.838.212 1.371 1.118 1.09 2.266-.295 1.205-.677 2.284-.943 3.49-.068.311.05.641.118.827.248.672 1 1.324 2.004 1.072 1.52-.383 2.193-1.76 2.652-3.246.124-.402.109-.781.206-1.225.204-.935.118-2.331-.177-3.061-.472-1.17-1.353-1.92-2.563-2.328L12.707 4.3c-.56-.128-1.626.064-2.004.183-1.69.535-2.737 1.427-3.388 3.032-.222.546-.344 1.1-.383 1.868l-.03.276c.13.686.144 1.14.413 1.653.132.252.447.451.5.765.032.185-.104.464-.147.613-.065.224-.041.48-.147.673-.192.349-.714.087-.943-.061-1.192-.77-2.175-2.995-1.62-5.144.085-.332.09-.62.206-.919.723-1.844 1.802-2.978 3.359-3.95.583-.364 1.37-.544 2.092-.734l1.149-.154Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--youtube">
+      <a href="https://www.youtube.com/@Cleo-Lifestyle" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on YouTube"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-youtube" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M20.44 5.243c.929.244 1.66.963 1.909 1.876.451 1.654.451 5.106.451 5.106s0 3.452-.451 5.106a2.681 2.681 0 0 1-1.91 1.876c-1.684.443-8.439.443-8.439.443s-6.754 0-8.439-.443a2.682 2.682 0 0 1-1.91-1.876c-.45-1.654-.45-5.106-.45-5.106s0-3.452.45-5.106a2.681 2.681 0 0 1 1.91-1.876c1.685-.443 8.44-.443 8.44-.443s6.754 0 8.438.443Zm-5.004 6.982L9.792 15.36V9.091l5.646 3.134Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--tiktok">
+      <a href="https://www.tiktok.com/@cleo_home" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on TikTok"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-tiktok" viewBox="0 0 24 24">
+      <path d="M20.027 10.168a5.125 5.125 0 0 1-4.76-2.294v7.893a5.833 5.833 0 1 1-5.834-5.834c.122 0 .241.011.361.019v2.874c-.12-.014-.237-.036-.36-.036a2.977 2.977 0 0 0 0 5.954c1.644 0 3.096-1.295 3.096-2.94L12.56 2.4h2.75a5.122 5.122 0 0 0 4.72 4.573v3.195" fill="currentColor"/>
+    </svg></a>
+    </li></ul><div class="footer__aside"><p class="heading text-subdued text-xxs">
+          © 2026 - Cleo Home
+<a target="_blank" rel="nofollow" href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></p></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+</footer>
+<!-- END sections: footer-group --></main>
+    
+  <div id="shopify-block-ATzdJWHhyNmRuTEpFd__10312807297210203588" class="shopify-block shopify-app-block">
+
+
+</div><div id="shopify-block-AL0RMblhsdmpUTkV6M__8924079168617604943" class="shopify-block shopify-app-block">
+<!-- BEGIN app snippet: alireviews_variables --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_box --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_star_rating --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_tab --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_popup --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_carousel --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_media_carousel --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_reviews_carousel_legacy --><!-- END app snippet -->
+
+
+</div><div id="shopify-block-AU3lEazhVcWdYUm5Db__16510219240223340300" class="shopify-block shopify-app-block">
+
+
+
+
+
+
+
+<div class="whatmore-base" data-wht-widget="wgt_spotlight">
+  <div id="whatmoreShopId" data-wh="71141359756"> </div>
+  <div id="whatmoreProductId" data-wh=""> </div>
+  <div id="whatmoreExtensionType" data-wh="index"> </div>
+  <div class="whatmore-template-type" data-wh="template-embed"> </div><div id="whatmoreVariantId" data-wh=""> </div><div id="whatmoreEmbedAppPositionPortrait" data-wh="right"> </div><div id="whatmoreEmbedAppHorizontalPaddingPortrait" data-wh="5"> </div><div id="whatmoreEmbedAppVerticalPaddingPortrait" data-wh="150"> </div><div id="whatmoreEmbedAppVideoPlayerSizePortrait" data-wh="50"> </div><div id="whatmoreEmbedAppPositionLandscape" data-wh="right"> </div><div id="whatmoreEmbedAppHorizontalPaddingLandscape" data-wh="5"> </div><div id="whatmoreEmbedAppVerticalPaddingLandscape" data-wh="150"> </div><div id="whatmoreEmbedAppVideoPlayerSizeLandscape" data-wh="50"> </div><div id="whatmoreEmbedAppUseVariant" data-wh="false"> </div><div id="whatmoreEmbedAppVideoTitle" data-wh=""> </div>
+    <div id="whatmoreIsInDesignMode" data-wh='false'> </div>
+  
+<div class="whatmore-widget" data-wh="embed"></div>
+
+  
+  
+      <div id="whatmore-anchor" style="width:0px; height: 0px;">
+          <a aria-label="Visit Whatmore homepage" href="https://apps.shopify.com/whatmore-live"></a>
+      </div>
+  
+
+  <div class="whatmore-render-root"></div>
+
+</div>
+
+<!-- BEGIN app snippet: whatmore-init -->
+<!-- END app snippet -->
+
+</div>
+
+  <div class="preview-page-note" aria-hidden="true">Static HTML/CSS preview copied from Cleo Lifestyle public storefront.</div>
+</body>

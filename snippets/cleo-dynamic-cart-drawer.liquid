@@ -1,0 +1,2299 @@
+{%- liquid
+  assign gift_product = settings.cleo_cart_gift_product
+  assign gift_variant = gift_product.selected_or_first_available_variant
+  assign gift_variant_id = 0
+
+  if gift_variant != blank
+    assign gift_variant_id = gift_variant.id
+  endif
+
+  assign gift_threshold_cents = settings.cleo_cart_gift_threshold | times: 100
+  assign shipping_threshold_cents = settings.cleo_cart_shipping_threshold | times: 100
+
+  assign qualifying_total = 0
+  assign display_item_count = 0
+
+  for drawer_item in cart.items
+    assign drawer_item_is_gift = false
+
+    if drawer_item.properties['_cleo_free_gift'] == 'true'
+      assign drawer_item_is_gift = true
+    endif
+
+    unless drawer_item_is_gift
+      assign qualifying_total = qualifying_total | plus: drawer_item.final_line_price
+      assign display_item_count = display_item_count | plus: drawer_item.quantity
+    endunless
+  endfor
+
+  assign progress_percentage = 0
+  assign gift_position = 0
+  assign shipping_position = 0
+
+  if gift_threshold_cents > 0 and shipping_threshold_cents > gift_threshold_cents
+    comment
+      Two-stage progress, matching the reference layout:
+      gift is the middle milestone and shipping is the final milestone.
+    endcomment
+    assign gift_position = 50
+    assign shipping_position = 100
+
+    if qualifying_total < gift_threshold_cents
+      assign progress_percentage = qualifying_total | times: 50.0 | divided_by: gift_threshold_cents
+    elsif qualifying_total < shipping_threshold_cents
+      assign second_stage_total = shipping_threshold_cents | minus: gift_threshold_cents
+      assign second_stage_spend = qualifying_total | minus: gift_threshold_cents
+      assign second_stage_progress = second_stage_spend | times: 50.0 | divided_by: second_stage_total
+      assign progress_percentage = 50 | plus: second_stage_progress
+    else
+      assign progress_percentage = 100
+    endif
+  elsif gift_threshold_cents > 0 and shipping_threshold_cents > 0
+    assign maximum_goal = shipping_threshold_cents
+
+    if gift_threshold_cents > maximum_goal
+      assign maximum_goal = gift_threshold_cents
+    endif
+
+    assign gift_position = gift_threshold_cents | times: 100.0 | divided_by: maximum_goal
+    assign shipping_position = shipping_threshold_cents | times: 100.0 | divided_by: maximum_goal
+    assign progress_percentage = qualifying_total | times: 100.0 | divided_by: maximum_goal
+  elsif gift_threshold_cents > 0
+    assign gift_position = 100
+    assign progress_percentage = qualifying_total | times: 100.0 | divided_by: gift_threshold_cents
+  elsif shipping_threshold_cents > 0
+    assign shipping_position = 100
+    assign progress_percentage = qualifying_total | times: 100.0 | divided_by: shipping_threshold_cents
+  endif
+
+  if progress_percentage > 100
+    assign progress_percentage = 100
+  endif
+
+  if progress_percentage < 0
+    assign progress_percentage = 0
+  endif
+
+  assign gift_remaining = gift_threshold_cents | minus: qualifying_total
+  assign shipping_remaining = shipping_threshold_cents | minus: qualifying_total
+
+  if gift_remaining < 0
+    assign gift_remaining = 0
+  endif
+
+  if shipping_remaining < 0
+    assign shipping_remaining = 0
+  endif
+
+  assign discount_label = settings.cleo_cart_discount_fallback
+  assign discount_label_found = false
+
+  for discount_application in cart.cart_level_discount_applications
+    assign discount_label = discount_application.title
+    assign discount_label_found = true
+    break
+  endfor
+
+  unless discount_label_found
+    for drawer_item in cart.items
+      for discount_allocation in drawer_item.line_level_discount_allocations
+        assign discount_label = discount_allocation.discount_application.title
+        assign discount_label_found = true
+        break
+      endfor
+
+      if discount_label_found
+        break
+      endif
+    endfor
+  endunless
+
+  assign visible_upsells = 0
+  assign upsell_source = settings.cleo_cart_upsell_products
+
+  if settings.cleo_cart_show_upsells
+    for upsell_product in upsell_source
+      assign upsell_in_cart = false
+
+      for drawer_item in cart.items
+        if drawer_item.product_id == upsell_product.id
+          assign upsell_in_cart = true
+          break
+        endif
+      endfor
+
+      if gift_product != blank and upsell_product.id == gift_product.id
+        assign upsell_in_cart = true
+      endif
+
+      if upsell_in_cart == false and upsell_product.available
+        assign visible_upsells = visible_upsells | plus: 1
+      endif
+
+      if visible_upsells >= settings.cleo_cart_max_upsells
+        break
+      endif
+    endfor
+
+    comment
+      When no useful manually selected recommendations are available,
+      use the store's All products collection as a safe dynamic fallback.
+    endcomment
+
+    if visible_upsells < 2
+      assign upsell_source = collections.all.products
+      assign visible_upsells = 0
+
+      for upsell_product in upsell_source
+        assign upsell_in_cart = false
+
+        for drawer_item in cart.items
+          if drawer_item.product_id == upsell_product.id
+            assign upsell_in_cart = true
+            break
+          endif
+        endfor
+
+        if gift_product != blank and upsell_product.id == gift_product.id
+          assign upsell_in_cart = true
+        endif
+
+        if upsell_in_cart == false and upsell_product.available
+          assign visible_upsells = visible_upsells | plus: 1
+        endif
+
+        if visible_upsells >= settings.cleo_cart_max_upsells
+          break
+        endif
+      endfor
+    endif
+  endif
+
+  assign continue_shopping_url = settings.cleo_cart_continue_link
+
+  if continue_shopping_url == blank
+    assign continue_shopping_url = routes.all_products_collection_url
+  endif
+-%}
+
+<style data-cleo-component-css="cart-drawer">
+  html.cleo-cart-drawer-open,
+  html.cleo-cart-drawer-open body {
+    overflow: hidden !important;
+  }
+
+  .cleo-cart-drawer-section,
+  .cleo-cart-drawer-section *,
+  .cleo-cart-drawer-section *::before,
+  .cleo-cart-drawer-section *::after {
+    box-sizing: border-box;
+  }
+
+  .cleo-cart-drawer-section {
+    --cleo-drawer-width: 425px;
+    --cleo-accent: #009860;
+    --cleo-accent-light: #dff8eb;
+    --cleo-checkout: #765951;
+    --cleo-checkout-text: #ffffff;
+    --cleo-timer-background: #705650;
+    --cleo-timer-text: #ffffff;
+    --cleo-title-color: #111111;
+    --cleo-text-color: #222222;
+    --cleo-muted-color: #8b95a5;
+    --cleo-border-color: #e5e7eb;
+    --cleo-panel-color: #f3f4f6;
+    --cleo-progress-background: #e8eaee;
+    --cleo-progress-fill: #172235;
+
+    position: relative;
+    z-index: 9998;
+    color: var(--cleo-text-color);
+    font-family: inherit;
+  }
+
+  .cleo-cart-drawer-section button,
+  .cleo-cart-drawer-section input,
+  .cleo-cart-drawer-section select {
+    font-family: inherit;
+  }
+
+  .cleo-cart-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: block;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    background: rgba(25, 20, 18, 0.45) !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    opacity: 0;
+    transition:
+      opacity 220ms ease,
+      visibility 220ms ease;
+  }
+
+  .cleo-cart-drawer-section.is-open .cleo-cart-overlay {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .cleo-cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    width: min(var(--cleo-drawer-width), 100vw);
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    flex-direction: column;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: -18px 0 50px rgba(32, 24, 20, 0.18);
+    transform: translateX(102%);
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cleo-cart-drawer-section.is-open .cleo-cart-drawer {
+    transform: translateX(0);
+  }
+
+  .cleo-cart-drawer__header {
+    position: relative;
+    display: grid;
+    min-height: 57px;
+    flex: 0 0 auto;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    align-items: center;
+    padding: 0 8px;
+    border-bottom: 1px solid var(--cleo-border-color);
+    background: #ffffff;
+  }
+
+  .cleo-cart-drawer__heading {
+    grid-column: 2;
+    margin: 0;
+    color: var(--cleo-title-color);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .cleo-cart-drawer__close {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    display: grid !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    grid-column: 3;
+    place-items: center !important;
+    justify-self: end;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #111111 !important;
+    cursor: pointer;
+  }
+
+  .cleo-cart-drawer__close:hover,
+  .cleo-cart-drawer__close:focus-visible {
+    background: #f3f4f6 !important;
+  }
+
+  .cleo-cart-drawer__close svg {
+    display: block;
+    width: 17px;
+    height: 17px;
+    pointer-events: none;
+  }
+
+  .cleo-cart-reservation {
+    display: flex;
+    min-height: 37px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--cleo-timer-background);
+    color: var(--cleo-timer-text);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .cleo-cart-reservation strong {
+    color: inherit;
+    font-weight: 800;
+  }
+
+  .cleo-cart-reservation__icon {
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .cleo-cart-drawer__scroll {
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+
+  .cleo-cart-drawer__scroll::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .cleo-cart-drawer__scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: #c9cdd4;
+  }
+
+  .cleo-cart-error {
+    margin: 10px 14px 0;
+    border: 1px solid #f1b9b4;
+    border-radius: 5px;
+    padding: 9px 10px;
+    background: #fff1f0;
+    color: #a32820;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .cleo-cart-error[hidden] {
+    display: none !important;
+  }
+
+  /* ------------------------------
+     CART GOALS
+  ------------------------------ */
+
+  .cleo-cart-goals {
+    position: relative;
+    padding: 13px 18px 19px;
+    border-bottom: 1px solid #eceef1;
+    background: #ffffff;
+  }
+
+  .cleo-cart-goals__message {
+    min-height: 18px;
+    margin: 0 0 15px;
+    color: #273244;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .cleo-cart-goals__message strong {
+    color: #111827;
+    font-weight: 800;
+  }
+
+  .cleo-cart-goals__track-wrap {
+    position: relative;
+    width: 100%;
+    height: 15px;
+  }
+
+  .cleo-cart-goals__track {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    left: 0;
+    height: 11px;
+    overflow: hidden;
+    border-radius: 0;
+    background: var(--cleo-progress-background);
+  }
+
+  .cleo-cart-goals__fill {
+    display: block;
+    width: var(--cleo-progress);
+    height: 100%;
+    background: var(--cleo-progress-fill);
+    transition: width 350ms ease;
+  }
+
+  .cleo-cart-goals__node {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    display: grid;
+    width: 15px;
+    min-width: 15px;
+    height: 15px;
+    place-items: center;
+    border: 2px solid #8e9aad;
+    background: #ffffff;
+    color: #8e9aad;
+    transform: translateX(-50%);
+  }
+
+  .cleo-cart-goals__node::after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 5px;
+    background: currentColor;
+  }
+
+  .cleo-cart-goals__node.is-unlocked {
+    border-color: var(--cleo-accent);
+    color: var(--cleo-accent);
+  }
+
+  .cleo-cart-goals__node--shipping {
+    transform: translateX(-100%);
+  }
+
+  .cleo-cart-goals__labels {
+    display: grid;
+    min-height: 52px;
+    grid-template-columns: minmax(118px, 1fr) 100px;
+    column-gap: 13px;
+    align-items: start;
+    margin-top: 8px;
+    padding-left: 108px;
+  }
+
+  .cleo-cart-goals__label {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px;
+    color: #929cab;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.12;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .cleo-cart-goals__label--gift {
+    grid-column: 1;
+    justify-self: center;
+    width: 100%;
+    max-width: 150px;
+  }
+
+  .cleo-cart-goals__label--shipping {
+    grid-column: 2;
+    justify-self: end;
+    width: 100%;
+    max-width: 100px;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .cleo-cart-goals__label.is-unlocked {
+    color: var(--cleo-accent);
+  }
+
+  .cleo-cart-goals__label-icon {
+    display: block;
+    height: 16px;
+    font-size: 15px;
+    line-height: 16px;
+  }
+
+  .cleo-cart-goals__label-text {
+    display: block;
+    width: 100%;
+  }
+
+  /* ------------------------------
+     CART ITEMS
+  ------------------------------ */
+
+  .cleo-cart-items {
+    padding: 8px 18px 2px;
+  }
+
+  .cleo-cart-item {
+    position: relative;
+    display: grid;
+    min-height: 126px;
+    grid-template-columns: 86px minmax(0, 1fr) 78px;
+    gap: 10px;
+    align-items: stretch;
+    padding: 14px 0 17px;
+    border-bottom: 1px solid rgba(20, 25, 32, 0.08);
+  }
+
+  .cleo-cart-item:last-child {
+    border-bottom: 0;
+  }
+
+  .cleo-cart-item__image {
+    position: relative;
+    display: block;
+    width: 86px;
+    height: 86px;
+    overflow: hidden;
+    align-self: start;
+    border: 1px solid #e2dfe0;
+    border-radius: 8px;
+    background: #f8f2f1;
+  }
+
+  .cleo-cart-item__image img,
+  .cleo-cart-item__image svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cleo-cart-item__content {
+    min-width: 0;
+    align-self: start;
+  }
+
+  .cleo-cart-item__title {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 0;
+    color: #111111;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.17;
+    text-decoration: none;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .cleo-cart-item__title:hover {
+    color: #111111;
+    text-decoration: none;
+  }
+
+  .cleo-cart-item__variant {
+    margin: 4px 0 0;
+    color: #6f7784;
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .cleo-cart-item__badge {
+    display: inline-flex;
+    max-width: 100%;
+    align-items: center;
+    gap: 4px;
+    margin-top: 7px;
+    border-radius: 2px;
+    padding: 4px 7px;
+    background: var(--cleo-accent-light);
+    color: var(--cleo-accent);
+    font-size: 11px;
+    line-height: 1.1;
+  }
+
+  .cleo-cart-item__badge svg {
+    display: block;
+    width: 11px;
+    height: 11px;
+    flex: 0 0 auto;
+  }
+
+  /* Quantity selector protected from theme button CSS */
+
+  .cleo-cart-quantity {
+    display: inline-grid !important;
+    width: 104px !important;
+    min-width: 104px !important;
+    max-width: 104px !important;
+    height: 37px !important;
+    min-height: 37px !important;
+    max-height: 37px !important;
+    grid-template-columns: 34px 34px 34px !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    margin: 8px 0 0 !important;
+    border: 1px solid #d5d9df !important;
+    border-radius: 4px !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .cleo-cart-quantity__button {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    display: grid !important;
+    width: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    height: 35px !important;
+    min-height: 35px !important;
+    max-height: 35px !important;
+    place-items: center !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #141414 !important;
+    cursor: pointer;
+    line-height: 1 !important;
+    text-decoration: none !important;
+  }
+
+  .cleo-cart-quantity__button::before,
+  .cleo-cart-quantity__button::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .cleo-cart-quantity__button:hover,
+  .cleo-cart-quantity__button:focus-visible {
+    background: #f3f4f6 !important;
+    color: #111111 !important;
+  }
+
+  .cleo-cart-quantity__button:disabled {
+    cursor: wait;
+    opacity: 0.45;
+  }
+
+  .cleo-cart-quantity__button svg {
+    display: block !important;
+    width: 12px !important;
+    height: 12px !important;
+    pointer-events: none;
+  }
+
+  .cleo-cart-quantity__value {
+    display: grid !important;
+    width: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    height: 35px !important;
+    min-height: 35px !important;
+    max-height: 35px !important;
+    place-items: center !important;
+    margin: 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #181818 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+  }
+
+  .cleo-cart-item__tier-button {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    display: inline-flex !important;
+    min-width: 0 !important;
+    min-height: 24px !important;
+    max-width: 100% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 8px 0 0 !important;
+    border: 0 !important;
+    border-radius: 3px !important;
+    padding: 5px 8px !important;
+    background: var(--cleo-accent) !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    cursor: pointer;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+  }
+
+  .cleo-cart-item__tier-button:hover,
+  .cleo-cart-item__tier-button:focus-visible {
+    filter: brightness(0.93);
+  }
+
+  .cleo-cart-item__side {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: stretch;
+    padding-bottom: 34px;
+  }
+
+  .cleo-cart-item__side--gift {
+    padding-bottom: 0;
+  }
+
+  .cleo-cart-item__compare-price {
+    color: #9ca5b4;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: right;
+    text-decoration: line-through;
+  }
+
+  .cleo-cart-item__price {
+    margin-top: 3px;
+    color: #101010;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: right;
+  }
+
+  .cleo-cart-item__saving {
+    display: block;
+    max-width: 76px;
+    margin-top: 6px;
+    border-radius: 2px;
+    padding: 6px 7px;
+    background: var(--cleo-accent-light);
+    color: var(--cleo-accent);
+    font-size: 11px;
+    line-height: 1.18;
+    text-align: right;
+  }
+
+  /* Remove icon protected from theme CSS */
+
+  .cleo-cart-item__remove {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    position: absolute !important;
+    right: -4px !important;
+    bottom: 0 !important;
+    display: grid !important;
+    width: 32px !important;
+    min-width: 32px !important;
+    max-width: 32px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    place-items: center !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #303030 !important;
+    cursor: pointer;
+    line-height: 1 !important;
+    text-decoration: none !important;
+  }
+
+  .cleo-cart-item__remove::before,
+  .cleo-cart-item__remove::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .cleo-cart-item__remove:hover,
+  .cleo-cart-item__remove:focus-visible {
+    background: #f1f2f3 !important;
+    color: #111111 !important;
+  }
+
+  .cleo-cart-item__remove svg {
+    display: block !important;
+    width: 19px !important;
+    height: 19px !important;
+    pointer-events: none;
+  }
+
+  .cleo-cart-item__gift-label {
+    margin-top: 8px;
+    color: var(--cleo-accent);
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  /* ------------------------------
+     UPSELL PRODUCTS
+  ------------------------------ */
+
+  .cleo-cart-upsells {
+    padding: 14px 14px 18px;
+  }
+
+  .cleo-cart-upsells__heading {
+    margin: 0 0 11px;
+    color: #111111;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .cleo-cart-upsells__slider {
+    position: relative;
+    padding: 0 36px;
+  }
+
+  .cleo-cart-upsells__viewport {
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--cleo-panel-color);
+  }
+
+  .cleo-cart-upsells__track {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 12px 13px 14px;
+  }
+
+  .cleo-cart-upsells__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cleo-upsell-card {
+    display: flex;
+    min-width: calc((100% - 10px) / 2);
+    flex: 0 0 calc((100% - 10px) / 2);
+    flex-direction: column;
+    align-items: center;
+    scroll-snap-align: start;
+    text-align: center;
+  }
+
+  .cleo-upsell-card__image {
+    display: block;
+    width: 62px;
+    height: 62px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #ffffff;
+  }
+
+  .cleo-upsell-card__image img,
+  .cleo-upsell-card__image svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cleo-upsell-card__title {
+    display: -webkit-box;
+    overflow: hidden;
+    min-height: 61px;
+    margin: 8px 0 0;
+    color: #111111;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.18;
+    text-decoration: none;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .cleo-upsell-card__prices {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 7px;
+  }
+
+  .cleo-upsell-card__price {
+    color: #111111;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .cleo-upsell-card__compare {
+    color: #a0a8b4;
+    font-size: 12px;
+    text-decoration: line-through;
+  }
+
+  .cleo-upsell-card__saving {
+    margin-top: 5px;
+    border-radius: 2px;
+    padding: 4px 6px;
+    background: var(--cleo-accent-light);
+    color: var(--cleo-accent);
+    font-size: 11px;
+    line-height: 1.15;
+  }
+
+  .cleo-upsell-card__add {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 32px !important;
+    margin: 8px 0 0 !important;
+    border: 0 !important;
+    border-radius: 3px !important;
+    padding: 6px 8px !important;
+    background: var(--cleo-checkout) !important;
+    box-shadow: none !important;
+    color: var(--cleo-checkout-text) !important;
+    cursor: pointer;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+  }
+
+  .cleo-upsell-card__add:hover,
+  .cleo-upsell-card__add:focus-visible {
+    filter: brightness(0.94);
+  }
+
+  .cleo-cart-upsells__arrow {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    position: absolute !important;
+    top: 50% !important;
+    z-index: 2;
+    display: grid !important;
+    width: 31px !important;
+    min-width: 31px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    place-items: center !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #2c3a50 !important;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .cleo-cart-upsells__arrow--previous {
+    left: 0 !important;
+  }
+
+  .cleo-cart-upsells__arrow--next {
+    right: 0 !important;
+  }
+
+  .cleo-cart-upsells__arrow svg {
+    display: block;
+    width: 21px;
+    height: 21px;
+    pointer-events: none;
+  }
+
+  /* ------------------------------
+     FOOTER
+  ------------------------------ */
+
+  .cleo-cart-drawer__footer {
+    flex: 0 0 auto;
+    border-top: 1px solid var(--cleo-border-color);
+    padding: 11px 18px 13px;
+    background: #ffffff;
+    box-shadow: 0 -5px 15px rgba(20, 24, 29, 0.035);
+  }
+
+  .cleo-cart-discount {
+    display: flex;
+    min-height: 32px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid #f0f1f2;
+    padding-bottom: 8px;
+    color: #111111;
+    font-size: 11px;
+  }
+
+  .cleo-cart-discount__left {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cleo-cart-discount__tag {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+    gap: 4px;
+    border-radius: 2px;
+    padding: 4px 6px;
+    background: #f3f5f7;
+    color: #45536a;
+    line-height: 1.1;
+  }
+
+  .cleo-cart-discount__tag svg {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 auto;
+  }
+
+  .cleo-cart-discount__tag span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cleo-cart-discount__amount {
+    flex: 0 0 auto;
+    font-weight: 500;
+  }
+
+  .cleo-cart-subtotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 0 9px;
+    color: #111111;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .cleo-cart-subtotal strong {
+    color: #111111;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .cleo-cart-checkout-form {
+    margin: 0;
+  }
+
+  .cleo-cart-checkout {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    display: flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 52px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    padding: 11px 16px !important;
+    background: var(--cleo-checkout) !important;
+    box-shadow: none !important;
+    color: var(--cleo-checkout-text) !important;
+    cursor: pointer;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  .cleo-cart-checkout:hover,
+  .cleo-cart-checkout:focus-visible {
+    filter: brightness(0.94);
+  }
+
+  .cleo-cart-payment-icons {
+    display: flex;
+    min-height: 29px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .cleo-cart-payment-icons svg {
+    display: block;
+    width: 40px;
+    max-width: 40px;
+    height: 28px;
+    border: 1px solid #d9dde2;
+    border-radius: 4px;
+    padding: 3px;
+    background: #ffffff;
+  }
+
+  .cleo-cart-continue {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    margin: 7px auto 0;
+    color: #111111;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .cleo-cart-continue:hover,
+  .cleo-cart-continue:focus-visible {
+    color: #111111;
+    text-decoration: underline;
+  }
+
+  .cleo-cart-empty {
+    display: flex;
+    min-height: 420px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .cleo-cart-empty__icon {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 17px;
+    color: #263347;
+  }
+
+  .cleo-cart-empty__title {
+    margin: 0;
+    color: #111111;
+    font-size: 21px;
+    font-weight: 800;
+  }
+
+  .cleo-cart-empty__text {
+    max-width: 270px;
+    margin: 8px 0 20px;
+    color: #737c89;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .cleo-cart-empty__button {
+    display: inline-flex;
+    min-height: 43px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 10px 22px;
+    background: var(--cleo-checkout);
+    color: var(--cleo-checkout-text);
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .cleo-cart-drawer-section.is-busy button[data-cleo-cart-change],
+  .cleo-cart-drawer-section.is-busy button[data-cleo-add-upsell] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  @media screen and (max-width: 479px) {
+    .cleo-cart-drawer {
+      width: 100vw;
+    }
+
+    .cleo-cart-items {
+      padding-right: 13px;
+      padding-left: 13px;
+    }
+
+    .cleo-cart-item {
+      grid-template-columns: 86px minmax(0, 1fr) 74px;
+      gap: 9px;
+    }
+
+    .cleo-cart-drawer__footer {
+      padding-right: 13px;
+      padding-left: 13px;
+    }
+  }
+
+  @media screen and (max-width: 399px) {
+    .cleo-cart-goals {
+      padding-right: 13px;
+      padding-left: 13px;
+    }
+
+    .cleo-cart-goals__labels {
+      grid-template-columns: minmax(104px, 1fr) 88px;
+      column-gap: 9px;
+      padding-left: 84px;
+    }
+
+    .cleo-cart-goals__label--gift {
+      max-width: 132px;
+    }
+
+    .cleo-cart-goals__label--shipping {
+      max-width: 88px;
+    }
+
+    .cleo-cart-item {
+      grid-template-columns: 78px minmax(0, 1fr) 68px;
+      gap: 8px;
+    }
+
+    .cleo-cart-item__image {
+      width: 78px;
+      height: 78px;
+    }
+
+    .cleo-cart-item__title {
+      font-size: 13px;
+    }
+
+    .cleo-cart-item__saving {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    .cleo-cart-upsells__slider {
+      padding-right: 29px;
+      padding-left: 29px;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .cleo-cart-goals__labels {
+      grid-template-columns: minmax(95px, 1fr) 82px;
+      padding-left: 74px;
+    }
+
+    .cleo-cart-item {
+      grid-template-columns: 72px minmax(0, 1fr) 62px;
+      gap: 7px;
+    }
+
+    .cleo-cart-item__image {
+      width: 72px;
+      height: 72px;
+    }
+
+    .cleo-cart-quantity {
+      width: 95px !important;
+      min-width: 95px !important;
+      max-width: 95px !important;
+      grid-template-columns: 31px 31px 31px !important;
+    }
+
+    .cleo-cart-quantity__button,
+    .cleo-cart-quantity__value {
+      width: 31px !important;
+      min-width: 31px !important;
+      max-width: 31px !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cleo-cart-drawer,
+    .cleo-cart-overlay,
+    .cleo-cart-goals__fill,
+    .cleo-cart-upsells__track {
+      scroll-behavior: auto;
+      transition: none;
+    }
+  }
+
+  /* ==========================================================
+     REFERENCE-MATCH V4
+     Keeps the existing JS hooks unchanged while matching the
+     second reference image more closely.
+  ========================================================== */
+
+  @media screen and (min-width: 520px) {
+    .cleo-cart-drawer {
+      width: min(max(var(--cleo-drawer-width), 520px), 100vw);
+    }
+  }
+
+  .cleo-cart-goals {
+    padding: 12px 24px 18px;
+  }
+
+  .cleo-cart-goals__message {
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  .cleo-cart-goals__track-wrap {
+    height: 15px;
+  }
+
+  .cleo-cart-goals__labels {
+    min-height: 53px;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 22px;
+    margin-top: 8px;
+    padding-left: 118px;
+  }
+
+  .cleo-cart-goals__label--gift {
+    width: 150px;
+    max-width: 150px;
+  }
+
+  .cleo-cart-goals__label--shipping {
+    width: 104px;
+    max-width: 104px;
+  }
+
+  .cleo-cart-items {
+    padding: 8px 24px 0;
+  }
+
+  .cleo-cart-item {
+    min-height: 0;
+    grid-template-columns: 80px minmax(0, 1fr) 72px;
+    gap: 14px;
+    align-items: start;
+    padding: 16px 0 24px;
+  }
+
+  .cleo-cart-item__image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cleo-cart-item__content {
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .cleo-cart-item__title {
+    font-size: 14px;
+    line-height: 1.18;
+    -webkit-line-clamp: 3;
+  }
+
+  .cleo-cart-item__actions {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    margin-top: 8px;
+  }
+
+  .cleo-cart-item__actions .cleo-cart-item__badge {
+    flex: 0 1 auto;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .cleo-cart-item__actions .cleo-cart-quantity {
+    flex: 0 0 auto;
+    margin: 0 !important;
+  }
+
+  .cleo-cart-quantity {
+    width: 94px !important;
+    min-width: 94px !important;
+    max-width: 94px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    grid-template-columns: 31px 31px 31px !important;
+  }
+
+  .cleo-cart-quantity__button,
+  .cleo-cart-quantity__value {
+    width: 31px !important;
+    min-width: 31px !important;
+    max-width: 31px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+  }
+
+  .cleo-cart-item__tier-button {
+    width: max-content !important;
+    max-width: 100% !important;
+    min-height: 26px !important;
+    margin-top: 8px !important;
+    padding: 5px 9px !important;
+    font-size: 11px !important;
+    white-space: normal;
+  }
+
+  .cleo-cart-item__side,
+  .cleo-cart-item__side--gift {
+    min-height: 0;
+    align-self: start;
+    padding-bottom: 0;
+  }
+
+  .cleo-cart-item__compare-price {
+    font-size: 11px;
+  }
+
+  .cleo-cart-item__price {
+    font-size: 14px;
+  }
+
+  .cleo-cart-item__saving {
+    max-width: 72px;
+    padding: 6px 6px;
+    font-size: 11px;
+  }
+
+  .cleo-cart-item__remove {
+    position: static !important;
+    margin: 10px -4px 0 0 !important;
+    align-self: flex-end;
+  }
+
+  .cleo-cart-upsells {
+    padding: 12px 24px 17px;
+  }
+
+  .cleo-cart-upsells__heading {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  .cleo-cart-upsells__slider {
+    padding: 0 36px;
+  }
+
+  .cleo-cart-upsells__viewport {
+    border-radius: 10px;
+  }
+
+  .cleo-cart-upsells__track {
+    gap: 14px;
+    padding: 16px 16px 18px;
+  }
+
+  .cleo-upsell-card {
+    min-width: calc((100% - 14px) / 2);
+    flex-basis: calc((100% - 14px) / 2);
+  }
+
+  .cleo-upsell-card__image {
+    width: 62px;
+    height: 62px;
+  }
+
+  .cleo-upsell-card__title {
+    min-height: 58px;
+    font-size: 12px;
+    line-height: 1.15;
+  }
+
+  .cleo-upsell-card__add {
+    width: auto !important;
+    min-width: 82px !important;
+    padding-right: 11px !important;
+    padding-left: 11px !important;
+  }
+
+  .cleo-cart-benefit-strip {
+    display: flex;
+    min-height: 51px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 20px 17px;
+    color: #050505;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .cleo-cart-benefit-strip svg {
+    display: block;
+    width: 21px;
+    height: 21px;
+    flex: 0 0 auto;
+  }
+
+  .cleo-cart-drawer__footer {
+    padding: 12px 24px 13px;
+  }
+
+  .cleo-cart-subtotal {
+    padding: 5px 0 10px;
+  }
+
+  .cleo-cart-checkout {
+    min-height: 50px !important;
+  }
+
+  @media screen and (max-width: 519px) {
+    .cleo-cart-goals {
+      padding-right: 24px;
+      padding-left: 24px;
+    }
+
+    .cleo-cart-goals__labels {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 14px;
+      padding-left: 105px;
+    }
+
+    .cleo-cart-items,
+    .cleo-cart-upsells,
+    .cleo-cart-drawer__footer {
+      padding-right: 24px;
+      padding-left: 24px;
+    }
+  }
+
+  @media screen and (max-width: 430px) {
+    .cleo-cart-goals,
+    .cleo-cart-items,
+    .cleo-cart-upsells,
+    .cleo-cart-drawer__footer {
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+
+    .cleo-cart-goals__labels {
+      padding-left: 88px;
+    }
+
+    .cleo-cart-item {
+      grid-template-columns: 76px minmax(0, 1fr) 66px;
+      gap: 10px;
+    }
+
+    .cleo-cart-item__image {
+      width: 76px;
+      height: 76px;
+    }
+
+    .cleo-cart-item__actions {
+      gap: 6px;
+    }
+
+    .cleo-cart-quantity {
+      width: 88px !important;
+      min-width: 88px !important;
+      max-width: 88px !important;
+      grid-template-columns: 29px 29px 29px !important;
+    }
+
+    .cleo-cart-quantity__button,
+    .cleo-cart-quantity__value {
+      width: 29px !important;
+      min-width: 29px !important;
+      max-width: 29px !important;
+    }
+  }
+
+  @media screen and (max-width: 370px) {
+    .cleo-cart-item {
+      grid-template-columns: 70px minmax(0, 1fr) 60px;
+      gap: 8px;
+    }
+
+    .cleo-cart-item__image {
+      width: 70px;
+      height: 70px;
+    }
+
+    .cleo-cart-item__actions {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .cleo-cart-goals__labels {
+      padding-left: 76px;
+    }
+  }
+
+</style>
+
+<section
+  id="CleoCartDrawerSection-{{ section.id }}"
+  class="cleo-cart-drawer-section"
+  data-cleo-drawer-section
+  data-section-id="{{ section.id }}"
+  data-cart-url="{{ routes.cart_url }}"
+  data-cart-count="{{ cart.item_count }}"
+  data-cart-token="{{ cart.token | escape }}"
+  data-reservation-minutes="{{ settings.cleo_cart_timer_minutes }}"
+  data-gift-threshold="{{ gift_threshold_cents }}"
+  data-gift-variant-id="{{ gift_variant_id }}"
+  data-auto-add-gift="{{ settings.cleo_cart_auto_gift }}"
+  data-remove-gift="{{ settings.cleo_cart_remove_gift }}"
+  data-intercept-add="{{ settings.cleo_cart_intercept_forms }}"
+  style="
+    --cleo-drawer-width: {{ settings.cleo_cart_drawer_width }}px;
+    --cleo-accent: {{ settings.cleo_cart_accent_color }};
+    --cleo-accent-light: {{ settings.cleo_cart_accent_light }};
+    --cleo-checkout: {{ settings.cleo_cart_checkout_color }};
+    --cleo-checkout-text: {{ settings.cleo_cart_checkout_text_color }};
+    --cleo-timer-background: {{ settings.cleo_cart_timer_background }};
+    --cleo-timer-text: {{ settings.cleo_cart_timer_text_color }};
+    --cleo-progress-fill: {{ settings.cleo_cart_progress_color }};
+    --cleo-progress: {{ progress_percentage }}%;
+  "
+>
+  <button
+    type="button"
+    class="cleo-cart-overlay"
+    data-cleo-cart-close
+    aria-label="Close cart"
+    tabindex="-1"
+  ></button>
+
+  <aside
+    id="cart-drawer"
+    class="cleo-cart-drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="CleoCartDrawerHeading-{{ section.id }}"
+  >
+    <header class="cleo-cart-drawer__header">
+      <h2
+        id="CleoCartDrawerHeading-{{ section.id }}"
+        class="cleo-cart-drawer__heading"
+      >
+        {{ settings.cleo_cart_heading }}
+
+        {%- if display_item_count > 0 -%}
+          &nbsp;•&nbsp;{{ display_item_count }}
+        {%- endif -%}
+      </h2>
+
+      <button
+        type="button"
+        class="cleo-cart-drawer__close"
+        data-cleo-cart-close
+        aria-label="Close cart"
+      >
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path
+            d="M4 4L16 16M16 4L4 16"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    </header>
+
+    {%- unless cart == empty -%}
+      {%- if settings.cleo_cart_show_timer -%}
+        <div class="cleo-cart-reservation">
+          <span>{{ settings.cleo_cart_timer_text }}</span>
+
+          <strong data-cleo-timer aria-live="polite">
+            {%- if settings.cleo_cart_timer_minutes < 10 -%}0{%- endif -%}
+            {{- settings.cleo_cart_timer_minutes -}}:00
+          </strong>
+
+          <span class="cleo-cart-reservation__icon" aria-hidden="true">
+            ⏰
+          </span>
+        </div>
+      {%- endif -%}
+    {%- endunless -%}
+
+    <div class="cleo-cart-drawer__scroll">
+      <p class="cleo-cart-error" data-cleo-cart-error hidden></p>
+
+      {%- if cart == empty -%}
+        <div class="cleo-cart-empty">
+          <svg
+            class="cleo-cart-empty__icon"
+            viewBox="0 0 48 48"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M14 17H34L32.5 39H15.5L14 17Z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M19 18V13C19 10.2386 21.2386 8 24 8C26.7614 8 29 10.2386 29 13V18"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+          </svg>
+
+          <h3 class="cleo-cart-empty__title">
+            {{ settings.cleo_cart_empty_heading }}
+          </h3>
+
+          <p class="cleo-cart-empty__text">
+            {{ settings.cleo_cart_empty_text }}
+          </p>
+
+          <a
+            href="{{ continue_shopping_url }}"
+            class="cleo-cart-empty__button"
+          >
+            {{ settings.cleo_cart_empty_button }}
+          </a>
+        </div>
+      {%- else -%}
+        {%- if gift_threshold_cents > 0 or shipping_threshold_cents > 0 -%}
+          <div class="cleo-cart-goals">
+            <p class="cleo-cart-goals__message">
+              {%- if gift_threshold_cents > 0 and qualifying_total < gift_threshold_cents -%}
+                Add
+                <strong>{{ gift_remaining | money }}</strong>
+                to unlock
+                <strong>{{ settings.cleo_cart_gift_label }}</strong>!
+              {%- elsif shipping_threshold_cents > 0 and qualifying_total < shipping_threshold_cents -%}
+                Add
+                <strong>{{ shipping_remaining | money }}</strong>
+                to unlock
+                <strong>{{ settings.cleo_cart_shipping_label }}</strong>!
+              {%- else -%}
+                <strong>{{ settings.cleo_cart_all_unlocked }}</strong>
+              {%- endif -%}
+            </p>
+
+            <div class="cleo-cart-goals__track-wrap">
+              <div class="cleo-cart-goals__track">
+                <span class="cleo-cart-goals__fill"></span>
+              </div>
+
+              {%- if gift_threshold_cents > 0 -%}
+                <span
+                  class="cleo-cart-goals__node {% if qualifying_total >= gift_threshold_cents %}is-unlocked{% endif %}"
+                  style="left: {{ gift_position }}%;"
+                  aria-hidden="true"
+                ></span>
+              {%- endif -%}
+
+              {%- if shipping_threshold_cents > 0 -%}
+                <span
+                  class="cleo-cart-goals__node cleo-cart-goals__node--shipping {% if qualifying_total >= shipping_threshold_cents %}is-unlocked{% endif %}"
+                  style="left: {{ shipping_position }}%;"
+                  aria-hidden="true"
+                ></span>
+              {%- endif -%}
+            </div>
+
+            <div class="cleo-cart-goals__labels">
+              {%- if gift_threshold_cents > 0 -%}
+                <div
+                  class="cleo-cart-goals__label cleo-cart-goals__label--gift {% if qualifying_total >= gift_threshold_cents %}is-unlocked{% endif %}"
+                >
+                  <span class="cleo-cart-goals__label-icon" aria-hidden="true">
+                    🎁
+                  </span>
+
+                  <span class="cleo-cart-goals__label-text">
+                    {%- if qualifying_total >= gift_threshold_cents -%}
+                      ✅
+                    {%- else -%}
+                      🔒
+                    {%- endif -%}
+
+                    {{ settings.cleo_cart_gift_label }}
+                  </span>
+                </div>
+              {%- endif -%}
+
+              {%- if shipping_threshold_cents > 0 -%}
+                <div
+                  class="cleo-cart-goals__label cleo-cart-goals__label--shipping {% if qualifying_total >= shipping_threshold_cents %}is-unlocked{% endif %}"
+                >
+                  <span class="cleo-cart-goals__label-icon" aria-hidden="true">
+                    🚚
+                  </span>
+
+                  <span class="cleo-cart-goals__label-text">
+                    {%- if qualifying_total >= shipping_threshold_cents -%}
+                      ✅
+                    {%- else -%}
+                      🔒
+                    {%- endif -%}
+
+                    {{ settings.cleo_cart_shipping_label }}
+                  </span>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="cleo-cart-items" data-cleo-cart-items>
+          {%- for item in cart.items -%}
+            {%- liquid
+              assign is_free_gift = false
+
+              if item.properties['_cleo_free_gift'] == 'true'
+                assign is_free_gift = true
+              endif
+
+              assign compare_line_price = item.variant.compare_at_price | times: item.quantity
+              assign reference_line_price = item.original_line_price
+
+              if compare_line_price > reference_line_price
+                assign reference_line_price = compare_line_price
+              endif
+
+              assign item_saving = reference_line_price | minus: item.final_line_price
+
+              if item_saving < 0
+                assign item_saving = 0
+              endif
+
+              assign item_badge = item.properties['_bundle_label']
+
+              if item_badge == blank
+                for discount_allocation in item.line_level_discount_allocations
+                  assign item_badge = discount_allocation.discount_application.title
+                  break
+                endfor
+              endif
+
+              if item_badge == blank and item.quantity >= 2
+                assign item_badge = settings.cleo_cart_bundle_badge
+              endif
+
+              assign quantity_target = settings.cleo_cart_quantity_target
+              assign quantity_remaining = quantity_target | minus: item.quantity
+              assign quantity_offer_saving = settings.cleo_cart_quantity_saving | times: 100
+            -%}
+
+            <article
+              class="cleo-cart-item"
+              data-line-key="{{ item.key | escape }}"
+            >
+              <a
+                href="{{ item.url }}"
+                class="cleo-cart-item__image"
+                aria-label="{{ item.product.title | escape }}"
+              >
+                {%- if item.image != blank -%}
+                  {{
+                    item.image
+                    | image_url: width: 200
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '90, 120, 160, 200',
+                      sizes: '86px',
+                      alt: item.product.title
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {%- endif -%}
+              </a>
+
+              <div class="cleo-cart-item__content">
+                <a href="{{ item.url }}" class="cleo-cart-item__title">
+                  {{ item.product.title }}
+                </a>
+
+                {%- unless item.product.has_only_default_variant -%}
+                  <p class="cleo-cart-item__variant">
+                    {{ item.variant.title }}
+                  </p>
+                {%- endunless -%}
+
+                {%- if is_free_gift -%}
+                  <div class="cleo-cart-item__gift-label">
+                    🎁 {{ settings.cleo_cart_free_gift_badge }}
+                  </div>
+                {%- else -%}
+                  <div class="cleo-cart-item__actions">
+                    {%- if item_badge != blank -%}
+                      <div class="cleo-cart-item__badge">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path
+                            d="M8.5 1.5H4L1.5 4V8.5L7.5 14.5L14.5 7.5L8.5 1.5Z"
+                            fill="currentColor"
+                          />
+                          <circle cx="5" cy="5" r="1.2" fill="#ffffff" />
+                        </svg>
+
+                        <span>{{ item_badge }}</span>
+                      </div>
+                    {%- endif -%}
+
+                    <div
+                      class="cleo-cart-quantity"
+                      aria-label="Quantity for {{ item.product.title | escape }}"
+                    >
+                      <button
+                        type="button"
+                        class="cleo-cart-quantity__button"
+                        data-cleo-cart-change
+                        data-line-key="{{ item.key | escape }}"
+                        data-quantity="{{ item.quantity | minus: 1 }}"
+                        aria-label="Decrease quantity"
+                      >
+                        <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                          <path
+                            d="M2 6H10"
+                            stroke="currentColor"
+                            stroke-width="1.4"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </button>
+
+                      <span
+                        class="cleo-cart-quantity__value"
+                        aria-live="polite"
+                      >
+                        {{ item.quantity }}
+                      </span>
+
+                      <button
+                        type="button"
+                        class="cleo-cart-quantity__button"
+                        data-cleo-cart-change
+                        data-line-key="{{ item.key | escape }}"
+                        data-quantity="{{ item.quantity | plus: 1 }}"
+                        aria-label="Increase quantity"
+                      >
+                        <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                          <path
+                            d="M6 2V10M2 6H10"
+                            stroke="currentColor"
+                            stroke-width="1.4"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  {%- if settings.cleo_cart_show_quantity_offer and quantity_remaining > 0 -%}
+                    <button
+                      type="button"
+                      class="cleo-cart-item__tier-button"
+                      data-cleo-cart-change
+                      data-line-key="{{ item.key | escape }}"
+                      data-quantity="{{ quantity_target }}"
+                    >
+                      Add {{ quantity_remaining }} more
+
+                      {%- if quantity_offer_saving > 0 -%}
+                        &nbsp;to get {{ quantity_offer_saving | money }} off
+                      {%- else -%}
+                        &nbsp;to unlock extra savings
+                      {%- endif -%}
+                    </button>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+
+              <div class="cleo-cart-item__side {% if is_free_gift %}cleo-cart-item__side--gift{% endif %}">
+                {%- if reference_line_price > item.final_line_price -%}
+                  <span class="cleo-cart-item__compare-price">
+                    {{ reference_line_price | money }}
+                  </span>
+                {%- endif -%}
+
+                <strong class="cleo-cart-item__price">
+                  {{ item.final_line_price | money }}
+                </strong>
+
+                {%- if item_saving > 0 -%}
+                  <span class="cleo-cart-item__saving">
+                    You save<br>
+                    {{ item_saving | money }}
+                  </span>
+                {%- endif -%}
+
+                {%- unless is_free_gift -%}
+                  <button
+                    type="button"
+                    class="cleo-cart-item__remove"
+                    data-cleo-cart-change
+                    data-line-key="{{ item.key | escape }}"
+                    data-quantity="0"
+                    aria-label="Remove {{ item.product.title | escape }}"
+                  >
+                    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path
+                        d="M4.5 6H15.5"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M8 3.5H12"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M6.5 6L7.2 16.5H12.8L13.5 6"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M8.7 9V13.5M11.3 9V13.5"
+                        stroke="currentColor"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </button>
+                {%- endunless -%}
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+
+        {%- if visible_upsells > 0 -%}
+          <div class="cleo-cart-upsells">
+            <h3 class="cleo-cart-upsells__heading">
+              {{ settings.cleo_cart_upsell_heading }}
+            </h3>
+
+            <div class="cleo-cart-upsells__slider">
+              <button
+                type="button"
+                class="cleo-cart-upsells__arrow cleo-cart-upsells__arrow--previous"
+                data-cleo-upsell-previous
+                aria-label="Previous recommendations"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M15 5L8 12L15 19"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <div class="cleo-cart-upsells__viewport">
+                <div
+                  class="cleo-cart-upsells__track"
+                  data-cleo-upsell-track
+                >
+                  {%- assign rendered_upsells = 0 -%}
+
+                  {%- for upsell_product in upsell_source -%}
+                    {%- liquid
+                      assign upsell_in_cart = false
+
+                      for drawer_item in cart.items
+                        if drawer_item.product_id == upsell_product.id
+                          assign upsell_in_cart = true
+                          break
+                        endif
+                      endfor
+
+                      if gift_product != blank and upsell_product.id == gift_product.id
+                        assign upsell_in_cart = true
+                      endif
+
+                      assign upsell_variant = upsell_product.selected_or_first_available_variant
+                    -%}
+
+                    {%- if upsell_in_cart == false and upsell_product.available and rendered_upsells < settings.cleo_cart_max_upsells -%}
+                      {%- liquid
+                        assign rendered_upsells = rendered_upsells | plus: 1
+                        assign upsell_saving_percent = 0
+
+                        if upsell_variant.compare_at_price > upsell_variant.price
+                          assign upsell_saving_amount = upsell_variant.compare_at_price | minus: upsell_variant.price
+                          assign upsell_saving_percent = upsell_saving_amount | times: 100.0 | divided_by: upsell_variant.compare_at_price | round
+                        endif
+                      -%}
+
+                      <article class="cleo-upsell-card">
+                        <a
+                          href="{{ upsell_product.url }}"
+                          class="cleo-upsell-card__image"
+                          aria-label="{{ upsell_product.title | escape }}"
+                        >
+                          {%- if upsell_product.featured_image != blank -%}
+                            {{
+                              upsell_product.featured_image
+                              | image_url: width: 160
+                              | image_tag:
+                                loading: 'lazy',
+                                widths: '80, 120, 160',
+                                sizes: '62px',
+                                alt: upsell_product.title
+                            }}
+                          {%- else -%}
+                            {{ 'product-1' | placeholder_svg_tag }}
+                          {%- endif -%}
+                        </a>
+
+                        <a
+                          href="{{ upsell_product.url }}"
+                          class="cleo-upsell-card__title"
+                        >
+                          {{ upsell_product.title }}
+                        </a>
+
+                        <div class="cleo-upsell-card__prices">
+                          <strong class="cleo-upsell-card__price">
+                            {{ upsell_variant.price | money }}
+                          </strong>
+
+                          {%- if upsell_variant.compare_at_price > upsell_variant.price -%}
+                            <span class="cleo-upsell-card__compare">
+                              {{ upsell_variant.compare_at_price | money }}
+                            </span>
+                          {%- endif -%}
+                        </div>
+
+                        {%- if upsell_saving_percent > 0 -%}
+                          <span class="cleo-upsell-card__saving">
+                            You save {{ upsell_saving_percent }}%
+                          </span>
+                        {%- endif -%}
+
+                        <button
+                          type="button"
+                          class="cleo-upsell-card__add"
+                          data-cleo-add-upsell
+                          data-variant-id="{{ upsell_variant.id }}"
+                        >
+                          {{ settings.cleo_cart_upsell_button }}
+                        </button>
+                      </article>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="cleo-cart-upsells__arrow cleo-cart-upsells__arrow--next"
+                data-cleo-upsell-next
+                aria-label="Next recommendations"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M9 5L16 12L9 19"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="cleo-cart-benefit-strip">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7.5L12 3L20 7.5V16.5L12 21L4 16.5V7.5Z" fill="currentColor"/>
+            <path d="M4.5 7.8L12 12L19.5 7.8M12 12V20.5" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M8 5.3L15.8 9.7" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+
+          <span>
+            {{ settings.cleo_cart_benefit_text | default: 'Wellness Sale Special · Limited Batch' }}
+          </span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- unless cart == empty -%}
+      <footer class="cleo-cart-drawer__footer">
+        {%- if cart.total_discount > 0 -%}
+          <div class="cleo-cart-discount">
+            <div class="cleo-cart-discount__left">
+              <span>Discounts</span>
+
+              <span class="cleo-cart-discount__tag">
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path
+                    d="M9.5 2H4L2 4V9.5L8.5 16L16 8.5L9.5 2Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linejoin="round"
+                  />
+                  <circle cx="5.5" cy="5.5" r="1.1" fill="currentColor" />
+                </svg>
+
+                <span>{{ discount_label }}</span>
+              </span>
+            </div>
+
+            <span class="cleo-cart-discount__amount">
+              -{{ cart.total_discount | money }}
+            </span>
+          </div>
+        {%- endif -%}
+
+        <div class="cleo-cart-subtotal">
+          <span>{{ settings.cleo_cart_subtotal_text }}</span>
+          <strong>{{ cart.total_price | money }}</strong>
+        </div>
+
+        <form
+          action="{{ routes.cart_url }}"
+          method="post"
+          class="cleo-cart-checkout-form"
+        >
+          <button
+            type="submit"
+            name="checkout"
+            class="cleo-cart-checkout"
+          >
+            <span aria-hidden="true">🔐</span>
+
+            <span>
+              {{ settings.cleo_cart_checkout_text }}
+              •
+              {{ cart.total_price | money }}
+            </span>
+          </button>
+        </form>
+
+        {%- if settings.cleo_cart_show_payments -%}
+          <div
+            class="cleo-cart-payment-icons"
+            aria-label="Accepted payment methods"
+          >
+            {%- assign displayed_payment_icons = 0 -%}
+
+            {%- for payment_type in shop.enabled_payment_types -%}
+              {%- if displayed_payment_icons < 7 -%}
+                {{ payment_type | payment_type_svg_tag }}
+                {%- assign displayed_payment_icons = displayed_payment_icons | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <a
+          href="{{ continue_shopping_url }}"
+          class="cleo-cart-continue"
+        >
+          {{ settings.cleo_cart_continue_text }}
+        </a>
+      </footer>
+    {%- endunless -%}
+  </aside>
+</section>
+

@@ -1,0 +1,138 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "cleo-image-banner",
+      "settings": {
+        "desktop_image": "shopify://shop_images/Home_Page_PC_bfac9418-ef61-48e4-a4a9-b27c15c093dd.jpg",
+        "mobile_image": "shopify://shop_images/Home_Page_PC_3.jpg",
+        "fallback_asset": "",
+        "mobile_fallback_asset": "",
+        "fallback_width": 1918,
+        "fallback_height": 776,
+        "mobile_fallback_width": 393,
+        "mobile_fallback_height": 693,
+        "image_alt": "",
+        "layout_mode": "adaptive",
+        "desktop_height": 420,
+        "mobile_height": 620,
+        "minimum_height": 620,
+        "heading": "Our Story",
+        "highlight_text": "",
+        "highlight_background": "#a07a57",
+        "highlight_text_color": "#ffffff",
+        "text": "<p>Modern Living Has Made Wellness Complicated. Neera Living exists to bring simplicity back through mindful rituals rooted in ancient wisdom.</p>",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "#f3e9dc",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "button_background": "#ffffff",
+        "button_text_color": "#4e222d",
+        "content_width": 720,
+        "heading_max_width": 900,
+        "mobile_heading_max_width": 600,
+        "heading_size": 50,
+        "mobile_heading_size": 28,
+        "heading_letter_spacing": 0,
+        "text_size": 20,
+        "mobile_text_size": 14,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "mobile_horizontal_alignment": "center",
+        "mobile_vertical_alignment": "flex-start",
+        "text_alignment": "left",
+        "mobile_text_alignment": "center",
+        "image_fit": "cover",
+        "image_position": "center",
+        "mobile_image_position": "center"
+      }
+    },
+    "story": {
+      "type": "cleo-rich-text",
+      "settings": {
+        "heading": "It's About Choosing Better.",
+        "text": "<p>At Neera Living, we believe modern living should support both personal well-being and the world around us. Our products are inspired by authentic Ayurvedic principles, crafted with sustainable materials, and designed to bring balance into everyday life.</p>",
+        "button_label": "",
+        "button_link": "",
+        "text_alignment": "center",
+        "background_color": "#ffffff",
+        "content_width": 900,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "values": {
+      "type": "cleo-benefits",
+      "blocks": {
+        "value_1": {
+          "type": "benefit",
+          "settings": {
+            "fallback_asset": "",
+            "icon_text": "1",
+            "heading": "Mindful",
+            "text": "Simple daily rituals for modern routines."
+          }
+        },
+        "value_2": {
+          "type": "benefit",
+          "settings": {
+            "fallback_asset": "",
+            "icon_text": "2",
+            "heading": "Sustainable",
+            "text": "Reusable materials chosen with intention."
+          }
+        },
+        "value_3": {
+          "type": "benefit",
+          "settings": {
+            "fallback_asset": "",
+            "icon_text": "3",
+            "heading": "Timeless",
+            "text": "Functional products made to last."
+          }
+        }
+      },
+      "block_order": [
+        "value_1",
+        "value_2",
+        "value_3"
+      ],
+      "settings": {
+        "heading": "",
+        "background_color": "#f8eadc",
+        "text_color": "#6b6158",
+        "heading_color": "#4e222d",
+        "separator_color": "#e3d3c2",
+        "show_separators": true,
+        "max_width": 1000,
+        "columns": 3,
+        "tablet_columns": 3,
+        "mobile_columns": 1,
+        "gap": 22,
+        "icon_size": 88,
+        "mobile_icon_size": 64,
+        "heading_size": 22,
+        "mobile_heading_size": 17,
+        "text_size": 20,
+        "mobile_text_size": 13,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "story",
+    "values"
+  ]
+}

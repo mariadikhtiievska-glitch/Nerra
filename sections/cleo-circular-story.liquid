@@ -1,0 +1,268 @@
+<section
+  id="CleoStory-{{ section.id }}"
+  class="cleo-story"
+  style="
+    --story-bg: {{ section.settings.background_color }};
+    --story-color: {{ section.settings.text_color }};
+    --story-width: {{ section.settings.container_width }}px;
+    --story-image-size: {{ section.settings.image_size }}px;
+    --story-heading-size: {{ section.settings.heading_size }}px;
+    --story-mobile-heading-size: {{ section.settings.mobile_heading_size }}px;
+    --story-body-size: {{ section.settings.body_size }}px;
+    --story-mobile-body-size: {{ section.settings.mobile_body_size }}px;
+    --story-disclaimer-size: {{ section.settings.disclaimer_size }}px;
+    --story-padding-top: {{ section.settings.padding_top }}px;
+    --story-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --story-image-fit: {{ section.settings.image_fit }};
+  "
+>
+  <div class="cleo-story__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="cleo-story__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="cleo-story__grid cleo-story__grid--{{ section.settings.desktop_order }} cleo-story__grid--mobile-{{ section.settings.mobile_order }}">
+      <div class="cleo-story__content">
+        {%- if section.settings.intro != blank -%}
+          <div class="cleo-story__intro">{{ section.settings.intro }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="cleo-story__points">
+            {%- for block in section.blocks -%}
+              <div class="cleo-story__point" {{ block.shopify_attributes }}>
+                <span class="cleo-story__check" aria-hidden="true">&#10003;</span>
+                <div>{{ block.settings.text }}</div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.disclaimer != blank -%}
+          <div class="cleo-story__disclaimer">{{ section.settings.disclaimer }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="cleo-story__image cleo-story__image--{{ section.settings.image_shape }}">
+        {%- render 'cleo-image',
+          image: section.settings.image,
+          asset: section.settings.fallback_asset,
+          width: 1000,
+          height: 1000,
+          sizes: '(max-width: 749px) calc(100vw - 32px), 500px',
+          alt: section.settings.image_alt
+        -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #CleoStory-{{ section.id }} {
+    padding-block: var(--story-padding-top) var(--story-padding-bottom);
+    background: var(--story-bg);
+    color: var(--story-color);
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__container {
+    width: min(var(--story-width), calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__heading {
+    margin: 0 0 40px;
+    color: var(--story-color);
+    font-size:50px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__grid--image-left .cleo-story__content {
+    order: 2;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__grid--image-left .cleo-story__image {
+    order: 1;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__content {
+    order: 1;
+    min-width: 0;
+    text-align: left;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__image {
+    order: 2;
+    width: min(100%, var(--story-image-size));
+    aspect-ratio: 1;
+    margin-inline: auto;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__image--circle {
+    border-radius: 50%;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__image--rounded {
+    border-radius: 20px;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: var(--story-image-fit);
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__intro,
+  #CleoStory-{{ section.id }} .cleo-story__point {
+    color: var(--story-color);
+    font-size: 22px;
+    line-height: 1.5;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__intro p,
+  #CleoStory-{{ section.id }} .cleo-story__disclaimer p {
+    margin: 0;
+    font-size:16px;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__points {
+    margin-top: 20px;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__point {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__check {
+    flex: 0 0 auto;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  #CleoStory-{{ section.id }} .cleo-story__disclaimer {
+    margin-top: 24px;
+    color: var(--story-color);
+    font-size: var(--story-disclaimer-size);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 749px) {
+    #CleoStory-{{ section.id }} {
+      padding-block: 40px;
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__container {
+      width: calc(100% - 32px);
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__heading {
+      margin-bottom: 24px;
+      font-size: var(--story-mobile-heading-size);
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__grid--mobile-image-top .cleo-story__image {
+      order: 1;
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__grid--mobile-image-top .cleo-story__content {
+      order: 2;
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__grid--mobile-image-bottom .cleo-story__content {
+      order: 1;
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__grid--mobile-image-bottom .cleo-story__image {
+      order: 2;
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__intro,
+    #CleoStory-{{ section.id }} .cleo-story__point {
+      font-size: var(--story-mobile-body-size);
+
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__check {
+      margin-top: 0;
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__disclaimer {
+      font-size: 14px;
+    }
+
+    #CleoStory-{{ section.id }} .cleo-story__image {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cleo copper story",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why Choose Copper?" },
+    { "type": "richtext", "id": "intro", "label": "Intro", "default": "<p>Inspired by the centuries-old Ayurvedic practice of Tamra Jal, storing water in pure copper vessels is a ritual designed to transform basic hydration into an intentional wellness choice.</p>" },
+    { "type": "richtext", "id": "disclaimer", "label": "Disclaimer", "default": "<p>Disclaimer: Information shared is for cultural and lifestyle context only. These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "fallback_asset", "label": "Fallback asset filename", "default": "cleo-static-416ed2bd75f4.png" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Cleo copper bottle" },
+    { "type": "select", "id": "desktop_order", "label": "Desktop image position", "options": [{ "value": "image-right", "label": "Right" }, { "value": "image-left", "label": "Left" }], "default": "image-right" },
+    { "type": "select", "id": "mobile_order", "label": "Mobile image position", "options": [{ "value": "image-bottom", "label": "Bottom" }, { "value": "image-top", "label": "Top" }], "default": "image-bottom" },
+    { "type": "select", "id": "image_shape", "label": "Image shape", "options": [{ "value": "circle", "label": "Circle" }, { "value": "rounded", "label": "Rounded" }, { "value": "square", "label": "Square" }], "default": "circle" },
+    { "type": "select", "id": "image_fit", "label": "Image fit", "options": [{ "value": "contain", "label": "Contain" }, { "value": "cover", "label": "Cover" }], "default": "contain" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#895737" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#ffffff" },
+    { "type": "range", "id": "container_width", "label": "Content width", "min": 900, "max": 1600, "step": 20, "unit": "px", "default": 1400 },
+    { "type": "range", "id": "image_size", "label": "Desktop image size", "min": 300, "max": 700, "step": 10, "unit": "px", "default": 500 },
+    { "type": "range", "id": "heading_size", "label": "Desktop heading size", "min": 28, "max": 80, "step": 2, "unit": "px", "default": 60 },
+    { "type": "range", "id": "mobile_heading_size", "label": "Mobile heading size", "min": 22, "max": 48, "step": 1, "unit": "px", "default": 30 },
+    { "type": "range", "id": "body_size", "label": "Desktop body size", "min": 16, "max": 36, "step": 1, "unit": "px", "default": 27 },
+    { "type": "range", "id": "mobile_body_size", "label": "Mobile body size", "min": 13, "max": 24, "step": 1, "unit": "px", "default": 17 },
+    { "type": "range", "id": "disclaimer_size", "label": "Disclaimer size", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 18 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Check point",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Storing water in a pure copper vessel for 6-8 hours naturally alkalizes the water." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo copper story",
+      "blocks": [
+        { "type": "point", "settings": { "text": "Storing water in a pure copper vessel for 6-8 hours naturally alkalizes the water." } },
+        { "type": "point", "settings": { "text": "Alkaline Water is traditionally believed to help balance your body's pH levels." } },
+        { "type": "point", "settings": { "text": "Alkaline water is valued for supporting systemic health and helping to restore overall vitality in a modern, high-stress environment." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

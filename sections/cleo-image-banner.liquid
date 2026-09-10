@@ -1,0 +1,403 @@
+<style data-cleo-component-css="imageBanner">
+  .cleo-image-banner {
+    position: relative;
+    overflow: hidden;
+    background: var(--cleo-section-bg, var(--cleo-cream));
+  }
+  
+  .cleo-image-banner img,
+  .cleo-image-banner video {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    min-height: var(--cleo-banner-height, auto);
+  }
+  
+  .cleo-image-banner__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: var(--cleo-banner-align-y, center);
+    justify-content: var(--cleo-banner-align-x, center);
+    padding: 40px;
+    text-align: center;
+    color: var(--cleo-banner-color, var(--cleo-white));
+  }
+  
+  .cleo-image-banner__content-inner {
+    max-width: var(--cleo-banner-content-width, 620px);
+  }
+</style>
+
+{%- assign banner_overlay_alpha = section.settings.overlay_opacity | divided_by: 100.0 -%}
+
+<section
+  id="CleoBanner-{{ section.id }}"
+  class="cleo-image-banner cleo-image-banner--{{ section.settings.layout_mode }}"
+  style="
+    --banner-bg: {{ section.settings.background_color }};
+    --banner-color: {{ section.settings.text_color }};
+    --banner-overlay: {{ section.settings.overlay_color | color_modify: 'alpha', banner_overlay_alpha }};
+    --banner-desktop-ratio: {{ section.settings.fallback_width }} / {{ section.settings.fallback_height }};
+    --banner-mobile-ratio: {{ section.settings.mobile_fallback_width }} / {{ section.settings.mobile_fallback_height }};
+    --banner-height: {{ section.settings.desktop_height }}px;
+    --banner-mobile-height: {{ section.settings.mobile_height }}px;
+    --banner-min-height: {{ section.settings.minimum_height }}px;
+    --banner-align-x: {{ section.settings.horizontal_alignment }};
+    --banner-align-y: {{ section.settings.vertical_alignment }};
+    --banner-mobile-align-x: {{ section.settings.mobile_horizontal_alignment }};
+    --banner-mobile-align-y: {{ section.settings.mobile_vertical_alignment }};
+    --banner-text-align: {{ section.settings.text_alignment }};
+    --banner-mobile-text-align: {{ section.settings.mobile_text_alignment }};
+    --banner-content-width: {{ section.settings.content_width }}px;
+    --banner-heading-width: {{ section.settings.heading_max_width | default: 900 }}px;
+    --banner-mobile-heading-width: {{ section.settings.mobile_heading_max_width | default: 600 }}px;
+    --banner-heading-size: {{ section.settings.heading_size }}px;
+    --banner-mobile-heading-size: {{ section.settings.mobile_heading_size }}px;
+    --banner-heading-letter-spacing: {{ section.settings.heading_letter_spacing | default: 0 }}px;
+    --banner-highlight-bg: {{ section.settings.highlight_background }};
+    --banner-highlight-color: {{ section.settings.highlight_text_color }};
+    --banner-text-size: {{ section.settings.text_size }}px;
+    --banner-mobile-text-size: {{ section.settings.mobile_text_size }}px;
+    --banner-image-position: {{ section.settings.image_position }};
+    --banner-mobile-image-position: {{ section.settings.mobile_image_position }};
+    --banner-image-fit: {{ section.settings.image_fit }};
+    --banner-button-bg: {{ section.settings.button_background }};
+    --banner-button-color: {{ section.settings.button_text_color }};
+  "
+>
+  {%- if section.settings.desktop_video != blank or section.settings.mobile_video != blank -%}
+    <div class="cleo-image-banner__media">
+      {%- if section.settings.desktop_video != blank -%}
+        {{
+          section.settings.desktop_video
+          | video_tag:
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true,
+            class: 'cleo-image-banner__video cleo-image-banner__video--desktop'
+        }}
+      {%- endif -%}
+
+      {%- if section.settings.mobile_video != blank -%}
+        {%- if section.settings.desktop_video == blank -%}
+          {%- assign mobile_video_class = 'cleo-image-banner__video cleo-image-banner__video--desktop' -%}
+        {%- else -%}
+          {%- assign mobile_video_class = 'cleo-image-banner__video cleo-image-banner__video--mobile' -%}
+        {%- endif -%}
+        {{
+          section.settings.mobile_video
+          | video_tag:
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true,
+            class: mobile_video_class
+        }}
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <picture>
+      {%- if section.settings.mobile_image != blank -%}
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ section.settings.mobile_image | image_url: width: 1200 }}"
+          width="{{ section.settings.mobile_image.width }}"
+          height="{{ section.settings.mobile_image.height }}"
+        >
+      {%- elsif section.settings.mobile_fallback_asset != blank -%}
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ section.settings.mobile_fallback_asset | asset_url }}"
+          width="{{ section.settings.mobile_fallback_width }}"
+          height="{{ section.settings.mobile_fallback_height }}"
+        >
+      {%- endif -%}
+
+      {%- if section.settings.desktop_image != blank -%}
+        {{
+          section.settings.desktop_image
+          | image_url: width: 2400
+          | image_tag:
+            loading: 'lazy',
+            sizes: '100vw',
+            widths: '750, 1000, 1400, 1800, 2200, 2400',
+            alt: section.settings.image_alt
+        }}
+      {%- elsif section.settings.fallback_asset != blank -%}
+        <img
+          src="{{ section.settings.fallback_asset | asset_url }}"
+          alt="{{ section.settings.image_alt | escape }}"
+          width="{{ section.settings.fallback_width }}"
+          height="{{ section.settings.fallback_height }}"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </picture>
+  {%- endif -%}
+
+  {%- if section.settings.heading != blank or section.settings.text != blank or section.settings.button_label != blank -%}
+    <div class="cleo-image-banner__content">
+      <div class="cleo-image-banner__content-inner">
+        {%- if section.settings.heading != blank -%}
+          <h2>
+            {%- assign highlight_text = section.settings.highlight_text | strip -%}
+            {%- if highlight_text != blank and section.settings.heading contains highlight_text -%}
+              {%- assign heading_parts = section.settings.heading | split: highlight_text -%}
+              {%- for heading_part in heading_parts -%}
+                {{- heading_part | escape -}}
+                {%- unless forloop.last -%}<span>{{ highlight_text | escape }}</span>{%- endunless -%}
+              {%- endfor -%}
+            {%- else -%}
+              {{ section.settings.heading }}
+            {%- endif -%}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="cleo-image-banner__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a class="cleo-image-banner__button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<style>
+  #CleoBanner-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: var(--banner-bg);
+  }
+
+  #CleoBanner-{{ section.id }}::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: var(--banner-overlay);
+  }
+
+  #CleoBanner-{{ section.id }}.cleo-image-banner--adaptive {
+    aspect-ratio: var(--banner-desktop-ratio);
+  }
+
+  #CleoBanner-{{ section.id }}.cleo-image-banner--fixed {
+    height: var(--banner-height);
+  }
+
+  #CleoBanner-{{ section.id }}.cleo-image-banner--viewport {
+    height: calc(100svh - 151px);
+    min-height: var(--banner-min-height);
+  }
+
+  #CleoBanner-{{ section.id }} picture,
+  #CleoBanner-{{ section.id }} .cleo-image-banner__media {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  #CleoBanner-{{ section.id }} picture img,
+  #CleoBanner-{{ section.id }} .cleo-image-banner__media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: var(--banner-image-fit);
+    object-position: var(--banner-image-position);
+  }
+
+  #CleoBanner-{{ section.id }} .cleo-image-banner__video--mobile {
+    display: none;
+  }
+
+  #CleoBanner-{{ section.id }} .cleo-image-banner__content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: var(--banner-align-y);
+    justify-content: var(--banner-align-x);
+    padding: clamp(28px, 5vw, 76px);
+    color: var(--banner-color);
+    text-align: var(--banner-text-align);
+  }
+
+  #CleoBanner-{{ section.id }} .cleo-image-banner__content-inner {
+    width: min(100%, var(--banner-content-width));
+  }
+
+  #CleoBanner-{{ section.id }} h2 {
+    width: min(100%, var(--banner-heading-width));
+    margin: 0 auto;
+    color: inherit;
+    font-size: var(--banner-heading-size);
+    font-weight: 600;
+    letter-spacing: var(--banner-heading-letter-spacing);
+    line-height: 1.18;
+    text-transform: none;
+  }
+
+  #CleoBanner-{{ section.id }} h2 span {
+    display: inline-block;
+    border-radius: 2px;
+    background: var(--banner-highlight-bg);
+    color: var(--banner-highlight-color);
+    padding: 2px 8px;
+  }
+
+  #CleoBanner-{{ section.id }} .cleo-image-banner__text {
+    margin-top: 14px;
+    color: inherit;
+    font-size: var(--banner-text-size);
+    line-height: 1.5;
+  }
+
+  #CleoBanner-{{ section.id }} .cleo-image-banner__text p {
+    margin: 0;
+  }
+
+  #CleoBanner-{{ section.id }} .cleo-image-banner__button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    border: 1px solid var(--banner-button-bg);
+    border-radius: 10px;
+    background: var(--banner-button-bg);
+    color: var(--banner-button-color);
+    padding: 8px 20px;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  #CleoBanner-{{ section.id }} .cleo-image-banner__button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  }
+
+  @media screen and (max-width: 749px) {
+    #CleoBanner-{{ section.id }}.cleo-image-banner--adaptive {
+      aspect-ratio: var(--banner-mobile-ratio);
+    }
+
+    #CleoBanner-{{ section.id }}.cleo-image-banner--fixed {
+      height: var(--banner-mobile-height);
+    }
+
+    #CleoBanner-{{ section.id }}.cleo-image-banner--viewport {
+      height: calc(100svh - 107px);
+      min-height: 560px;
+    }
+
+    #CleoBanner-{{ section.id }} picture img,
+    #CleoBanner-{{ section.id }} .cleo-image-banner__media video {
+      object-position: var(--banner-mobile-image-position);
+    }
+
+    #CleoBanner-{{ section.id }} .cleo-image-banner__video--desktop {
+      display: none;
+    }
+
+    #CleoBanner-{{ section.id }} .cleo-image-banner__video--mobile {
+      display: block;
+    }
+
+    #CleoBanner-{{ section.id }} .cleo-image-banner__video--desktop:only-child {
+      display: block;
+    }
+
+    #CleoBanner-{{ section.id }} .cleo-image-banner__content {
+      align-items: var(--banner-mobile-align-y);
+      justify-content: var(--banner-mobile-align-x);
+      padding: 34px 20px;
+      text-align: var(--banner-mobile-text-align);
+    }
+
+    #CleoBanner-{{ section.id }} h2 {
+      width: min(100%, var(--banner-mobile-heading-width));
+      font-size: var(--banner-mobile-heading-size);
+    }
+
+    #CleoBanner-{{ section.id }} .cleo-image-banner__text {
+      font-size: var(--banner-mobile-text-size);
+    }
+
+    #CleoBanner-{{ section.id }} .cleo-image-banner__button {
+      min-height: 38px;
+      margin-top: 18px;
+      padding: 7px 18px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cleo image banner",
+  "settings": [
+    { "type": "video", "id": "desktop_video", "label": "Desktop video" },
+    { "type": "video", "id": "mobile_video", "label": "Mobile video" },
+    { "type": "image_picker", "id": "desktop_image", "label": "Desktop image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "text", "id": "fallback_asset", "label": "Desktop fallback asset", "default": "cleo-banner-desktop.png" },
+    { "type": "text", "id": "mobile_fallback_asset", "label": "Mobile fallback asset", "default": "cleo-banner-mobile.png" },
+    { "type": "number", "id": "fallback_width", "label": "Desktop fallback width", "default": 1918 },
+    { "type": "number", "id": "fallback_height", "label": "Desktop fallback height", "default": 776 },
+    { "type": "number", "id": "mobile_fallback_width", "label": "Mobile fallback width", "default": 393 },
+    { "type": "number", "id": "mobile_fallback_height", "label": "Mobile fallback height", "default": 693 },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
+    { "type": "select", "id": "layout_mode", "label": "Height mode", "options": [{ "value": "adaptive", "label": "Adapt to image" }, { "value": "fixed", "label": "Fixed height" }, { "value": "viewport", "label": "Viewport height" }], "default": "adaptive" },
+    { "type": "range", "id": "desktop_height", "label": "Desktop fixed height", "min": 300, "max": 900, "step": 10, "unit": "px", "default": 580 },
+    { "type": "range", "id": "mobile_height", "label": "Mobile fixed height", "min": 320, "max": 900, "step": 10, "unit": "px", "default": 620 },
+    { "type": "range", "id": "minimum_height", "label": "Viewport minimum height", "min": 400, "max": 800, "step": 10, "unit": "px", "default": 620 },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "highlight_text", "label": "Highlighted heading text" },
+    { "type": "color", "id": "highlight_background", "label": "Highlight background", "default": "#a07a57" },
+    { "type": "color", "id": "highlight_text_color", "label": "Highlight text", "default": "#ffffff" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f3e9dc" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#ffffff" },
+    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#000000" },
+    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 80, "step": 2, "unit": "%", "default": 20 },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#ffffff" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#4e222d" },
+    { "type": "range", "id": "content_width", "label": "Content width", "min": 260, "max": 900, "step": 20, "unit": "px", "default": 540 },
+    { "type": "range", "id": "heading_max_width", "label": "Desktop heading width", "min": 240, "max": 900, "step": 20, "unit": "px", "default": 900 },
+    { "type": "range", "id": "mobile_heading_max_width", "label": "Mobile heading width", "min": 180, "max": 600, "step": 10, "unit": "px", "default": 600 },
+    { "type": "range", "id": "heading_size", "label": "Desktop heading size", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "mobile_heading_size", "label": "Mobile heading size", "min": 20, "max": 48, "step": 1, "unit": "px", "default": 28 },
+    { "type": "range", "id": "heading_letter_spacing", "label": "Heading letter spacing", "min": 0, "max": 4, "step": 0.5, "unit": "px", "default": 0 },
+    { "type": "range", "id": "text_size", "label": "Desktop text size", "min": 14, "max": 32, "step": 1, "unit": "px", "default": 20 },
+    { "type": "range", "id": "mobile_text_size", "label": "Mobile text size", "min": 11, "max": 22, "step": 1, "unit": "px", "default": 14 },
+    { "type": "select", "id": "horizontal_alignment", "label": "Desktop horizontal position", "options": [{ "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" }], "default": "flex-end" },
+    { "type": "select", "id": "vertical_alignment", "label": "Desktop vertical position", "options": [{ "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Middle" }, { "value": "flex-end", "label": "Bottom" }], "default": "center" },
+    { "type": "select", "id": "mobile_horizontal_alignment", "label": "Mobile horizontal position", "options": [{ "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" }], "default": "center" },
+    { "type": "select", "id": "mobile_vertical_alignment", "label": "Mobile vertical position", "options": [{ "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Middle" }, { "value": "flex-end", "label": "Bottom" }], "default": "flex-start" },
+    { "type": "select", "id": "text_alignment", "label": "Desktop text alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "right" },
+    { "type": "select", "id": "mobile_text_alignment", "label": "Mobile text alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "center" },
+    { "type": "select", "id": "image_fit", "label": "Image fit", "options": [{ "value": "cover", "label": "Cover" }, { "value": "contain", "label": "Contain" }], "default": "cover" },
+    { "type": "select", "id": "image_position", "label": "Desktop image position", "options": [{ "value": "center", "label": "Center" }, { "value": "left center", "label": "Left" }, { "value": "right center", "label": "Right" }, { "value": "center top", "label": "Top" }, { "value": "center bottom", "label": "Bottom" }], "default": "center" },
+    { "type": "select", "id": "mobile_image_position", "label": "Mobile image position", "options": [{ "value": "center", "label": "Center" }, { "value": "left center", "label": "Left" }, { "value": "right center", "label": "Right" }, { "value": "center top", "label": "Top" }, { "value": "center bottom", "label": "Bottom" }], "default": "center" }
+  ],
+  "presets": [{ "name": "Cleo image banner" }]
+}
+{% endschema %}

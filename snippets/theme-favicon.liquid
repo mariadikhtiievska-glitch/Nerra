@@ -1,0 +1,57 @@
+{% doc %}
+Renders favicon links at the start of the document head.
+
+@param {string} [favicon_set] - Stable identifier for the active favicon source.
+{% enddoc %}
+
+{%- comment -%}
+  This snippet must be the first content inside <head>. The captured static head
+  contains body-only markup, so links rendered after it are ignored by Chrome.
+{%- endcomment -%}
+{%- liquid
+  assign theme_favicon_svg = 'neera-living-favicon.svg' | asset_url | split: '?' | first | prepend: 'https:'
+  assign theme_favicon_png_48 = 'neera-living-favicon-48x48.png' | asset_url | split: '?' | first | prepend: 'https:'
+  assign theme_favicon_png_96 = 'neera-living-favicon-96x96.png' | asset_url | split: '?' | first | prepend: 'https:'
+  assign theme_favicon_apple = 'neera-living-apple-touch-icon.png' | asset_url | split: '?' | first | prepend: 'https:'
+-%}
+
+{%- if settings.favicon != blank -%}
+  {%- liquid
+    assign admin_favicon_source = settings.favicon | image_url | prepend: 'https:'
+    assign admin_favicon_is_svg = false
+    assign use_admin_favicon = true
+
+    if admin_favicon_source contains '.svg'
+      assign admin_favicon_is_svg = true
+    endif
+
+    if admin_favicon_is_svg and settings.favicon.aspect_ratio != 1
+      assign use_admin_favicon = false
+    endif
+
+    assign admin_favicon_48 = settings.favicon | image_url: width: 48, height: 48 | prepend: 'https:'
+    assign admin_favicon_96 = settings.favicon | image_url: width: 96, height: 96 | prepend: 'https:'
+    assign admin_favicon_180 = settings.favicon | image_url: width: 180, height: 180 | prepend: 'https:'
+  -%}
+  {%- if use_admin_favicon -%}
+    <link rel="icon" sizes="96x96" href="{{ admin_favicon_96 }}" data-favicon-set="{{ favicon_set | default: 'theme-settings' }}">
+    <link rel="icon" sizes="48x48" href="{{ admin_favicon_48 }}">
+    <link rel="shortcut icon" href="{{ admin_favicon_48 }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ admin_favicon_180 }}">
+    <meta name="msapplication-TileImage" content="{{ admin_favicon_180 }}">
+  {%- else -%}
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ theme_favicon_png_96 }}" data-favicon-set="{{ favicon_set | default: 'theme-settings-fallback' }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ theme_favicon_png_48 }}">
+    <link rel="shortcut icon" type="image/png" href="{{ theme_favicon_png_48 }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ theme_favicon_apple }}">
+    <link rel="icon" type="image/svg+xml" sizes="any" href="{{ admin_favicon_source }}">
+    <meta name="msapplication-TileImage" content="{{ theme_favicon_apple }}">
+  {%- endif -%}
+{%- else -%}
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ theme_favicon_png_96 }}" data-favicon-set="{{ favicon_set | default: 'neera-living' }}">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{ theme_favicon_png_48 }}">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="{{ theme_favicon_svg }}">
+  <link rel="shortcut icon" type="image/png" href="{{ theme_favicon_png_48 }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ theme_favicon_apple }}">
+  <meta name="msapplication-TileImage" content="{{ theme_favicon_apple }}">
+{%- endif -%}

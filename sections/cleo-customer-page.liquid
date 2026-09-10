@@ -1,0 +1,189 @@
+<style data-cleo-component-css="customer">
+  .cleo-customer__recover,
+  .cleo-customer__address-form {
+    width: min(100%, 720px);
+    margin: 18px auto 0;
+  }
+  
+  .cleo-customer__recover > summary,
+  .cleo-customer__address-form > summary {
+    color: #895737;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  
+  .cleo-customer__recover[open] > summary,
+  .cleo-customer__address-form[open] > summary {
+    margin-bottom: 16px;
+  }
+</style>
+
+<section class="cleo-customer">
+  {%- case section.settings.mode -%}
+    {%- when 'login' -%}
+      <h1 class="cleo-page-title">Login</h1>
+      {%- form 'customer_login', class: 'cleo-form-grid' -%}
+        {{ form.errors | default_errors }}
+        <input type="email" name="customer[email]" placeholder="Email" autocomplete="email" required>
+        <input type="password" name="customer[password]" placeholder="Password" autocomplete="current-password" required>
+        <button class="cleo-button" type="submit">Sign in</button>
+        <a href="{{ routes.account_register_url }}">Create account</a>
+      {%- endform -%}
+      <details class="cleo-customer__recover">
+        <summary>Forgot your password?</summary>
+        {%- form 'recover_customer_password', class: 'cleo-form-grid' -%}
+          {{ form.errors | default_errors }}
+          <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+          <button class="cleo-button" type="submit">Send reset link</button>
+        {%- endform -%}
+      </details>
+
+    {%- when 'register' -%}
+      <h1 class="cleo-page-title">Create account</h1>
+      {%- form 'create_customer', class: 'cleo-form-grid' -%}
+        {{ form.errors | default_errors }}
+        <input type="text" name="customer[first_name]" placeholder="First name" autocomplete="given-name">
+        <input type="text" name="customer[last_name]" placeholder="Last name" autocomplete="family-name">
+        <input type="email" name="customer[email]" placeholder="Email" autocomplete="email" required>
+        <input type="password" name="customer[password]" placeholder="Password" autocomplete="new-password" required>
+        <button class="cleo-button" type="submit">Create account</button>
+      {%- endform -%}
+
+    {%- when 'account' -%}
+      <h1 class="cleo-page-title">Account</h1>
+      <div class="cleo-rich-text">
+        <p>{{ customer.name }}</p>
+        <p>{{ customer.email }}</p>
+        <a class="cleo-button" href="{{ routes.account_addresses_url }}">View addresses</a>
+        <a href="{{ routes.account_logout_url }}">Log out</a>
+      </div>
+      <div class="cleo-page-shell">
+        <h2>Orders</h2>
+        {%- paginate customer.orders by 20 -%}
+          {%- for order in customer.orders -%}
+            <p><a href="{{ order.customer_url }}">{{ order.name }}</a> - {{ order.created_at | date: "%B %d, %Y" }} - {{ order.total_price | money }}</p>
+          {%- else -%}
+            <p>You haven't placed any orders yet.</p>
+          {%- endfor -%}
+        {%- endpaginate -%}
+      </div>
+
+    {%- when 'addresses' -%}
+      <h1 class="cleo-page-title">Addresses</h1>
+      <div class="cleo-form-grid">
+        <details class="cleo-customer__address-form">
+          <summary class="cleo-button">Add a new address</summary>
+          {%- form 'customer_address', customer.new_address, class: 'cleo-form-grid' -%}
+            <input type="text" name="address[first_name]" value="{{ form.first_name }}" placeholder="First name" autocomplete="given-name">
+            <input type="text" name="address[last_name]" value="{{ form.last_name }}" placeholder="Last name" autocomplete="family-name">
+            <input type="text" name="address[company]" value="{{ form.company }}" placeholder="Company" autocomplete="organization">
+            <input type="text" name="address[address1]" value="{{ form.address1 }}" placeholder="Address" autocomplete="address-line1" required>
+            <input type="text" name="address[address2]" value="{{ form.address2 }}" placeholder="Apartment, suite, etc." autocomplete="address-line2">
+            <input type="text" name="address[city]" value="{{ form.city }}" placeholder="City" autocomplete="address-level2" required>
+            <input type="text" name="address[province]" value="{{ form.province }}" placeholder="State / province" autocomplete="address-level1">
+            <input type="text" name="address[country]" value="{{ form.country }}" placeholder="Country" autocomplete="country-name" required>
+            <input type="text" name="address[zip]" value="{{ form.zip }}" placeholder="Postal / ZIP code" autocomplete="postal-code" required>
+            <input type="tel" name="address[phone]" value="{{ form.phone }}" placeholder="Phone" autocomplete="tel">
+            <label><input type="checkbox" name="address[default]" value="1"> Set as default address</label>
+            <button class="cleo-button" type="submit">Add address</button>
+          {%- endform -%}
+        </details>
+
+        {%- for address in customer.addresses -%}
+          <div class="cleo-cart__summary">
+            {{ address | format_address }}
+            {%- if address == customer.default_address -%}<p><strong>Default address</strong></p>{%- endif -%}
+            <details class="cleo-customer__address-form">
+              <summary>Edit</summary>
+              {%- form 'customer_address', address, class: 'cleo-form-grid' -%}
+                <input type="text" name="address[first_name]" value="{{ form.first_name }}" placeholder="First name" autocomplete="given-name">
+                <input type="text" name="address[last_name]" value="{{ form.last_name }}" placeholder="Last name" autocomplete="family-name">
+                <input type="text" name="address[company]" value="{{ form.company }}" placeholder="Company" autocomplete="organization">
+                <input type="text" name="address[address1]" value="{{ form.address1 }}" placeholder="Address" autocomplete="address-line1" required>
+                <input type="text" name="address[address2]" value="{{ form.address2 }}" placeholder="Apartment, suite, etc." autocomplete="address-line2">
+                <input type="text" name="address[city]" value="{{ form.city }}" placeholder="City" autocomplete="address-level2" required>
+                <input type="text" name="address[province]" value="{{ form.province }}" placeholder="State / province" autocomplete="address-level1">
+                <input type="text" name="address[country]" value="{{ form.country }}" placeholder="Country" autocomplete="country-name" required>
+                <input type="text" name="address[zip]" value="{{ form.zip }}" placeholder="Postal / ZIP code" autocomplete="postal-code" required>
+                <input type="tel" name="address[phone]" value="{{ form.phone }}" placeholder="Phone" autocomplete="tel">
+                <label><input type="checkbox" name="address[default]" value="1" {% if address == customer.default_address %}checked{% endif %}> Set as default address</label>
+                <button class="cleo-button" type="submit">Save address</button>
+              {%- endform -%}
+            </details>
+            <form method="post" action="{{ address.url }}">
+              <input type="hidden" name="_method" value="delete">
+              <button class="cleo-button cleo-button--small" type="submit">Delete</button>
+            </form>
+          </div>
+        {%- else -%}
+          <p>No addresses saved.</p>
+        {%- endfor -%}
+      </div>
+
+    {%- when 'order' -%}
+      <h1 class="cleo-page-title">{{ order.name }}</h1>
+      <div class="cleo-form-grid">
+        {%- for line_item in order.line_items -%}
+          <p>{{ line_item.title }} x {{ line_item.quantity }} - {{ line_item.final_line_price | money }}</p>
+        {%- endfor -%}
+        <strong>Total: {{ order.total_price | money }}</strong>
+      </div>
+
+    {%- when 'reset_password' -%}
+      <h1 class="cleo-page-title">Reset password</h1>
+      {%- form 'reset_customer_password', class: 'cleo-form-grid' -%}
+        {{ form.errors | default_errors }}
+        <input type="password" name="customer[password]" placeholder="New password" autocomplete="new-password" required>
+        <input type="password" name="customer[password_confirmation]" placeholder="Confirm password" autocomplete="new-password" required>
+        <button class="cleo-button" type="submit">Reset password</button>
+      {%- endform -%}
+
+    {%- when 'activate_account' -%}
+      <h1 class="cleo-page-title">Activate account</h1>
+      {%- form 'activate_customer_password', class: 'cleo-form-grid' -%}
+        {{ form.errors | default_errors }}
+        <input type="password" name="customer[password]" placeholder="Password" autocomplete="new-password" required>
+        <input type="password" name="customer[password_confirmation]" placeholder="Confirm password" autocomplete="new-password" required>
+        <button class="cleo-button" type="submit">Activate account</button>
+      {%- endform -%}
+  {%- endcase -%}
+</section>
+
+{% schema %}
+{
+  "name": "Cleo customer page",
+  "enabled_on": {
+    "templates": [
+      "customers/login",
+      "customers/register",
+      "customers/account",
+      "customers/addresses",
+      "customers/order",
+      "customers/reset_password",
+      "customers/activate_account"
+    ]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "mode",
+      "label": "Customer page mode",
+      "options": [
+        { "value": "login", "label": "Login" },
+        { "value": "register", "label": "Register" },
+        { "value": "account", "label": "Account" },
+        { "value": "addresses", "label": "Addresses" },
+        { "value": "order", "label": "Order" },
+        { "value": "reset_password", "label": "Reset password" },
+        { "value": "activate_account", "label": "Activate account" }
+      ],
+      "default": "login"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo customer page"
+    }
+  ]
+}
+{% endschema %}

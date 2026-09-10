@@ -1,0 +1,548 @@
+{% comment %}
+  File name: how-to-clean.liquid
+  Purpose: Responsive "How to Clean" informational page section
+{% endcomment %}
+
+{% liquid
+  assign section_width = section.settings.content_width | default: 760
+%}
+
+<section
+  id="HowToClean-{{ section.id }}"
+  class="how-to-clean-section"
+  style="
+    --htc-background: {{ section.settings.background_color }};
+    --htc-heading-color: {{ section.settings.heading_color }};
+    --htc-text-color: {{ section.settings.text_color }};
+    --htc-accent-color: {{ section.settings.accent_color }};
+    --htc-content-width: {{ section_width }}px;
+    --htc-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --htc-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --htc-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --htc-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="how-to-clean-section__container">
+    <div class="how-to-clean-section__stack">
+      {% if section.settings.heading != blank %}
+        <header class="how-to-clean-section__header">
+          <h1 class="how-to-clean-section__title">
+            {{ section.settings.heading | escape }}
+          </h1>
+        </header>
+      {% endif %}
+
+      <div class="how-to-clean-section__content rte">
+        {% if section.settings.intro_heading != blank %}
+          <p class="how-to-clean-section__intro-heading">
+            {{ section.settings.intro_heading | escape }}
+          </p>
+        {% endif %}
+
+        <p>
+          Discover the optimum way to enjoy the benefits of your copper water
+          bottle! While it's perfectly fine to drink the water immediately after
+          pouring, for enhanced effects, we recommend filling the bottle the night
+          before. Kickstart your day by sipping a cup in the morning to cleanse
+          and detoxify your digestive system, relishing the remaining water
+          throughout the day.
+        </p>
+
+        <p>
+          Upon receiving your copper water bottle, follow the cleaning
+          instructions outlined in the instructional video below to ensure
+          optimal usage.
+        </p>
+
+        <p>
+          To harness the full benefits of copper, let the water rest in the
+          bottle for at least 6–8 hours. Our recommendation: indulge in 1 liter
+          of copper-infused water daily. Elevate your hydration routine with our
+          copper water bottle for a refreshing and health-conscious lifestyle.
+        </p>
+
+        {% if section.settings.show_video and section.settings.video_url != blank %}
+          <div class="how-to-clean-section__video-wrapper">
+            {% if section.settings.video_url.type == 'youtube' %}
+              <iframe
+                src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}"
+                title="{{ section.settings.video_title | escape }}"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            {% elsif section.settings.video_url.type == 'vimeo' %}
+              <iframe
+                src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}"
+                title="{{ section.settings.video_title | escape }}"
+                loading="lazy"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <h2>Cleaning Your Copper Water Bottle: A Simple Guide</h2>
+
+        <p>
+          Keep your copper water bottle pristine with these easy steps! Squeeze
+          half a lemon, or use ¼ cup of naturally fermented vinegar, and add a
+          tablespoon of salt into the bottle. Then add 1–2 cups of warm water.
+          Give it a good shake and pour out the liquid.
+        </p>
+
+        <p>
+          For potential copper build-up at the lid, use the squeezed lemon to
+          wipe inside the neck or threads of the bottle and follow up with a
+          cloth.
+        </p>
+
+        <p>
+          Remember, avoid the dishwasher and steer clear of soaps or detergents,
+          as they may damage the copper.
+        </p>
+
+        <p>
+          Should you notice the lid sticking slightly, it could be due to copper
+          deposits. A quick fix is to periodically rub a touch of natural oil,
+          such as olive or coconut oil, around the lid and ridges on the top of
+          the bottle.
+        </p>
+
+        <p>
+          Ensure longevity and cleanliness for your copper water bottle with
+          these simple care tips!
+        </p>
+
+        <h2>Optimal Care for Your Copper Vessel: Unveil Its Timeless Shine</h2>
+
+        <p>
+          Experience the enduring allure of your copper vessel with proper care.
+          Initially, a protective layer of food-grade lacquer graces its exterior,
+          safeguarding the beautiful copper color. While this lacquer naturally
+          wears off over time, enhancing the vessel's longevity is simple—avoid
+          rubbing lemon on its exterior surface while the lacquer is still
+          present.
+        </p>
+
+        <p>
+          As your vessel gracefully ages and begins to develop a natural patina,
+          revel in the inherent charm of oxidizing copper. For those who prefer
+          the original shine, follow this straightforward long-term care routine:
+        </p>
+
+        <ol class="how-to-clean-section__steps">
+          <li>Sprinkle a pinch of salt on a slice of lemon.</li>
+
+          <li>
+            Allow the salt to dissolve, creating a potent cleaning mixture.
+          </li>
+
+          <li>
+            Gently rub this mixture on the vessel's surface to naturally remove
+            the patina and restore the copper's brilliance.
+          </li>
+
+          <li>
+            Complete the process with a thorough rinse and diligent drying.
+          </li>
+        </ol>
+
+        <p>
+          Discover the timeless beauty of your copper vessel by embracing its
+          evolution and maintaining its shine with our simple care tips. Unveil
+          the radiance within for a lasting and stunning companion in your daily
+          rituals.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  #HowToClean-{{ section.id }} {
+    width: 100%;
+    background: var(--htc-background);
+    color: var(--htc-text-color);
+    padding-top: var(--htc-padding-top-desktop);
+    padding-bottom: var(--htc-padding-bottom-desktop);
+  }
+
+  #HowToClean-{{ section.id }} *,
+  #HowToClean-{{ section.id }} *::before,
+  #HowToClean-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__container {
+    width: 100%;
+    max-width: calc(var(--htc-content-width) + 40px);
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__stack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 34px;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__header {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__title {
+    max-width: 100%;
+    margin: 0;
+    color: var(--htc-heading-color);
+    font-family: var(--heading-font-family, inherit);
+    font-size: clamp(34px, 4vw, 48px);
+    font-style: var(--heading-font-style, normal);
+    font-weight: var(--heading-font-weight, 600);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    overflow-wrap: anywhere;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__content {
+    width: 100%;
+    max-width: var(--htc-content-width);
+    margin: 0 auto;
+    color: var(--htc-text-color);
+    font-family: var(--text-font-family, inherit);
+    font-size: {{ section.settings.body_font_size }}px;
+    font-style: var(--text-font-style, normal);
+    font-weight: var(--text-font-weight, 400);
+    line-height: {{ section.settings.body_line_height | divided_by: 10.0 }};
+    letter-spacing: 0;
+    text-align: left;
+    overflow-wrap: break-word;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__content > * {
+    margin-top: 0;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__content > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__content p {
+    margin-bottom: 18px;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__intro-heading {
+    margin-bottom: 20px;
+    color: var(--htc-text-color);
+    font-size: 1em;
+    font-weight: 400;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__content h2 {
+    margin-top: 38px;
+    margin-bottom: 18px;
+    color: var(--htc-heading-color);
+    font-family: var(--heading-font-family, inherit);
+    font-size: clamp(20px, 2.5vw, 25px);
+    font-style: var(--heading-font-style, normal);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__content h2:first-child {
+    margin-top: 0;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__steps {
+    margin: 6px 0 24px;
+    padding-left: 26px;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__steps li {
+    margin: 0 0 10px;
+    padding-left: 4px;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__steps li:last-child {
+    margin-bottom: 0;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__steps li::marker {
+    color: var(--htc-accent-color);
+    font-weight: 700;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__video-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 30px 0 36px;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    background: #000000;
+    border-radius: {{ section.settings.video_border_radius }}px;
+  }
+
+  #HowToClean-{{ section.id }} .how-to-clean-section__video-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #HowToClean-{{ section.id }} {
+      padding-top: var(--htc-padding-top-mobile);
+      padding-bottom: var(--htc-padding-bottom-mobile);
+    }
+
+    #HowToClean-{{ section.id }} .how-to-clean-section__container {
+      max-width: 100%;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    #HowToClean-{{ section.id }} .how-to-clean-section__stack {
+      gap: 26px;
+    }
+
+    #HowToClean-{{ section.id }} .how-to-clean-section__title {
+      font-size: clamp(30px, 10vw, 38px);
+      line-height: 1.15;
+    }
+
+    #HowToClean-{{ section.id }} .how-to-clean-section__content {
+      font-size: {{ section.settings.body_font_size_mobile }}px;
+      line-height: {{ section.settings.mobile_line_height | divided_by: 10.0 }};
+    }
+
+    #HowToClean-{{ section.id }} .how-to-clean-section__content p {
+      margin-bottom: 16px;
+    }
+
+    #HowToClean-{{ section.id }} .how-to-clean-section__content h2 {
+      margin-top: 32px;
+      margin-bottom: 16px;
+      font-size: 21px;
+      line-height: 1.4;
+    }
+
+    #HowToClean-{{ section.id }} .how-to-clean-section__steps {
+      padding-left: 23px;
+    }
+
+    #HowToClean-{{ section.id }} .how-to-clean-section__video-wrapper {
+      margin: 24px 0 30px;
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    #HowToClean-{{ section.id }} .how-to-clean-section__container {
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "How to Clean",
+  "tag": "section",
+  "class": "shopify-section--how-to-clean",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Page heading",
+      "default": "How to Clean"
+    },
+    {
+      "type": "text",
+      "id": "intro_heading",
+      "label": "Intro heading",
+      "default": "Directions for use"
+    },
+    {
+      "type": "header",
+      "content": "Instructional video"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video",
+      "label": "Show instructional video",
+      "default": false
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "YouTube or Vimeo URL",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "text",
+      "id": "video_title",
+      "label": "Video accessibility title",
+      "default": "How to clean a copper water bottle"
+    },
+    {
+      "type": "range",
+      "id": "video_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Video corner radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Layout and typography"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 560,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 760
+    },
+    {
+      "type": "range",
+      "id": "body_font_size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "body_font_size_mobile",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "body_line_height",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "label": "Desktop line height",
+      "default": 17,
+      "info": "17 represents a line height of 1.7."
+    },
+    {
+      "type": "range",
+      "id": "mobile_line_height",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "label": "Mobile line height",
+      "default": 17,
+      "info": "17 represents a line height of 1.7."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Number accent",
+      "default": "#9b5a32"
+    },
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to Clean"
+    }
+  ]
+}
+{% endschema %}

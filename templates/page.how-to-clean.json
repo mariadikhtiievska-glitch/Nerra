@@ -1,0 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cleo-rich-text",
+      "disabled": true,
+      "settings": {
+        "heading": "How to Clean",
+        "text": "<p>Clean your Cleo copper bottle gently using lemon, salt, or mild soap with a soft bottle brush. Rinse well, dry fully, and avoid harsh chemicals or aggressive scrubbing.</p>",
+        "button_label": "Shop cleaning accessories",
+        "button_link": "/collections/all",
+        "text_alignment": "center",
+        "background_color": "#ffffff",
+        "content_width": 860,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "cleo_rich_text_c3JHxB": {
+      "type": "cleo-rich-text",
+      "disabled": true,
+      "name": "Cleo rich text",
+      "settings": {
+        "heading": "{{ page.title }}",
+        "text": "{{ page.content }}",
+        "button_label": "",
+        "button_link": "",
+        "text_alignment": "left",
+        "background_color": "#ffffff",
+        "content_width": 900,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "faq": {
+      "type": "cleo-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "How often should I clean it?",
+            "answer": "<p>Rinse daily and deep clean periodically depending on use.</p>",
+            "open": false
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use a dishwasher?",
+            "answer": "<p>Hand washing is recommended for copper drinkware.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Cleaning Questions",
+        "background_color": "#f8eadc",
+        "heading_color": "#895737",
+        "card_color": "#ffffff",
+        "content_width": 900,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "how_to_clean_WctrJz": {
+      "type": "how-to-clean",
+      "name": "How to Clean",
+      "settings": {
+        "heading": "How to Clean",
+        "intro_heading": "Directions for use",
+        "show_video": false,
+        "video_title": "How to clean a copper water bottle",
+        "video_border_radius": 0,
+        "content_width": 760,
+        "body_font_size": 16,
+        "body_font_size_mobile": 16,
+        "body_line_height": 17,
+        "mobile_line_height": 17,
+        "background_color": "#ffffff",
+        "heading_color": "#1a1a1a",
+        "text_color": "#333333",
+        "accent_color": "#9b5a32",
+        "padding_top_desktop": 64,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 56
+      }
+    }
+  },
+  "order": [
+    "main",
+    "cleo_rich_text_c3JHxB",
+    "faq",
+    "how_to_clean_WctrJz"
+  ]
+}

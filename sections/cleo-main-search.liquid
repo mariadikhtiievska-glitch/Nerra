@@ -1,0 +1,118 @@
+<style data-cleo-component-css="search">
+  .cleo-search__form {
+    display: flex;
+    gap: 10px;
+    max-width: 720px;
+    margin: 0 auto 34px;
+    align-items: baseline;
+  }
+  
+  @media (max-width: 749px) {
+  
+  .cleo-search__form {
+      flex-direction: column;
+      border-radius: 0;
+      background: transparent;
+    }
+  }
+  
+  .shopify-section--main-search .product-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+  
+  .shopify-section--main-search .cleo-search__form .cleo-button {
+    flex: 0 0 auto;
+    min-width: 112px;
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+  
+  @media screen and (max-width: 999px) and (min-width: 700px) {
+  
+  .shopify-section--main-search .product-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media screen and (max-width: 699px) {
+  
+  .shopify-section--main-search .product-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 16px;
+    }
+  
+  .shopify-section--main-search .cleo-search__form .cleo-button {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="cleo-search shopify-section--main-collection shopify-section--main-search">
+  <h1 class="cleo-page-title">Search</h1>
+  <form class="cleo-search__form" action="{{ routes.search_url }}" method="get" role="search">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products, articles, and pages">
+    <button class="cleo-button" type="submit">Search</button>
+  </form>
+
+  {%- if search.performed -%}
+    <div class="cleo-container" style="--cleo-columns: 4; --cleo-tablet-columns: 2; --cleo-mobile-columns: 2;">
+      {%- paginate search.results by section.settings.results_per_page -%}
+        <div class="product-list">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {%- render 'cleo-dynamic-product-card',
+                product: item,
+                section_id: section.id,
+                show_quick_add: true,
+                image_sizes: '(max-width: 699px) calc(50vw - 22px), (max-width: 999px) calc(50vw - 44px), calc((100vw - 144px) / 4)'
+              -%}
+            {%- else -%}
+              <a class="cleo-blog-card" href="{{ item.url }}">
+                {%- if item.image -%}
+                  {{ item.image | image_url: width: 700 | image_tag: loading: 'lazy', alt: item.title }}
+                {%- endif -%}
+                <h2>{{ item.title }}</h2>
+                <p>{{ item.content | strip_html | truncate: 120 }}</p>
+              </a>
+            {%- endif -%}
+          {%- else -%}
+            <p>No results found.</p>
+          {%- endfor -%}
+        </div>
+        {%- if paginate.pages > 1 -%}
+          <nav class="cleo-pagination">
+            {%- if paginate.previous -%}<a class="cleo-button cleo-button--small" href="{{ paginate.previous.url }}">Previous</a>{%- endif -%}
+            <span>{{ paginate.current_page }} / {{ paginate.pages }}</span>
+            {%- if paginate.next -%}<a class="cleo-button cleo-button--small" href="{{ paginate.next.url }}">Next</a>{%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Cleo main search",
+  "enabled_on": {
+    "templates": ["search"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "results_per_page",
+      "label": "Results per page",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo main search"
+    }
+  ]
+}
+{% endschema %}

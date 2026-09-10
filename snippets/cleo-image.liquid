@@ -1,0 +1,29 @@
+{%- liquid
+  assign image_width = width | default: 1800
+  assign image_height = height | default: image_width
+  assign image_sizes = sizes | default: '100vw'
+  assign image_loading = loading | default: 'lazy'
+  assign image_alt = alt | default: ''
+  assign image_class = class | default: ''
+-%}
+
+{%- if image != blank -%}
+  {{
+    image
+    | image_url: width: image_width
+    | image_tag:
+      loading: image_loading,
+      sizes: image_sizes,
+      alt: image_alt,
+      class: image_class
+  }}
+{%- elsif asset != blank -%}
+  <img
+    src="{{ asset | asset_url }}"
+    alt="{{ image_alt | escape }}"
+    loading="{{ image_loading }}"
+    width="{{ image_width }}"
+    height="{{ image_height }}"
+    class="{{ image_class }}"
+  >
+{%- endif -%}

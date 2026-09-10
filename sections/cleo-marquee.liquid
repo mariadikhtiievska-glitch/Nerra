@@ -1,0 +1,217 @@
+<style data-cleo-component-css="marquee">
+  .cleo-marquee {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+    margin-top: -60px;
+    background: transparent;
+  }
+  
+  .cleo-marquee svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .cleo-marquee .cleo-wave-banner__desktop {
+    display: block;
+  }
+  
+  .cleo-marquee .cleo-wave-banner__mobile {
+    display: none;
+  }
+  
+  @media (max-width: 749px) {
+  
+  .cleo-marquee {
+      margin-top: calc(-1 * var(--cleo-mobile-marquee-overlap, 40px));
+    }
+  
+  .cleo-marquee .cleo-wave-banner__desktop {
+      display: none;
+    }
+  
+  .cleo-marquee .cleo-wave-banner__mobile {
+      display: block;
+    }
+  }
+</style>
+
+<section
+  class="cleo-marquee section-{{ section.id }} cleo-wave-banner"
+  style="
+    --cleo-marquee-bg: {{ section.settings.background_color }};
+    --cleo-marquee-color: {{ section.settings.text_color }};
+    --cleo-marquee-secondary-bg: {{ section.settings.secondary_background_color }};
+    --cleo-marquee-speed: {{ section.settings.speed }}s;
+    --cleo-marquee-overlap: {{ section.settings.overlap }}px;
+    --cleo-mobile-marquee-overlap: {{ section.settings.mobile_overlap }}px;
+  "
+>
+  <div class="sr-only">
+    {%- for block in section.blocks -%}
+      <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+    {%- endfor -%}
+  </div>
+
+  <svg class="cleo-wave-banner__desktop" viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <path id="CleoWaveDesktop-{{ section.id }}" d="M0,48 Q225,18 450,48 Q675,78 900,48 Q1125,18 1350,48 Q1575,78 1800,48" fill="none"></path>
+      <clipPath id="CleoWaveDesktopClip-{{ section.id }}">
+        <rect x="0" y="0" width="900" height="120"></rect>
+      </clipPath>
+    </defs>
+    <path d="M0,18 Q225,-12 450,18 Q675,48 900,18 L900,78 Q675,108 450,78 Q225,48 0,78 Z" fill="var(--cleo-marquee-bg)"></path>
+    <path d="M0,78 Q225,48 450,78 Q675,108 900,78 L900,120 L0,120 Z" fill="var(--cleo-marquee-secondary-bg)"></path>
+    <text
+      font-family="Inter, Arial, sans-serif"
+      font-size="{{ section.settings.font_size }}"
+      fill="var(--cleo-marquee-color)"
+      dominant-baseline="middle"
+      text-rendering="geometricPrecision"
+      clip-path="url(#CleoWaveDesktopClip-{{ section.id }})"
+    >
+      <textPath href="#CleoWaveDesktop-{{ section.id }}" startOffset="0%">
+        {%- for i in (1..10) -%}
+          {%- for block in section.blocks -%}{{ block.settings.text | escape }}&#160;&#160;&#160;&#160;&#160;&#160;&#160;{%- endfor -%}
+        {%- endfor -%}
+        <animate attributeName="startOffset" from="0%" to="-100%" dur="{{ section.settings.speed }}s" repeatCount="indefinite"></animate>
+      </textPath>
+    </text>
+  </svg>
+
+  <svg class="cleo-wave-banner__mobile" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <path id="CleoWaveMobile-{{ section.id }}" d="M0,38 Q200,68 400,38 Q600,68 800,38" fill="none"></path>
+      <clipPath id="CleoWaveMobileClip-{{ section.id }}">
+        <rect x="0" y="0" width="400" height="100"></rect>
+      </clipPath>
+    </defs>
+    <path d="M0,8 Q200,38 400,8 L400,68 Q200,98 0,68 Z" fill="var(--cleo-marquee-bg)"></path>
+    <path d="M0,68 Q200,98 400,68 L400,100 L0,100 Z" fill="var(--cleo-marquee-secondary-bg)"></path>
+    <text
+      font-family="Inter, Arial, sans-serif"
+      font-size="{{ section.settings.mobile_font_size }}"
+      fill="var(--cleo-marquee-color)"
+      dominant-baseline="middle"
+      text-rendering="geometricPrecision"
+      clip-path="url(#CleoWaveMobileClip-{{ section.id }})"
+    >
+      <textPath href="#CleoWaveMobile-{{ section.id }}" startOffset="0%">
+        {%- for i in (1..8) -%}
+          {%- for block in section.blocks -%}{{ block.settings.text | escape }}&#160;&#160;&#160;&#160;&#160;{%- endfor -%}
+        {%- endfor -%}
+        <animate attributeName="startOffset" from="0%" to="-100%" dur="{{ section.settings.speed }}s" repeatCount="indefinite"></animate>
+      </textPath>
+    </text>
+  </svg>
+</section>
+<style>
+  @media (max-width: 1140px) {
+    .section-{{ section.id }}.cleo-marquee {
+    margin-top: -43px;
+}
+}
+</style>
+{% schema %}
+{
+  "name": "Cleo marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#895737"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_background_color",
+      "label": "Lower background",
+      "default": "#f3e9dc"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Animation speed",
+      "min": 12,
+      "max": 80,
+      "step": 2,
+      "unit": "s",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Desktop text size",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Mobile text size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "overlap",
+      "label": "Desktop overlap",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "mobile_overlap",
+      "label": "Mobile overlap",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Marquee item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Anti-Microbial"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo marquee",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Anti-Microbial" } },
+        { "type": "item", "settings": { "text": "Alkaline-Water" } },
+        { "type": "item", "settings": { "text": "Better-Hydration" } },
+        { "type": "item", "settings": { "text": "Leak-Proof" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

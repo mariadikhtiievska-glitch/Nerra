@@ -1,0 +1,55 @@
+<section class="cleo-page-shell">
+  <h1 class="cleo-page-title">
+    {%- if page.title != blank -%}
+      {{ page.title }}
+    {%- else -%}
+      {{ section.settings.fallback_title }}
+    {%- endif -%}
+  </h1>
+  <div class="cleo-rich-text" style="--cleo-rich-align: {{ section.settings.text_alignment }};">
+    {%- if page.content != blank -%}
+      {{ page.content }}
+    {%- else -%}
+      {{ section.settings.fallback_content }}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cleo main page",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "fallback_title",
+      "label": "Fallback title",
+      "default": "Page"
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_content",
+      "label": "Fallback content",
+      "default": "<p>Add page content in Shopify admin.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo main page"
+    }
+  ]
+}
+{% endschema %}

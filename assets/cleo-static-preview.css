@@ -1,0 +1,252 @@
+/* Static preview interaction helpers. Source styling comes from copied Cleo storefront CSS. */
+html { scroll-behavior: smooth; }
+body { min-height: 100vh; }
+.preview-page-note { display: none !important; }
+details:hover > summary + *,
+details:focus-within > summary + * { visibility: visible; opacity: 1; }
+a[href="/cart"] { cursor: pointer; }
+@media (hover: hover) {
+  .header__menu-item:hover,
+  .button:hover,
+  button:hover { filter: brightness(0.98); }
+}
+
+/* Shopify's theme JavaScript normally flips these reveal states on. */
+[reveal-on-scroll="true"],
+.product-card[reveal-on-scroll="true"],
+.slideshow__slide[reveal-on-scroll="true"],
+.content-over-media[reveal-on-scroll="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+slideshow-carousel:not(:defined),
+featured-collections-carousel:not(:defined) {
+  display: block;
+}
+
+product-list:not(:defined) {
+  display: grid !important;
+}
+
+product-card:not(:defined) {
+  display: grid !important;
+}
+
+.collection .product-list {
+  width: 100% !important;
+  min-width: 0 !important;
+  grid-template-columns: repeat(var(--product-list-calculated-items-per-row), minmax(0, 1fr)) !important;
+}
+
+.slideshow__slide.is-selected {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  z-index: 1;
+}
+
+.product-list .product-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.product-card__image--primary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.product-card__image--secondary {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+@media (hover: hover) {
+  .product-card__media:hover .product-card__image--primary {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .product-card__media:hover .product-card__image--secondary {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+.static-discount-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background: rgb(0 0 0 / 0.55);
+  pointer-events: none;
+}
+
+.static-discount-popup picture,
+.static-discount-popup img {
+  display: block;
+}
+
+.static-discount-popup img {
+  width: min(960px, calc(100vw - 32px));
+  height: auto;
+}
+
+/* Dedicated static state pages for drawers, search, and navigation overlays. */
+body.state-page .static-discount-popup {
+  display: none !important;
+}
+
+body.state-page {
+  overflow: hidden;
+}
+
+.state-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+  background: rgb(0 0 0 / 0.46);
+}
+
+.state-panel {
+  position: fixed;
+  z-index: 99991;
+  background: rgb(var(--background, 255 255 255));
+  color: rgb(var(--text-color, 28 28 28));
+  box-shadow: 0 20px 64px rgb(0 0 0 / 0.22);
+}
+
+.state-close-button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -10px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+}
+
+.state-drawer-panel {
+  top: 0;
+  right: 0;
+  width: min(420px, 100vw);
+  height: 100vh;
+  padding: 28px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.state-drawer-header,
+.state-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+}
+
+.state-drawer-body {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  padding-bottom: 64px;
+}
+
+.state-search-panel {
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 18px 0;
+}
+
+.state-search-panel .header-search {
+  display: block !important;
+  position: static !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.state-search-panel .header-search__form {
+  margin: 0;
+}
+
+.state-search-panel .header-search__form-control {
+  border-bottom: 1px solid rgb(var(--border-color, 224 224 224));
+}
+
+.state-sidebar-panel {
+  top: 0;
+  left: 0;
+  width: min(360px, 92vw);
+  height: 100vh;
+  padding: 20px 24px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.state-sidebar-panel .header-sidebar__main-panel,
+.state-sidebar-panel .header-sidebar__sub-panel {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.state-sidebar-panel .header-sidebar__sub-panel[hidden] {
+  display: flex !important;
+}
+
+.state-sidebar-panel .header-sidebar__scroller {
+  overflow-y: auto;
+}
+
+.state-sidebar-panel .header-sidebar__footer {
+  margin-top: auto;
+}
+
+body.state-about-dropdown .header__menu-disclosure[open] > .header__dropdown-menu,
+body.state-about-dropdown .header__menu-disclosure > .header__dropdown-menu {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+}
+
+body.state-about-dropdown .static-discount-popup {
+  display: none !important;
+}
+
+@media screen and (max-width: 699px) {
+  .static-discount-popup img {
+    width: 100vw;
+    max-width: 390px;
+  }
+
+  .header__secondary-nav {
+    display: none !important;
+  }
+
+  .state-search-panel {
+    padding-block: 12px;
+  }
+
+  .state-drawer-panel {
+    width: 100vw;
+    padding: 22px;
+  }
+
+  .collection .product-list {
+    width: calc(100vw - 32px) !important;
+    max-width: 100% !important;
+    column-gap: 16px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}

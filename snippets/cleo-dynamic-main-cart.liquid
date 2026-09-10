@@ -1,0 +1,1138 @@
+{%- liquid
+  assign free_shipping_threshold = section.settings.free_shipping_threshold | times: 100
+  assign free_shipping_remaining = free_shipping_threshold | minus: cart.total_price
+  assign free_shipping_progress = 100
+
+  if free_shipping_threshold > 0 and cart.total_price < free_shipping_threshold
+    assign free_shipping_progress = cart.total_price | times: 100.0 | divided_by: free_shipping_threshold
+  endif
+-%}
+
+<section
+  id="CleoMainCart-{{ section.id }}"
+  class="shopify-section shopify-section--main-cart cleo-main-cart"
+>
+  <div class="section-spacing section-spacing--tight color-scheme color-scheme--scheme-1 color-scheme--bg-609ecfcfee2f667ac6c12366fc6ece56">
+    <div class="container container--xs cleo-main-cart__container">
+      <h1 class="cleo-main-cart__heading">
+        {{ section.settings.heading | default: 'Cart' }}
+      </h1>
+
+      {%- if cart == empty -%}
+        {%- assign bestseller_collection = collections['bestseller'] -%}
+
+        <div class="cleo-empty-cart">
+          <p class="cleo-empty-cart__text">Your cart is empty</p>
+
+          <a
+            href="{{ bestseller_collection.url | default: routes.collections_url }}"
+            class="cleo-empty-cart__button"
+          >
+            Continue shopping
+          </a>
+        </div>
+      {%- else -%}
+        <form
+          action="{{ routes.cart_url }}"
+          method="post"
+          class="cleo-cart-form"
+          data-cleo-cart-form
+        >
+          <div class="cleo-cart-header" aria-hidden="true">
+            <span>Product</span>
+            <span class="cleo-cart-header__quantity">Quantity</span>
+            <span class="cleo-cart-header__total">Total</span>
+          </div>
+
+          <div class="cleo-cart-items">
+            {%- for item in cart.items -%}
+              {%- liquid
+                assign quantity_increment = item.variant.quantity_rule.increment | default: 1
+                assign quantity_minimum = item.variant.quantity_rule.min | default: 1
+                assign quantity_maximum = item.variant.quantity_rule.max
+
+                assign previous_quantity = item.quantity | minus: quantity_increment
+                assign next_quantity = item.quantity | plus: quantity_increment
+
+                if previous_quantity < quantity_minimum
+                  assign previous_quantity = 0
+                endif
+
+                assign display_compare_price = item.original_price
+
+                if item.variant.compare_at_price != blank and item.variant.compare_at_price > display_compare_price
+                  assign display_compare_price = item.variant.compare_at_price
+                endif
+
+                assign show_compare_price = false
+
+                if display_compare_price > item.final_price
+                  assign show_compare_price = true
+                endif
+              -%}
+
+              <div
+                class="cleo-cart-item"
+                data-cleo-cart-line
+                data-line-key="{{ item.key | escape }}"
+              >
+                <div class="cleo-cart-item__product">
+                  <a
+                    href="{{ item.url }}"
+                    class="cleo-cart-item__image-wrapper"
+                    aria-label="{{ item.product.title | escape }}"
+                  >
+                    {%- if item.image != blank -%}
+                      {{
+                        item.image
+                        | image_url: width: 480
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '120, 180, 240, 360, 480',
+                          sizes: '(max-width: 749px) 92px, 120px',
+                          class: 'cleo-cart-item__image',
+                          alt: item.product.title
+                      }}
+                    {%- else -%}
+                      {{ 'product-1' | placeholder_svg_tag: 'cleo-cart-item__placeholder' }}
+                    {%- endif -%}
+                  </a>
+
+                  <div class="cleo-cart-item__information">
+                    <a href="{{ item.url }}" class="cleo-cart-item__title">
+                      {{ item.product.title }}
+                    </a>
+
+                    {%- unless item.product.has_only_default_variant -%}
+                      <div class="cleo-cart-item__variant">
+                        {{ item.variant.title }}
+                      </div>
+                    {%- endunless -%}
+
+                    {%- if item.selling_plan_allocation != blank -%}
+                      <div class="cleo-cart-item__selling-plan">
+                        {{ item.selling_plan_allocation.selling_plan.name }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- for property in item.properties -%}
+                      {%- assign property_first_character = property.first | slice: 0 -%}
+
+                      {%- if property.last != blank and property_first_character != '_' -%}
+                        <div class="cleo-cart-item__property">
+                          <span>{{ property.first }}:</span>
+
+                          {%- if property.last contains '/uploads/' -%}
+                            <a href="{{ property.last }}" target="_blank">
+                              {{ property.last | split: '/' | last }}
+                            </a>
+                          {%- else -%}
+                            <span>{{ property.last }}</span>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                    <div class="cleo-cart-item__price">
+                      <span
+                        class="cleo-cart-item__current-price{% if show_compare_price %} cleo-cart-item__current-price--sale{% endif %}"
+                      >
+                        {{ item.final_price | money }}
+                      </span>
+
+                      {%- if show_compare_price -%}
+                        <s class="cleo-cart-item__compare-price">
+                          {{ display_compare_price | money }}
+                        </s>
+                      {%- endif -%}
+                    </div>
+
+                    {%- if item.line_level_discount_allocations.size > 0 -%}
+                      <div class="cleo-cart-item__discount-list">
+                        {%- for allocation in item.line_level_discount_allocations -%}
+                          <div class="cleo-cart-item__discount">
+                            <svg
+                              width="13"
+                              height="13"
+                              viewBox="0 0 20 20"
+                              aria-hidden="true"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M17.6 9.1 10.9 2.4A2 2 0 0 0 9.5 1.8H3.8a2 2 0 0 0-2 2v5.7a2 2 0 0 0 .6 1.4l6.7 6.7a2 2 0 0 0 2.8 0l5.7-5.7a2 2 0 0 0 0-2.8ZM6.2 7.6a1.4 1.4 0 1 1 0-2.8 1.4 1.4 0 0 1 0 2.8Z"
+                              ></path>
+                            </svg>
+
+                            <span>
+                              {{ allocation.discount_application.title }}
+                              (-{{ allocation.amount | money }})
+                            </span>
+                          </div>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+
+                <div class="cleo-cart-item__quantity-area">
+                  <div class="cleo-quantity-selector">
+                    <a
+                      href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ previous_quantity }}"
+                      class="cleo-quantity-selector__button"
+                      aria-label="Decrease quantity for {{ item.product.title | escape }}"
+                      data-cleo-quantity-button
+                      data-line-key="{{ item.key | escape }}"
+                      data-quantity="{{ previous_quantity }}"
+                    >
+                      <span aria-hidden="true">−</span>
+                    </a>
+
+                    <input
+                      class="cleo-quantity-selector__input"
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      step="{{ quantity_increment }}"
+                      {% if quantity_maximum != blank %}
+                        max="{{ quantity_maximum }}"
+                      {% endif %}
+                      inputmode="numeric"
+                      autocomplete="off"
+                      aria-label="Quantity for {{ item.product.title | escape }}"
+                      data-cleo-quantity-input
+                      data-line-key="{{ item.key | escape }}"
+                      data-current-quantity="{{ item.quantity }}"
+                    >
+
+                    <a
+                      href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ next_quantity }}"
+                      class="cleo-quantity-selector__button{% if quantity_maximum != blank and next_quantity > quantity_maximum %} is-disabled{% endif %}"
+                      aria-label="Increase quantity for {{ item.product.title | escape }}"
+                      data-cleo-quantity-button
+                      data-line-key="{{ item.key | escape }}"
+                      data-quantity="{{ next_quantity }}"
+                      {% if quantity_maximum != blank and next_quantity > quantity_maximum %}
+                        aria-disabled="true"
+                        tabindex="-1"
+                      {% endif %}
+                    >
+                      <span aria-hidden="true">+</span>
+                    </a>
+                  </div>
+
+                  <a
+                    href="{{ item.url_to_remove }}"
+                    class="cleo-cart-item__remove"
+                    data-cleo-remove
+                    data-line-key="{{ item.key | escape }}"
+                  >
+                    Remove
+                  </a>
+                </div>
+
+                <div class="cleo-cart-item__line-total">
+                  <span class="cleo-cart-item__mobile-total-label">
+                    Total
+                  </span>
+
+                  <span>{{ item.final_line_price | money }}</span>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- if free_shipping_threshold > 0 -%}
+            <div class="cleo-cart-shipping" aria-live="polite">
+              {%- if free_shipping_remaining > 0 -%}
+                <p>
+                  Add <strong>{{ free_shipping_remaining | money }}</strong>
+                  more to unlock free shipping.
+                </p>
+              {%- else -%}
+                <p><strong>Free shipping unlocked.</strong></p>
+              {%- endif -%}
+
+              <div class="cleo-cart-shipping__progress" aria-hidden="true">
+                <span style="width: {{ free_shipping_progress | at_most: 100 }}%;"></span>
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="cleo-cart-footer">
+            <div class="cleo-cart-footer__note">
+              {%- if section.settings.show_cart_note -%}
+                <label
+                  for="CleoCartNote-{{ section.id }}"
+                  class="cleo-cart-footer__note-label"
+                >
+                  Add order note
+                </label>
+
+                <textarea
+                  id="CleoCartNote-{{ section.id }}"
+                  name="note"
+                  class="cleo-cart-footer__note-field"
+                  placeholder="How can we help you?"
+                  data-cleo-cart-note
+                >{{ cart.note }}</textarea>
+              {%- endif -%}
+            </div>
+
+            <div class="cleo-cart-footer__summary">
+              <div class="cleo-cart-footer__total">
+                <span>Total:</span>
+                <strong>{{ cart.total_price | money_with_currency }}</strong>
+              </div>
+
+              <p class="cleo-cart-footer__taxes">
+                Taxes and
+                {%- if shop.shipping_policy.url != blank -%}
+                  <a href="{{ shop.shipping_policy.url }}">shipping</a>
+                {%- else -%}
+                  <span class="cleo-cart-footer__shipping-text">shipping</span>
+                {%- endif -%}
+                calculated at checkout
+              </p>
+
+              {%- if section.settings.discount_message != blank -%}
+                <p class="cleo-cart-footer__message">
+                  {{ section.settings.discount_message }}
+                </p>
+              {%- endif -%}
+
+              <button
+                type="submit"
+                name="checkout"
+                class="cleo-cart-footer__checkout"
+              >
+                Checkout
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="cleo-cart-status"
+            role="status"
+            aria-live="polite"
+            data-cleo-cart-status
+          ></div>
+        </form>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  #CleoMainCart-{{ section.id }} {
+    --cleo-background: #f4f4f4;
+    --cleo-text: #111111;
+    --cleo-muted: #737373;
+    --cleo-border: #d2d2d2;
+    --cleo-sale: #641a2d;
+    --cleo-discount: #5b1929;
+    --cleo-button: #1d1d1d;
+
+    width: 100%;
+    color: var(--cleo-text);
+    background: var(--cleo-background);
+  }
+
+  #CleoMainCart-{{ section.id }} *,
+  #CleoMainCart-{{ section.id }} *::before,
+  #CleoMainCart-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #CleoMainCart-{{ section.id }} .section-spacing {
+    padding: 67px 20px 70px;
+    background: var(--cleo-background);
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-main-cart__container {
+    width: 100%;
+    max-width: 980px !important;
+    margin: 0 auto;
+    padding: 0 !important;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-main-cart__heading {
+    margin: 0 0 50px;
+    color: var(--cleo-text);
+    font-family: inherit;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-header,
+  #CleoMainCart-{{ section.id }} .cleo-cart-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px 88px;
+    column-gap: 18px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-header {
+    align-items: center;
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--cleo-border);
+    color: var(--cleo-muted);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-header__quantity {
+    text-align: center;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-header__total {
+    text-align: right;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item {
+    min-height: 153px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--cleo-border);
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__product {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: 120px minmax(0, 1fr);
+    align-items: center;
+    gap: 23px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__image-wrapper {
+    display: block;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    background: #ffffff;
+    text-decoration: none;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__image,
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__information {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__title {
+    display: block;
+    max-width: 100%;
+    margin: 0 0 7px;
+    overflow-wrap: anywhere;
+    color: var(--cleo-text);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 1.45;
+    text-decoration: none;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__title:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__variant,
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__selling-plan,
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__property {
+    margin: 0 0 5px;
+    color: var(--cleo-muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__property {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__property a {
+    color: inherit;
+    text-underline-offset: 2px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__current-price {
+    color: var(--cleo-text);
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__current-price--sale {
+    color: var(--cleo-sale);
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__compare-price {
+    color: var(--cleo-muted);
+    text-decoration-thickness: 1px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__discount-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 17px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__discount {
+    display: inline-flex;
+    min-height: 24px;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 9px;
+    color: #ffffff;
+    background: var(--cleo-discount);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__discount svg {
+    flex: 0 0 auto;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__quantity-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-quantity-selector {
+    display: grid;
+    width: 104px;
+    height: 37px;
+    grid-template-columns: 34px 36px 34px;
+    align-items: stretch;
+    border: 1px solid var(--cleo-border);
+    background: transparent;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-quantity-selector__button {
+    display: flex;
+    width: 34px;
+    height: 35px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    color: var(--cleo-text);
+    background: transparent;
+    font-family: inherit;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-quantity-selector__button:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-quantity-selector__button.is-disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-quantity-selector__input {
+    width: 36px;
+    height: 35px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    color: var(--cleo-text);
+    background: transparent;
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 35px;
+    text-align: center;
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-quantity-selector__input::-webkit-inner-spin-button,
+  #CleoMainCart-{{ section.id }} .cleo-quantity-selector__input::-webkit-outer-spin-button {
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__remove {
+    color: var(--cleo-text);
+    font-size: 12px;
+    line-height: 1.3;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__line-total {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--cleo-text);
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-item__mobile-total-label {
+    display: none;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-shipping {
+    padding: 20px 0 0;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-shipping p {
+    margin: 0 0 9px;
+    color: var(--cleo-muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-shipping__progress {
+    width: 100%;
+    height: 3px;
+    overflow: hidden;
+    background: var(--cleo-border);
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-shipping__progress span {
+    display: block;
+    height: 100%;
+    background: var(--cleo-discount);
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
+    gap: 65px;
+    padding-top: 27px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__note {
+    width: 100%;
+    max-width: 384px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__note-label {
+    display: block;
+    margin: 0 0 9px;
+    color: var(--cleo-text);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__note-field {
+    display: block;
+    width: 100%;
+    min-height: 92px;
+    padding: 14px 13px;
+    resize: vertical;
+    border: 1px solid var(--cleo-border);
+    border-radius: 0;
+    outline: none;
+    color: var(--cleo-text);
+    background: transparent;
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__note-field::placeholder {
+    color: var(--cleo-muted);
+    opacity: 1;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__note-field:focus {
+    border-color: var(--cleo-text);
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__total {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 7px;
+    margin-bottom: 11px;
+    color: var(--cleo-text);
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__total strong {
+    font-weight: 400;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__taxes {
+    margin: 0 0 26px;
+    color: var(--cleo-muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__taxes a,
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__shipping-text {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__message {
+    margin: -15px 0 20px;
+    color: var(--cleo-muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__checkout {
+    display: inline-flex;
+    min-width: 126px;
+    min-height: 46px;
+    padding: 11px 23px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--cleo-button);
+    border-radius: 0;
+    color: #ffffff;
+    background: var(--cleo-button);
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-footer__checkout:hover {
+    opacity: 0.88;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-empty-cart {
+    display: flex;
+    min-height: 260px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-empty-cart__text {
+    margin: 0 0 22px;
+    color: var(--cleo-muted);
+    font-size: 16px;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-empty-cart__button {
+    display: inline-flex;
+    min-height: 46px;
+    padding: 11px 24px;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: var(--cleo-button);
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  #CleoMainCart-{{ section.id }}.is-loading {
+    cursor: wait;
+  }
+
+  #CleoMainCart-{{ section.id }}.is-loading .cleo-cart-form {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  #CleoMainCart-{{ section.id }} .cleo-cart-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 989px) {
+    #CleoMainCart-{{ section.id }} .cleo-cart-header,
+    #CleoMainCart-{{ section.id }} .cleo-cart-item {
+      grid-template-columns: minmax(0, 1fr) 130px 85px;
+      column-gap: 14px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__product {
+      gap: 16px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-footer {
+      gap: 35px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #CleoMainCart-{{ section.id }} .section-spacing {
+      padding: 42px 16px 50px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-main-cart__heading {
+      margin-bottom: 31px;
+      font-size: 27px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-header {
+      display: none;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-items {
+      border-top: 1px solid var(--cleo-border);
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      grid-template-areas:
+        "image information"
+        "image quantity"
+        "total total";
+      gap: 13px 16px;
+      min-height: 0;
+      padding: 18px 0;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__product {
+      display: contents;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__image-wrapper {
+      grid-area: image;
+      width: 92px;
+      height: 92px;
+      align-self: start;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__information {
+      grid-area: information;
+      align-self: start;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__title {
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__discount-list {
+      margin-top: 10px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__discount {
+      font-size: 10.5px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__quantity-area {
+      grid-area: quantity;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__line-total {
+      grid-area: total;
+      justify-content: space-between;
+      padding-top: 4px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-item__mobile-total-label {
+      display: inline;
+      color: var(--cleo-muted);
+      font-size: 12px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-footer {
+      grid-template-columns: 1fr;
+      gap: 29px;
+      padding-top: 25px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-footer__note {
+      max-width: none;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-footer__note-field {
+      min-height: 100px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-footer__summary {
+      align-items: stretch;
+      text-align: left;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-footer__total {
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-footer__taxes {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    #CleoMainCart-{{ section.id }} .cleo-cart-footer__checkout {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const cartSection = document.getElementById('CleoMainCart-{{ section.id }}');
+
+    if (!cartSection || cartSection.dataset.cleoInitialized === 'true') {
+      return;
+    }
+
+    cartSection.dataset.cleoInitialized = 'true';
+
+    const cartChangeUrl = {{ routes.cart_change_url | append: '.js' | json }};
+    const cartUpdateUrl = {{ routes.cart_update_url | append: '.js' | json }};
+    const statusElement = cartSection.querySelector('[data-cleo-cart-status]');
+
+    let requestRunning = false;
+    let noteTimer = null;
+
+    const setStatus = (message) => {
+      if (!statusElement) return;
+
+      statusElement.textContent = '';
+
+      window.setTimeout(() => {
+        statusElement.textContent = message;
+      }, 50);
+    };
+
+    const setLoading = (loading) => {
+      requestRunning = loading;
+      cartSection.classList.toggle('is-loading', loading);
+      cartSection.setAttribute('aria-busy', loading ? 'true' : 'false');
+    };
+
+    const getErrorMessage = (data) => {
+      if (!data) {
+        return 'Cart update nahi ho saka. Please dobara try karein.';
+      }
+
+      if (typeof data.errors === 'string') {
+        return data.errors;
+      }
+
+      return (
+        data.description ||
+        data.message ||
+        'Cart update nahi ho saka. Please dobara try karein.'
+      );
+    };
+
+    const updateCartLine = async (lineKey, quantity) => {
+      if (requestRunning || !lineKey) return;
+
+      const newQuantity = Math.max(0, Math.floor(Number(quantity)));
+
+      if (!Number.isFinite(newQuantity)) return;
+
+      setLoading(true);
+      setStatus('Updating cart');
+
+      try {
+        const response = await fetch(cartChangeUrl, {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            id: lineKey,
+            quantity: newQuantity
+          })
+        });
+
+        const responseData = await response.json().catch(() => null);
+
+        if (!response.ok) {
+          throw new Error(getErrorMessage(responseData));
+        }
+
+        setStatus('Cart updated');
+        window.location.reload();
+      } catch (error) {
+        setLoading(false);
+        setStatus(error.message);
+
+        window.alert(
+          error.message ||
+          'Cart update nahi ho saka. Please dobara try karein.'
+        );
+      }
+    };
+
+    const saveCartNote = async (note) => {
+      try {
+        const response = await fetch(cartUpdateUrl, {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            note: note
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Order note save nahi ho saka.');
+        }
+
+        setStatus('Order note saved');
+      } catch (error) {
+        setStatus(error.message);
+      }
+    };
+
+    cartSection.addEventListener('click', (event) => {
+      const quantityButton = event.target.closest(
+        '[data-cleo-quantity-button]'
+      );
+
+      if (quantityButton && cartSection.contains(quantityButton)) {
+        if (quantityButton.getAttribute('aria-disabled') === 'true') {
+          event.preventDefault();
+          return;
+        }
+
+        event.preventDefault();
+
+        updateCartLine(
+          quantityButton.dataset.lineKey,
+          quantityButton.dataset.quantity
+        );
+
+        return;
+      }
+
+      const removeButton = event.target.closest('[data-cleo-remove]');
+
+      if (removeButton && cartSection.contains(removeButton)) {
+        event.preventDefault();
+
+        updateCartLine(
+          removeButton.dataset.lineKey,
+          0
+        );
+      }
+    });
+
+    cartSection.addEventListener('change', (event) => {
+      const quantityInput = event.target.closest(
+        '[data-cleo-quantity-input]'
+      );
+
+      if (!quantityInput || !cartSection.contains(quantityInput)) {
+        return;
+      }
+
+      const enteredQuantity = Number(quantityInput.value);
+      const currentQuantity = Number(
+        quantityInput.dataset.currentQuantity || 0
+      );
+
+      if (!Number.isFinite(enteredQuantity) || enteredQuantity < 0) {
+        quantityInput.value = currentQuantity;
+        return;
+      }
+
+      const normalizedQuantity = Math.floor(enteredQuantity);
+
+      quantityInput.value = normalizedQuantity;
+
+      if (normalizedQuantity === currentQuantity) {
+        return;
+      }
+
+      updateCartLine(
+        quantityInput.dataset.lineKey,
+        normalizedQuantity
+      );
+    });
+
+    cartSection.addEventListener('keydown', (event) => {
+      const quantityInput = event.target.closest(
+        '[data-cleo-quantity-input]'
+      );
+
+      if (
+        quantityInput &&
+        cartSection.contains(quantityInput) &&
+        event.key === 'Enter'
+      ) {
+        event.preventDefault();
+        quantityInput.blur();
+      }
+    });
+
+    cartSection.addEventListener('input', (event) => {
+      const cartNote = event.target.closest('[data-cleo-cart-note]');
+
+      if (!cartNote || !cartSection.contains(cartNote)) {
+        return;
+      }
+
+      window.clearTimeout(noteTimer);
+
+      noteTimer = window.setTimeout(() => {
+        saveCartNote(cartNote.value);
+      }, 700);
+    });
+  })();
+</script>

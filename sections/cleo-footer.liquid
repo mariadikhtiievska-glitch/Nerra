@@ -1,0 +1,402 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    --footer-content-justify-items: space-between;
+  }
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-{{ section.id }} .footer__block-list {
+      min-height: 259px;
+    }
+
+    #shopify-section-{{ section.id }} .footer__block--image {
+      min-height: 201px;
+    }
+
+    #shopify-section-{{ section.id }} .footer__block--links:nth-child(2) {
+      width: 105px;
+    }
+
+    #shopify-section-{{ section.id }} .footer__block--links:nth-child(3) {
+      width: 202px;
+    }
+
+    #shopify-section-{{ section.id }} .footer__block--links:nth-child(4) {
+      width: 127px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .footer-custom-link.rte > p {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .footer-custom-link.rte br {
+    display: none;
+  }
+</style>
+
+<div
+  class="footer color-scheme"
+  style="
+    --background: 75 45 32;
+    --text-color: 255 247 238;
+    --border-color: 255 255 255 / 0.15;
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  "
+  {{ section.shopify_attributes }}
+>
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__block-list">
+        <div class="footer__block footer__block--image">
+          <div
+            class="footer-image-block"
+            style="
+              --footer-image-text-size-desktop: {{ section.settings.description_size }}px;
+              --footer-image-text-size-mobile: {{ section.settings.mobile_description_size }}px;
+            "
+          >
+            {%- if section.settings.logo != blank -%}
+              <img
+                src="{{ section.settings.logo | image_url: width: 400 }}"
+                alt="{{ shop.name | escape }}"
+                width="{{ section.settings.logo.width }}"
+                height="{{ section.settings.logo.height }}"
+                sizes="{{ section.settings.logo_width }}px"
+                style="--image-max-width: {{ section.settings.logo_width }}px"
+                class="constrained-image"
+                loading="lazy"
+              >
+            {%- else -%}
+              <img
+                src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}"
+                alt="{{ shop.name | escape }}"
+                srcset="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 200w, {{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 400w"
+                width="556"
+                height="141"
+                sizes="{{ section.settings.logo_width }}px"
+                style="--image-max-width: {{ section.settings.logo_width }}px"
+                class="constrained-image"
+                loading="lazy"
+              >
+            {%- endif -%}
+            <div class="footer-image-block__text">
+              {{ section.settings.description }}
+            </div>
+          </div>
+        </div>
+
+        {%- for block in section.blocks -%}
+          <div class="footer__block footer__block--links" {{ block.shopify_attributes }}>
+            <div class="v-stack gap-4 sm:gap-5">
+              <p class="h6 footer-custom-header">{{ block.settings.heading }}</p>
+              {%- assign footer_menu = block.settings.menu -%}
+              {%- if footer_menu != blank and footer_menu.links.size > 0 -%}
+                <ul class="v-stack gap-2.5 unstyled-list" role="list">
+                  {%- for link in footer_menu.links -%}
+                    <li class="footer-custom-link">
+                      <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- elsif block.settings.link_1_label != blank -%}
+                <ul class="v-stack gap-2.5 unstyled-list" role="list">
+                  {%- for index in (1..6) -%}
+                    {%- assign label_key = 'link_' | append: index | append: '_label' -%}
+                    {%- assign url_key = 'link_' | append: index | append: '_url' -%}
+                    {%- assign link_label = block.settings[label_key] -%}
+                    {%- assign link_url = block.settings[url_key] | default: '#' -%}
+                    {%- if link_label != blank -%}
+                      <li class="footer-custom-link">
+                        <a href="{{ link_url }}" class="link-faded">{{ link_label }}</a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              {%- else -%}
+                <div class="footer-custom-link rte">
+                  {{ block.settings.custom_links }}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="footer-social-aside">
+        {%- if section.settings.show_socials -%}
+          <ul class="social-media social-media--list unstyled-list" role="list">
+            {%- if section.settings.facebook_url != blank -%}
+              <li class="social-media__item branding-colors--facebook">
+                <a href="{{ section.settings.facebook_url }}" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Facebook">{% render 'cleo-social-icon', name: 'facebook' %}</a>
+              </li>
+            {%- endif -%}
+            {%- if section.settings.twitter_url != blank -%}
+              <li class="social-media__item branding-colors--twitter">
+                <a href="{{ section.settings.twitter_url }}" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Twitter">{% render 'cleo-social-icon', name: 'twitter' %}</a>
+              </li>
+            {%- endif -%}
+            {%- if section.settings.instagram_url != blank -%}
+              <li class="social-media__item branding-colors--instagram">
+                <a href="{{ section.settings.instagram_url }}" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Instagram">{% render 'cleo-social-icon', name: 'instagram' %}</a>
+              </li>
+            {%- endif -%}
+            {%- if section.settings.pinterest_url != blank -%}
+              <li class="social-media__item branding-colors--pinterest">
+                <a href="{{ section.settings.pinterest_url }}" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Pinterest">{% render 'cleo-social-icon', name: 'pinterest' %}</a>
+              </li>
+            {%- endif -%}
+            {%- if section.settings.youtube_url != blank -%}
+              <li class="social-media__item branding-colors--youtube">
+                <a href="{{ section.settings.youtube_url }}" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on YouTube">{% render 'cleo-social-icon', name: 'youtube' %}</a>
+              </li>
+            {%- endif -%}
+            {%- if section.settings.tiktok_url != blank -%}
+              <li class="social-media__item branding-colors--tiktok">
+                <a href="{{ section.settings.tiktok_url }}" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on TikTok">{% render 'cleo-social-icon', name: 'tiktok' %}</a>
+              </li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="footer__aside">
+          <p class="heading text-subdued text-xxs">
+            {%- assign current_year = 'now' | date: '%Y' -%}
+            {{ section.settings.copyright_text | replace: '[year]', current_year }}
+            {%- if section.settings.show_powered_by -%}
+              {{ powered_by_link }}
+            {%- endif -%}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cleo footer",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Ancient wellness wisdom for modern life. Handcrafted copper bottles designed for your daily ritual.</p>"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#4b2d20"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#fff7ee"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 120,
+      "max": 280,
+      "step": 5,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Desktop description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_size",
+      "label": "Mobile description size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright",
+      "default": "&copy; [year] - Cleo Home"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_powered_by",
+      "label": "Show Powered by Shopify",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_socials",
+      "label": "Show social links",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "Twitter/X URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Footer menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Footer Main"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        },
+        {
+          "type": "header",
+          "content": "Custom links"
+        },
+        {
+          "type": "text",
+          "id": "link_1_label",
+          "label": "Link 1 label"
+        },
+        {
+          "type": "url",
+          "id": "link_1_url",
+          "label": "Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_2_label",
+          "label": "Link 2 label"
+        },
+        {
+          "type": "url",
+          "id": "link_2_url",
+          "label": "Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_3_label",
+          "label": "Link 3 label"
+        },
+        {
+          "type": "url",
+          "id": "link_3_url",
+          "label": "Link 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_4_label",
+          "label": "Link 4 label"
+        },
+        {
+          "type": "url",
+          "id": "link_4_url",
+          "label": "Link 4 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_5_label",
+          "label": "Link 5 label"
+        },
+        {
+          "type": "url",
+          "id": "link_5_url",
+          "label": "Link 5 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_6_label",
+          "label": "Link 6 label"
+        },
+        {
+          "type": "url",
+          "id": "link_6_url",
+          "label": "Link 6 URL"
+        },
+        {
+          "type": "richtext",
+          "id": "custom_links",
+          "label": "Legacy fallback links",
+          "default": "<p><a href=\"/\">Home</a><br><a href=\"/collections/all\">Shop</a><br><a href=\"/pages/contact\">Contact</a><br><a href=\"/pages/our-story\">About</a><br><a href=\"/blogs/news\">Blogs</a></p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo footer",
+      "blocks": [
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Footer Main"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "App terms & policies"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Policies"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

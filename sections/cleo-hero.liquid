@@ -1,0 +1,262 @@
+{%- render 'cleo-hero-styles' -%}
+
+{%- liquid
+  assign cleo_hero_asset = section.settings.fallback_asset | default: 'cleo-static-5065d09665c2.jpg'
+  assign cleo_hero_mobile_asset = section.settings.mobile_fallback_asset | default: 'cleo-static-ba9f7637fa2a.jpg'
+  assign cleo_hero_alt = section.settings.heading | default: shop.name
+-%}
+
+<section
+  class="cleo-hero{% if section.settings.adaptive_height %} cleo-hero--adaptive{% endif %}{% unless section.settings.show_on_mobile %} cleo-hidden-mobile{% endunless %}{% unless section.settings.show_on_desktop %} cleo-hidden-desktop{% endunless %}"
+  style="
+    --cleo-hero-height: {{ section.settings.height }}px;
+    --cleo-mobile-hero-height: {{ section.settings.mobile_height }}px;
+    --cleo-hero-color: {{ section.settings.text_color }};
+    --cleo-hero-align-x: {{ section.settings.horizontal_alignment }};
+    --cleo-hero-align-y: {{ section.settings.vertical_alignment }};
+    --cleo-mobile-hero-align-y: {{ section.settings.mobile_vertical_alignment }};
+    --cleo-hero-text-align: {{ section.settings.text_alignment }};
+    --cleo-hero-content-width: {{ section.settings.content_width }}px;
+    --cleo-hero-heading-size: {{ section.settings.heading_size }}px;
+    --cleo-mobile-hero-heading-size: {{ section.settings.mobile_heading_size }}px;
+    --cleo-hero-text-size: {{ section.settings.text_size }}px;
+  "
+>
+  {%- if section.settings.image_link != blank -%}
+    <a class="cleo-hero__media" href="{{ section.settings.image_link }}" aria-label="{{ cleo_hero_alt | escape }}">
+  {%- endif -%}
+  <picture>
+    {%- if section.settings.mobile_image != blank -%}
+      <source
+        media="(max-width: 749px)"
+        srcset="{{ section.settings.mobile_image | image_url: width: 900 }}"
+      >
+    {%- elsif cleo_hero_mobile_asset != blank -%}
+      <source media="(max-width: 749px)" srcset="{{ cleo_hero_mobile_asset | asset_url }}">
+    {%- endif -%}
+    {%- render 'cleo-image',
+      image: section.settings.desktop_image,
+      asset: cleo_hero_asset,
+      width: 3360,
+      height: 1225,
+      sizes: '100vw',
+      alt: cleo_hero_alt,
+      loading: 'eager'
+    -%}
+  </picture>
+  {%- if section.settings.image_link != blank -%}
+    </a>
+  {%- endif -%}
+
+  {%- if section.settings.show_content -%}
+    <div class="cleo-hero__content">
+      <div class="cleo-hero__box">
+        {%- if section.settings.heading != blank -%}
+          <h1 class="cleo-hero__heading">{{ section.settings.heading }}</h1>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="cleo-hero__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a class="cleo-button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Cleo hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "fallback_asset",
+      "label": "Desktop fallback asset",
+      "default": "cleo-static-5065d09665c2.jpg"
+    },
+    {
+      "type": "text",
+      "id": "mobile_fallback_asset",
+      "label": "Mobile fallback asset",
+      "default": "cleo-static-ba9f7637fa2a.jpg"
+    },
+    {
+      "type": "url",
+      "id": "image_link",
+      "label": "Hero image link"
+    },
+    {
+      "type": "checkbox",
+      "id": "adaptive_height",
+      "label": "Use original responsive image ratio",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_content",
+      "label": "Show overlay content",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        { "value": "flex-start", "label": "Top" },
+        { "value": "center", "label": "Middle" },
+        { "value": "flex-end", "label": "Bottom" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_vertical_alignment",
+      "label": "Mobile vertical alignment",
+      "options": [
+        { "value": "flex-start", "label": "Top" },
+        { "value": "center", "label": "Middle" },
+        { "value": "flex-end", "label": "Bottom" }
+      ],
+      "default": "flex-end"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Fixed desktop height",
+      "min": 320,
+      "max": 820,
+      "step": 10,
+      "unit": "px",
+      "default": 520
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Fixed mobile height",
+      "min": 280,
+      "max": 720,
+      "step": 10,
+      "unit": "px",
+      "default": 430
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content width",
+      "min": 260,
+      "max": 860,
+      "step": 20,
+      "unit": "px",
+      "default": 520
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Desktop heading size",
+      "min": 28,
+      "max": 90,
+      "step": 1,
+      "unit": "px",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile heading size",
+      "min": 24,
+      "max": 58,
+      "step": 1,
+      "unit": "px",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_desktop",
+      "label": "Show on desktop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "label": "Show on mobile",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo hero"
+    }
+  ]
+}
+{% endschema %}

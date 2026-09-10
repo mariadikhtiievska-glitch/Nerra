@@ -1,0 +1,2821 @@
+<body class="features--zoom-image  color-scheme color-scheme--scheme-1"><template id="drawer-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+
+      <footer part="footer">
+        <slot name="footer"></slot>
+      </footer>
+    </div>
+  </div>
+</template><template id="modal-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template><template id="popover-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template><template id="header-search-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <slot></slot>
+    </div>
+  </div>
+</template><template id="video-media-default-template">
+  <slot></slot>
+
+  <svg part="play-button" fill="none" width="48" height="48" viewBox="0 0 48 48">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M48 24c0 13.255-10.745 24-24 24S0 37.255 0 24 10.745 0 24 0s24 10.745 24 24Zm-18 0-9-6.6v13.2l9-6.6Z" fill="var(--play-button-background, #efefef)"/>
+  </svg>
+</template>
+<loading-bar class="loading-bar" aria-hidden="true"></loading-bar>
+    <a href="#main" allow-hash-change class="skip-to-content sr-only">Skip to content</a><div class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+      <span id="status-announcement"></span>
+    </div>
+
+    <div class="sr-only" role="alert" aria-live="assertive" aria-atomic="true">
+      <span id="error-announcement"></span>
+    </div>
+
+    <span id="header-scroll-tracker" style="position: absolute; width: 1px; height: 1px; top: var(--header-scroll-tracker-offset, 10px); left: 0;"></span><!-- BEGIN sections: header-group -->
+<aside id="shopify-section-sections--21732440211596__announcement_bar_d3tA7z" class="shopify-section shopify-section-group-header-group shopify-section--announcement-bar"><style>
+    :root {
+      --announcement-bar-is-sticky: 1;}#shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+
+      .shopify-section--header ~ #shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        top: calc(var(--header-is-sticky, 0) * var(--header-height, 0px));
+        z-index: 4; /* We have to lower the z-index in case the announcement bar is displayed after the header */
+      }#shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+      --announcement-bar-font-size: 0.625rem;
+    }
+
+    @media screen and (min-width: 999px) {
+      #shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        --announcement-bar-font-size: 0.75rem;
+      }
+    }
+  </style>
+
+  <height-observer variable="announcement-bar">
+    <div class="announcement-bar color-scheme color-scheme--scheme-2ce84c52-5a2f-46a9-8178-3124763aa3f7"><announcement-bar-carousel
+        allow-swipe
+        
+          autoplay="5"
+        
+        id="carousel-sections--21732440211596__announcement_bar_d3tA7z"
+        class="announcement-bar__carousel"
+      ><p class="prose heading is-selected" >Use code <strong>CLEO10</strong> for an extra 10% off at checkout</p></announcement-bar-carousel></div>
+  </height-observer>
+
+  
+</aside><header id="shopify-section-sections--21732440211596__header" class="shopify-section shopify-section-group-header-group shopify-section--header"><style>
+  :root {
+    --header-is-sticky: 1;
+  }
+
+  #shopify-section-sections--21732440211596__header {
+    --header-grid: "primary-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 7fr);
+    --header-padding-block: 1rem;
+    --header-transparent-header-text-color: 255 255 255;
+    --header-separation-border-color: 255 255 255 / 0.15;
+
+    position: relative;
+    z-index: 4;
+  }
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-sections--21732440211596__header {
+      --header-padding-block: 1.6rem;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-sections--21732440211596__header {--header-grid: "logo primary-nav secondary-nav" / minmax(max-content, 1fr) auto minmax(max-content, 1fr);}
+  }#shopify-section-sections--21732440211596__header {
+      position: sticky;
+      top: 0;
+    }
+
+    .shopify-section--announcement-bar ~ #shopify-section-sections--21732440211596__header {
+      top: calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px));
+    }#shopify-section-sections--21732440211596__header {
+      --header-logo-width: 150px;
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-sections--21732440211596__header {
+        --header-logo-width: 220px;
+      }
+    }</style>
+
+<height-observer variable="header">
+  <x-header
+    
+    class="header color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75"
+  >
+      <a href="/" class="header__logo"><span class="sr-only">Cleo Home</span><img src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}" alt="Cleo Home" srcset="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 440w, {{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 556w" width="556" height="141" sizes="220px" class="header__logo-image"><img src="{{ 'cleo-static-d20425c87685.png' | asset_url }}" alt="" width="193" height="49" sizes="220px" class="header__logo-image header__logo-image--transparent"></a>
+    
+<nav
+        class="header__primary-nav header__primary-nav--center"
+        aria-label="Primary navigation"
+      >
+        <button
+          type="button"
+          aria-controls="sidebar-menu"
+          
+            class="md:hidden"
+          
+        >
+          <span class="sr-only">Navigation menu</span><svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-hamburger" viewBox="0 0 24 24">
+      <path d="M1 19h22M1 12h22M1 5h22" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+    </svg></button><ul class="contents unstyled-list md-max:hidden">
+
+              <li class="header__primary-nav-item"><a
+                    href="/"
+                    data-title="Home"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Home</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="/collections/all"
+                    data-title="Shop"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Shop</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="/pages/contact"
+                    data-title="Contact"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Contact</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0Mzc5MzkzLCJuYmYiOjE3ODM3NzQ1OTN9.ZGGmjTq7XTbLJkEuT2TwPxyQBeTNGcOGXOBOm8e7xk4&region_country=US"
+                    data-title="Track Order"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Track Order</a></li>
+
+              <li class="header__primary-nav-item"><dropdown-menu-disclosure follow-summary-link trigger="hover"><details class="header__menu-disclosure">
+                      <summary data-follow-link="/pages/our-story" class="h6 c-h__pnt-font-size" data-title="About">About</summary><ul class="header__dropdown-menu header__dropdown-menu--restrictable unstyled-list" role="list"><li><a href="/pages/faqs" class="link-faded-reverse" >FAQs</a></li><li><a href="/pages/how-to-clean" class="link-faded-reverse" >How to clean</a></li></ul></details></dropdown-menu-disclosure></li></ul></nav><nav class="header__secondary-nav" aria-label="Secondary navigation"><ul class="contents unstyled-list"><li class="header__search-link">
+            <a href="/search" aria-controls="header-search-sections--21732440211596__header">
+              <span class="sr-only">Search</span><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-search" viewBox="0 0 24 24">
+      <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+      <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg></a>
+          </li><li class="relative header__cart-link">
+          <a
+            href="/cart"
+            
+              aria-controls="cart-drawer"
+            
+            data-no-instant
+          >
+            <span class="sr-only">Cart</span><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-cart" viewBox="0 0 24 24"><path d="M10 7h13l-4 9H7.5L5 3H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9" cy="20" r="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="17" cy="20" r="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><cart-dot class="header__cart-dot  "></cart-dot>
+          </a>
+        </li><li class="header__account-link ">
+            <shopify-store store-domain="https://cleolifestyle.com" country="US" language="en"></shopify-store>
+<shopify-account menu="customer-account-main-menu">
+              <div slot="signed-out-avatar"><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-account" viewBox="0 0 24 24">
+      <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+    </svg></div>
+            </shopify-account>
+          </li></ul>
+    </nav><header-search id="header-search-sections--21732440211596__header" class="header-search">
+  <div class="container">
+    <form id="predictive-search-form" action="/search" method="GET" aria-owns="header-predictive-search" class="header-search__form" role="search">
+      <div class="header-search__form-control"><svg aria-hidden="true" fill="none" focusable="false" width="20" class="icon icon-search" viewBox="0 0 24 24">
+      <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+      <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg><input
+          type="search"
+          name="q"
+          spellcheck="false"
+          class="header-search__input h5 sm:h4"
+          aria-label="Search"
+          placeholder="Search for..."
+        >
+
+        <dialog-close-button class="contents">
+          <button type="button">
+            <span class="sr-only">Close</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </div>
+    </form>
+
+    <predictive-search id="header-predictive-search" class="predictive-search">
+      <div class="predictive-search__content" slot="results"></div>
+    </predictive-search>
+  </div>
+</header-search>
+<template id="header-sidebar-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <dialog-close-button class="contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="panel-list">
+        <slot name="main-panel"></slot><slot name="collapsible-panel"></slot></div>
+    </div>
+  </div>
+</template>
+
+<header-sidebar id="sidebar-menu" class="header-sidebar drawer drawer--sm color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c" template="header-sidebar-template" open-from="left"><div class="header-sidebar__main-panel" slot="main-panel">
+    <div class="header-sidebar__scroller">
+      <ul class="header-sidebar__linklist  unstyled-list" role="list"><li class ="custom-seperator"><a href="/" class="header-sidebar__linklist-button h6">Home</a></li><li class ="custom-seperator"><a href="/collections/all" class="header-sidebar__linklist-button h6">Shop</a></li><li class ="custom-seperator"><a href="/pages/contact" class="header-sidebar__linklist-button h6">Contact</a></li><li class ="custom-seperator"><a href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0Mzc5MzkzLCJuYmYiOjE3ODM3NzQ1OTN9.ZGGmjTq7XTbLJkEuT2TwPxyQBeTNGcOGXOBOm8e7xk4&region_country=US" class="header-sidebar__linklist-button h6">Track Order</a></li><li class ="custom-seperator"><button
+                type="button"
+                class="header-sidebar__linklist-button h6"
+                aria-controls="header-panel-5"
+                aria-expanded="false"
+              >About<svg aria-hidden="true" focusable="false" fill="none" width="12" class="icon icon-chevron-right  icon--direction-aware" viewBox="0 0 10 10">
+      <path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></button></li></ul>
+    </div><div class="header-sidebar__footer"><shopify-account menu="customer-account-main-menu">
+            <div slot="signed-out-avatar">
+              <div class="text-with-icon smallcaps sm:hidden font-15"><svg aria-hidden="true" fill="none" focusable="false" width="20" class="icon icon-account" viewBox="0 0 24 24">
+      <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+    </svg>Login</div>
+            </div>
+          </shopify-account></div></div><header-sidebar-collapsible-panel class="header-sidebar__collapsible-panel" slot="collapsible-panel">
+      <div class="header-sidebar__scroller"><div id="header-panel-5" class="header-sidebar__sub-panel" hidden>
+              <button
+                type="button"
+                class="header-sidebar__back-button link-faded  text-with-icon h6 md:hidden"
+                data-action="close-panel"
+              ><svg aria-hidden="true" focusable="false" fill="none" width="12" class="icon icon-chevron-left  icon--direction-aware" viewBox="0 0 10 10">
+      <path d="M7 1 3 5l4 4" stroke="currentColor" stroke-linecap="square"/>
+    </svg>About</button>
+
+              <ul class="header-sidebar__linklist  unstyled-list" role="list"><li class ="custom-seperator"><a href="/pages/faqs" class="header-sidebar__linklist-button h6">FAQs</a></li><li class ="custom-seperator"><a href="/pages/how-to-clean" class="header-sidebar__linklist-button h6">How to clean</a></li></ul></div></div>
+    </header-sidebar-collapsible-panel></header-sidebar>
+</x-header>
+</height-observer>
+
+
+
+
+
+</header>
+<!-- END sections: header-group --><!-- BEGIN sections: overlay-group -->
+{% render 'cleo-dynamic-cart-drawer' %}
+<!-- END sections: overlay-group --><main id="main" class="anchor">
+      {% if product != blank %}
+{% render 'cleo-dynamic-product-main' %}
+{% else %}
+<section id="shopify-section-template--21742992916620__main" class="shopify-section shopify-section--main-product"><style>#shopify-section-template--21742992916620__main {
+    --product-grid: "product-gallery" "product-info"  / minmax(0, 1fr);}
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-template--21742992916620__main {--product-grid: "product-gallery product-info" / minmax(0, 0.55fr) minmax(0, 0.45fr);}
+  }
+</style><div
+  class="section-spacing section-spacing--tight color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c color-scheme--bg-f733170f8e26ef0af87b024124e087d4"
+  
+>
+  <div class="container ">
+    <product-rerender id="product-info-8371961102476-template--21742992916620__main" observe-form="product-form-main-8371961102476-template--21742992916620__main" allow-partial-rerender>
+      <div class="product"><style>@media screen and (min-width: 1000px) {
+    #shopify-section-template--21742992916620__main {}}
+</style>
+
+<product-gallery
+  class="product-gallery"
+  form="product-form-main-8371961102476-template--21742992916620__main"
+  filtered-indexes="[]"
+  
+  
+><span class="badge badge--custom badge--bestseller " style="position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 1;
+    padding: 3px 6px 4px;">Bestseller</span><div class="product-gallery__image-list"><div class="contents"><scroll-carousel
+        adaptive-height
+        id="product-gallery-carousel-8371961102476-template--21742992916620__main"
+        class="product-gallery__carousel scroll-area full-bleed md:unbleed"
+        role="region"
+      ><div
+              class="product-gallery__media snap-center is-initial"
+              data-media-type="image"
+              data-media-id="35428967383180"
+              role="group"
+              aria-label="Item 1 of 9"
+              
+            ><img src="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 200w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 400w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 600w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 800w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 1000w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="eager" fetchpriority="high" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="35217790435468"
+              role="group"
+              aria-label="Item 2 of 9"
+              
+            ><img src="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 200w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 400w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 600w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 800w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 1000w" width="1003" height="1003" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33533137846412"
+              role="group"
+              aria-label="Item 3 of 9"
+              
+            ><img src="{{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 200w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 400w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 600w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 800w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33533137780876"
+              role="group"
+              aria-label="Item 4 of 9"
+              
+            ><img src="{{ 'cleo-static-4111aa4abefe.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 200w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 400w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 600w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 800w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33533137977484"
+              role="group"
+              aria-label="Item 5 of 9"
+              
+            ><img src="{{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 200w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 400w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 600w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 800w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33533137813644"
+              role="group"
+              aria-label="Item 6 of 9"
+              
+            ><img src="{{ 'cleo-static-28a01bd7056d.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 200w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 400w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 600w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 800w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33532925608076"
+              role="group"
+              aria-label="Item 7 of 9"
+              
+            ><img src="{{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 200w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 400w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 600w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 800w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="34824549466252"
+              role="group"
+              aria-label="Item 8 of 9"
+              
+            ><img src="{{ 'cleo-static-ef845235fe13.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 200w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 400w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 600w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 800w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 1000w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="34824553562252"
+              role="group"
+              aria-label="Item 9 of 9"
+              
+            ><img src="{{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 200w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 400w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 600w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 800w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 1000w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 1200w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 1400w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 1600w" width="1600" height="1600" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div></scroll-carousel></div></div><safe-sticky class="product-gallery__thumbnail-list  md:block">
+        <product-gallery-navigation align-selected aria-controls="product-gallery-carousel-8371961102476-template--21742992916620__main" class="product-gallery__thumbnail-scroller bleed custom-paddings-thumbnail md:unbleed"><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="1"
+                data-media-id="35428967383180"
+                aria-current="true"
+                aria-label="Go to item 1"
+              ><img src="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 56w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 112w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 168w" width="1254" height="1254" sizes="56px" class="object-contain">
+              </button><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="2"
+                data-media-id="35217790435468"
+                aria-current="false"
+                aria-label="Go to item 2"
+              ><img src="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 56w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 112w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 168w" width="1003" height="1003" sizes="56px" class="object-contain">
+              </button><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="3"
+                data-media-id="33533137846412"
+                aria-current="false"
+                aria-label="Go to item 3"
+              ><img src="{{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 56w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 112w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 168w" width="1080" height="1080" sizes="56px" class="object-contain">
+              </button><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="4"
+                data-media-id="33533137780876"
+                aria-current="false"
+                aria-label="Go to item 4"
+              ><img src="{{ 'cleo-static-4111aa4abefe.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 56w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 112w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 168w" width="1080" height="1080" sizes="56px" class="object-contain">
+              </button><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="5"
+                data-media-id="33533137977484"
+                aria-current="false"
+                aria-label="Go to item 5"
+              ><img src="{{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 56w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 112w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 168w" width="1080" height="1080" sizes="56px" class="object-contain">
+              </button><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="6"
+                data-media-id="33533137813644"
+                aria-current="false"
+                aria-label="Go to item 6"
+              ><img src="{{ 'cleo-static-28a01bd7056d.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 56w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 112w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 168w" width="1080" height="1080" sizes="56px" class="object-contain">
+              </button><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="7"
+                data-media-id="33532925608076"
+                aria-current="false"
+                aria-label="Go to item 7"
+              ><img src="{{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 56w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 112w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 168w" width="1080" height="1080" sizes="56px" class="object-contain">
+              </button><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="8"
+                data-media-id="34824549466252"
+                aria-current="false"
+                aria-label="Go to item 8"
+              ><img src="{{ 'cleo-static-ef845235fe13.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 56w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 112w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 168w" width="1254" height="1254" sizes="56px" class="object-contain">
+              </button><button
+                type="button"
+                class="product-gallery__thumbnail"
+                
+                data-media-type="image"
+                data-media-position="9"
+                data-media-id="34824553562252"
+                aria-current="false"
+                aria-label="Go to item 9"
+              ><img src="{{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 56w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 112w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 168w" width="1600" height="1600" sizes="56px" class="object-contain">
+              </button></product-gallery-navigation>
+      </safe-sticky></product-gallery>
+<safe-sticky class="product-info ">
+  <div class="product-info__block-list"><div
+        class="product-info__block-item"
+        data-block-id="stock_urgency_7Q68yN"
+        data-block-type="stock-urgency"
+        
+
+      >
+
+ <div
+  class="stock-urgency-wrapper stock-urgency-wrapper-stock_urgency_7Q68yN"
+  
+>
+  <style>
+    .stock-urgency-stock_urgency_7Q68yN {
+      background: rgba(0,0,0,0);
+      padding: 8px 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      width: fit-content;
+    }
+
+    .stock-urgency-stock_urgency_7Q68yN .stock-urgency-dot {
+      width: 10px;
+      height: 10px;
+      min-width: 10px;
+      border-radius: 50%;
+      background: #e00000;
+      margin-top: 4px;
+    }
+
+    .stock-urgency-stock_urgency_7Q68yN .stock-urgency-text {
+      color: #b87333;
+      font-size: 13px;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    @media screen and (min-width: 768px) {
+      .stock-urgency-stock_urgency_7Q68yN .stock-urgency-dot {
+        width: 10px;
+        height: 10px;
+        min-width: 10px;
+      }
+
+      .stock-urgency-stock_urgency_7Q68yN .stock-urgency-text {
+        font-size: 13px;
+      }
+    }
+  </style>
+
+  
+
+  
+    <div class="stock-urgency-block stock-urgency-stock_urgency_7Q68yN">
+      <span class="stock-urgency-dot"></span>
+
+      <span class="stock-urgency-text">
+        10k plus sold last month
+      </span>
+    </div>
+  
+</div>
+</div><div
+        class="product-info__block-item"
+        data-block-id="title"
+        data-block-type="title"
+        
+
+      ><h1 class="product-title h1">Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz</h1></div><div
+        class="product-info__block-item"
+        data-block-id="subtitle_text_J86TTR"
+        data-block-type="subtitle-text"
+        
+
+      ><style>
+    .product-subtitle-subtitle_text_J86TTR{
+      color: #666666;
+      font-size: 16px;
+    }
+
+    @media(min-width:999px){
+      .product-subtitle-subtitle_text_J86TTR{
+        font-size: 19px;
+      }
+    }
+  </style>
+
+  
+    <div class="product-subtitle-subtitle_text_J86TTR" >
+      With Copper Care Brush and Travel Sleeve
+    </div>
+  
+</div><div
+        class="product-info__block-item"
+        data-block-id="AdVdrWlpUc1RQc0I1M__ali_reviews_widget_star_rating_PgJWxg-1"
+        data-block-type="@app"
+        
+      ><div id="shopify-block-AdVdrWlpUc1RQc0I1M__ali_reviews_widget_star_rating_PgJWxg" class="shopify-block shopify-app-block ali-widget-star-rating"><!-- BEGIN app snippet: alireviews_variables --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_star_rating --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+
+
+<div class='alireviews-review-star-rating' product-handle='handcrafted-ayurvedic-copper-daily-essentials-kit' product-id='8371961102476'></div>
+
+
+</div></div><div
+        class="product-info__block-item"
+        data-block-id="price"
+        data-block-type="price"
+        
+
+      ><div class="custom-product-price-box">
+    <div style="display:flex; justify-content:space-between;"><div class="v-stack"><price-list class="price-list price-list--product"><div class="product-page-custom-price-container">
+      <div>
+    <sale-price class="h4 text-subdued product-page-custom-price">
+      <span class="sr-only">Sale price</span>$64.99</sale-price></div></div></price-list>
+</div>
+<div class="v-stack gap-1 justify-items-start"><quantity-selector
+  class="quantity-selector "
+  
+><button
+      type="button"
+      tabindex="-1"
+      class="quantity-selector__button"
+      
+        disabled
+      
+    >
+      <span class="sr-only">Decrease quantity</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="icon icon-minus" viewBox="0 0 12 12">
+      <path d="M0 6h12" stroke="currentColor" stroke-width="1.5"/>
+    </svg></button><quantity-input class="quantity-selector__input-wrapper">
+    <input
+      class="quantity-selector__input "
+      type="number"
+      value="1"
+      name="quantity"
+      inputmode="numeric"
+      step="1"
+      min="1"
+      
+      
+        form="product-form-main-8371961102476-template--21742992916620__main"
+      
+      
+      aria-label="Change quantity"
+    ></quantity-input><button
+      type="button"
+      tabindex="-1"
+      class="quantity-selector__button"
+      
+    >
+      <span class="sr-only">Increase quantity</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="icon icon-plus" viewBox="0 0 12 12">
+      <path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.5"/>
+    </svg></button></quantity-selector>
+</div></div>
+
+    <div class="custom-extra-offer-text">
+        <img
+    src="{{ 'cleo-static-b6acb4be89e9.png' | asset_url }}"
+    alt=""
+    class="custom-offer-icon"
+  ><p>
+      Use code <strong>CLEO10</strong> for an extra 10% off at checkout</p>
+    </div>
+  </div></div><div
+        class="product-info__block-item"
+        data-block-id="product_pills_EEb8mc"
+        data-block-type="product-pills"
+        
+
+      ><div class="pills-container">
+  <div
+  class="product-pills"
+  style="
+    --pill-text: #895737;
+  "
+  
+><span>Leak-proof</span><span>Durable</span><span>Pure Copper</span><span>Handcrafted</span></div>
+</div></div><div
+        class="product-info__block-item"
+        data-block-id="buy_buttons"
+        data-block-type="buy-buttons"
+        
+
+      ><product-form><form method="post" action="/cart/add" id="product-form-main-8371961102476-template--21742992916620__main" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input
+        type="hidden"
+        
+        name="id"
+        value="45623418650764"
+      >
+
+      
+
+      <div class="v-stack gap-4"><buy-buttons class="buy-buttons buy-buttons--has-dynamic" form="product-form-main-8371961102476-template--21742992916620__main">
+
+<button type="submit"  class="button w-full" style="--button-background: 137 87 55;--button-outline-color: 137 87 55;--button-text-color: 255 255 255;" ><span class="atc-btn-content">
+    
+ 
+    <svg class="atc-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <rect x="5" y="10" width="14" height="10" rx="2"
+        stroke="currentColor"
+        stroke-width="1.8"/>
+  <path d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"/>
+  <circle cx="12" cy="15" r="1"
+          fill="currentColor"/>
+</svg>
+    <span>Add to cart</span>
+  </span></button><div data-shopify="payment-button" class="shopify-payment-button"> <shopify-accelerated-checkout recommended="{&quot;supports_subs&quot;:true,&quot;supports_def_opts&quot;:false,&quot;name&quot;:&quot;shop_pay&quot;,&quot;wallet_params&quot;:{&quot;shopId&quot;:71141359756,&quot;merchantName&quot;:&quot;Cleo Home&quot;,&quot;personalized&quot;:true}}" fallback="{&quot;supports_subs&quot;:true,&quot;supports_def_opts&quot;:true,&quot;name&quot;:&quot;buy_it_now&quot;,&quot;wallet_params&quot;:{}}" access-token="d221aa0123b2ad59cb2700e50d8069c1" buyer-country="US" buyer-locale="en" buyer-currency="USD" variant-params="[{&quot;id&quot;:45623418650764,&quot;requiresShipping&quot;:true}]" shop-id="71141359756" enabled-flags="[&quot;a1d1f9a1&quot;,&quot;6d1811c1&quot;]" > <div class="shopify-payment-button__button" role="button" disabled aria-hidden="true" style="background-color: transparent; border: none"> <div class="shopify-payment-button__skeleton">&nbsp;</div> </div> <div class="shopify-payment-button__more-options shopify-payment-button__skeleton" role="button" disabled aria-hidden="true">&nbsp;</div> </shopify-accelerated-checkout> </div><style>
+              #product-form-main-8371961102476-template--21742992916620__main .shopify-payment-button {--button-background: 28 28 28;}
+            </style></buy-buttons>
+      </div><input type="hidden" name="product-id" value="8371961102476" /><input type="hidden" name="section-id" value="template--21742992916620__main" /></form></product-form>
+      <div class="feature-bar">
+
+  <div class="feature-item">
+    <span class="feature-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+        <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 6h12v10H1z"/>
+          <path d="M13 9h4l3 3v4h-7z"/>
+          <circle cx="6" cy="18" r="2"/>
+          <circle cx="17" cy="18" r="2"/>
+          <path d="M20 12h-3V9"/>
+        </g>
+      </svg>
+    </span>
+
+    <span>Free shipping above $99</span>
+  </div>
+
+  <span class="feature-divider">•</span>
+
+  <div class="feature-item">
+    <span class="feature-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+        <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="18" height="4"/>
+          <rect x="5" y="12" width="14" height="9"/>
+          <path d="M12 8v13"/>
+          <path d="M12 8c0-3 4-4 4-1.5S13.5 8 12 8z"/>
+          <path d="M12 8c0-3-4-4-4-1.5S10.5 8 12 8z"/>
+        </g>
+      </svg>
+    </span>
+
+    <span>Makes a great gift</span>
+  </div>
+
+  <span class="feature-divider">•</span>
+
+  <div class="feature-item">
+    <span class="feature-icon">
+        <svg class="atc-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <rect x="5" y="10" width="14" height="10" rx="2"
+        stroke="currentColor"
+        stroke-width="1.8"/>
+  <path d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"/>
+  <circle cx="12" cy="15" r="1"
+          fill="currentColor"/>
+</svg>
+    </span>
+
+    <span>Secure checkout</span>
+  </div>
+
+</div>
+</div><div
+        class="product-info__block-item"
+        data-block-id="separator_GtDKKw"
+        data-block-type="separator"
+        
+
+      ><hr></div><div
+        class="product-info__block-item"
+        data-block-id="certificate_pdf_8KE7Fa"
+        data-block-type="certificate-pdf"
+        
+
+      ><a
+      href="https://cdn.shopify.com/s/files/1/0711/4135/9756/files/Cleo_SGS_report.pdf?v=1782230560"
+      class="certificate-pdf-block"
+      target="_blank"
+      rel="noopener"
+      
+    >
+     
+      <div class="certificate-pdf-icon">
+      <div>  <img
+          src="{{ 'cleo-static-5bc2f0b67783.png' | asset_url }}"
+          alt=""
+          loading="lazy"
+        ></div>
+        
+      </div>
+  
+
+      <div class="certificate-pdf-content">
+        <div class="certificate-pdf-title">
+          Access Your Certificate of Authenticity
+        </div>
+        <div class="certificate-pdf-subtitle">
+          Verified lab certification PDF ↓
+        </div>
+      </div>
+
+      <div class="certificate-pdf-stars">
+        ★<br>★<br>★
+      </div>
+    </a></div><div
+        class="product-info__block-item"
+        data-block-id="product_usp_grid_YzNfw6"
+        data-block-type="product-usp-grid"
+        
+
+      ><div class="product-usp-grid" ><div class="product-usp-grid__item">
+          <div class="product-usp-grid__icon"><img src="{{ 'cleo-static-5955e1497974.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-5955e1497974.png' | asset_url }} 352w, {{ 'cleo-static-5955e1497974.png' | asset_url }} 640w" width="640" height="640" loading="lazy" class="product-usp-grid__custom-icon">
+</div>
+
+          <div class="product-usp-grid__content"><p class="product-usp-grid__title">Express USA Shipping</p><p class="product-usp-grid__text">Ships in 1–2 business days</p></div>
+        </div><div class="product-usp-grid__item">
+          <div class="product-usp-grid__icon"><img src="{{ 'cleo-static-b611d6110cb9.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-b611d6110cb9.png' | asset_url }} 352w, {{ 'cleo-static-b611d6110cb9.png' | asset_url }} 640w" width="640" height="640" loading="lazy" class="product-usp-grid__custom-icon">
+</div>
+
+          <div class="product-usp-grid__content"><p class="product-usp-grid__title">Lab-Tested Pure Copper</p><p class="product-usp-grid__text">99.9% purity verified</p></div>
+        </div><div class="product-usp-grid__item">
+          <div class="product-usp-grid__icon"><img src="{{ 'cleo-static-063dbf8015e2.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-063dbf8015e2.png' | asset_url }} 352w, {{ 'cleo-static-063dbf8015e2.png' | asset_url }} 640w" width="640" height="640" loading="lazy" class="product-usp-grid__custom-icon">
+</div>
+
+          <div class="product-usp-grid__content"><p class="product-usp-grid__title">Copper Care Brush and Travel Sleeve</p><p class="product-usp-grid__text">Included with every bottle</p></div>
+        </div><div class="product-usp-grid__item">
+          <div class="product-usp-grid__icon"><img src="{{ 'cleo-static-bf09e8b31f1b.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-bf09e8b31f1b.png' | asset_url }} 352w, {{ 'cleo-static-bf09e8b31f1b.png' | asset_url }} 640w" width="640" height="640" loading="lazy" class="product-usp-grid__custom-icon">
+</div>
+
+          <div class="product-usp-grid__content"><p class="product-usp-grid__title">Leak-proof</p><p class="product-usp-grid__text">Leak-proof threaded cap</p></div>
+        </div></div></div></div></safe-sticky>
+</div>
+    </product-rerender>
+  </div>
+</div><product-rerender id="product-form-main-8371961102476-template--21742992916620__main-sticky-bar" observe-form="product-form-main-8371961102476-template--21742992916620__main">
+    <product-sticky-bar form="product-form-main-8371961102476-template--21742992916620__main" class="product-sticky-bar">
+      <div class="product-sticky-bar__info sm-max:hidden">
+        <div class="h-stack gap-6"><img src="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 60w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 120w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 180w" width="1254" height="1254" loading="lazy" sizes="60px"><div class="v-stack">
+            <span class="h6 product-sticky-bar-title">Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz</span><price-list class="price-list "><div class="product-page-custom-price-container">
+      <div>
+    <sale-price class="h6 text-subdued product-page-custom-price">
+      <span class="sr-only">Sale price</span>$64.99</sale-price></div></div></price-list>
+</div>
+        </div>
+      </div>
+
+      <buy-buttons class="buy-buttons" template="ritual-set" form="product-form-main-8371961102476-template--21742992916620__main">
+<button type="submit"  class="button" form="product-form-main-8371961102476-template--21742992916620__main" >Add to cart</button></buy-buttons>
+    </product-sticky-bar>
+  </product-rerender><template id="quick-buy-content">
+  <p class="h5" slot="header">Choose options</p>
+
+  <div class="quick-buy-modal__content">
+    <product-rerender id="quick-buy-modal-content" observe-form="product-form-quick-buy-8371961102476-template--21742992916620__main">
+      <dialog-close-button class="contents">
+        <button type="button" class="quick-buy-modal__close-button sm-max:hidden">
+          <span class="sr-only">Close</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+      </dialog-close-button>
+
+      <div class="quick-buy-modal__gallery-wrapper"><style>@media screen and (min-width: 1000px) {
+    #shopify-section-template--21742992916620__main {}}
+</style>
+
+<product-gallery
+  class="product-gallery"
+  form="product-form-quick-buy-8371961102476-template--21742992916620__main"
+  filtered-indexes="[]"
+  
+  
+><span class="badge badge--custom badge--bestseller " style="position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 1;
+    padding: 3px 6px 4px;">Bestseller</span><div class="product-gallery__image-list"><div class="product-gallery__carousel-with-arrows"><carousel-prev-button aria-controls="product-gallery-carousel-8371961102476-template--21742992916620__main" class="contents">
+          <button type="button" class="tap-area sm:hidden">
+            <span class="sr-only">Previous</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-arrow-left  icon--direction-aware" viewBox="0 0 16 18">
+      <path d="M11 1 3 9l8 8" stroke="currentColor" stroke-linecap="square"/>
+    </svg></button>
+        </carousel-prev-button><scroll-carousel
+        adaptive-height
+        id="product-gallery-carousel-8371961102476-template--21742992916620__main"
+        class="product-gallery__carousel scroll-area "
+        role="region"
+      ><div
+              class="product-gallery__media snap-center is-initial"
+              data-media-type="image"
+              data-media-id="35428967383180"
+              role="group"
+              aria-label="Item 1 of 9"
+              
+            ><img src="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 200w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 400w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 600w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 800w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 1000w, {{ 'cleo-static-42beb9e1ad09.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="eager" fetchpriority="high" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="35217790435468"
+              role="group"
+              aria-label="Item 2 of 9"
+              
+            ><img src="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 200w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 400w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 600w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 800w, {{ 'cleo-static-3e57422ba9ff.jpg' | asset_url }} 1000w" width="1003" height="1003" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33533137846412"
+              role="group"
+              aria-label="Item 3 of 9"
+              
+            ><img src="{{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 200w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 400w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 600w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 800w, {{ 'cleo-static-e41b2ca3d2cf.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33533137780876"
+              role="group"
+              aria-label="Item 4 of 9"
+              
+            ><img src="{{ 'cleo-static-4111aa4abefe.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 200w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 400w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 600w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 800w, {{ 'cleo-static-4111aa4abefe.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33533137977484"
+              role="group"
+              aria-label="Item 5 of 9"
+              
+            ><img src="{{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 200w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 400w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 600w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 800w, {{ 'cleo-static-5632a6a2f35a.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33533137813644"
+              role="group"
+              aria-label="Item 6 of 9"
+              
+            ><img src="{{ 'cleo-static-28a01bd7056d.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 200w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 400w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 600w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 800w, {{ 'cleo-static-28a01bd7056d.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="33532925608076"
+              role="group"
+              aria-label="Item 7 of 9"
+              
+            ><img src="{{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 200w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 400w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 600w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 800w, {{ 'cleo-static-8ad2d7b01734.jpg' | asset_url }} 1000w" width="1080" height="1080" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="34824549466252"
+              role="group"
+              aria-label="Item 8 of 9"
+              
+            ><img src="{{ 'cleo-static-ef845235fe13.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 200w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 400w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 600w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 800w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 1000w, {{ 'cleo-static-ef845235fe13.jpg' | asset_url }} 1200w" width="1254" height="1254" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div><div
+              class="product-gallery__media snap-center "
+              data-media-type="image"
+              data-media-id="34824553562252"
+              role="group"
+              aria-label="Item 9 of 9"
+              
+            ><img src="{{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }}" alt="Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz" srcset="{{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 200w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 400w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 600w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 800w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 1000w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 1200w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 1400w, {{ 'cleo-static-bf7d5ee27840.jpg' | asset_url }} 1600w" width="1600" height="1600" loading="lazy" fetchpriority="auto" sizes="(max-width: 699px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), calc(55vw - 96px)"></div></scroll-carousel><carousel-next-button aria-controls="product-gallery-carousel-8371961102476-template--21742992916620__main" class="contents">
+          <button type="button" class="tap-area sm:hidden">
+            <span class="sr-only">Next</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-arrow-right  icon--direction-aware" viewBox="0 0 16 18">
+      <path d="m5 17 8-8-8-8" stroke="currentColor" stroke-linecap="square"/>
+    </svg></button>
+        </carousel-next-button></div></div><carousel-navigation
+        class="page-dots align-self-center md-max:hidden "
+        aria-controls="product-gallery-carousel-8371961102476-template--21742992916620__main"
+      ><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="true"
+            >
+              <span class="sr-only">Go to item 1</span>
+            </button><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="false"
+            >
+              <span class="sr-only">Go to item 2</span>
+            </button><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="false"
+            >
+              <span class="sr-only">Go to item 3</span>
+            </button><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="false"
+            >
+              <span class="sr-only">Go to item 4</span>
+            </button><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="false"
+            >
+              <span class="sr-only">Go to item 5</span>
+            </button><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="false"
+            >
+              <span class="sr-only">Go to item 6</span>
+            </button><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="false"
+            >
+              <span class="sr-only">Go to item 7</span>
+            </button><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="false"
+            >
+              <span class="sr-only">Go to item 8</span>
+            </button><button
+              type="button"
+              class="tap-area"
+              
+              aria-current="false"
+            >
+              <span class="sr-only">Go to item 9</span>
+            </button></carousel-navigation></product-gallery>
+<div class="quick-buy-modal__mobile-info v-stack gap-1 justify-center text-center sm:hidden">
+          <a href="/products/handcrafted-ayurvedic-copper-daily-essentials-kit" class="product-title h6">Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz</a><price-list class="price-list "><div class="product-page-custom-price-container">
+      <div>
+    <sale-price class="h6 text-subdued product-page-custom-price">
+      <span class="sr-only">Sale price</span>$64.99</sale-price></div></div></price-list>
+
+</div>
+      </div>
+
+      <div class="quick-buy-modal__info-wrapper"><safe-sticky class="product-info ">
+  <div class="product-info__block-list"><div
+        class="product-info__block-item"
+        data-block-id="title"
+        data-block-type="title"
+        
+
+      ><h2 class="product-title h1">
+                <a href="/products/handcrafted-ayurvedic-copper-daily-essentials-kit">Cleo Pure Copper Ritual Set | Handcrafted Copper Bottle and Tumbler | 34 Oz</a>
+              </h2></div><div
+        class="product-info__block-item"
+        data-block-id="AdVdrWlpUc1RQc0I1M__ali_reviews_widget_star_rating_PgJWxg-2"
+        data-block-type="@app"
+        
+      ><div id="shopify-block-AdVdrWlpUc1RQc0I1M__ali_reviews_widget_star_rating_PgJWxg-1" class="shopify-block shopify-app-block ali-widget-star-rating"><!-- BEGIN app snippet: alireviews_variables --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_star_rating --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+
+
+<div class='alireviews-review-star-rating' product-handle='handcrafted-ayurvedic-copper-daily-essentials-kit' product-id='8371961102476'></div>
+
+
+</div></div><div
+        class="product-info__block-item"
+        data-block-id="price"
+        data-block-type="price"
+        
+
+      ><div class="custom-product-price-box">
+    <div style="display:flex; justify-content:space-between;"><div class="v-stack"><price-list class="price-list price-list--product"><div class="product-page-custom-price-container">
+      <div>
+    <sale-price class="h4 text-subdued product-page-custom-price">
+      <span class="sr-only">Sale price</span>$64.99</sale-price></div></div></price-list>
+</div>
+<div class="v-stack gap-1 justify-items-start"><quantity-selector
+  class="quantity-selector "
+  
+><button
+      type="button"
+      tabindex="-1"
+      class="quantity-selector__button"
+      
+        disabled
+      
+    >
+      <span class="sr-only">Decrease quantity</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="icon icon-minus" viewBox="0 0 12 12">
+      <path d="M0 6h12" stroke="currentColor" stroke-width="1.5"/>
+    </svg></button><quantity-input class="quantity-selector__input-wrapper">
+    <input
+      class="quantity-selector__input "
+      type="number"
+      value="1"
+      name="quantity"
+      inputmode="numeric"
+      step="1"
+      min="1"
+      
+      
+        form="product-form-quick-buy-8371961102476-template--21742992916620__main"
+      
+      
+      aria-label="Change quantity"
+    ></quantity-input><button
+      type="button"
+      tabindex="-1"
+      class="quantity-selector__button"
+      
+    >
+      <span class="sr-only">Increase quantity</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="icon icon-plus" viewBox="0 0 12 12">
+      <path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.5"/>
+    </svg></button></quantity-selector>
+</div></div>
+
+    <div class="custom-extra-offer-text">
+        <img
+    src="{{ 'cleo-static-b6acb4be89e9.png' | asset_url }}"
+    alt=""
+    class="custom-offer-icon"
+  ><p>
+      Use code <strong>CLEO10</strong> for an extra 10% off at checkout</p>
+    </div>
+  </div></div><div
+        class="product-info__block-item"
+        data-block-id="buy_buttons"
+        data-block-type="buy-buttons"
+        
+
+      ><product-form><form method="post" action="/cart/add" id="product-form-quick-buy-8371961102476-template--21742992916620__main" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input
+        type="hidden"
+        
+        name="id"
+        value="45623418650764"
+      >
+
+      
+
+      <div class="v-stack gap-4"><buy-buttons class="buy-buttons buy-buttons--has-dynamic" form="product-form-quick-buy-8371961102476-template--21742992916620__main">
+
+<button type="submit"  class="button w-full" style="--button-background: 137 87 55;--button-outline-color: 137 87 55;--button-text-color: 255 255 255;" ><span class="atc-btn-content">
+    
+ 
+    <svg class="atc-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <rect x="5" y="10" width="14" height="10" rx="2"
+        stroke="currentColor"
+        stroke-width="1.8"/>
+  <path d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"/>
+  <circle cx="12" cy="15" r="1"
+          fill="currentColor"/>
+</svg>
+    <span>Add to cart</span>
+  </span></button><div data-shopify="payment-button" class="shopify-payment-button"> <shopify-accelerated-checkout recommended="{&quot;supports_subs&quot;:true,&quot;supports_def_opts&quot;:false,&quot;name&quot;:&quot;shop_pay&quot;,&quot;wallet_params&quot;:{&quot;shopId&quot;:71141359756,&quot;merchantName&quot;:&quot;Cleo Home&quot;,&quot;personalized&quot;:true}}" fallback="{&quot;supports_subs&quot;:true,&quot;supports_def_opts&quot;:true,&quot;name&quot;:&quot;buy_it_now&quot;,&quot;wallet_params&quot;:{}}" access-token="d221aa0123b2ad59cb2700e50d8069c1" buyer-country="US" buyer-locale="en" buyer-currency="USD" variant-params="[{&quot;id&quot;:45623418650764,&quot;requiresShipping&quot;:true}]" shop-id="71141359756" enabled-flags="[&quot;a1d1f9a1&quot;,&quot;6d1811c1&quot;]" > <div class="shopify-payment-button__button" role="button" disabled aria-hidden="true" style="background-color: transparent; border: none"> <div class="shopify-payment-button__skeleton">&nbsp;</div> </div> <div class="shopify-payment-button__more-options shopify-payment-button__skeleton" role="button" disabled aria-hidden="true">&nbsp;</div> </shopify-accelerated-checkout> </div><style>
+              #product-form-quick-buy-8371961102476-template--21742992916620__main .shopify-payment-button {--button-background: 28 28 28;}
+            </style></buy-buttons>
+      </div><input type="hidden" name="product-id" value="8371961102476" /><input type="hidden" name="section-id" value="template--21742992916620__main" /></form></product-form>
+      <div class="feature-bar">
+
+  <div class="feature-item">
+    <span class="feature-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+        <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 6h12v10H1z"/>
+          <path d="M13 9h4l3 3v4h-7z"/>
+          <circle cx="6" cy="18" r="2"/>
+          <circle cx="17" cy="18" r="2"/>
+          <path d="M20 12h-3V9"/>
+        </g>
+      </svg>
+    </span>
+
+    <span>Free shipping above $99</span>
+  </div>
+
+  <span class="feature-divider">•</span>
+
+  <div class="feature-item">
+    <span class="feature-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+        <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="18" height="4"/>
+          <rect x="5" y="12" width="14" height="9"/>
+          <path d="M12 8v13"/>
+          <path d="M12 8c0-3 4-4 4-1.5S13.5 8 12 8z"/>
+          <path d="M12 8c0-3-4-4-4-1.5S10.5 8 12 8z"/>
+        </g>
+      </svg>
+    </span>
+
+    <span>Makes a great gift</span>
+  </div>
+
+  <span class="feature-divider">•</span>
+
+  <div class="feature-item">
+    <span class="feature-icon">
+        <svg class="atc-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <rect x="5" y="10" width="14" height="10" rx="2"
+        stroke="currentColor"
+        stroke-width="1.8"/>
+  <path d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"/>
+  <circle cx="12" cy="15" r="1"
+          fill="currentColor"/>
+</svg>
+    </span>
+
+    <span>Secure checkout</span>
+  </div>
+
+</div>
+</div><div
+        class="product-info__block-item"
+        data-block-id="separator_GtDKKw"
+        data-block-type="separator"
+        
+
+      ><hr></div></div></safe-sticky>
+<a href="/products/handcrafted-ayurvedic-copper-daily-essentials-kit" class="quick-buy-modal__view-more link sm-max:hidden">View details</a>
+      </div>
+    </product-rerender>
+  </div>
+</template>
+
+
+
+</section>
+{% endif %}<section id="shopify-section-template--21742992916620__faq_FxaVeR" class="shopify-section shopify-section--faq"><div class="section-spacing color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c color-scheme--bg-f733170f8e26ef0af87b024124e087d4 bordered-section">
+    <div class="container container--md">
+      <div class="section-stack Faq-section custom-gap-faq"><div class="faq"><div class="faq__content"><accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span class="text-with-icon gap-4">
+         <div class="accordion-background"><img src="{{ 'cleo-static-b611d6110cb9.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-b611d6110cb9.png' | asset_url }} 20w, {{ 'cleo-static-b611d6110cb9.png' | asset_url }} 40w" width="100" height="100" sizes="20px" class="constrained-image  constrained-image-mobile" style="--image-max-width: 20px"></div>Product specifications</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p><span class="metafield-multi_line_text_field">Copper Bottle <br />
+<br />
+✓	Material: 99.9% pure copper<br />
+✓	Capacity: 34 oz / 1 Litre<br />
+✓	Cap: Threaded, silicone-sealed, leak-resistant with 1 twist open and close<br />
+✓	Weight of the product: 9 Ounces/ 260 grams<br />
+✓	Fits most standard US car cup holders and Kitchen Cabinets<br />
+✓	Height: 10.6 inches<br />
+✓	Diameter: 2.7 inches<br />
+✓	Finish: Matt finish with Hand-hammered exterior, smooth interior<br />
+<br />
+Copper Tumbler <br />
+✓	Material: 99.9% pure copper<br />
+✓	Capacity: 8.8 Oz / 260 Millilitre<br />
+✓	Weight of the product: 2.4 Ounces/ 68 grams<br />
+✓	Height: 3.3 inches<br />
+✓	Diameter: 2.8 inches<br />
+✓	Finish: Matt finish with Hand-hammered exterior, smooth interior<br />
+<br />
+All Cleo Products are handcrafted hence the dimensions can vary upto 2-5%.<br />
+Every batch of Cleo copper bottles is tested after manufacturing. So what arrives at your door has already been verified for copper integrity and build quality.<br />
+</span></p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span class="text-with-icon gap-4">
+         <div class="accordion-background"><img src="{{ 'cleo-static-bf09e8b31f1b.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-bf09e8b31f1b.png' | asset_url }} 20w, {{ 'cleo-static-bf09e8b31f1b.png' | asset_url }} 40w" width="100" height="100" sizes="20px" class="constrained-image  constrained-image-mobile" style="--image-max-width: 20px"></div>Is it safe?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p><span class="metafield-multi_line_text_field">Yes. The Cleo copper water bottle and tumbler is made from pure, food-grade copper and is safe for use as everyday drinkware.<br />
+<br />
+Here is what you need to know:	<br />
+✓	Every batch is lab-tested after manufacturing for material purity<br />
+✓	No mixed metals, no alloys, no chemical coatings of any kind<br />
+✓	Use with clean, filtered, room-temperature or cool water for best results<br />
+✓	Hand wash only — mild soap and lukewarm water, or lemon juice and salt for a deeper clean<br />
+✓	Do not put it in Dishwasher or Refrigerator<br />
+✓	Natural patina (colour change or darkening) that develops over time is a normal characteristic of pure copper and is not a sign of damage or contamination<br />
+✓	Not recommended for hot beverages, carbonated drinks, or acidic liquids stored for long periods<br />
+✓	You might get slight metallic taste in the water once it is charged with copper<br />
+</span></p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span class="text-with-icon gap-4">
+         <div class="accordion-background"><img src="{{ 'cleo-static-f3b10828aa35.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-f3b10828aa35.png' | asset_url }} 20w, {{ 'cleo-static-f3b10828aa35.png' | asset_url }} 40w" width="64" height="64" sizes="20px" class="constrained-image  constrained-image-mobile" style="--image-max-width: 20px"></div>What Can I Expect?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p><span class="metafield-multi_line_text_field">Here is what most Cleo copper drinkware owners tell us they experience day to day:<br />
+✓ 	A noticeably clean, fresh taste from a bottle that is free of plastic and chemical residue<br />
+✓ 	A hydration ritual that feels intentional, not just a habit<br />
+Inspired by the centuries-old Ayurvedic practice of drinking water stored in copper vessels, the Cleo copper drinkware is designed to make your daily hydration feel like a considered choice, not an afterthought.<br />
+<br />
+*Individual experiences vary. The Cleo copper water bottle is everyday drinkware. These statements have not been evaluated by the FDA and are not intended as medical claims.<br />
+</span></p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span class="text-with-icon gap-4">
+         <div class="accordion-background"><img src="{{ 'cleo-static-5955e1497974.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-5955e1497974.png' | asset_url }} 20w, {{ 'cleo-static-5955e1497974.png' | asset_url }} 40w" width="100" height="100" sizes="20px" class="constrained-image  constrained-image-mobile" style="--image-max-width: 20px"></div>Shipping & Returns</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p><strong>Shipping</strong>:</p><p>✓   All Cleo orders ship within 1–2 business days from our USA warehouses</p><p>✓    Standard delivery: 3–5 business days across the USA</p><p><strong>Returns</strong>:</p><p> If you are not satisfied with your copper water bottle, you may return<br/>it in its original, unused condition within 7 days of delivery</p><p>✓    To start a return, contact our support team at <a href="mailto:Hello@cleolifestyle.com" target="_blank" title="mailto:Hello@cleolifestyle.com">Hello@cleolifestyle.com</a></p><p>✓   Refunds are processed within 5–7 business days of receiving the return</p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span class="text-with-icon gap-4">
+         <div class="accordion-background"><img src="{{ 'cleo-static-a9943b40b8bb.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-a9943b40b8bb.png' | asset_url }} 20w, {{ 'cleo-static-a9943b40b8bb.png' | asset_url }} 40w" width="56" height="52" sizes="20px" class="constrained-image  constrained-image-mobile" style="--image-max-width: 20px"></div>Cleo's Promise To You</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>✓   We built Cleo around one idea that everyday drinkware should be made with natural materials, craftsmanship, and integrity.</p><p>✓   All Cleo Products are Good for you and Better for the planet.</p><p>✓   We are a small brand that takes every order seriously. If something is not right with your Cleo product when it arrives,<br/>reach out to us and we will make it right, no run-around, no hassle.</p><p>That is the Cleo promise.<br/><br/>*<strong> Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent anydisease</strong>.<br/><br/></p></div></div>
+  </details>
+</accordion-disclosure>
+</div>
+        
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section><div id="shopify-section-template--21742992916620__aplus_FQbmb6" class="shopify-section">
+
+
+
+<style>
+.section-template--21742992916620__aplus_FQbmb6 {
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: #f3e9dc;
+}
+
+  .section-template--21742992916620__aplus_FQbmb6 .a-plus-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .section-template--21742992916620__aplus_FQbmb6 .a-plus-mobile {
+    display: none;
+  }
+
+  .section-template--21742992916620__aplus_FQbmb6 .a-plus-desktop {
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-template--21742992916620__aplus_FQbmb6 {
+     padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .section-template--21742992916620__aplus_FQbmb6 .a-plus-desktop {
+      display: none;
+    }
+
+    .section-template--21742992916620__aplus_FQbmb6 .a-plus-mobile {
+      display: block;
+      width: 100%;
+    }
+  }
+</style>
+
+</div><section id="shopify-section-template--21742992916620__17793009446b622ebf" class="shopify-section shopify-section--apps"><div class="color-scheme color-scheme--scheme-da62a118-22e7-49ef-8ce6-b3d06255bd44 color-scheme--bg-f733170f8e26ef0af87b024124e087d4  ">
+    <div
+      
+    ><div id="shopify-block-AZ1UxemhVbzhOUGRJS__whatmore_shoppable_videos_app_block_MLpL9C" class="shopify-block shopify-app-block">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- DEBUG: widget_id = wgt_default, count = 1, is_active = true -->
+
+
+
+
+
+
+<div class="whatmore-base" data-wht-widget="wgt_default" style="position: relative; overflow: hidden; min-height:380px">
+  <div id="whatmoreShopId" data-wh="71141359756"> </div>
+  <div id="whatmoreProductId" data-wh="8371961102476"> </div><div id="whatmoreHeading" data-wh=""> </div><div id="whatmoreTitleFontSize" data-wh="40"> </div><div id="whatmoreTitleFontSizePortrait" data-wh="24"> </div><div id="whatmoreLandscapePadding" data-wh="0"> </div><div id="whatmoreTopBottomPadding" data-wh="0"> </div><div id="whatmoreVideoTileSize" data-wh="80"> </div><div id="whatmoreVideoTileSizePortrait" data-wh="80"> </div><div class="whatmore-template-type" data-wh="template-h"> </div><div id="whatmoreWidgetIdentity" data-wh="wgt_default"> </div>
+
+  
+    <div id="whatmoreIsInDesignMode" data-wh='false'> </div>
+  
+  <div id="whatmoreExtensionType" data-wh="product.ritual-set"> </div>
+  <div class="whatmore-widget" data-wh="carousel"></div>
+  <div class="whatmore-render-root"></div>
+
+</div>
+<!-- BEGIN app snippet: whatmore-init -->
+<!-- END app snippet -->
+
+</div></div>
+  </div>
+</section><div id="shopify-section-template--21742992916620__copper_comparison_table_PkiTzc" class="shopify-section"><style data-shopify>
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-section {
+    background: #f3e9dc;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-container {
+    /* max-width: 1280px; */
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-content {
+    width: 38%;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-title {
+    margin: 0 0 28px;
+    font-size: 50px;
+    line-height: 95%;
+    color: #895737;
+    font-weight: 700;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-description {
+    margin: 0;
+    font-size: 25px;
+    line-height: 130%;
+    color: #111111;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table-wrap {
+    width: 54%;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    table-layout: fixed;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th,
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td {
+    padding: 13px 14px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    box-shadow: none !important;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th:not(:last-child),
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td:not(:last-child) {
+    border-right: 2px solid #ffffff;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table thead th {
+    border-bottom: 2px solid #ffffff;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table tbody tr:not(:last-child) .cct-col-feature {
+    border-bottom: 1px solid #ffffff;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th {
+    font-size: 18px;
+    line-height: 120%;
+    font-weight: 500;
+    background-image: none !important;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td {
+    font-size: 18px;
+    line-height: 120%;
+    font-weight: 600;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-col-feature {
+    width: 38%;
+    background-color: #895737 !important;
+    color: #ffffff !important;
+    text-align: left !important;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-col-feature * {
+    color: #ffffff !important;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-col-second {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-col-other {
+    background-color: #f2dac4 !important;
+    color: #111111 !important;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-row-title {
+    text-align: left !important;
+    font-weight: 700;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(18px * 0.58);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-icon.tick {
+    background: #895737;
+    color: #ffffff;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-icon.cross {
+    background: #c08552;
+    color: #ffffff;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-order-top .cct-table-wrap {
+    order: 1;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-order-top .cct-content {
+    order: 2;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-order-bottom .cct-content {
+    order: 1;
+  }
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-order-bottom .cct-table-wrap {
+    order: 2;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-section {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-container {
+      padding: 0 4px;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-content,
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table-wrap {
+      width: 100%;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-title {
+      font-size: 32px;
+      margin-bottom: 18px;
+      margin-left:10px;
+      max-width:85%;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-description {
+      font-size: 15px;
+      margin-left:10px;
+      max-width:90%;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table-wrap {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border-radius: 8px;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table {
+      display: block;
+      width: max-content;
+      min-width: unset;
+      table-layout: auto;
+      border-radius: 8px;
+      overflow: visible;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table thead,
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table tbody {
+      display: block;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table tr {
+      display: flex;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th,
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 10px 4px;
+      white-space: normal;
+      text-align: center;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th {
+      font-size: 13px;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td {
+      font-size: 13px;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th:nth-child(1),
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td:nth-child(1) {
+      position: sticky;
+      left: 0;
+      z-index: 3;
+      width: 140px;
+      min-width: 140px;
+      max-width: 20px;
+      background-color: #895737 !important;
+      color: #ffffff !important;
+      /* justify-content: flex-start; */
+      text-align: center !important;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th:nth-child(1) {
+      z-index: 3;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th:nth-child(2),
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td:nth-child(2) {
+      width: 140px;
+      min-width: 140px;
+      max-width: 140px;
+      background-color: #ffffff !important;
+      color: #111111 !important;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th:nth-child(3),
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td:nth-child(3),
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th:nth-child(4),
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td:nth-child(4) {
+      width: 140px;
+      min-width: 140px;
+      max-width: 140px;
+      background-color: #f2dac4 !important;
+      color: #111111 !important;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-icon {
+      width: 14px;
+      height: 14px;
+      font-size: calc(14px * 0.58);
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-mobile-top .cct-table-wrap {
+      order: 1;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-mobile-top .cct-content {
+      order: 2;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-mobile-bottom .cct-content {
+      order: 1;
+    }
+
+    #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-mobile-bottom .cct-table-wrap {
+      order: 2;
+    }
+  }
+
+
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table,
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table thead,
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table tbody,
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table tr,
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th,
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td {
+  border-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th,
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td {
+  padding: 13px 14px !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table .cct-col-feature {
+  background: #895737 !important;
+  color: #ffffff !important;
+}
+
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table .cct-col-second {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table .cct-col-other {
+  background: #f2dac4 !important;
+  color: #111111 !important;
+}
+
+@media screen and (max-width: 749px) {
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th,
+  #shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td {
+    padding: 10px 4px !important;
+  }
+}
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th.cct-col-feature,
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td.cct-col-feature {
+  background-color: #895737 !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  border-bottom:none;
+}
+
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th.cct-col-feature *,
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table td.cct-col-feature * {
+  color: #ffffff !important;
+}
+
+#shopify-section-template--21742992916620__copper_comparison_table_PkiTzc .cct-table th {
+  background-image: none !important;
+  box-shadow: none !important;
+}
+</style>
+
+<section class="cct-section">
+  <div class="container">
+  <div class="cct-container cct-mobile-bottom">
+    <div class="cct-content">
+      
+        <h2 class="cct-title">Why Choose Copper Over Regular Drinkware?</h2>
+      
+
+      
+        <div class="cct-description"><p>Embrace the ancient practice of "Tamra Jal" and create a Hydration Ritual</p></div>
+      
+    </div>
+
+    <div class="cct-table-wrap">
+     <table class="cct-table table-bordered">
+        <thead>
+          <tr>
+            <th class="cct-col-feature" style="  border-right: 2px solid #ffffff !important; border-bottom: 2px solid #ffffff !important;" >Feature/ Benefit</th>
+            <th class="cct-col-second"style="  border-right: 2px solid #ffffff !important; border-bottom: 2px solid #ffffff !important;">CLEO Copper Drinkware</th>
+            <th class="cct-col-other"style="  border-right: 2px solid #ffffff !important; border-bottom: 2px solid #ffffff !important;">Stainless Steel Bottle</th>
+            <th class="cct-col-other"style="   border-bottom: 2px solid #ffffff !important;">Plastic Bottle</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">Naturally Antimicrobial</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">Naturally Alkalizes Water</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">100% Plastic & BPA Free</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">Supports Ayurvedic Rituals</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+            <tr >
+              <td class="cct-col-feature cct-row-title">Zero Microplastic Risk</td>
+
+              <td class="cct-col-second">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon tick">✓</span>
+                
+              </td>
+
+              <td class="cct-col-other">
+                
+                  <span class="cct-icon cross">×</span>
+                
+              </td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+</div><section id="shopify-section-template--21742992916620__slideshow_pwXzb3" class="shopify-section shopify-section--slideshow"><slideshow-carousel
+    id="carousel-template--21742992916620__slideshow_pwXzb3"
+    class="slideshow"
+    allow-swipe
+    
+      allow-transparent-header
+    
+    cell-selector=".slideshow__slide"
+    
+      autoplay="5"
+    
+    
+      autoplay-pause-on-video
+    
+    role="region"
+    style="--background: 243 233 220
+  ; background-color: rgb(var(--background));--border-color: var(--text-color) / 0.15;"
+  >
+<div class="container"><div
+          class="slideshow__slide is-selected"
+          media-type="image"
+          
+          role="group"
+          
+          style="border-radius:25px; overflow:hidden;"
+        ><div class="content-over-media content-over-media--auto" style="--content-over-media-content-max-width: 780px; --content-over-media-gradient-overlay: linear-gradient(180deg, rgba(NaN, NaN, NaN, 0), rgba(4, 4, 4, 0.65) 100%)"><picture><source
+                        media="(max-width: 699px)"
+                        srcset="{{ 'cleo-static-36c9b55ec09a.jpg' | asset_url }} 800w, {{ 'cleo-static-36c9b55ec09a.jpg' | asset_url }} 1000w, {{ 'cleo-static-36c9b55ec09a.jpg' | asset_url }} 1200w"
+                        width="347"
+                        height="347"
+                    ><img src="{{ 'cleo-static-444c616d9de0.jpg' | asset_url }}" alt="" srcset="{{ 'cleo-static-444c616d9de0.jpg' | asset_url }} 800w, {{ 'cleo-static-444c616d9de0.jpg' | asset_url }} 1200w" width="1577" height="766" loading="lazy" fetchpriority="high" sizes="100vw"></picture>
+
+          <div class="slideshow__slide-content    place-self-center-start text-start sm:place-self-center-start sm:text-start" style="--text-color: 255 255 255; color: rgb(var(--text-color));--border-color: var(--text-color) / 0.15;">
+            <div class="prose custom-center">
+</div>
+          </div>
+        </div></div></div>
+  </slideshow-carousel>
+</section><section id="shopify-section-template--21742992916620__responsive_image_8AWp8f" class="shopify-section section"><style data-shopify>
+#shopify-section-template--21742992916620__responsive_image_8AWp8f .responsive-image-section {
+  width: 100%;
+  background:#F3E9DC;
+  padding-top: 40px;
+  padding-bottom: 0px;
+}
+
+#shopify-section-template--21742992916620__responsive_image_8AWp8f .responsive-image-heading {
+  margin: 0 0 24px;
+  text-align: start;
+  color: #895737;
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+#shopify-section-template--21742992916620__responsive_image_8AWp8f img.responsive-image-desktop {
+  width: 100%;
+  height: auto;
+  display: block !important;
+}
+
+#shopify-section-template--21742992916620__responsive_image_8AWp8f img.responsive-image-mobile {
+  width: 100%;
+  height: auto;
+  display: none !important;
+}
+
+@media screen and (max-width: 749px) {
+  #shopify-section-template--21742992916620__responsive_image_8AWp8f .responsive-image-section {
+    padding-top: 25px;
+    padding-bottom: 0px;
+  }
+
+  #shopify-section-template--21742992916620__responsive_image_8AWp8f .responsive-image-heading {
+    font-size: 32px;
+    margin-bottom: 18px;
+  }
+
+  #shopify-section-template--21742992916620__responsive_image_8AWp8f img.responsive-image-desktop {
+    display: none !important;
+  }
+
+  #shopify-section-template--21742992916620__responsive_image_8AWp8f img.responsive-image-mobile {
+    display: block !important;
+  }
+}
+</style>
+
+
+  <section class="responsive-image-section">
+    <div class="container">
+    
+      <h2 class="responsive-image-heading">
+        Steps To Clean Your Cleo Copper Drinkware
+      </h2>
+    
+
+    <img src="{{ 'cleo-static-d9f3bee50e27.jpg' | asset_url }}" srcset="{{ 'cleo-static-d9f3bee50e27.jpg' | asset_url }} 352w, {{ 'cleo-static-d9f3bee50e27.jpg' | asset_url }} 832w, {{ 'cleo-static-d9f3bee50e27.jpg' | asset_url }} 1200w, {{ 'cleo-static-d9f3bee50e27.jpg' | asset_url }} 1920w, {{ 'cleo-static-d9f3bee50e27.jpg' | asset_url }} 2400w" width="2400" height="998" loading="lazy" class="responsive-image-desktop">
+
+    
+      <img src="{{ 'cleo-static-e155f3671f5c.jpg' | asset_url }}" srcset="{{ 'cleo-static-e155f3671f5c.jpg' | asset_url }} 352w, {{ 'cleo-static-e155f3671f5c.jpg' | asset_url }} 832w, {{ 'cleo-static-e155f3671f5c.jpg' | asset_url }} 1200w" width="1200" height="2530" loading="lazy" class="responsive-image-mobile">
+    
+</div>
+  </section>
+
+
+
+</section><div id="shopify-section-template--21742992916620__icon_text_blocks_7ifKgW" class="shopify-section"><section
+  class="icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW"
+  style="
+    background: #f6e8d8;
+    color: #6b6158;
+  "
+>
+  <div class="icon-text-blocks__container">
+    
+
+    <div class="icon-text-blocks__inner">
+      
+        <div class="icon-text-blocks__item" >
+          
+            <div class="icon-text-blocks__icon-wrap">
+              <img
+                src="{{ 'cleo-static-bdcccf9367f6.png' | asset_url }}"
+                alt="Pure Copper"
+                loading="lazy"
+                class="icon-text-blocks__icon"
+              >
+            </div>
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              Pure Copper
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Lab Tested 99.9%<br/> Pure Food<br/> Grade Copper</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+            <div class="icon-text-blocks__icon-wrap">
+              <img
+                src="{{ 'cleo-static-529af8e3ffbc.png' | asset_url }}"
+                alt="Better Hydration"
+                loading="lazy"
+                class="icon-text-blocks__icon"
+              >
+            </div>
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              Better Hydration
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Makes Water Alkaline <br/>and Naturally <br/>Anti-microbial</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+            <div class="icon-text-blocks__icon-wrap">
+              <img
+                src="{{ 'cleo-static-b4ad7f07384d.png' | asset_url }}"
+                alt="Handcrafted"
+                loading="lazy"
+                class="icon-text-blocks__icon"
+              >
+            </div>
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              Handcrafted
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Hand-Hammered to <br/>Preserve Contact <br/>Area with Water</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+            <div class="icon-text-blocks__icon-wrap">
+              <img
+                src="{{ 'cleo-static-960b63633c72.png' | asset_url }}"
+                alt="Eco-Friendly"
+                loading="lazy"
+                class="icon-text-blocks__icon"
+              >
+            </div>
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              Eco-Friendly
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Reusable and Helps<br/>You Reduce<br/> Single-Use Plastic</p>
+            </div>
+          
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__main-heading {
+    margin: 0 0 34px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #8b5a35;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items:
+      
+        center
+      ;
+  }
+
+  
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__icon-wrap {
+    width: 88px;
+    height: 88px;
+    margin-bottom: 8px;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__heading {
+    margin: 0 0 4px;
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #4e222d;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__desc {
+    font-size: 20px;
+    line-height: 1.35;
+    color: #6b6158;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__desc p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__main-heading {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__inner {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__item {
+      align-items:
+        
+          center
+        ;
+    }
+
+    
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__icon-wrap {
+      width: 64px;
+      height: 64px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__heading {
+      font-size: 17px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__desc {
+      font-size: 13px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+  
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7ifKgW .icon-text-blocks__item:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 50%;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+}
+</style>
+
+</div><div id="shopify-section-template--21742992916620__icon_text_blocks_7KW9qU" class="shopify-section"><section
+  class="icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU"
+  style="
+    background: #f6e8d8;
+    color: #2a2520;
+  "
+>
+  <div class="icon-text-blocks__container">
+    
+      <h2 class="icon-text-blocks__main-heading">
+        Trusted Globally
+      </h2>
+    
+
+    <div class="icon-text-blocks__inner">
+      
+        <div class="icon-text-blocks__item" >
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              100,000 +
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Customers</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              10 +
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Countries Reached</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              400,000 +
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Products Sold</p>
+            </div>
+          
+        </div>
+      
+        <div class="icon-text-blocks__item" >
+          
+
+          
+            <h3 class="icon-text-blocks__heading">
+              4.8/5
+            </h3>
+          
+
+          
+            <div class="icon-text-blocks__desc">
+              <p>Rating across Website and other Marketplaces</p>
+            </div>
+          
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU {
+    padding-top: 32px;
+    padding-bottom: 0px;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__main-heading {
+    margin: 0 0 34px;
+    text-align: center;
+    font-size: 58px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #8b5a35;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items:
+      
+        center
+      ;
+  }
+
+  
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: calc(-40px / 2);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 120px;
+      background: #e3d3c2;
+    }
+  
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__icon-wrap {
+    width: 0px;
+    height: 0px;
+    margin-bottom: 8px;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__heading {
+    margin: 0 0 8px;
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #8b5a35;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__desc {
+    font-size: 23px;
+    line-height: 1.35;
+    color: #2a2520;
+  }
+
+  .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__desc p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU {
+      padding-top: 24px;
+      padding-bottom: 0px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__main-heading {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__inner {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__item {
+      align-items:
+        
+          center
+        ;
+    }
+
+    
+      .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__item::after {
+        display: none;
+      }
+
+      
+        .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__item:nth-child(odd)::after {
+          content: "";
+          display: block;
+          position: absolute;
+          right: calc(-20px / 2);
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 80px;
+          background: #e3d3c2;
+        }
+      
+    
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__icon-wrap {
+      width: 0px;
+      height: 0px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__heading {
+      font-size: 26px;
+    }
+
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__desc {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+  
+    .icon-text-blocks-template--21742992916620__icon_text_blocks_7KW9qU .icon-text-blocks__item:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 50%;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+}
+</style>
+
+</div><section id="shopify-section-template--21742992916620__17786577307183f17b" class="shopify-section shopify-section--apps"><div class="color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c color-scheme--bg-f733170f8e26ef0af87b024124e087d4 section-spacing ">
+    <div
+      
+    ><div id="shopify-block-ASmJ4eW1kZk5Wb2I0W__ali_reviews_widget_box_LfadFm" class="shopify-block shopify-app-block ali-widget-app-ext"><!-- BEGIN app snippet: alireviews_variables --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_box --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+
+  <div class='alireviews-review-box' data-id='ASmJ4eW1kZk5Wb2I0W__ali_reviews_widget_box_LfadFm' data-product-id=''></div>
+  
+
+
+</div></div>
+  </div>
+</section><section id="shopify-section-template--21742992916620__faq_DYBzMQ" class="shopify-section shopify-section--faq"><div class="section-spacing color-scheme color-scheme--scheme-da62a118-22e7-49ef-8ce6-b3d06255bd44 color-scheme--bg-f733170f8e26ef0af87b024124e087d4 ">
+    <div class="container container--md">
+      <div class="section-stack Faq-section custom-gap-faq">
+  <div class="section-header  justify-self-center text-center"><div class="prose"><p class="h6 custom-subheading">Common Questions</p><h2 class="h2 custom-heading  ">Everything You Need to Know</h2></div></div><div class="faq"><div class="faq__content"><accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>How does it work?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>Copper releases natural ions into your water, which helps balance pH levels, boosts metabolism, and improves digestion.</p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>Will it rust</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>No. Copper doesn&rsquo;t rust, but it does naturally oxidize over time, which can be cleaned easily with our coir brush. This process is completely normal and safe.</p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>How do I clean Cleo Copper Drinkware ?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>Clean using a mixture of lemon juice and salt or vinegar and salt. Rinse thoroughly with warm water and dry immediately to maintain shine and purity.</p></div></div>
+  </details>
+</accordion-disclosure>
+<accordion-disclosure class="accordion custom-faq-accordion  " >
+  <details
+    class="accordion__disclosure group"
+    
+      aria-expanded="false"
+    
+  >
+    <summary><span class="accordion__toggle text-lg custom-accordion-css"><span>What health benefits can I expect?</span><svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+      <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></span>
+    </summary>
+
+    <div class="accordion__content custom-accordion-css "><div class="prose"><p>Customers report improved digestion, increased hydration, better skin health, and stronger immunity with regular use of Cleo.</p></div></div>
+  </details>
+</accordion-disclosure>
+</div>
+        
+        </div>
+        
+          <p class="faq-custom-button-link"><a href="/pages/faqs">View More</a></p>
+        
+      </div>
+    </div>
+  </div>
+</section>
+<!-- BEGIN sections: footer-group -->
+<section id="shopify-section-sections--21732440113292__newsletter_H8CGGU" class="shopify-section shopify-section-group-footer-group shopify-section--newsletter"><style>
+  #shopify-section-sections--21732440113292__newsletter_H8CGGU {--content-over-media-overlay: 0 0 0 / 0.54;}
+</style><div class="color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75 color-scheme--bg-7eb689cfb117fe317faa299210e9fb5a color-scheme--with-image-overlay">
+  <div class="newsletter content-over-media content-over-media--auto"><picture><source
+            media="(max-width: 699px)"
+            srcset="{{ 'cleo-static-7f11eb353252.png' | asset_url }} 400w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 600w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 800w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 1000w"
+            width="393"
+            height="383"
+          ><img src="{{ 'cleo-static-a656d4ae97f6.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 200w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 300w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 400w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 500w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 600w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 700w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 800w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 900w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1000w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1200w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1400w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1600w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1800w" width="1918" height="235" sizes="100vw"></picture><div class="content section-stack gap-8 text-center flex m-w-934 align-item-center">
+  <div class="section-header  justify-self-center text-center"><div class="prose"><h2 class="h2 custom-heading  ">Start Your Wellness Ritual Today</h2></div></div><form method="post" action="/contact#newsletter-form-sections--21732440113292__newsletter_H8CGGU" id="newsletter-form-sections--21732440113292__newsletter_H8CGGU" accept-charset="UTF-8" class="form justify-self-center"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="contact[tags]" value="newsletter">
+
+          <div class="form-row"><div class="form-control" ><input
+        id="input--sections--21732440113292__newsletter_H8CGGU--contactemail"
+        class="input"
+        type="email"
+        
+          dir="ltr"
+        
+        
+          placeholder="E-mail"
+        
+        
+  name="contact[email]"
+  
+  
+  
+  
+  
+  autocomplete="email"
+  
+  enterkeyhint="send"
+  required
+  
+  
+  
+
+      ><label for="input--sections--21732440113292__newsletter_H8CGGU--contactemail" class="sr-only">E-mail</label></div>
+<button type="submit"  class="button" >Sign up</button></div></form></div>
+  </div>
+</div>
+
+
+</section><footer id="shopify-section-sections--21732440113292__footer" class="shopify-section shopify-section-group-footer-group shopify-section--footer"><style>
+  #shopify-section-sections--21732440113292__footer {
+    --footer-content-justify-items: space-between;
+  }
+</style><div class="footer color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75 color-scheme--bg-7eb689cfb117fe317faa299210e9fb5a ">
+  <div class="container">
+    <div class="footer__inner"><div class="footer__block-list"><div class="footer__block footer__block--image" ><div
+    class="footer-image-block"
+    style="
+      --footer-image-text-size-desktop: 18px;
+      --footer-image-text-size-mobile: 16px;
+    "
+  ><img src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 200w, {{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 400w" width="556" height="141" sizes="200px" style="--image-max-width: 200px" class="constrained-image"><div class="footer-image-block__text">
+        <p>Ancient wellness wisdom for modern life. Handcrafted copper bottles designed for your daily ritual.</p>
+      </div></div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">Footer Main</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/" class="link-faded">Home</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/collections/all" class="link-faded">Shop</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/contact" class="link-faded">Contact</a>
+                          </li><li class="footer-custom-link">
+                            <a href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0Mzc5MzkzLCJuYmYiOjE3ODM3NzQ1OTN9.ZGGmjTq7XTbLJkEuT2TwPxyQBeTNGcOGXOBOm8e7xk4&region_country=US" class="link-faded">Track Order</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/our-story" class="link-faded">About</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/blogs/news" class="link-faded">Blogs</a>
+                          </li></ul>
+                    </div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">App terms & policies</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/pages/terms-of-service-cleo-community-ios" class="link-faded">Terms of Service  (iOS)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/terms-of-service-cleo-community-android" class="link-faded">Terms of Service  (Android)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/privacy-policy-cleo-community-ios" class="link-faded">Privacy Policy  (iOS)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/privacy-policy-cleo-lifestyle-android" class="link-faded">Privacy Policy — (Android)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/account-deletion" class="link-faded">Account & Data Deletion</a>
+                          </li></ul>
+                    </div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">Policies</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/policies/privacy-policy" class="link-faded">Privacy policy </a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/refund-policy" class="link-faded">Refund Policy</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/shipping-policy" class="link-faded">Shipping Policy</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/terms-of-service" class="link-faded">Terms of Service</a>
+                          </li></ul>
+                    </div></div></div><div class="footer-social-aside"><ul class="social-media social-media--list unstyled-list" role="list"><li class="social-media__item branding-colors--facebook">
+      <a href="https://www.facebook.com/cleolifestyleofficial" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Facebook"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-facebook" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M10.183 21.85v-8.868H7.2V9.526h2.983V6.982a4.17 4.17 0 0 1 4.44-4.572 22.33 22.33 0 0 1 2.667.144v3.084h-1.83a1.44 1.44 0 0 0-1.713 1.68v2.208h3.423l-.447 3.456h-2.97v8.868h-3.57Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--twitter">
+      <a href="https://x.com/Cleolifestyle" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Twitter"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-twitter" viewBox="0 0 24 24">
+      <path d="M16.94 4h2.715l-5.93 6.777L20.7 20h-5.462l-4.278-5.593L6.065 20H3.35l6.342-7.25L3 4h5.6l3.868 5.113L16.94 4Zm-.952 14.375h1.504L7.784 5.54H6.17l9.818 12.836Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--instagram">
+      <a href="https://www.instagram.com/cleo.lifestyle_/" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Instagram"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-instagram" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4c-2.607 0-2.934.011-3.958.058-1.022.046-1.72.209-2.33.446a4.705 4.705 0 0 0-1.7 1.107 4.706 4.706 0 0 0-1.108 1.7c-.237.611-.4 1.31-.446 2.331C2.41 9.066 2.4 9.392 2.4 12c0 2.607.011 2.934.058 3.958.046 1.022.209 1.72.446 2.33a4.706 4.706 0 0 0 1.107 1.7c.534.535 1.07.863 1.7 1.108.611.237 1.309.4 2.33.446 1.025.047 1.352.058 3.959.058s2.934-.011 3.958-.058c1.022-.046 1.72-.209 2.33-.446a4.706 4.706 0 0 0 1.7-1.107 4.706 4.706 0 0 0 1.108-1.7c.237-.611.4-1.31.446-2.33.047-1.025.058-1.352.058-3.959s-.011-2.934-.058-3.958c-.047-1.022-.209-1.72-.446-2.33a4.706 4.706 0 0 0-1.107-1.7 4.705 4.705 0 0 0-1.7-1.108c-.611-.237-1.31-.4-2.331-.446C14.934 2.41 14.608 2.4 12 2.4Zm0 1.73c2.563 0 2.867.01 3.88.056.935.042 1.443.199 1.782.33.448.174.768.382 1.104.718.336.336.544.656.718 1.104.131.338.287.847.33 1.783.046 1.012.056 1.316.056 3.879 0 2.563-.01 2.867-.056 3.88-.043.935-.199 1.444-.33 1.782a2.974 2.974 0 0 1-.719 1.104 2.974 2.974 0 0 1-1.103.718c-.339.131-.847.288-1.783.33-1.012.046-1.316.056-3.88.056-2.563 0-2.866-.01-3.878-.056-.936-.042-1.445-.199-1.783-.33a2.974 2.974 0 0 1-1.104-.718 2.974 2.974 0 0 1-.718-1.104c-.131-.338-.288-.847-.33-1.783-.047-1.012-.056-1.316-.056-3.879 0-2.563.01-2.867.056-3.88.042-.935.199-1.443.33-1.782.174-.448.382-.768.718-1.104a2.974 2.974 0 0 1 1.104-.718c.338-.131.847-.288 1.783-.33C9.133 4.14 9.437 4.13 12 4.13Zm0 11.07a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm0-8.13a4.93 4.93 0 1 0 0 9.86 4.93 4.93 0 0 0 0-9.86Zm6.276-.194a1.152 1.152 0 1 1-2.304 0 1.152 1.152 0 0 1 2.304 0Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--pinterest">
+      <a href="https://www.pinterest.com/Cleolifestyleofficial/" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Pinterest"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-pinterest" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.765 2.401c3.59-.054 5.837 1.4 6.895 3.95.349.842.722 2.39.442 3.675-.112.512-.144 1.048-.295 1.53-.308.983-.708 1.853-1.238 2.603-.72 1.02-1.81 1.706-3.182 2.052-1.212.305-2.328-.152-2.976-.643-.206-.156-.483-.36-.56-.643h-.029c-.046.515-.244 1.062-.383 1.531-.193.65-.23 1.321-.472 1.929a12.345 12.345 0 0 1-.942 1.868c-.184.302-.692 1.335-1.061 1.347-.04-.078-.057-.108-.06-.245-.118-.19-.035-.508-.087-.766-.082-.4-.145-1.123-.06-1.53v-.643c.096-.442.092-.894.207-1.317.25-.92.39-1.895.648-2.848.249-.915.477-1.916.678-2.847.045-.21-.21-.815-.265-1.041-.174-.713-.042-1.7.176-2.236.275-.674 1.08-1.703 2.122-1.439.838.212 1.371 1.118 1.09 2.266-.295 1.205-.677 2.284-.943 3.49-.068.311.05.641.118.827.248.672 1 1.324 2.004 1.072 1.52-.383 2.193-1.76 2.652-3.246.124-.402.109-.781.206-1.225.204-.935.118-2.331-.177-3.061-.472-1.17-1.353-1.92-2.563-2.328L12.707 4.3c-.56-.128-1.626.064-2.004.183-1.69.535-2.737 1.427-3.388 3.032-.222.546-.344 1.1-.383 1.868l-.03.276c.13.686.144 1.14.413 1.653.132.252.447.451.5.765.032.185-.104.464-.147.613-.065.224-.041.48-.147.673-.192.349-.714.087-.943-.061-1.192-.77-2.175-2.995-1.62-5.144.085-.332.09-.62.206-.919.723-1.844 1.802-2.978 3.359-3.95.583-.364 1.37-.544 2.092-.734l1.149-.154Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--youtube">
+      <a href="https://www.youtube.com/@Cleo-Lifestyle" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on YouTube"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-youtube" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M20.44 5.243c.929.244 1.66.963 1.909 1.876.451 1.654.451 5.106.451 5.106s0 3.452-.451 5.106a2.681 2.681 0 0 1-1.91 1.876c-1.684.443-8.439.443-8.439.443s-6.754 0-8.439-.443a2.682 2.682 0 0 1-1.91-1.876c-.45-1.654-.45-5.106-.45-5.106s0-3.452.45-5.106a2.681 2.681 0 0 1 1.91-1.876c1.685-.443 8.44-.443 8.44-.443s6.754 0 8.438.443Zm-5.004 6.982L9.792 15.36V9.091l5.646 3.134Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--tiktok">
+      <a href="https://www.tiktok.com/@cleo_home" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on TikTok"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-tiktok" viewBox="0 0 24 24">
+      <path d="M20.027 10.168a5.125 5.125 0 0 1-4.76-2.294v7.893a5.833 5.833 0 1 1-5.834-5.834c.122 0 .241.011.361.019v2.874c-.12-.014-.237-.036-.36-.036a2.977 2.977 0 0 0 0 5.954c1.644 0 3.096-1.295 3.096-2.94L12.56 2.4h2.75a5.122 5.122 0 0 0 4.72 4.573v3.195" fill="currentColor"/>
+    </svg></a>
+    </li></ul><div class="footer__aside"><p class="heading text-subdued text-xxs">
+          © 2026 - Cleo Home
+<a target="_blank" rel="nofollow" href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></p></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+</footer>
+<!-- END sections: footer-group --></main>
+    
+  <div id="shopify-block-ATzdJWHhyNmRuTEpFd__10312807297210203588" class="shopify-block shopify-app-block">
+
+
+</div><div id="shopify-block-AL0RMblhsdmpUTkV6M__8924079168617604943" class="shopify-block shopify-app-block">
+<!-- BEGIN app snippet: alireviews_variables --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_box --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_star_rating --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_tab --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_popup --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_carousel --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_media_carousel --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_reviews_carousel_legacy --><!-- END app snippet -->
+
+
+</div><div id="shopify-block-AU3lEazhVcWdYUm5Db__16510219240223340300" class="shopify-block shopify-app-block">
+
+
+
+
+
+
+
+<div class="whatmore-base" data-wht-widget="wgt_embed">
+  <div id="whatmoreShopId" data-wh="71141359756"> </div>
+  <div id="whatmoreProductId" data-wh="8371961102476"> </div>
+  <div id="whatmoreExtensionType" data-wh="product.ritual-set"> </div>
+  <div class="whatmore-template-type" data-wh="template-embed"> </div><div id="whatmoreVariantId" data-wh="45623418650764"> </div><div id="whatmoreEmbedAppPositionPortrait" data-wh="right"> </div><div id="whatmoreEmbedAppHorizontalPaddingPortrait" data-wh="5"> </div><div id="whatmoreEmbedAppVerticalPaddingPortrait" data-wh="150"> </div><div id="whatmoreEmbedAppVideoPlayerSizePortrait" data-wh="50"> </div><div id="whatmoreEmbedAppPositionLandscape" data-wh="right"> </div><div id="whatmoreEmbedAppHorizontalPaddingLandscape" data-wh="5"> </div><div id="whatmoreEmbedAppVerticalPaddingLandscape" data-wh="150"> </div><div id="whatmoreEmbedAppVideoPlayerSizeLandscape" data-wh="50"> </div><div id="whatmoreEmbedAppUseVariant" data-wh="false"> </div><div id="whatmoreEmbedAppVideoTitle" data-wh=""> </div>
+    <div id="whatmoreIsInDesignMode" data-wh='false'> </div>
+  
+<div class="whatmore-widget" data-wh="embed"></div>
+
+  
+  
+      <div id="whatmore-anchor" style="width:0px; height: 0px;">
+          <a aria-label="Visit Whatmore homepage" href="https://www.whatmore.ai"></a>
+      </div>
+  
+
+  <div class="whatmore-render-root"></div>
+
+</div>
+
+<!-- BEGIN app snippet: whatmore-init -->
+<!-- END app snippet -->
+
+</div>
+
+  <div class="preview-page-note" aria-hidden="true">Static HTML/CSS preview copied from Cleo Lifestyle public storefront.</div>
+</body>

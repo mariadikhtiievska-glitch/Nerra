@@ -1,0 +1,91 @@
+<style data-cleo-component-css="blog">
+  .cleo-blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+  
+  .cleo-blog-card {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .cleo-blog-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 989px) {
+  
+  .cleo-blog-grid {
+      grid-template-columns: repeat(var(--cleo-tablet-columns, 2), minmax(0, 1fr));
+    }
+  }
+  
+  @media (max-width: 749px) {
+    .cleo-blog-card h2{
+      font-size:14px;
+    }
+    .cleo-blog-card p{
+      font-size:12px;
+    }
+  
+  .cleo-blog-grid {
+      grid-template-columns: repeat(var(--cleo-mobile-columns, 2), minmax(0, 1fr));
+      gap: var(--cleo-mobile-grid-gap, 14px);
+    }
+  }
+</style>
+
+<section class="cleo-page-shell">
+  <h1 class="cleo-page-title">{{ blog.title }}</h1>
+  {%- paginate blog.articles by section.settings.articles_per_page -%}
+    <div class="cleo-blog-grid">
+      {%- for article in blog.articles -%}
+        <a class="cleo-blog-card" href="{{ article.url }}">
+          {%- if article.image -%}
+            {{ article.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: article.title }}
+          {%- else -%}
+            <img src="{{ 'cleo-banner-desktop.png' | asset_url }}" alt="{{ article.title | escape }}" loading="lazy" width="1918" height="776">
+          {%- endif -%}
+          <h2>{{ article.title }}</h2>
+          <p>{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <nav class="cleo-pagination">
+        {%- if paginate.previous -%}<a class="cleo-button cleo-button--small" href="{{ paginate.previous.url }}">Previous</a>{%- endif -%}
+        <span>{{ paginate.current_page }} / {{ paginate.pages }}</span>
+        {%- if paginate.next -%}<a class="cleo-button cleo-button--small" href="{{ paginate.next.url }}">Next</a>{%- endif -%}
+      </nav>
+    {%- endif -%}
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{
+  "name": "Cleo blog",
+  "enabled_on": {
+    "templates": ["blog"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "Articles per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 9
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo blog"
+    }
+  ]
+}
+{% endschema %}

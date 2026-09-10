@@ -1,0 +1,49 @@
+<section class="cleo-form-shell">
+  <h1 class="cleo-page-title">{{ section.settings.heading }}</h1>
+  <div class="cleo-rich-text">{{ section.settings.text }}</div>
+
+  {%- form 'contact', class: 'cleo-form-grid' -%}
+    {%- if form.posted_successfully? -%}
+      <p>Thanks for contacting us. We'll get back to you as soon as possible.</p>
+    {%- endif -%}
+    {{ form.errors | default_errors }}
+    <input type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% endif %}" placeholder="Name" autocomplete="name">
+    <input type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% endif %}" placeholder="Email" autocomplete="email" required>
+    <textarea rows="7" name="contact[body]" placeholder="Message">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+    <button class="cleo-button" type="submit">{{ section.settings.button_label }}</button>
+  {%- endform -%}
+</section>
+
+{% schema %}
+{
+  "name": "Cleo contact form",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Contact"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Have a question about your order or copper care? Send us a message.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Send"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo contact form"
+    }
+  ]
+}
+{% endschema %}

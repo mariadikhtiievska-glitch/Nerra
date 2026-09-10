@@ -1,0 +1,838 @@
+{%- if section.settings.show_bar -%}
+  {%- liquid
+    assign message_count = section.blocks.size
+
+    if message_count == 0
+      assign message_count = 1
+    endif
+
+    assign arrows_enabled = false
+    if section.settings.show_arrows and message_count > 1
+      assign arrows_enabled = true
+    endif
+
+    assign autoplay_enabled = false
+    if section.settings.autoplay_seconds > 0 and message_count > 1
+      assign autoplay_enabled = true
+    endif
+  -%}
+
+  <style>
+    :root {
+      --announcement-bar-is-sticky: 1;
+    }
+
+    #shopify-section-{{ section.id }} {
+      --announcement-bar-font-size: {{ section.settings.font_size | divided_by: 16.0 }}rem;
+      --announcement-bar-min-height: {{ section.settings.bar_height }}px;
+
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    /* Keep the bar below a sticky header when it follows the header section. */
+    .shopify-section--header ~ #shopify-section-{{ section.id }} {
+      top: calc(
+        var(--header-is-sticky, 0) *
+        var(--header-height, 0px)
+      );
+      z-index: 4;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar {
+      position: relative;
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) 40px;
+      grid-template-rows: minmax(var(--announcement-bar-min-height), auto);
+      align-items: center;
+      width: 100%;
+      min-height: var(--announcement-bar-min-height);
+      padding-inline: max(12px, calc((100vw - 1280px) / 2));
+      overflow: hidden;
+      isolation: isolate;
+
+      color: {{ section.settings.text_color }};
+      background: {{ section.settings.background_color }};
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar--without-arrows {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__slider {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #shopify-section-{{ section.id }}
+      .announcement-bar--without-arrows
+      .announcement-bar__slider {
+      grid-column: 1;
+    }
+
+    /* No-JavaScript and dependency-failure fallback. */
+    #shopify-section-{{ section.id }}
+      .announcement-bar__slider:not(.slick-initialized)
+      .announcement-bar__message {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }}
+      .announcement-bar__slider:not(.slick-initialized)
+      .announcement-bar__message:first-child {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__message {
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__message-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: var(--announcement-bar-min-height);
+      padding: 7px 12px;
+      box-sizing: border-box;
+
+      font-size: var(--announcement-bar-font-size);
+      line-height: 1.35;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__message-inner > * {
+      margin: 0;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__message a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__message a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__arrow {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      grid-row: 1;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+
+      color: inherit;
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      opacity: 0.78;
+
+      transition:
+        opacity 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__arrow--prev {
+      grid-column: 1;
+      justify-self: start;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__arrow--next {
+      grid-column: 3;
+      justify-self: end;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__arrow:hover {
+      opacity: 1;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__arrow:active {
+      transform: scale(0.94);
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__arrow:focus-visible {
+      opacity: 1;
+      outline: 1px solid currentColor;
+      outline-offset: 2px;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__arrow.slick-disabled {
+      cursor: default;
+      opacity: 0.3;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__arrow svg {
+      display: block;
+      width: 12px;
+      height: 18px;
+    }
+
+    /* Slick core styles, scoped to this section to avoid theme conflicts. */
+    #shopify-section-{{ section.id }} .slick-slider {
+      position: relative;
+      display: block;
+      box-sizing: border-box;
+      user-select: none;
+      touch-action: pan-y;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #shopify-section-{{ section.id }} .slick-list {
+      position: relative;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .slick-list:focus {
+      outline: none;
+    }
+
+    #shopify-section-{{ section.id }} .slick-list.dragging {
+      cursor: grabbing;
+    }
+
+    #shopify-section-{{ section.id }} .slick-track {
+      position: relative;
+      top: 0;
+      left: 0;
+      display: block;
+      margin-inline: auto;
+    }
+
+    #shopify-section-{{ section.id }} .slick-track::before,
+    #shopify-section-{{ section.id }} .slick-track::after {
+      display: table;
+      content: '';
+    }
+
+    #shopify-section-{{ section.id }} .slick-track::after {
+      clear: both;
+    }
+
+    #shopify-section-{{ section.id }} .slick-slider .slick-track,
+    #shopify-section-{{ section.id }} .slick-slider .slick-list {
+      transform: translate3d(0, 0, 0);
+    }
+
+    #shopify-section-{{ section.id }} .slick-slide {
+      display: none;
+      float: left;
+      height: 100%;
+      min-height: 1px;
+    }
+
+    [dir='rtl'] #shopify-section-{{ section.id }} .slick-slide {
+      float: right;
+    }
+
+    #shopify-section-{{ section.id }} .slick-initialized .slick-slide {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .slick-loading .slick-slide,
+    #shopify-section-{{ section.id }} .slick-loading .slick-track {
+      visibility: hidden;
+    }
+
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} .announcement-bar {
+        grid-template-columns: 34px minmax(0, 1fr) 34px;
+        padding-inline: 8px;
+      }
+
+      #shopify-section-{{ section.id }} .announcement-bar--without-arrows {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      #shopify-section-{{ section.id }} .announcement-bar__message-inner {
+        padding-inline: 5px;
+      }
+
+      #shopify-section-{{ section.id }} .announcement-bar__arrow {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    @media screen and (min-width: 999px) {
+      #shopify-section-{{ section.id }} {
+        --announcement-bar-font-size: {{ section.settings.desktop_font_size | divided_by: 16.0 }}rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #shopify-section-{{ section.id }} .announcement-bar__arrow {
+        transition: none;
+      }
+    }
+      /* Announcement bar compact height */
+  #shopify-section-{{ section.id }} .announcement-bar {
+    padding-block-start: 6px !important;
+    padding-block-end: 6px !important;
+    min-height: 50px;
+  }
+
+  #shopify-section-{{ section.id }} .announcement-bar__slider {
+    min-height: 38px;
+  }
+
+  #shopify-section-{{ section.id }} .announcement-bar__slider .slideshow-control {
+    width: 32px;
+    height: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .announcement-bar__slides {
+    width: calc(100% - 64px);
+  }
+
+  #shopify-section-{{ section.id }} .announcement-bar__slide {
+    line-height: 1.2;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .announcement-bar {
+      padding-block-start: 5px !important;
+      padding-block-end: 5px !important;
+      min-height: 46px;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__slider {
+      min-height: 36px;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__slider .slideshow-control {
+      width: 30px;
+      height: 30px;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__slides {
+      width: calc(100% - 60px);
+    }
+  }
+  </style>
+
+  <height-observer variable="announcement-bar">
+    <div
+      class="announcement-bar color-scheme{% unless arrows_enabled %} announcement-bar--without-arrows{% endunless %}"
+      role="region"
+      aria-label="Announcement bar"
+    >
+      {%- if arrows_enabled -%}
+        <button
+          type="button"
+          class="announcement-bar__arrow announcement-bar__arrow--prev"
+          aria-label="Previous announcement"
+          aria-controls="announcement-slider-{{ section.id }}"
+        >
+          <span class="sr-only">Previous announcement</span>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            viewBox="0 0 16 18"
+          >
+            <path
+              d="M11 1 3 9l8 8"
+              stroke="currentColor"
+              stroke-linecap="square"
+            ></path>
+          </svg>
+        </button>
+      {%- endif -%}
+
+      <div
+        id="announcement-slider-{{ section.id }}"
+        class="announcement-bar__slider"
+        data-cleo-announcement-slider
+        data-section-id="{{ section.id }}"
+        data-message-count="{{ message_count }}"
+        data-show-arrows="{{ arrows_enabled }}"
+        data-autoplay="{{ autoplay_enabled }}"
+        data-autoplay-speed="{{ section.settings.autoplay_seconds | times: 1000 }}"
+        data-transition-speed="{{ section.settings.transition_speed }}"
+        data-transition-style="{{ section.settings.transition_style }}"
+        data-pause-on-hover="{{ section.settings.pause_on_hover }}"
+        aria-label="Announcements"
+      >
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            <div
+              class="announcement-bar__message prose heading"
+              data-announcement-block-id="{{ block.id }}"
+              role="group"
+              aria-label="Announcement {{ forloop.index }} of {{ forloop.length }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="announcement-bar__message-inner">
+                {{ block.settings.text }}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div
+            class="announcement-bar__message prose heading"
+            role="group"
+            aria-label="Announcement 1 of 1"
+          >
+            <div class="announcement-bar__message-inner">
+              <p>
+                Use code <strong>CLEO10</strong>
+                for an extra 10% off at checkout
+              </p>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if arrows_enabled -%}
+        <button
+          type="button"
+          class="announcement-bar__arrow announcement-bar__arrow--next"
+          aria-label="Next announcement"
+          aria-controls="announcement-slider-{{ section.id }}"
+        >
+          <span class="sr-only">Next announcement</span>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            viewBox="0 0 16 18"
+          >
+            <path
+              d="m5 17 8-8-8-8"
+              stroke="currentColor"
+              stroke-linecap="square"
+            ></path>
+          </svg>
+        </button>
+      {%- endif -%}
+    </div>
+  </height-observer>
+
+  <script>
+    (() => {
+      const SECTION_ID = 'shopify-section-{{ section.id }}';
+      const section = document.getElementById(SECTION_ID);
+
+      if (!section) return;
+
+      window.CleoAnnouncementBar = window.CleoAnnouncementBar || (() => {
+        const JQUERY_URL = 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js';
+        const SLICK_URL = 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js';
+        const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+        const toBoolean = (value) => value === true || value === 'true';
+        const toNumber = (value, fallback) => {
+          const number = Number(value);
+          return Number.isFinite(number) ? number : fallback;
+        };
+
+        const loadScript = (src, id) => new Promise((resolve, reject) => {
+          const existingScript = document.getElementById(id);
+
+          if (existingScript) {
+            existingScript.addEventListener('load', resolve, { once: true });
+            existingScript.addEventListener('error', reject, { once: true });
+            return;
+          }
+
+          const script = document.createElement('script');
+          script.id = id;
+          script.src = src;
+          script.async = true;
+          script.onload = resolve;
+          script.onerror = () => reject(new Error(`Unable to load ${src}`));
+          document.head.appendChild(script);
+        });
+
+        const loadDependencies = () => {
+          if (window.jQuery?.fn?.slick) {
+            return Promise.resolve(window.jQuery);
+          }
+
+          if (!window.__cleoAnnouncementDependencies) {
+            window.__cleoAnnouncementDependencies = (async () => {
+              if (!window.jQuery) {
+                await loadScript(JQUERY_URL, 'cleo-announcement-jquery');
+              }
+
+              const $ = window.jQuery;
+
+              if (!$) {
+                throw new Error('jQuery did not initialize.');
+              }
+
+              if (!$.fn.slick) {
+                await loadScript(SLICK_URL, 'cleo-announcement-slick');
+              }
+
+              if (!$.fn.slick) {
+                throw new Error('Slick Slider did not initialize.');
+              }
+
+              return $;
+            })();
+          }
+
+          return window.__cleoAnnouncementDependencies;
+        };
+
+        const getSection = (slider) => slider.closest('[id^="shopify-section-"]');
+
+        const updateHeight = (sectionElement) => {
+          if (!sectionElement || !document.documentElement.contains(sectionElement)) return;
+
+          requestAnimationFrame(() => {
+            const height = sectionElement.getBoundingClientRect().height.toFixed(2);
+            document.documentElement.style.setProperty(
+              '--announcement-bar-height',
+              `${height}px`
+            );
+          });
+        };
+
+        const observeHeight = (sectionElement) => {
+          updateHeight(sectionElement);
+
+          if (!window.ResizeObserver || sectionElement.__cleoAnnouncementResizeObserver) {
+            return;
+          }
+
+          sectionElement.__cleoAnnouncementResizeObserver = new ResizeObserver(() => {
+            updateHeight(sectionElement);
+          });
+
+          sectionElement.__cleoAnnouncementResizeObserver.observe(sectionElement);
+        };
+
+        const initSlider = async (slider) => {
+          if (!slider || slider.dataset.cleoInitialized === 'true') return;
+
+          slider.dataset.cleoInitialized = 'pending';
+
+          try {
+            const $ = await loadDependencies();
+
+            if (!document.documentElement.contains(slider)) return;
+            if ($(slider).hasClass('slick-initialized')) {
+              slider.dataset.cleoInitialized = 'true';
+              return;
+            }
+
+            const sectionElement = getSection(slider);
+            const messageCount = toNumber(slider.dataset.messageCount, 1);
+            const showArrows = toBoolean(slider.dataset.showArrows) && messageCount > 1;
+            const autoplayRequested = toBoolean(slider.dataset.autoplay) && messageCount > 1;
+            const prefersReducedMotion = window.matchMedia?.(REDUCED_MOTION_QUERY).matches;
+            const autoplay = autoplayRequested && !prefersReducedMotion;
+            const transitionStyle = slider.dataset.transitionStyle || 'slide';
+            const transitionSpeed = prefersReducedMotion
+              ? 0
+              : toNumber(slider.dataset.transitionSpeed, 350);
+            const pauseOnHover = toBoolean(slider.dataset.pauseOnHover);
+            const previousButton = sectionElement?.querySelector('.announcement-bar__arrow--prev');
+            const nextButton = sectionElement?.querySelector('.announcement-bar__arrow--next');
+
+            $(slider)
+              .on('init.cleoAnnouncement reInit.cleoAnnouncement setPosition.cleoAnnouncement', () => {
+                updateHeight(sectionElement);
+              })
+              .on('afterChange.cleoAnnouncement', () => {
+                updateHeight(sectionElement);
+              })
+              .slick({
+                accessibility: true,
+                adaptiveHeight: true,
+                arrows: showArrows,
+                autoplay,
+                autoplaySpeed: Math.max(
+                  toNumber(slider.dataset.autoplaySpeed, 5000),
+                  1000
+                ),
+                cssEase: 'ease',
+                dots: false,
+                draggable: messageCount > 1,
+                fade: transitionStyle === 'fade',
+                infinite: messageCount > 1,
+                mobileFirst: true,
+                nextArrow: nextButton || undefined,
+                pauseOnFocus: true,
+                pauseOnHover,
+                prevArrow: previousButton || undefined,
+                rtl: document.documentElement.dir === 'rtl',
+                slidesToScroll: 1,
+                slidesToShow: 1,
+                speed: transitionSpeed,
+                swipe: messageCount > 1,
+                touchMove: messageCount > 1,
+                waitForAnimate: false
+              });
+
+            slider.dataset.cleoInitialized = 'true';
+            observeHeight(sectionElement);
+          } catch (error) {
+            slider.dataset.cleoInitialized = 'failed';
+            console.warn('[Cleo announcement bar]', error);
+          }
+        };
+
+        const init = (root = document) => {
+          const sliders = root.matches?.('[data-cleo-announcement-slider]')
+            ? [root]
+            : root.querySelectorAll?.('[data-cleo-announcement-slider]') || [];
+
+          sliders.forEach(initSlider);
+        };
+
+        const destroy = (root) => {
+          const sliders = root.matches?.('[data-cleo-announcement-slider]')
+            ? [root]
+            : root.querySelectorAll?.('[data-cleo-announcement-slider]') || [];
+
+          sliders.forEach((slider) => {
+            const $ = window.jQuery;
+
+            if ($?.fn?.slick && $(slider).hasClass('slick-initialized')) {
+              $(slider).off('.cleoAnnouncement').slick('unslick');
+            }
+
+            delete slider.dataset.cleoInitialized;
+          });
+
+          const sectionElement = root.matches?.('[id^="shopify-section-"]')
+            ? root
+            : root.closest?.('[id^="shopify-section-"]');
+
+          if (sectionElement?.__cleoAnnouncementResizeObserver) {
+            sectionElement.__cleoAnnouncementResizeObserver.disconnect();
+            delete sectionElement.__cleoAnnouncementResizeObserver;
+          }
+        };
+
+        const selectBlock = (event) => {
+          const blockId = event.detail?.blockId;
+          const block = event.target?.closest?.('[data-announcement-block-id]');
+          const slider = block?.closest?.('[data-cleo-announcement-slider]');
+          const $ = window.jQuery;
+
+          if (!blockId || !slider || !$?.fn?.slick || !$(slider).hasClass('slick-initialized')) {
+            return;
+          }
+
+          const originalSlides = Array.from(
+            slider.querySelectorAll('[data-announcement-block-id]:not(.slick-cloned)')
+          );
+          const selectedSlide = originalSlides.find(
+            (slide) => slide.dataset.announcementBlockId === blockId
+          );
+
+          if (!selectedSlide) return;
+
+          const slideIndex = toNumber(selectedSlide.dataset.slickIndex, 0);
+          $(slider).slick('slickPause').slick('slickGoTo', slideIndex, true);
+        };
+
+        const deselectBlock = (event) => {
+          const block = event.target?.closest?.('[data-announcement-block-id]');
+          const slider = block?.closest?.('[data-cleo-announcement-slider]');
+          const $ = window.jQuery;
+          const prefersReducedMotion = window.matchMedia?.(REDUCED_MOTION_QUERY).matches;
+
+          if (
+            !slider ||
+            !$?.fn?.slick ||
+            !$(slider).hasClass('slick-initialized') ||
+            !toBoolean(slider.dataset.autoplay) ||
+            prefersReducedMotion
+          ) {
+            return;
+          }
+
+          $(slider).slick('slickPlay');
+        };
+
+        document.addEventListener('shopify:section:load', (event) => init(event.target));
+        document.addEventListener('shopify:section:unload', (event) => destroy(event.target));
+        document.addEventListener('shopify:section:select', (event) => {
+          init(event.target);
+          const sectionElement = event.target.closest?.('[id^="shopify-section-"]') || event.target;
+          updateHeight(sectionElement);
+        });
+        document.addEventListener('shopify:block:select', selectBlock);
+        document.addEventListener('shopify:block:deselect', deselectBlock);
+
+        return { init, destroy };
+      })();
+
+      window.CleoAnnouncementBar.init(section);
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cleo announcement bar",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#24211E"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text and arrow color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "bar_height",
+      "label": "Minimum bar height",
+      "min": 36,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Mobile font size",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "desktop_font_size",
+      "label": "Desktop font size",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "transition_style",
+      "label": "Transition style",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        }
+      ],
+      "default": "slide"
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "label": "Transition speed",
+      "min": 0,
+      "max": 1000,
+      "step": 50,
+      "unit": "ms",
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "autoplay_seconds",
+      "label": "Autoplay delay",
+      "info": "Set to 0 to disable automatic sliding.",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause autoplay on hover",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Use code <strong>CLEO10</strong> for an extra 10% off at checkout</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo announcement bar",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>Use code <strong>CLEO10</strong> for an extra 10% off at checkout</p>"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>Free Shipping | Free Ebook</p>"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>Buy 2 Get 1 Free</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

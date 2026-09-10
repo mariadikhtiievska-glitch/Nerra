@@ -1,0 +1,256 @@
+{% comment %}
+  Cleo Artisan Banner
+  Separate image banner section matching the supplied artisan image.
+{% endcomment %}
+
+{% assign banner_loading = 'lazy' %}
+{% if section.settings.eager_load %}
+  {% assign banner_loading = 'eager' %}
+{% endif %}
+
+<section
+  class="cleo-artisan-banner"
+  style="
+    --cleo-artisan-bg: {{ section.settings.background_color }};
+    --cleo-artisan-max-width: {{ section.settings.max_width }}px;
+    --cleo-artisan-radius: {{ section.settings.border_radius }}px;
+    --cleo-artisan-top: {{ section.settings.padding_top }}px;
+    --cleo-artisan-bottom: {{ section.settings.padding_bottom }}px;
+    --cleo-artisan-side: {{ section.settings.side_padding }}px;
+  "
+>
+  <div class="cleo-artisan-banner__container">
+    <div class="cleo-artisan-banner__media">
+      {% if section.settings.desktop_image != blank %}
+        <picture>
+          {% if section.settings.mobile_image != blank %}
+            <source
+              media="(max-width: 749px)"
+              srcset="
+                {{ section.settings.mobile_image | image_url: width: 375 }} 375w,
+                {{ section.settings.mobile_image | image_url: width: 550 }} 550w,
+                {{ section.settings.mobile_image | image_url: width: 750 }} 750w,
+                {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w
+              "
+              sizes="100vw"
+            >
+          {% endif %}
+
+          {{
+            section.settings.desktop_image
+            | image_url: width: 2400
+            | image_tag:
+              class: 'cleo-artisan-banner__image',
+              widths: '750, 1000, 1200, 1500, 1800, 2100, 2400',
+              sizes: '(min-width: 1440px) 1348px, calc(100vw - 48px)',
+              loading: banner_loading,
+              alt: section.settings.image_alt
+          }}
+        </picture>
+      {% else %}
+        <div class="cleo-artisan-banner__placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .cleo-artisan-banner {
+    width: 100%;
+    background: var(--cleo-artisan-bg);
+    padding: var(--cleo-artisan-top) var(--cleo-artisan-side) var(--cleo-artisan-bottom);
+  }
+
+  #shopify-section-{{ section.id }} .cleo-artisan-banner__container {
+    width: 100%;
+    max-width: var(--cleo-artisan-max-width);
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-artisan-banner__media {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--cleo-artisan-radius);
+    line-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-artisan-banner__media picture {
+    display: block;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-artisan-banner__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-artisan-banner__placeholder {
+    width: 100%;
+    aspect-ratio: 1577 / 766;
+    background: #ded4c8;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-artisan-banner__placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .cleo-artisan-banner {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-right: {{ section.settings.mobile_side_padding }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      padding-left: {{ section.settings.mobile_side_padding }}px;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-artisan-banner__media {
+      border-radius: {{ section.settings.mobile_border_radius }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cleo artisan banner",
+  "tag": "section",
+  "class": "section-cleo-artisan-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image",
+      "info": "Optional. Desktop image is used when this is empty."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Handcrafted by skilled artisans"
+    },
+    {
+      "type": "checkbox",
+      "id": "eager_load",
+      "label": "Load image immediately",
+      "default": true,
+      "info": "Enable when this section is near the top of the page."
+    },
+    {
+      "type": "header",
+      "content": "Desktop layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F3E9DC"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum content width",
+      "min": 1200,
+      "max": 1500,
+      "step": 4,
+      "unit": "px",
+      "default": 1348
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "side_padding",
+      "label": "Side spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "range",
+      "id": "mobile_border_radius",
+      "label": "Mobile corner radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top spacing",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom spacing",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "Mobile side spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo artisan banner"
+    }
+  ]
+}
+{% endschema %}

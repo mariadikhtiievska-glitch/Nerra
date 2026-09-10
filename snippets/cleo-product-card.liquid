@@ -1,0 +1,77 @@
+{%- liquid
+  assign card_product = product
+  assign show_quick_add = show_quick_add | default: true
+  assign image_ratio = image_ratio | default: '1 / 1'
+  assign badge_text = ''
+
+  if card_product.compare_at_price > card_product.price
+    assign badge_text = 'Sale'
+  elsif card_product.tags contains 'Bestseller'
+    assign badge_text = 'Bestseller'
+  elsif card_product.tags contains 'Limited Edition'
+    assign badge_text = 'Limited Edition'
+  endif
+-%}
+
+<article class="cleo-product-card" style="--cleo-card-ratio: {{ image_ratio }};">
+  <a class="cleo-product-card__media" href="{{ card_product.url | default: '#' }}" aria-label="{{ card_product.title | escape }}">
+    {%- if badge_text != blank -%}
+      <span class="cleo-badge">{{ badge_text }}</span>
+    {%- endif -%}
+
+    {%- if card_product.featured_media.preview_image != blank -%}
+      {{
+        card_product.featured_media.preview_image
+        | image_url: width: 900
+        | image_tag:
+          loading: 'lazy',
+          sizes: '(max-width: 749px) 74vw, (max-width: 989px) 40vw, 25vw',
+          alt: card_product.title,
+          class: 'cleo-product-card__image cleo-product-card__image--primary'
+      }}
+    {%- else -%}
+      <img
+        src="{{ 'cleo-product-bottle.jpg' | asset_url }}"
+        alt="{{ card_product.title | escape }}"
+        class="cleo-product-card__image cleo-product-card__image--primary"
+        loading="lazy"
+        width="900"
+        height="900"
+      >
+    {%- endif -%}
+
+    {%- assign second_media = card_product.media[1].preview_image -%}
+    {%- if second_media != blank -%}
+      {{
+        second_media
+        | image_url: width: 900
+        | image_tag:
+          loading: 'lazy',
+          sizes: '(max-width: 749px) 74vw, (max-width: 989px) 40vw, 25vw',
+          alt: card_product.title,
+          class: 'cleo-product-card__image cleo-product-card__image--secondary'
+      }}
+    {%- endif -%}
+  </a>
+
+  <div class="cleo-product-card__body">
+    <a class="cleo-product-card__title" href="{{ card_product.url | default: '#' }}">{{ card_product.title }}</a>
+    <div class="cleo-product-card__price">
+      {%- if card_product.compare_at_price > card_product.price -%}
+        <span class="cleo-product-card__price-sale">{{ card_product.price | money }}</span>
+        <s>{{ card_product.compare_at_price | money }}</s>
+      {%- else -%}
+        <span>{{ card_product.price | money }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- if show_quick_add and card_product.available -%}
+      {%- form 'product', card_product, class: 'cleo-quick-add' -%}
+        <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+        <button class="cleo-button cleo-button--small cleo-button--full" type="submit">Add to cart</button>
+      {%- endform -%}
+    {%- elsif show_quick_add -%}
+      <button class="cleo-button cleo-button--small cleo-button--full" type="button" disabled>Sold out</button>
+    {%- endif -%}
+  </div>
+</article>

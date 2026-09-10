@@ -1,0 +1,247 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cleo-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "Why do I need a cleaning brush?",
+            "answer": "<p>A cleaning brush helps clean the inside of your copper bottle properly, removes buildup, and keeps it hygienic and shiny for daily use.</p>",
+            "open": false
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use the bottle without these accessories?",
+            "answer": "<p>Yes, the copper bottle can be used without these accessories, but they help make cleaning, carrying, and daily use more convenient.</p>",
+            "open": false
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "How does it work?",
+            "answer": "<p>Copper naturally has antimicrobial properties that help keep water fresh. When water is stored in the bottle for a few hours, it absorbs trace benefits of copper.</p>",
+            "open": false
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "Will it rust?",
+            "answer": "<p>No, copper bottles do not rust. Over time, they may naturally develop slight tarnish or darkening, which is normal and can be cleaned easily.</p>",
+            "open": false
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "How do I clean Cleo Copper Water Bottle?",
+            "answer": "<p>Clean your Cleo Copper Water Bottle gently using lemon, salt, or mild soap with a soft bottle brush. Avoid harsh chemicals and do not scrub aggressively.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Common Questions",
+        "heading": "FAQs",
+        "single_open": true,
+        "show_view_more": true,
+        "view_more_label": "View More",
+        "view_more_link": "",
+        "background_color": "#ffffff",
+        "eyebrow_color": "#4e232d",
+        "heading_color": "#895737",
+        "question_color": "#89573a",
+        "answer_color": "#5f5149",
+        "card_color": "#ffffff",
+        "border_color": "#ffffff",
+        "link_color": "#89573a",
+        "content_width": 900,
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "eyebrow_size": 22,
+        "heading_size": 60,
+        "question_size": 18,
+        "question_weight": "400",
+        "answer_size": 16,
+        "row_height": 52,
+        "card_padding_x": 40,
+        "card_gap": 10,
+        "card_radius": 8,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "mobile_heading_size": 34,
+        "mobile_question_size": 16,
+        "mobile_answer_size": 14,
+        "mobile_card_padding_x": 20
+      }
+    },
+    "cleo_rich_text_adngxe": {
+      "type": "cleo-rich-text",
+      "disabled": true,
+      "name": "Cleo rich text",
+      "settings": {
+        "heading": "{{ page.title }}",
+        "text": "{{ page.content }}",
+        "button_label": "",
+        "button_link": "",
+        "text_alignment": "left",
+        "background_color": "#ffffff",
+        "content_width": 900,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "cleo_faq_page_eNRzkb": {
+      "type": "cleo-faq-page",
+      "blocks": {
+        "faq_h4Gahq": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I verify that my NEERA copper product is 100% authentic, and why does it look like the copper is peeling?",
+            "answer": "<p>Every NEERA product is meticulously handcrafted by skilled artisans using high-grade, pure Ayurvedic copper. Because each piece is individually shaped rather than mass-produced by machines, you may notice unique structural variations. Sometimes, customers notice natural surface flakes or standard oxidation scales that look like peeling. Rest assured, our vessels are completely solid, pure copper and do not have any synthetic coatings or artificial chemical linings that could peel off. What you are seeing is simply a characteristic of raw, natural copper reacting to its environment, which is the true hallmark of authentic craftsmanship.</p>"
+          }
+        },
+        "faq_kcfV76": {
+          "type": "faq",
+          "settings": {
+            "question": "Why is my copper bottle changing color inside, and what should I do about oxidation?",
+            "answer": "<p>Please don't worry—this color change is entirely safe and a wonderful sign of pure copper! Pure copper undergoes a natural process called oxidation when it comes into contact with water and oxygen, leading to a darker patina or faint dark spots. This is a definitive indicator that your bottle is untreated and completely real. You can easily restore its natural inner glow by swirling a gentle mixture of lemon juice or tamarind and a tablespoon of salt inside the bottle, rinsing it thoroughly with lukewarm water, and drying it completely with a soft cloth.</p>"
+          }
+        },
+        "faq_BetJec": {
+          "type": "faq",
+          "settings": {
+            "question": "The cap's O-ring or threading doesn't seem to align perfectly. How can I fix this?",
+            "answer": "<p>Because our bottles are individually handcrafted, the precision threading and silicone O-ring seals can occasionally require a brief break-in period to align flawlessly. If you experience resistance or minor misalignment when twisting the cap, press down evenly on the cap before turning and twist it slowly to help the threads align naturally. Ensuring the silicone O-ring is seated completely flat inside the cap will also help create a secure, leak-proof seal.</p>"
+          }
+        },
+        "faq_AMh8Rh": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I store water in my NEERA bottle and keep it in the refrigerator?",
+            "answer": "<p>We generally recommend keeping your NEERA copper bottle at room temperature to fully maximize the traditional Ayurvedic benefits of copper-infused water. However, if you prefer chilled water, you can place the bottle in the refrigerator. Never place the bottle in the freezer, as the expansion of freezing water can warp or permanently damage the handcrafted copper structure.</p>"
+          }
+        },
+        "faq_tzNaRp": {
+          "type": "faq",
+          "settings": {
+            "question": "Where is NEERA based, and do you ship internationally?",
+            "answer": "<p>NEERA is proudly headquartered in the United States, where we manage our primary operations and design. To bring the holistic benefits of the Ayurvedic lifestyle to a global community, we have also expanded our presence and fulfillment networks across multiple countries, including Germany, Canada, and India. This allows us to serve US customers efficiently while smoothly handling international logistics.</p>"
+          }
+        },
+        "faq_FXPJkf": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my international order?",
+            "answer": "<p>Once your order is processed, you will automatically receive an email confirmation containing your unique tracking number. We primarily partner with premium global couriers such as FedEx to ensure reliable delivery. You can track your shipment through the courier's portal using the direct link provided in your email.</p>"
+          }
+        },
+        "faq_p7L7JA": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I change my shipping address after placing an order?",
+            "answer": "<p>We process and dispatch orders promptly. If you need to update your shipping destination, contact our support team immediately. We can modify the address as long as the package has not left our facility. Unfortunately, we cannot reroute a shipment after it has been handed over to the courier.</p>"
+          }
+        },
+        "faq_QVaiHa": {
+          "type": "faq",
+          "settings": {
+            "question": "I received an incomplete order with missing items. How will this be resolved?",
+            "answer": "<p>Please accept our sincere apologies for the oversight. Contact our support team with your order details, and we will arrange shipment of the missing items as quickly as possible. You will receive a new tracking number by email when the remaining items leave our facility.</p>"
+          }
+        },
+        "faq_chNDET": {
+          "type": "faq",
+          "settings": {
+            "question": "I received the wrong order. What are the next steps to get my correct product?",
+            "answer": "<p>We are very sorry for the delivery mix-up. Please contact our support team and provide a clear photo of the items you received. We will arrange a replacement of your correct order and coordinate the return of the incorrectly received product at no additional cost.</p>"
+          }
+        },
+        "faq_gfCCDA": {
+          "type": "faq",
+          "settings": {
+            "question": "My tracking status hasn't updated in a few days. Should I be concerned?",
+            "answer": "<p>There is usually no need to worry. International shipments can experience temporary tracking pauses while moving through sorting hubs, customs checkpoints, or regional delivery networks. If your tracking status remains unchanged for more than five business days, contact our support team so we can investigate it with the carrier.</p>"
+          }
+        },
+        "faq_bmfDPU": {
+          "type": "faq",
+          "settings": {
+            "question": "What inspires the NEERA living movement?",
+            "answer": "<p>NEERA was founded with a deep respect for personal wellness, mindful living, and ancestral wisdom. Our venture is fueled by a commitment to bringing the time-tested, holistic benefits of the Ayurvedic lifestyle into modern homes. Every piece is designed to support everyday well-being while honoring and preserving the heritage of traditional handcrafted artistry.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_h4Gahq",
+        "faq_kcfV76",
+        "faq_BetJec",
+        "faq_AMh8Rh",
+        "faq_tzNaRp",
+        "faq_FXPJkf",
+        "faq_p7L7JA",
+        "faq_QVaiHa",
+        "faq_chNDET",
+        "faq_gfCCDA",
+        "faq_bmfDPU"
+      ],
+      "name": "CLEO FAQ page",
+      "settings": {
+        "heading": "FAQs",
+        "intro_text": "<p>We have listed frequently answered questions here. Please do get in touch with us if you have any questions.</p>",
+        "show_numbers": true,
+        "content_width": 700,
+        "header_content_gap": 32,
+        "mobile_header_content_gap": 24,
+        "intro_bottom_spacing": 18,
+        "mobile_intro_bottom_spacing": 16,
+        "item_spacing": 18,
+        "mobile_item_spacing": 18,
+        "question_answer_gap": 0,
+        "heading_size": 40,
+        "mobile_heading_size": 32,
+        "heading_weight": "600",
+        "heading_letter_spacing": 0,
+        "body_size": 16,
+        "mobile_body_size": 16,
+        "line_height": 1.6,
+        "mobile_line_height": 1.6,
+        "color_scheme": "",
+        "background_color": "#ffffff",
+        "heading_color": "#1a1a1a",
+        "text_color": "#1a1a1a",
+        "link_color": "#1a1a1a",
+        "padding_top": 48,
+        "padding_bottom": 64,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "cleo_rich_text_adngxe",
+    "cleo_faq_page_eNRzkb"
+  ]
+}

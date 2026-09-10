@@ -1,0 +1,78 @@
+<div class="cleo-popup" aria-label="First order discount popup" data-cleo-popup="cleo-first-order-discount">
+  <div class="cleo-popup__panel" role="dialog" aria-modal="true" aria-labelledby="cleo-popup-title">
+    <img
+      class="cleo-popup__background"
+      src="{{ 'cleo-static-908a19fa9147.png' | asset_url }}"
+      alt=""
+      loading="eager"
+      width="960"
+      height="540"
+    >
+    <img
+      class="cleo-popup__art cleo-popup__art--left"
+      src="{{ 'cleo-popup-woman-bottle.png' | asset_url }}"
+      alt=""
+      loading="eager"
+      width="345"
+      height="540"
+    >
+    <img
+      class="cleo-popup__art cleo-popup__art--right"
+      src="{{ 'cleo-popup-right-bottle-leaf.png' | asset_url }}"
+      alt=""
+      loading="eager"
+      width="256"
+      height="386"
+    >
+    <img
+      class="cleo-popup__candle"
+      src="{{ 'cleo-popup-candle.png' | asset_url }}"
+      alt=""
+      loading="eager"
+      width="98"
+      height="96"
+    >
+
+    <button class="cleo-popup__close" type="button" data-cleo-popup-close aria-label="Close popup">&times;</button>
+
+    <div class="cleo-popup__body">
+      <img
+        class="cleo-popup__logo"
+        src="{{ 'cleo-logo-transparent.png' | asset_url }}"
+        alt="Neera Living"
+        loading="eager"
+        width="112"
+        height="64"
+      >
+      <h2 id="cleo-popup-title">
+        <span>You've got</span>
+        <strong>10% off</strong>
+      </h2>
+      <p class="cleo-popup__subheading">your first order</p>
+
+      {%- form 'customer', class: 'cleo-popup__form', id: 'cleo-popup-newsletter' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter,popup">
+        <label class="sr-only" for="CleoPopupEmail">Email</label>
+        <input
+          id="CleoPopupEmail"
+          class="cleo-popup__email"
+          type="email"
+          name="contact[email]"
+          placeholder="Email"
+          autocomplete="email"
+          required
+        >
+        <button class="cleo-popup__submit" type="submit">Claim 10% off</button>
+      {%- endform -%}
+
+      <button class="cleo-popup__decline" type="button" data-cleo-popup-close>No thank you</button>
+    </div>
+  </div>
+</div>
+
+<div class="cleo-popup-tab" data-cleo-popup-tab="cleo-first-order-discount" aria-hidden="true">
+  <button class="cleo-popup-tab__open" type="button" data-cleo-popup-open="cleo-first-order-discount" aria-label="Open 10% off popup">
+    <span>10% OFF</span>
+  </button>
+  <button class="cleo-popup-tab__close" type="button" data-cleo-popup-tab-close aria-label="Hide offer tab">&times;</button>
+</div>

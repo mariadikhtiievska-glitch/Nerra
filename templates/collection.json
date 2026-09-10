@@ -1,0 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cleo-main-collection",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "products_per_page": 12,
+        "mobile_columns": "2",
+        "tablet_columns": "2",
+        "columns": "3",
+        "show_quick_add": true,
+        "show_desktop_filters": true,
+        "show_layout_switcher": true,
+        "filter_label": "Filter",
+        "filter_heading": "Filters",
+        "sort_label": "Sort by",
+        "empty_text": "No products found"
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,4708 @@
+<style data-cleo-component-css="product">
+  .cleo-option {
+    margin: 18px 0;
+  }
+  
+  .cleo-option legend {
+    color: var(--cleo-copper-dark);
+    font-weight: 800;
+  }
+  
+  .cleo-option span {
+    min-height: 42px;
+    border: 1px solid var(--cleo-border);
+    padding: 9px 16px;
+  }
+  
+  .cleo-option input:checked + span {
+    background: var(--cleo-copper);
+    color: var(--cleo-white);
+    border-color: var(--cleo-copper);
+  }
+  
+  .product-gallery__carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  
+  .product-gallery__carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .product-gallery__media {
+    flex: 0 0 100%;
+  }
+  
+  .product-gallery__thumbnail[aria-current="true"] {
+    border-color: #895737;
+  }
+  
+  .product-sticky-bar {
+    right: auto;
+    box-shadow: var(--cleo-shadow);
+  }
+  
+  @media (max-width: 749px) {
+  
+  .product-usp-grid {
+      grid-template-columns: 1fr;
+    }
+  
+  .product-sticky-bar {
+      border-radius: 18px;
+    }
+  
+  .product-sticky-bar__info .v-stack {
+      display: none;
+    }
+  }
+  
+  [data-cleo-popover] {
+    display: none;
+  }
+  
+  [data-cleo-popover].is-open {
+    display: block;
+    z-index: 80;
+  }
+  
+  .stock-urgency-block {
+    background: rgba(0, 0, 0, 0);
+    padding: 8px 12px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: fit-content;
+  }
+  
+  .stock-urgency-dot {
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+    background: #e00000;
+    margin-top: 4px;
+  }
+  
+  .stock-urgency-text {
+    color: #b87333;
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  
+  .product-subtitle-subtitle_text_J86TTR {
+    color: #666666;
+    font-size: 16px;
+  }
+  
+  .cleo-option {
+    margin: 14px 0;
+    border: 0;
+    padding: 0;
+  }
+  
+  .cleo-option legend {
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  
+  .cleo-option__values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .cleo-option input {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .cleo-option span {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    border: 1px solid rgb(var(--border-color, 224 224 224));
+    border-radius: 999px;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  
+  .cleo-option input:checked + span {
+    background: #895737;
+    color: #ffffff;
+    border-color: #895737;
+  }
+  
+  .custom-extra-offer-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #895737;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  
+  .feature-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+    color: #895737;
+    font-size: 12px;
+  }
+  
+  .feature-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size:14px;
+  }
+  
+  .feature-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .product-usp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  
+  .product-usp-grid__item {
+    border: 1px solid rgba(137, 87, 55, 0.14);
+    border-radius: 8px;
+    padding: 12px;
+    background: #fffaf5;
+  }
+  
+  .product-usp-grid__title {
+    margin: 0 0 2px;
+    color: #895737;
+    font-weight: 700;
+  }
+  
+  .product-usp-grid__text {
+    margin: 0;
+    color: #6b6158;
+    font-size: 13px;
+  }
+  
+  .product-sticky-bar {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    z-index: 70;
+    width: min(760px, calc(100vw - 28px));
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 10px;
+    border: 1px solid rgba(137, 87, 55, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 250, 245, 0.96);
+    box-shadow: 0 18px 40px rgba(53, 31, 19, 0.13);
+    backdrop-filter: blur(14px);
+  }
+  
+  .product-sticky-bar__info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  
+  .product-sticky-bar__info img {
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    object-fit: cover;
+  }
+  
+  .cleo-product-page {
+    color: #2a2521;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .cleo-product-page .section-spacing {
+    padding-top: 40px;
+    background: #f4eadc;
+  }
+  
+  .cleo-product-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "product-gallery"
+      "product-info";
+    align-items: start;
+    gap: clamp(36px, 4.6vw, 78px);
+    width: 100%;
+    min-width: 0;
+  }
+  
+  .cleo-product-gallery {
+    grid-area: product-gallery;
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .cleo-product-gallery__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #f1dfcc;
+  }
+  
+  .cleo-product-gallery__badge {
+    position: absolute;
+    top: 14px;
+    left: 22px;
+    z-index: 3;
+    border-radius: 5px;
+    background: #965d3a;
+    color: #ffffff;
+    padding: 8px 11px;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  
+  .cleo-product-gallery .product-gallery__carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .cleo-product-gallery .product-gallery__media {
+    min-width: 100%;
+    scroll-snap-align: center;
+  }
+  
+  .cleo-product-gallery .product-gallery__media img,
+  .cleo-product-gallery .product-gallery__media video,
+  .cleo-product-gallery .product-gallery__media model-viewer {
+    width: 100%;
+    height: min(740px, calc(100vw * 0.42));
+    min-height: 520px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .cleo-product-thumbs {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  
+  .cleo-product-thumbs .product-gallery__thumbnail {
+    width: 118px;
+    height: 118px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: #fff7ee;
+    padding: 0;
+  }
+  
+  .cleo-product-thumbs .product-gallery__thumbnail[aria-current="true"] {
+    border-color: #5a2c23;
+  }
+  
+  .cleo-product-thumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .cleo-product-info {
+    grid-area: product-info;
+    position: sticky;
+    top: 20px;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .cleo-product-info__stack {
+    gap: 16px;
+  }
+  
+  .cleo-product-sold {
+    padding: 0;
+    color: #b46a3b;
+  }
+  
+  .cleo-product-title {
+    margin: 0;
+    color: #2a2521;
+    font-size: clamp(34px, 2.85vw, 48px);
+    font-weight: 900;
+    line-height: 1.18;
+  }
+  
+  .cleo-product-subtitle {
+    color: #716b66;
+    font-size: 20px;
+  }
+  
+  .cleo-product-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2c2940;
+    font-size: 16px;
+  }
+  
+  .cleo-product-rating__stars {
+    color: #965d3a;
+    letter-spacing: 1px;
+  }
+  
+  .cleo-product-price-box {
+    border: 1px solid rgba(150, 93, 58, 0.2);
+    border-radius: 28px;
+    background: linear-gradient(#180deg,#f7ede2,#f4e6d8);
+    padding: 24px 28px 18px;
+  }
+  
+  .cleo-product-price-box .product-page-custom-price {
+    color: #050505;
+    font-size: clamp(32px, 2.6vw, 42px);
+    font-weight: 900;
+  }
+  
+  .cleo-product-offer {
+    margin-top: 14px;
+    color: #75665c;
+    font-size: 16px;
+  }
+  
+  .pills-container {
+    width: 100%;
+  }
+
+  .cleo-product-pills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+    width: 100%;
+  }
+  
+  .cleo-product-pills span {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 38px;
+    box-sizing: border-box;
+    border: 1px solid #E8D4C0;
+    border-radius: 999px;
+    padding: 9px 16px;
+    background: linear-gradient(180deg,#f7ede2,#f4e6d8);
+    box-shadow: inset 0 1px #ffffffa6, 0 1px 2px #00000008;
+    color: #a0643f;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
+  
+  .cleo-bundle {
+    display: grid;
+    gap: 14px;
+  }
+  
+  .cleo-bundle__heading {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 10px;
+    color: #111111;
+    font-weight: 900;
+  }
+  
+  .cleo-bundle__heading span {
+    height: 1px;
+    background: rgba(72, 47, 36, 0.25);
+  }
+  
+  .cleo-bundle__cards {
+    display: grid;
+    gap: 14px;
+  }
+  
+  .cleo-bundle-card {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(80, 53, 42, 0.25);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.62);
+    cursor: pointer;
+  }
+  
+  .cleo-bundle-card.is-selected {
+    border: 2px solid #6f5046;
+  }
+  
+  .cleo-bundle-card input {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .cleo-bundle-card__image {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #f8ece6;
+  }
+  
+  .cleo-bundle-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .cleo-bundle-card__body {
+    display: grid;
+    gap: 2px;
+    padding: 12px 0 8px;
+  }
+  
+  .cleo-bundle-card__body strong {
+    color: #090909;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+  
+  .cleo-bundle-card__body small {
+    color: #68605b;
+    font-size: 15px;
+  }
+  
+  .cleo-bundle-card__price {
+    display: grid;
+    justify-items: end;
+    padding-right: 12px;
+    color: #0b0b0b;
+  }
+  
+  .cleo-bundle-card__price strong {
+    font-size: 23px;
+  }
+  
+  .cleo-bundle-card__perk {
+    grid-column: 1 / -1;
+    background: #75584f;
+    color: #ffffff;
+    padding: 13px 16px;
+    font-weight: 800;
+  }
+  
+  .cleo-product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  
+  .cleo-product-atc {
+    min-height: 54px;
+    border-radius: 7px;
+    background: #965d3a;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  
+  .cleo-payment-button .shopify-payment-button__button,
+  .cleo-payment-button shopify-accelerated-checkout,
+  .cleo-payment-button .shopify-payment-button {
+    min-height: 54px;
+    border-radius: 7px;
+    overflow: hidden;
+    font-size:18px;
+    font-weight: 800;
+  }
+  
+  .cleo-product-feature-bar {
+    justify-content: space-between;
+    color: #965d3a;
+    font-size: 16px;
+  }
+  
+  .cleo-certificate {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    align-items: center;
+    border-radius: 7px;
+    background: #9a5f3b;
+    color: #ffffff;
+    padding: 16px 18px;
+  }
+  
+  .certificate-pdf-icon {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    background: #ffffff;
+    color: #9a5f3b;
+    font-size: 28px;
+  }
+  
+  .certificate-pdf-title {
+    font-size: 20px;
+    font-weight: 900;
+  }
+  
+  .certificate-pdf-subtitle {
+    font-weight: 700;
+  }
+  
+  .certificate-pdf-stars {
+    letter-spacing: 2px;
+  }
+  
+  .cleo-product-usp-grid {
+    gap: 14px 28px;
+  }
+  
+  .cleo-product-usp-grid .product-usp-grid__item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    border: 0;
+    background: transparent;
+    padding: 0;
+  }
+  
+  .cleo-product-usp-grid .product-usp-grid__title {
+    color: #2a2521;
+    font-size: 20px;
+    font-weight: 900;
+  }
+  
+  .cleo-product-usp-grid .product-usp-grid__text {
+    color: #2a2521;
+  }
+  
+  .cleo-product-page .container {
+    width: min(1368px, calc(100vw - 120px));
+    margin-inline: auto;
+  }
+  
+  .cleo-product-page .section-spacing {
+    padding-top: 16px;
+    padding-bottom: 28px;
+  }
+  
+  .cleo-product-layout {
+    gap: clamp(50px, 4.2vw, 66px);
+  }
+  
+  .cleo-product-gallery__frame {
+    border-radius: 16px;
+  }
+  
+  .cleo-product-gallery__badge {
+    top: 10px;
+    left: 14px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .cleo-product-gallery .product-gallery__media img,
+  .cleo-product-gallery .product-gallery__media video,
+  .cleo-product-gallery .product-gallery__media model-viewer {
+    height: min(690px, calc(100vw * 0.448));
+    min-height: 560px;
+  }
+  
+  .cleo-product-thumbs {
+    gap: 10px;
+    margin-top: 9px;
+  }
+  
+  .cleo-product-thumbs .product-gallery__thumbnail {
+    width: 96px;
+    height: 96px;
+    border-radius: 9px;
+  }
+  
+  .cleo-product-info {
+    top: 14px;
+  }
+  
+  .cleo-product-info__stack {
+    gap: 10px;
+  }
+  
+  .cleo-product-title {
+    font-size: clamp(30px, 2.25vw, 38px);
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+  
+  .cleo-product-subtitle {
+    font-size: 16px;
+  }
+  
+  .cleo-product-rating {
+    font-size: 14px;
+    gap: 7px;
+  }
+  
+  .cleo-product-price-box {
+    border-radius: 30px;
+    padding: 14px 14px 14px;
+  }
+  
+  .cleo-product-price-box .product-page-custom-price {
+    font-size: clamp(29px, 2.15vw, 34px);
+  }
+  
+  .cleo-product-offer {
+    margin-top: 10px;
+    gap: 8px;
+    font-size: 13px;
+  }
+  
+  .cleo-offer-icon svg {
+    width: 14px;
+    height: 14px;
+    color: #ff5252;
+  }
+  
+  .cleo-product-pills {
+    gap: 10px 12px;
+  }
+  
+  .cleo-product-pills span {
+    min-height: 38px;
+    font-size: 14px;
+  }
+  
+  .cleo-bundle {
+    gap: 9px;
+  }
+  
+  .cleo-bundle__heading {
+    gap: 8px;
+    font-size: 13px;
+  }
+  
+  .cleo-bundle__cards {
+    gap: 11px;
+  }
+  
+  .cleo-bundle-card {
+    grid-template-columns: 50px 1fr auto;
+    gap: 12px;
+    border-radius: 6px;
+  }
+  
+  .cleo-bundle-card__image {
+    width: 42px;
+    height: 42px;
+    margin-left: 12px;
+  }
+  
+  .cleo-bundle-card__body {
+    padding: 10px 0 7px;
+  }
+  
+  .cleo-bundle-card__body strong {
+    font-size: 20px;
+  }
+  
+  .cleo-bundle-card__body small {
+    font-size: 14px;
+  }
+  
+  .cleo-bundle-card__price strong {
+    font-size: 21px;
+  }
+  
+  .cleo-bundle-card__perk {
+    padding: 11px 14px;
+    font-size: 12px;
+  }
+  
+  .cleo-product-actions {
+    gap: 9px;
+    margin-top: 15px;
+  }
+  
+  .cleo-product-atc,
+  .cleo-payment-button .shopify-payment-button__button,
+  .cleo-payment-button shopify-accelerated-checkout,
+  .cleo-payment-button .shopify-payment-button {
+    {% comment %} min-height: 46px; {% endcomment %}
+    border-radius: 6px;
+  }
+  
+  .cleo-product-atc {
+    font-size: 18px;
+  }
+  
+  .cleo-product-atc .atc-btn-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .cleo-product-atc .atc-btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .cleo-product-feature-bar {
+    margin-top: 8px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(79, 53, 40, 0.17);
+    font-size: 14px;
+  }
+  
+  .cleo-product-feature-bar .feature-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .cleo-certificate {
+    position: relative;
+    grid-template-columns: 74px 1fr 22px;
+    gap: 18px;
+    min-height: 76px;
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 0 16px 0 30px;
+  }
+  
+  .certificate-pdf-icon {
+    align-self: stretch;
+    width: 58px;
+    height: auto;
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
+  }
+  
+  .certificate-pdf-icon svg {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .certificate-pdf-title {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  
+  .certificate-pdf-subtitle {
+    margin-top: 3px;
+    font-size: 13px;
+  }
+  
+  .certificate-pdf-stars {
+    line-height: 1.05;
+    font-size: 15px;
+  }
+  
+  .cleo-product-usp-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px 30px;
+    margin-top: 10px;
+  }
+  
+  .cleo-product-usp-grid .product-usp-grid__item {
+    display: grid;
+    grid-template-columns: 45px minmax(0, 1fr);
+    gap: 10px;
+  }
+  
+  .cleo-usp-icon {
+    display: grid;
+    place-items: center;
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgba(150, 93, 58, 0.16);
+    border-radius: 10px;
+    background: linear-gradient(180deg, #f7ede2, #f4e6d8);
+    color: #9a5d38;
+  }
+  
+  .cleo-usp-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .cleo-product-usp-grid .product-usp-grid__title {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+  
+  .cleo-product-usp-grid .product-usp-grid__text {
+    font-size: 14px;
+    line-height: 1.15;
+  }
+  
+  @media screen and (min-width: 1000px) {
+  
+  .cleo-product-page .section-spacing {
+      padding-top: clamp(16px, 2.2vw, 42px) !important;
+      padding-bottom: 42px !important;
+    }
+  
+  .cleo-product-page .container {
+      width: calc(100vw - clamp(96px, 10vw, 192px)) !important;
+      max-width: none !important;
+      margin-inline: auto !important;
+      padding-inline: 0 !important;
+    }
+  
+  .cleo-product-page .cleo-product-layout {
+      display: grid !important;
+      grid-template-columns: minmax(0, 0.55fr) minmax(0, 0.45fr) !important;
+      grid-template-areas: "product-gallery product-info" !important;
+      gap: clamp(56px, 4.1vw, 78px) !important;
+      align-items: start !important;
+    }
+  
+  .cleo-product-page .cleo-product-gallery__frame,
+  .cleo-product-page .cleo-product-gallery .product-gallery__carousel,
+  .cleo-product-page .cleo-product-gallery .product-gallery__media {
+      aspect-ratio: 1 / 1 !important;
+      height: auto !important;
+      min-height: 0 !important;
+    }
+  
+  .cleo-product-page .cleo-product-gallery__frame {
+      border-radius: 18px !important;
+      background: #fffaf5 !important;
+    }
+  
+  .cleo-product-page .cleo-product-gallery .product-gallery__carousel {
+      display: flex !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+    }
+  
+  .cleo-product-page .cleo-product-gallery .product-gallery__media {
+      width: 100% !important;
+      min-width: 100% !important;
+      flex: 0 0 100% !important;
+    }
+  
+  .cleo-product-page .cleo-product-gallery .product-gallery__media img,
+  .cleo-product-page .cleo-product-gallery .product-gallery__media video,
+  .cleo-product-page .cleo-product-gallery .product-gallery__media model-viewer {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      aspect-ratio: 1 / 1 !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      display: block !important;
+    }
+  
+  .cleo-product-page .cleo-product-thumbs {
+      gap: 10px !important;
+      margin-top: 10px !important;
+      padding-bottom: 0 !important;
+    }
+  
+  .cleo-product-page .cleo-product-thumbs .product-gallery__thumbnail {
+      width: 96px !important;
+      height: 96px !important;
+      border-radius: 9px !important;
+      background: #fffaf5 !important;
+    }
+  
+  .cleo-product-page .cleo-product-thumbs img {
+      object-fit: contain !important;
+    }
+  
+  .cleo-product-page .cleo-product-info {
+      top: 18px !important;
+      width: 100% !important;
+    }
+  
+  .cleo-product-page .cleo-product-info__stack {
+      gap: 10px !important;
+    }
+  
+  .cleo-product-page .cleo-product-title {
+      font-size: clamp(31px, 2.15vw, 38px) !important;
+      line-height: 1.15 !important;
+      letter-spacing: 0 !important;
+      font-weight: 900 !important;
+    }
+  
+  .cleo-product-page .cleo-product-price-box {
+      padding: 16px 18px 16px !important;
+      border-radius: 30px !important;
+    }
+  
+  .cleo-product-page .cleo-bundle-card__body strong em {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 6px;
+      border-radius: 6px;
+      background: #76594f;
+      color: #ffffff;
+      padding: 3px 7px;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 800;
+      vertical-align: middle;
+    }
+  }
+  
+  @media screen and (max-width: 999px) and (min-width: 700px) {
+  
+  .cleo-product-page .container {
+      width: min(100% - 64px, 900px);
+    }
+  }
+  
+  @media screen and (max-width: 699px) {
+  
+  #shopify-section-{{ section.id }},
+  #shopify-section-{{ section.id }} .cleo-product-page,
+  #shopify-section-{{ section.id }} .section-spacing {
+      width: 100%;
+      max-width: 100%;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+  .cleo-product-page .container {
+      width: calc(100vw - 24px);
+      max-width: calc(100vw - 24px);
+      margin-inline: auto;
+      padding-inline: 0;
+    }
+  
+  .cleo-product-page .section-spacing {
+      padding-top: 18px;
+      padding-bottom: 0px;
+    }
+  
+  .cleo-product-layout {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) !important;
+      grid-template-areas:
+        "product-gallery"
+        "product-info" !important;
+      gap: 10px;
+      width: 100%;
+      min-width: 0;
+    }
+
+  .cleo-product-gallery,
+  .cleo-product-info {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+  .cleo-product-gallery {
+      grid-area: product-gallery !important;
+    }
+
+  .cleo-product-info {
+      grid-area: product-info !important;
+      position: static !important;
+      top: auto !important;
+    }
+  
+  .cleo-product-gallery__frame {
+      display: block !important;
+      width: 100% !important;
+      min-height: 1px;
+      border-radius: 14px;
+    }
+
+  .cleo-product-gallery .product-gallery__carousel {
+      display: flex !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 1px;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+
+  .cleo-product-gallery .product-gallery__media {
+      display: block !important;
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      flex: 0 0 100% !important;
+      scroll-snap-align: start;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+  .cleo-product-gallery .product-gallery__media > *,
+  .cleo-product-gallery .product-gallery__media picture,
+  .cleo-product-gallery .product-gallery__media deferred-media,
+  .cleo-product-gallery .product-gallery__media product-model {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  
+  .cleo-product-gallery .product-gallery__media img,
+  .cleo-product-gallery .product-gallery__media video,
+  .cleo-product-gallery .product-gallery__media model-viewer {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: 1 / 1;
+      object-fit: contain !important;
+      object-position: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+  /* Mobile gallery fallback: prevents the theme slider from leaving an empty frame. */
+  #shopify-section-{{ section.id }} .cleo-product-gallery__frame,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__carousel,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media {
+      position: relative !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: 1 / 1 !important;
+      content-visibility: visible !important;
+      contain: none !important;
+    }
+
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__carousel {
+      align-items: stretch !important;
+      background: transparent !important;
+    }
+
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media {
+      height: 100% !important;
+      overflow: hidden !important;
+      z-index: 1 !important;
+    }
+
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media[hidden],
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media[aria-hidden="true"] {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media > *,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media picture,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media deferred-media,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media product-model {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 100% !important;
+      min-height: 100% !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+    }
+
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media img,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media video,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media model-viewer,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .cleo-mobile-gallery-fallback {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+      height: 100% !important;
+      min-height: 100% !important;
+      aspect-ratio: auto !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+      z-index: 2 !important;
+    }
+
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media .lazyload,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media .lazyloading,
+  #shopify-section-{{ section.id }} .cleo-product-gallery .product-gallery__media [class*="reveal"] {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  
+  .cleo-product-thumbs .product-gallery__thumbnail {
+      width: 74px;
+      height: 74px;
+    }
+  
+  
+  .cleo-product-title {
+      font-size: 29px;
+    }
+  
+  .cleo-product-subtitle {
+      font-size: 16px;
+    }
+  
+  .cleo-product-pills,
+  .product-usp-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  
+  .cleo-bundle-card {
+      grid-template-columns: 44px 1fr;
+    }
+  
+  .cleo-bundle-card__price {
+      grid-column: 2;
+      justify-items: start;
+      padding: 0 0 10px;
+    }
+  
+  .cleo-product-feature-bar {
+      justify-content: flex-start;
+    }
+  
+  .cleo-certificate {
+      grid-template-columns: 48px 1fr;
+    }
+  
+  .certificate-pdf-stars {
+      display: none;
+    }
+  
+  .product-sticky-bar {
+      left: 10px;
+      right: 10px;
+      bottom: max(10px, env(safe-area-inset-bottom));
+      width: auto;
+      max-width: none;
+      transform: none;
+      gap: 8px;
+      border-radius: 18px;
+      padding: 8px;
+    }
+
+  .product-sticky-bar__info {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+  .product-sticky-bar__info img {
+      width: 44px;
+      height: 44px;
+    }
+
+  .product-sticky-bar form,
+  .product-sticky-bar .button,
+  .product-sticky-bar button {
+      max-width: 100%;
+    }
+  
+  .product-sticky-bar__info .v-stack {
+      display: none;
+    }
+  }
+
+  .stock-urgency-block[hidden] {
+    display: none !important;
+  }
+
+  .stock-urgency-block[data-stock-state="in-stock"] .stock-urgency-dot {
+    background: #e00000;
+  }
+
+  .stock-urgency-block[data-stock-state="low-stock"] .stock-urgency-dot {
+    background: #e00000;
+    animation: cleo-stock-pulse 1.6s ease-in-out infinite;
+  }
+
+  .stock-urgency-block[data-stock-state="preorder"] .stock-urgency-dot {
+    background: #d97706;
+  }
+
+  .stock-urgency-block[data-stock-state="out-of-stock"] .stock-urgency-dot {
+    background: #8a8a8a;
+  }
+
+  .stock-urgency-block[data-stock-state="in-stock"] .stock-urgency-text {
+    color: #d97706;
+  }
+
+  .stock-urgency-block[data-stock-state="out-of-stock"] .stock-urgency-text {
+    color: #6f6f6f;
+  }
+
+  .cleo-product-atc.is-loading,
+  form[action*="/cart/add"] [type="submit"].is-loading {
+    cursor: wait;
+    opacity: 0.78;
+  }
+
+  .cleo-atc-message {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+    border-radius: 7px;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .cleo-atc-message[hidden] {
+    display: none !important;
+  }
+
+  .cleo-atc-message[data-message-type="error"] {
+    border: 1px solid rgba(176, 0, 32, 0.2);
+    background: rgba(176, 0, 32, 0.07);
+    color: #9b001c;
+  }
+
+  @keyframes cleo-stock-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(224, 0, 0, 0.25);
+    }
+    50% {
+      box-shadow: 0 0 0 5px rgba(224, 0, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stock-urgency-block[data-stock-state="low-stock"] .stock-urgency-dot {
+      animation: none;
+    }
+  }
+
+
+  /* Reliable mobile-only gallery. This bypasses theme slider/lazy-load conflicts on phones. */
+  .cleo-mobile-product-gallery {
+    display: none;
+  }
+
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} .cleo-product-gallery.is-mobile-gallery-mounted .cleo-product-gallery__frame,
+    #shopify-section-{{ section.id }} .cleo-product-gallery.is-mobile-gallery-mounted .cleo-product-thumbs {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__viewport {
+      display: flex !important;
+      width: calc(100% + 24px) !important;
+      max-width: none !important;
+      margin-left: -6px !important;
+      gap: 6px !important;
+      aspect-ratio: auto !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__slide {
+      position: relative !important;
+      display: grid !important;
+      place-items: center !important;
+      flex: 0 0 calc(100% - 24px) !important;
+      width: calc(100% - 24px) !important;
+      min-width: calc(100% - 24px) !important;
+      max-width: calc(100% - 24px) !important;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: 1 / 1 !important;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #fffaf5;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__slide img {
+      position: absolute !important;
+      inset: 0 !important;
+      display: block !important;
+      width: 100% !important;
+      max-width: none !important;
+      height: 100% !important;
+      min-height: 100% !important;
+      margin: 0 !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__thumbs {
+      display: flex !important;
+      width: calc(100% + 24px) !important;
+      max-width: none !important;
+      gap: 8px;
+      margin-top: 9px;
+      margin-left: 0 !important;
+      padding: 0 12px 4px 0;
+      box-sizing: border-box;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__thumbs::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__thumb {
+      display: block !important;
+      flex: 0 0 calc(22% - 6px) !important;
+      width: calc(22% - 6px) !important;
+      min-width: calc(22% - 6px) !important;
+      height: auto !important;
+      aspect-ratio: 1 / 1;
+      box-sizing: border-box;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden;
+      scroll-snap-align: start;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      background: #fffaf5;
+      cursor: pointer;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__thumb[aria-current="true"] {
+      border-color: #5a2c23 !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-mobile-product-gallery__thumb img {
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
+
+
+  /* =========================================================
+     LOWER PRODUCT INFO LAYOUT FIX
+     Matches the reference purchase/certificate/USP arrangement
+     without changing bundle, variant, cart, or gallery logic.
+  ========================================================== */
+
+  #shopify-section-{{ section.id }} .cleo-product-actions,
+  #shopify-section-{{ section.id }} .buy-buttons {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-actions {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    align-items: stretch;
+    gap: 10px !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-actions > *,
+  #shopify-section-{{ section.id }} .buy-buttons > * {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-atc,
+  #shopify-section-{{ section.id }} .cleo-payment-button,
+  #shopify-section-{{ section.id }} .cleo-payment-button .shopify-payment-button,
+  #shopify-section-{{ section.id }} .cleo-payment-button shopify-accelerated-checkout,
+  #shopify-section-{{ section.id }} .cleo-payment-button .shopify-payment-button__button {
+    width: 100% !important;
+    min-height: 55px !important;
+  }
+
+  /* Purchase buttons: keep both buttons at 8px radius and hide the extra payment link. */
+  #shopify-section-{{ section.id }} .cleo-product-atc,
+  #shopify-section-{{ section.id }} .cleo-payment-button,
+  #shopify-section-{{ section.id }} .cleo-payment-button .shopify-payment-button,
+  #shopify-section-{{ section.id }} .cleo-payment-button .shopify-payment-button__button,
+  #shopify-section-{{ section.id }} .cleo-payment-button .shopify-payment-button__button--branded,
+  #shopify-section-{{ section.id }} .cleo-payment-button .shopify-payment-button__button--unbranded,
+  #shopify-section-{{ section.id }} .cleo-payment-button shopify-accelerated-checkout {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-payment-button shopify-accelerated-checkout {
+    --shopify-accelerated-checkout-button-border-radius: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-payment-button .shopify-payment-button__more-options {
+    display: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .feature-bar,
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar {
+    display: flex !important;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between !important;
+    flex-wrap: nowrap;
+    column-gap: 0px;
+    row-gap: 14px;
+    margin: 12px 0 0 !important;
+    padding: 0 0 18px !important;
+    border-bottom: 1px solid rgba(79, 53, 40, 0.17) !important;
+    color: #965d3a !important;
+    font-size: 14px !important;
+    line-height: 1.25;
+  }
+
+  #shopify-section-{{ section.id }} .feature-bar .feature-item,
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+    display: inline-flex !important;
+    flex: 0 1 auto;
+    min-width: 0;
+    align-items: center;
+    gap: 8px;
+    color: inherit;
+    font-size: 14px !important;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .feature-bar .feature-icon,
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon {
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .feature-bar .feature-icon svg,
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon svg {
+    display: block;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  #shopify-section-{{ section.id }} .feature-bar .feature-divider,
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-divider {
+    display: inline-block !important;
+    flex: 0 0 auto;
+    color: #965d3a;
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  /* Keep only one separator line, even when the theme also renders a separator block. */
+  #shopify-section-{{ section.id }} [data-block-type="separator"] {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} [data-block-type="separator"] hr {
+    display: none !important;
+  }
+
+  /* Certificate card: fixed ribbon shape, vertical stars and reference spacing. */
+  #shopify-section-{{ section.id }} [data-block-type="certificate-pdf"] {
+    overflow: visible !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-certificate,
+  #shopify-section-{{ section.id }} .certificate-pdf,
+  #shopify-section-{{ section.id }} .certificate-pdf-card,
+  #shopify-section-{{ section.id }} .certificate-card,
+  #shopify-section-{{ section.id }} [data-cleo-certificate],
+  #shopify-section-{{ section.id }} [data-block-type="certificate-pdf"] > :not(style):not(script):not(template) {
+    position: relative !important;
+    isolation: isolate;
+    display: grid !important;
+    grid-template-columns: 92px minmax(0, 1fr) 18px !important;
+    align-items: center !important;
+    column-gap: 16px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 92px !important;
+    box-sizing: border-box !important;
+    margin: 22px 0 0 !important;
+    overflow: visible !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    background: #ad6a45 !important;
+    color: #ffffff !important;
+    padding: 0 12px 0 18px !important;
+    text-decoration: none !important;
+  }
+
+  #shopify-section-{{ section.id }} .certificate-pdf-icon {
+    position: absolute !important;
+    top: -14px !important;
+    left: 18px !important;
+    z-index: 2 !important;
+    display: grid !important;
+    place-items: center !important;
+    width: 56px !important;
+    min-width: 56px !important;
+    height: 94px !important;
+    min-height: 94px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    color: #ad6a45 !important;
+    clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%) !important;
+  }
+
+  #shopify-section-{{ section.id }} .certificate-pdf-icon svg,
+  #shopify-section-{{ section.id }} .certificate-pdf-icon img {
+    display: block !important;
+    width: 31px !important;
+    height: 31px !important;
+    max-width: 31px !important;
+    max-height: 31px !important;
+    object-fit: contain !important;
+  }
+
+  #shopify-section-{{ section.id }} .certificate-pdf-content,
+  #shopify-section-{{ section.id }} .certificate-pdf-copy,
+  #shopify-section-{{ section.id }} .certificate-content {
+    grid-column: 2 !important;
+    min-width: 0 !important;
+    padding: 10px 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .certificate-pdf-title {
+    margin: 0 !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 900 !important;
+    line-height: 1.05 !important;
+    overflow-wrap: anywhere;
+  }
+
+  #shopify-section-{{ section.id }} .certificate-pdf-subtitle {
+    margin: 6px 0 0 !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    line-height: 1.1 !important;
+    overflow-wrap: anywhere;
+  }
+
+  #shopify-section-{{ section.id }} .certificate-pdf-stars {
+    grid-column: 3 !important;
+    justify-self: end !important;
+    align-self: center !important;
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+
+  #shopify-section-{{ section.id }} .product-usp-grid,
+  #shopify-section-{{ section.id }} .cleo-product-usp-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px 26px !important;
+    width: 100%;
+    margin: 10px 0 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__item,
+  #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__item {
+    display: grid !important;
+    grid-template-columns: 45px minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: 10px !important;
+    min-width: 0;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-usp-grid__icon,
+  #shopify-section-{{ section.id }} .cleo-usp-icon {
+    display: grid !important;
+    place-items: center !important;
+    width: 45px !important;
+    min-width: 45px !important;
+    height: 45px !important;
+    overflow: hidden;
+    border: 1px solid rgba(150, 93, 58, 0.16) !important;
+    border-radius: 10px !important;
+    background: rgba(255, 247, 238, 0.58) !important;
+    color: #a56541 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-usp-grid__icon svg,
+  #shopify-section-{{ section.id }} .product-usp-grid__icon img,
+  #shopify-section-{{ section.id }} .cleo-usp-icon svg,
+  #shopify-section-{{ section.id }} .cleo-usp-icon img {
+    display: block;
+    width: 24px !important;
+    height: 24px !important;
+    max-width: 24px !important;
+    max-height: 24px !important;
+    object-fit: contain !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-usp-grid__content {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__title,
+  #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__title {
+    margin: 0 0 2px !important;
+    color: #2a2521 !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    line-height: 1.08 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__text,
+  #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__text {
+    margin: 0 !important;
+    color: #2a2521 !important;
+    font-size: 14px !important;
+    line-height: 1.14 !important;
+  }
+
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} .cleo-product-actions {
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+      align-items: stretch;
+      gap: 10px !important;
+    }
+    #shopify-section-{{ section.id }} .feature-bar,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar {
+      justify-content: space-between !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-certificate,
+    #shopify-section-{{ section.id }} .certificate-pdf,
+    #shopify-section-{{ section.id }} .certificate-pdf-card,
+    #shopify-section-{{ section.id }} .certificate-card,
+    #shopify-section-{{ section.id }} [data-cleo-certificate],
+    #shopify-section-{{ section.id }} [data-block-type="certificate-pdf"] > :not(style):not(script):not(template) {
+      grid-template-columns: 94px minmax(0, 1fr) 16px !important;
+      column-gap: 12px !important;
+      min-height: 92px !important;
+      margin-top: 22px !important;
+      padding: 0 10px 0 18px !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-stars {
+      display: block !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 14px 18px !important;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    #shopify-section-{{ section.id }} .feature-bar,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar {
+      column-gap: 8px;
+      row-gap: 13px;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-item,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+      font-size: 13px !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-certificate,
+    #shopify-section-{{ section.id }} .certificate-pdf,
+    #shopify-section-{{ section.id }} .certificate-pdf-card,
+    #shopify-section-{{ section.id }} .certificate-card,
+    #shopify-section-{{ section.id }} [data-cleo-certificate],
+    #shopify-section-{{ section.id }} [data-block-type="certificate-pdf"] > :not(style):not(script):not(template) {
+      grid-template-columns: 102px minmax(0, 1fr) 14px !important;
+      column-gap: 0 !important;
+      min-height: 92px !important;
+      margin-top: 22px !important;
+      padding: 0 8px 0 18px !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-icon {
+      top: -14px !important;
+      left: 18px !important;
+      width: 52px !important;
+      min-width: 52px !important;
+      height: 94px !important;
+      min-height: 94px !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-title {
+      font-size: 15px !important;
+      line-height: 1.04 !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-subtitle {
+      margin-top: 5px !important;
+      font-size: 12px !important;
+      line-height: 1.08 !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-stars {
+      font-size: 13px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid {
+      gap: 14px 12px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__item,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__item {
+      grid-template-columns: 42px minmax(0, 1fr) !important;
+      gap: 8px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__icon,
+    #shopify-section-{{ section.id }} .cleo-usp-icon {
+      width: 42px !important;
+      min-width: 42px !important;
+      height: 42px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__title,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__title,
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__text,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__text {
+      font-size: 13px !important;
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    #shopify-section-{{ section.id }} .cleo-product-actions {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-divider,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-divider {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-item,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+      flex: 1 1 100%;
+      justify-content: flex-start;
+    }
+  }
+
+
+
+  /* =========================================================
+     MOBILE REFERENCE MATCH
+     Feature bar + certificate card + USP grid
+  ========================================================== */
+  @media screen and (max-width: 699px) {
+    /* Keep these lower product blocks edge-to-edge inside the product column. */
+    #shopify-section-{{ section.id }} .feature-bar,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar,
+    #shopify-section-{{ section.id }} .cleo-certificate,
+    #shopify-section-{{ section.id }} .certificate-pdf,
+    #shopify-section-{{ section.id }} .certificate-pdf-card,
+    #shopify-section-{{ section.id }} .certificate-card,
+    #shopify-section-{{ section.id }} [data-cleo-certificate],
+    #shopify-section-{{ section.id }} .product-usp-grid,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid {
+      box-sizing: border-box !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    /* Feature bar: one clean horizontal row, matching the supplied mobile reference. */
+    #shopify-section-{{ section.id }} .feature-bar,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      flex-wrap: nowrap !important;
+      gap: 0 !important;
+      margin: 10px 0 20px !important;
+      padding: 0 0 28px !important;
+      overflow: visible !important;
+      border-bottom: 1px solid rgba(79, 53, 40, 0.18) !important;
+      color: #8f603f !important;
+      line-height: 1.08 !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-item,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+      display: inline-flex !important;
+      flex: 0 1 auto !important;
+      min-width: 0 !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: clamp(3px, 1vw, 6px) !important;
+      margin: 0 !important;
+      color: inherit !important;
+      font-size: clamp(8.5px, 2.45vw, 12px) !important;
+      font-weight: 600 !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.025em !important;
+      white-space: nowrap !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-icon,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon {
+      display: inline-grid !important;
+      flex: 0 0 auto !important;
+      place-items: center !important;
+      width: clamp(14px, 4.1vw, 20px) !important;
+      height: clamp(14px, 4.1vw, 20px) !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-icon svg,
+    #shopify-section-{{ section.id }} .feature-bar .feature-icon img,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon svg,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon img {
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-divider,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-divider {
+      display: inline-grid !important;
+      flex: 0 0 auto !important;
+      place-items: center !important;
+      width: clamp(12px, 3.7vw, 22px) !important;
+      margin: 0 clamp(1px, 0.5vw, 4px) !important;
+      color: #8f603f !important;
+      font-size: clamp(12px, 3.3vw, 17px) !important;
+      line-height: 1 !important;
+    }
+
+    /* Certificate card: large rounded card with an elevated pointed ribbon. */
+    #shopify-section-{{ section.id }} [data-block-type="certificate-pdf"] {
+      overflow: visible !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-certificate,
+    #shopify-section-{{ section.id }} .certificate-pdf,
+    #shopify-section-{{ section.id }} .certificate-pdf-card,
+    #shopify-section-{{ section.id }} .certificate-card,
+    #shopify-section-{{ section.id }} [data-cleo-certificate],
+    #shopify-section-{{ section.id }} [data-block-type="certificate-pdf"] > :not(style):not(script):not(template) {
+      position: relative !important;
+      isolation: isolate !important;
+      display: grid !important;
+      grid-template-columns:
+        clamp(86px, 25vw, 118px)
+        minmax(0, 1fr)
+        clamp(18px, 5.3vw, 26px) !important;
+      align-items: center !important;
+      column-gap: clamp(8px, 2.5vw, 18px) !important;
+      min-height: clamp(94px, 18vw, 126px) !important;
+      margin: 0 0 clamp(30px, 7vw, 46px) !important;
+      padding:
+        0
+        clamp(12px, 3.5vw, 22px)
+        0
+        clamp(16px, 4vw, 28px) !important;
+      overflow: visible !important;
+      border: 0 !important;
+      border-radius: clamp(9px, 2.3vw, 13px) !important;
+      background: #9d603d !important;
+      color: #ffffff !important;
+      box-shadow: none !important;
+      text-decoration: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-icon {
+      position: absolute !important;
+      top: clamp(-13px, -1.8vw, -8px) !important;
+      left: clamp(16px, 5vw, 54px) !important;
+      z-index: 2 !important;
+      display: grid !important;
+      place-items: center !important;
+      width: clamp(66px, 18vw, 96px) !important;
+      min-width: clamp(66px, 18vw, 96px) !important;
+      height: clamp(100px, 20vw, 132px) !important;
+      min-height: clamp(100px, 20vw, 132px) !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: #ffffff !important;
+      color: #9d603d !important;
+      clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%) !important;
+      filter: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-icon svg,
+    #shopify-section-{{ section.id }} .certificate-pdf-icon img {
+      display: block !important;
+      width: clamp(31px, 8.5vw, 46px) !important;
+      height: clamp(31px, 8.5vw, 46px) !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: contain !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-content,
+    #shopify-section-{{ section.id }} .certificate-pdf-copy,
+    #shopify-section-{{ section.id }} .certificate-content {
+      grid-column: 2 !important;
+      min-width: 0 !important;
+      margin: 0 !important;
+      padding: clamp(13px, 3vw, 22px) 0 !important;
+      align-self: center !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-title {
+      margin: 0 !important;
+      color: #ffffff !important;
+      font-size: clamp(16px, 4.25vw, 23px) !important;
+      font-weight: 500 !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.018em !important;
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-subtitle {
+      margin: clamp(7px, 1.8vw, 12px) 0 0 !important;
+      color: #ffffff !important;
+      font-size: clamp(12px, 3.1vw, 16px) !important;
+      font-weight: 500 !important;
+      line-height: 1.15 !important;
+      letter-spacing: -0.01em !important;
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-stars {
+      grid-column: 3 !important;
+      justify-self: end !important;
+      align-self: center !important;
+      display: block !important;
+      {% comment %} width: 1em !important;
+      max-width: 1em !important; {% endcomment %}
+      margin: 0 !important;
+      color: #ffffff !important;
+      font-size: clamp(16px, 4.2vw, 23px) !important;
+      line-height: 0.88 !important;
+      letter-spacing: 0 !important;
+      text-align: center !important;
+      white-space: normal !important;
+      writing-mode: initial !important;
+      text-orientation: initial !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-all !important;
+    }
+
+    /* USP grid: balanced two-column layout with larger icons and readable copy. */
+    #shopify-section-{{ section.id }} .product-usp-grid,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      align-items: start !important;
+      gap:
+        clamp(20px, 5vw, 34px)
+        clamp(12px, 3.5vw, 30px) !important;
+      margin: 0 0 clamp(12px, 3vw, 22px) !important;
+      padding: 0 !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__item,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__item {
+      display: grid !important;
+      grid-template-columns:
+        clamp(46px, 13vw, 62px)
+        minmax(0, 1fr) !important;
+      align-items: start !important;
+      gap: clamp(9px, 2.6vw, 14px) !important;
+      min-width: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__icon,
+    #shopify-section-{{ section.id }} .cleo-usp-icon {
+      display: grid !important;
+      place-items: center !important;
+      width: clamp(46px, 13vw, 62px) !important;
+      min-width: clamp(46px, 13vw, 62px) !important;
+      height: clamp(46px, 13vw, 62px) !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      border: 1px solid rgba(157, 96, 61, 0.18) !important;
+      border-radius: clamp(9px, 2.6vw, 13px) !important;
+      background: rgba(255, 250, 244, 0.68) !important;
+      color: #9d603d !important;
+      box-shadow: 0 2px 6px rgba(75, 42, 24, 0.04) !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__icon svg,
+    #shopify-section-{{ section.id }} .product-usp-grid__icon img,
+    #shopify-section-{{ section.id }} .cleo-usp-icon svg,
+    #shopify-section-{{ section.id }} .cleo-usp-icon img {
+      display: block !important;
+      width: clamp(23px, 6.6vw, 31px) !important;
+      height: clamp(23px, 6.6vw, 31px) !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: contain !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__content {
+      min-width: 0 !important;
+      padding-top: 1px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__title,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__title {
+      margin: 0 0 clamp(2px, 0.7vw, 5px) !important;
+      color: #17130f !important;
+      font-size: 14px !important;
+      font-weight: 900 !important;
+      line-height: 1.02 !important;
+      letter-spacing: -0.025em !important;
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__text,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__text {
+      margin: 0 !important;
+      color: #302820 !important;
+      font-size: clamp(12px, 3.25vw, 17px) !important;
+      font-weight: 400 !important;
+      line-height: 1.12 !important;
+      letter-spacing: -0.015em !important;
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+    }
+  }
+
+  @media screen and (max-width: 389px) {
+    #shopify-section-{{ section.id }} .feature-bar .feature-item,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+      font-size: 8.25px !important;
+      gap: 3px !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-icon,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon {
+      width: 14px !important;
+      height: 14px !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-divider,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-divider {
+      width: 10px !important;
+      margin-inline: 1px !important;
+      font-size: 11px !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-certificate,
+    #shopify-section-{{ section.id }} .certificate-pdf,
+    #shopify-section-{{ section.id }} .certificate-pdf-card,
+    #shopify-section-{{ section.id }} .certificate-card,
+    #shopify-section-{{ section.id }} [data-cleo-certificate],
+    #shopify-section-{{ section.id }} [data-block-type="certificate-pdf"] > :not(style):not(script):not(template) {
+      grid-template-columns: 82px minmax(0, 1fr) 16px !important;
+      column-gap: 7px !important;
+      min-height: 94px !important;
+      padding-left: 14px !important;
+      padding-right: 10px !important;
+    }
+
+    #shopify-section-{{ section.id }} .certificate-pdf-icon {
+      left: 14px !important;
+      width: 64px !important;
+      min-width: 64px !important;
+      height: 100px !important;
+      min-height: 100px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid {
+      column-gap: 10px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__item,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__item {
+      grid-template-columns: 44px minmax(0, 1fr) !important;
+      gap: 7px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__icon,
+    #shopify-section-{{ section.id }} .cleo-usp-icon {
+      width: 44px !important;
+      min-width: 44px !important;
+      height: 44px !important;
+    }
+  }
+
+
+  /* =========================================================
+     FINAL MOBILE USP GRID MATCH
+     Keeps the benefits in a clean 2 x 2 layout like the reference.
+  ========================================================== */
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} .product-usp-grid,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      align-items: start !important;
+      column-gap: clamp(14px, 4.2vw, 24px) !important;
+      row-gap: 24px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+      padding: 24px 4px 26px !important;
+      border-top: 1px solid rgba(137, 87, 55, 0.22) !important;
+      {% comment %} border-bottom: 1px solid rgba(137, 87, 55, 0.22) !important; {% endcomment %}
+      background: transparent !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid > .product-usp-grid__item,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid > .product-usp-grid__item {
+      display: grid !important;
+      grid-template-columns: 36px minmax(0, 1fr) !important;
+      align-items: start !important;
+      gap: 10px !important;
+      min-width: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__icon,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .cleo-usp-icon {
+      display: grid !important;
+      place-items: center !important;
+      width: 36px !important;
+      min-width: 36px !important;
+      height: 36px !important;
+      min-height: 36px !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+      border: 1px solid rgba(166, 101, 65, 0.2) !important;
+      border-radius: 8px !important;
+      background: rgba(255, 247, 238, 0.62) !important;
+      color: #9a5d38 !important;
+      box-shadow: 0 2px 6px rgba(75, 42, 24, 0.04) !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__icon svg,
+    #shopify-section-{{ section.id }} .product-usp-grid__icon img,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .cleo-usp-icon svg,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .cleo-usp-icon img {
+      display: block !important;
+      width: 18px !important;
+      height: 18px !important;
+      max-width: 18px !important;
+      max-height: 18px !important;
+      object-fit: contain !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__content {
+      min-width: 0 !important;
+      padding: 0 !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__title,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__title {
+      margin: 0 0 2px !important;
+      color: #2a2521 !important;
+      font-size: 14px !important;
+      font-weight: 800 !important;
+      line-height: 1.05 !important;
+      letter-spacing: -0.02em !important;
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__text,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__text {
+      margin: 0 !important;
+      color: #3d352f !important;
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.01em !important;
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    #shopify-section-{{ section.id }} .product-usp-grid,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid {
+      column-gap: 10px !important;
+      row-gap: 20px !important;
+      padding: 22px 0 24px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid > .product-usp-grid__item,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid > .product-usp-grid__item {
+      grid-template-columns: 34px minmax(0, 1fr) !important;
+      gap: 8px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid__icon,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .cleo-usp-icon {
+      width: 34px !important;
+      min-width: 34px !important;
+      height: 34px !important;
+      min-height: 34px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__title,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__title {
+      font-size: 14px !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-usp-grid .product-usp-grid__text,
+    #shopify-section-{{ section.id }} .cleo-product-usp-grid .product-usp-grid__text {
+      font-size: 13px !important;
+    }
+  }
+
+
+
+  /* =========================================================
+     FINAL STICKY ADD TO CART
+     Full-width reference layout. Hidden while the main product
+     Add to cart button is visible; revealed only when it leaves
+     the viewport. The sticky button submits the exact same form.
+  ========================================================== */
+  #shopify-section-{{ section.id }} [data-cleo-sticky-wrapper] {
+    display: block !important;
+    width: 100% !important;
+    height: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] {
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    z-index: 90 !important;
+    display: flex !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 104px !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 28px !important;
+    margin: 0 !important;
+    padding: 18px clamp(24px, 6.2vw, 96px) calc(18px + env(safe-area-inset-bottom)) !important;
+    overflow: visible !important;
+    border: 0 !important;
+    {% comment %} border-top: 2px solid #895737 !important; {% endcomment %}
+    border-radius: 0 !important;
+    background: #f4eadc !important;
+    box-shadow: 0 -12px 32px rgba(53, 31, 19, 0.12) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(calc(100% + 8px)) !important;
+    transition:
+      transform 240ms ease,
+      opacity 180ms ease,
+      visibility 180ms ease !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar].is-visible,
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar].cleo-is-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .product-sticky-bar__info {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    align-items: center !important;
+    min-width: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .h-stack {
+    display: flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+    min-width: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .v-stack {
+    display: grid !important;
+    gap: 7px !important;
+    min-width: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .product-sticky-bar__info img {
+    display: block !important;
+    width: 60px !important;
+    min-width: 60px !important;
+    height: 60px !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .product-sticky-bar-title {
+    display: block !important;
+    max-width: min(760px, 64vw) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    color: #050505 !important;
+    font-size: clamp(16px, 1.35vw, 20px) !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] price-list,
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .product-page-custom-price-container,
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .product-page-custom-price-container > div {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .product-page-custom-price {
+    display: block !important;
+    margin: 0 !important;
+    color: #050505 !important;
+    font-size: clamp(28px, 2.2vw, 36px) !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] buy-buttons {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] buy-buttons .button,
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] [data-cleo-sticky-submit] {
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: 136px !important;
+    min-height: 44px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 13px !important;
+    background: #965d3a !important;
+    color: #ffffff !important;
+    padding: 11px 28px !important;
+    box-shadow: none !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] [data-cleo-sticky-submit]:hover:not(:disabled) {
+    background: #805033 !important;
+  }
+
+  #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] [data-cleo-sticky-submit]:disabled {
+    cursor: not-allowed !important;
+    opacity: 0.55 !important;
+  }
+
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] {
+      min-height: 0 !important;
+      gap: 10px !important;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom)) !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .product-sticky-bar__info,
+    #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] .sm-max\:hidden {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] buy-buttons,
+    #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] buy-buttons .button,
+    #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] [data-cleo-sticky-submit] {
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] [data-cleo-sticky-submit] {
+      min-height: 50px !important;
+      border-radius: 8px !important;
+      font-size: 16px !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .product-sticky-bar[data-cleo-sticky-bar] {
+      transition: none !important;
+    }
+  }
+
+
+
+  /* =========================================================
+     iPHONE SAFARI ADD TO CART LABEL FIX
+     Prevents the icon and "Add to cart" text from wrapping.
+     No other product-page styling or functionality is changed.
+  ========================================================== */
+  #shopify-section-{{ section.id }} .cleo-product-actions .cleo-product-atc {
+    display: flex !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    min-height: 55px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    grid-template-columns: none !important;
+    padding: 12px 20px !important;
+    overflow: hidden !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    white-space: nowrap !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    line-height: 1 !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-actions .cleo-product-atc .atc-btn-content {
+    display: inline-flex !important;
+    flex: 0 1 auto !important;
+    flex-flow: row nowrap !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    line-height: 1 !important;
+    writing-mode: horizontal-tb !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-actions .cleo-product-atc .atc-btn-icon {
+    display: block !important;
+    flex: 0 0 18px !important;
+    width: 18px !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-actions .cleo-product-atc [data-cleo-submit-text] {
+    display: inline-block !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    -webkit-hyphens: none !important;
+    hyphens: none !important;
+    line-height: 1.15 !important;
+    writing-mode: horizontal-tb !important;
+  }
+
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} .cleo-product-actions .cleo-product-atc {
+      min-height: 55px !important;
+      padding-inline: 16px !important;
+      font-size: 18px !important;
+    }
+  }
+
+
+  /* =========================================================
+     MOBILE FEATURE BAR CENTER FIX
+     Only centers the complete feature row and each icon/text pair.
+     No other styling or functionality is changed.
+  ========================================================== */
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} .feature-bar,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar {
+      justify-content: center !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-item,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar .feature-icon,
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon {
+      align-items: center !important;
+      justify-content: center !important;
+    }
+  }
+
+
+
+  /* =========================================================
+     EDITABLE PRODUCT FEATURE BLOCKS
+     Responsive feature-bar layout only.
+  ========================================================== */
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+    justify-content: center !important;
+    {% comment %} flex-wrap: wrap !important; {% endcomment %}
+    gap: 5px 4px !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+    display: inline-flex !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    text-align: center !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon {
+    display: inline-grid !important;
+    flex: 0 0 auto !important;
+    width: 20px !important;
+    height: 20px !important;
+    place-items: center !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon img,
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon svg {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-text {
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    margin-top: 3px;
+  }
+
+  #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-divider {
+    display: inline-grid !important;
+    flex: 0 0 auto !important;
+    place-items: center !important;
+    margin: 0 !important;
+  }
+
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      column-gap: 6px !important;
+      row-gap: 8px !important;
+      padding-inline: 0 !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+      width: 100% !important;
+      min-width: 0 !important;
+      gap: 4px !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-divider {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon {
+      width: clamp(14px, 4vw, 18px) !important;
+      height: clamp(14px, 4vw, 18px) !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-text {
+      font-size: clamp(8px, 2.35vw, 11px) !important;
+      line-height: 1.1 !important;
+      letter-spacing: -0.02em !important;
+      margin-top: 3px;
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      column-gap: 2px !important;
+      row-gap: 0 !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-item {
+      justify-content: center !important;
+      gap: 2px !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-icon {
+      width: 13px !important;
+      height: 13px !important;
+    }
+
+    #shopify-section-{{ section.id }} .cleo-product-feature-bar .feature-text {
+      font-size: clamp(7px, 2.35vw, 9px) !important;
+    }
+  }
+
+
+  /* =========================================================
+     CLIENT TRUST BADGE ALIGNMENT FIX
+     Mobile only: three equal columns, uniform spacing, one-line
+     icon/text alignment, and no overlap or wrapping.
+  ========================================================== */
+  @media screen and (max-width: 699px) {
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      align-items: center !important;
+      justify-content: stretch !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      column-gap: clamp(4px, 1.2vw, 8px) !important;
+      row-gap: 0 !important;
+      margin: 10px 0 20px !important;
+      padding: 0 clamp(4px, 1.5vw, 10px) 28px !important;
+      overflow: hidden !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-item {
+      display: flex !important;
+      flex-flow: row nowrap !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: clamp(2px, 0.8vw, 4px) !important;
+      margin: 0 !important;
+      padding: 0 1px !important;
+      overflow: hidden !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-divider {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-icon {
+      display: inline-grid !important;
+      flex: 0 0 clamp(12px, 3.6vw, 18px) !important;
+      width: clamp(12px, 3.6vw, 18px) !important;
+      min-width: clamp(12px, 3.6vw, 18px) !important;
+      height: clamp(12px, 3.6vw, 18px) !important;
+      margin: 0 !important;
+      place-items: center !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-icon img,
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-icon svg {
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-text {
+      display: block !important;
+      flex: 0 1 auto !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      color: inherit !important;
+      font-size: clamp(6px, 1.9vw, 10px) !important;
+      font-weight: 600 !important;
+      line-height: 1.05 !important;
+      letter-spacing: -0.035em !important;
+      text-overflow: clip !important;
+      white-space: nowrap !important;
+      word-break: keep-all !important;
+      overflow-wrap: normal !important;
+      -webkit-hyphens: none !important;
+      hyphens: none !important;
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar {
+      column-gap: 3px !important;
+      padding-inline: 2px !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-item {
+      gap: 2px !important;
+      padding-inline: 0 !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-icon {
+      flex-basis: 12px !important;
+      width: 12px !important;
+      min-width: 12px !important;
+      height: 12px !important;
+    }
+
+    #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar .feature-text {
+      font-size: clamp(5.75px, 1.85vw, 7px) !important;
+      letter-spacing: -0.04em !important;
+    }
+  }
+
+</style>
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'product-form-main-' | append: product.id | append: '-template--21732445290636__main'
+  assign gallery_id = 'product-gallery-carousel-' | append: product.id | append: '-template--21732445290636__main'
+  assign badge_text = product.metafields.custom.badge.value | default: product.metafields.custom.product_badge.value
+  assign subtitle = product.metafields.custom.subtitle.value | default: product.metafields.custom.short_description.value | default: 'With Copper Care Brush and Travel Sleeve'
+  assign sold_message = product.metafields.custom.sold_message.value | default: '9k plus sold last month'
+  assign review_text = section.settings.review_text | default: '4.8 (380 reviews)'
+  assign pill_block_count = 0
+  assign usp_block_count = 0
+  assign accordion_block_count = 0
+  assign feature_block_count = 0
+
+  for block in section.blocks
+    if block.type == 'benefit_pill' and block.settings.text != blank
+      assign pill_block_count = pill_block_count | plus: 1
+    elsif block.type == 'product_usp'
+      assign usp_block_count = usp_block_count | plus: 1
+    elsif block.type == 'accordion'
+      assign accordion_block_count = accordion_block_count | plus: 1
+    elsif block.type == 'product_feature'
+      assign feature_block_count = feature_block_count | plus: 1
+    endif
+  endfor
+
+  if badge_text == blank
+    if product.tags contains 'Signature Ritual Set'
+      assign badge_text = 'Signature Ritual Set'
+    elsif product.tags contains 'Limited Edition'
+      assign badge_text = 'Limited Edition'
+    elsif product.tags contains 'New Arrival'
+      assign badge_text = 'New Arrival'
+    elsif product.tags contains 'Bestseller'
+      assign badge_text = 'Bestseller'
+    elsif product.tags contains 'Sale'
+      assign badge_text = 'Sale'
+    elsif product.compare_at_price > product.price
+      assign badge_text = 'Sale'
+    else
+      assign badge_text = blank
+    endif
+  endif
+-%}
+
+<section id="shopify-section-template--21732445290636__main" class="shopify-section shopify-section--main-product cleo-product-page">
+  <style>
+    #shopify-section-template--21732445290636__main {
+      --product-grid: "product-gallery" "product-info" / minmax(0, 1fr);
+    }
+
+    @media screen and (min-width: 1000px) {
+      #shopify-section-template--21732445290636__main {
+        --product-grid: "product-gallery product-info" / minmax(0, 0.55fr) minmax(0, 0.45fr);
+      }
+    }
+  </style>
+
+  <div class="section-spacing section-spacing--tight color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c color-scheme--bg-f733170f8e26ef0af87b024124e087d4">
+    <div class="container">
+      <product-rerender id="product-info-{{ product.id }}-template--21732445290636__main" observe-form="{{ product_form_id }}" allow-partial-rerender>
+        <div class="product cleo-product-layout">
+          <product-gallery class="product-gallery cleo-product-gallery" form="{{ product_form_id }}" filtered-indexes="[]">
+            <div class="cleo-product-gallery__frame">
+              {%- if badge_text != blank -%}
+                <span class="badge badge--custom badge--{{ badge_text | handleize }} cleo-product-gallery__badge">{{ badge_text }}</span>
+              {%- endif -%}
+
+              <div class="product-gallery__image-list">
+                <div class="contents">
+                  <scroll-carousel adaptive-height id="{{ gallery_id }}" class="product-gallery__carousel scroll-area full-bleed md:unbleed" role="region">
+                    {%- for media in product.media -%}
+                      {%- liquid
+                        assign image_loading = 'lazy'
+                        assign image_fetchpriority = 'auto'
+                        if forloop.first
+                          assign image_loading = 'eager'
+                          assign image_fetchpriority = 'high'
+                        endif
+                      -%}
+                      <div class="product-gallery__media snap-center {% if forloop.first %}is-initial{% endif %}" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}" role="group" aria-label="Item {{ forloop.index }} of {{ product.media.size }}">
+                        {%- case media.media_type -%}
+                          {%- when 'image' -%}
+                            {{
+                              media.preview_image
+                              | image_url: width: 1800
+                              | image_tag:
+                                loading: image_loading,
+                                fetchpriority: image_fetchpriority,
+                                sizes: '(max-width: 699px) calc(100vw - 32px), (max-width: 999px) calc(100vw - 64px), calc(54vw - 72px)',
+                                alt: media.alt | default: product.title
+                            }}
+                          {%- when 'video', 'external_video' -%}
+                            {{ media | media_tag: image_size: '1400x', controls: true }}
+                          {%- when 'model' -%}
+                            {{ media | media_tag: image_size: '1400x', toggleable: true }}
+                        {%- endcase -%}
+                      </div>
+                    {%- else -%}
+                      <div class="product-gallery__media snap-center is-initial">
+                        {%- if product.featured_image != blank -%}
+                          {{ product.featured_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(max-width: 999px) calc(100vw - 40px), calc(54vw - 72px)', alt: product.title }}
+                        {%- endif -%}
+                      </div>
+                    {%- endfor -%}
+                  </scroll-carousel>
+                </div>
+              </div>
+            </div>
+
+            {%- if product.media.size > 1 -%}
+              <safe-sticky class="product-gallery__thumbnail-list md:block">
+                <product-gallery-navigation align-selected aria-controls="{{ gallery_id }}" class="product-gallery__thumbnail-scroller bleed custom-paddings-thumbnail md:unbleed cleo-product-thumbs">
+                  {%- for media in product.media -%}
+                    <button type="button" class="product-gallery__thumbnail" data-cleo-gallery-thumb="#{{ gallery_id }}" data-media-position="{{ forloop.index }}" data-media-id="{{ media.id }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="Go to item {{ forloop.index }}">
+                      {%- if media.preview_image != blank -%}
+                        {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', sizes: '88px', class: 'object-cover', alt: media.alt | default: product.title }}
+                      {%- endif -%}
+                    </button>
+                  {%- endfor -%}
+                </product-gallery-navigation>
+              </safe-sticky>
+            {%- endif -%}
+          </product-gallery>
+
+          <safe-sticky class="product-info cleo-product-info">
+            <div class="product-info__block-list cleo-product-info__stack">
+              <div class="stock-urgency-block stock-urgency-stock_urgency_7Q68yN cleo-product-sold">
+                <span class="stock-urgency-dot"></span>
+                <span class="stock-urgency-text">{{ sold_message }}</span>
+              </div>
+
+              {%- if section.settings.show_vendor and product.vendor != blank -%}
+                <p class="text-subdued">{{ product.vendor }}</p>
+              {%- endif -%}
+
+              <h1 class="product-title h1 cleo-product-title">{{ product.title }}</h1>
+
+             {%- if subtitle != blank and template.suffix != 'without_free_gifts' -%}
+             <div class="product-subtitle-subtitle_text_J86TTR cleo-product-subtitle">{{ subtitle }}</div>
+             {%- endif -%}
+
+              <!-- Start of Judge.me code --> 
+                <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+              {{ product.metafields.judgeme.badge }} 
+              </div> 
+              <!-- End of Judge.me code -->
+
+
+              <div class="custom-product-price-box cleo-product-price-box">
+                <price-list class="price-list price-list--product">
+                  <sale-price class="h4 product-page-custom-price" data-cleo-product-price>
+                    <span class="sr-only">Sale price</span>{{ current_variant.price | money }}
+                  </sale-price>
+                  <compare-at-price class="h5 text-subdued line-through" data-cleo-product-compare {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}>
+                    {{ current_variant.compare_at_price | money }}
+                  </compare-at-price>
+                </price-list>
+                <div class="custom-extra-offer-text cleo-product-offer">
+                  <span class="cleo-offer-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-4 0-7-2.7-7-6.7 0-3 1.7-5.1 4-7.2.2 2.2 1.1 3.5 2.7 4.3-.2-3.3 1.1-6.2 4.1-8.4.2 3 1.3 4.7 2.7 6.5 1 1.3 1.5 2.8 1.5 4.8 0 4-3 6.7-8 6.7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 16.2c0 1.8 1.2 3 2.8 3 1.8 0 3.1-1.1 3.1-3 0-1.2-.5-2.1-1.4-3.1-.8 1.3-1.7 2-3.1 2.2.2-1.1.1-2.1-.3-3.1-1 .9-1.1 2.3-1.1 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p>Use code <strong>NEERA10</strong> for an extra 10% off at checkout</p>
+                </div>
+              </div>
+
+              {%- unless product.has_only_default_variant -%}
+                <div class="product-info__block-item" data-block-id="variants" data-block-type="variant-picker">
+                  <div class="cleo-static-variants">
+                    {%- for option in product.options_with_values -%}
+                      <fieldset class="cleo-option" data-cleo-option-index="{{ forloop.index0 }}">
+                        <legend>{{ option.name }}</legend>
+                        <div class="cleo-option__values">
+                          {%- for value in option.values -%}
+                            <label>
+                              <input type="radio" name="option-{{ option.position }}" value="{{ value | escape }}" data-cleo-option form="{{ product_form_id }}" {% if option.selected_value == value %}checked{% endif %}>
+                              <span>{{ value }}</span>
+                            </label>
+                          {%- endfor -%}
+                        </div>
+                      </fieldset>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endunless -%}
+
+              <div class="pills-container">
+                <div class="product-pills cleo-product-pills" style="--pill-text: #895737;">
+                  {%- for block in section.blocks -%}
+                    {%- if block.type == 'benefit_pill' and block.settings.text != blank -%}
+                      <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- case pill_block_count -%}
+                    {%- when 0 -%}
+                      <span>Leak-proof</span>
+                      <span>Durable</span>
+                      <span>Pure Copper</span>
+                      <span>Handcrafted</span>
+                    {%- when 1 -%}
+                      <span>Durable</span>
+                      <span>Pure Copper</span>
+                      <span>Handcrafted</span>
+                    {%- when 2 -%}
+                      <span>Pure Copper</span>
+                      <span>Handcrafted</span>
+                    {%- when 3 -%}
+                      <span>Handcrafted</span>
+                  {%- endcase -%}
+                </div>
+              </div>
+              {% comment %} <div class="cleo-bundle">
+                <div class="cleo-bundle__heading"><span></span><strong>Bundle &amp; Save &middot; Limited Time Offer</strong><span></span></div>
+                <div class="cleo-bundle__cards">
+                  {%- liquid
+                    assign couple_price = current_variant.price | times: 3 | divided_by: 2.0 | ceil
+                    assign couple_compare = current_variant.price | times: 2
+                    assign family_price = current_variant.price | times: 2
+                    assign family_compare = current_variant.price | times: 3
+                  -%}
+                  <label class="cleo-bundle-card is-selected">
+                    <input type="radio" name="cleo-bundle" value="{{ current_variant.id }}" form="{{ product_form_id }}" data-cleo-bundle-variant data-price="{{ current_variant.price }}" data-compare="{{ current_variant.compare_at_price }}" data-available="{{ current_variant.available }}" data-quantity="1" data-price-multiplier="1" data-compare-multiplier="1" checked>
+                    <span class="cleo-bundle-card__image">{%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 96 | image_tag: loading: 'lazy', alt: product.title }}{%- endif -%}</span>
+                    <span class="cleo-bundle-card__body"><strong>Essential Bundle</strong><small>( 1 Product )</small></span>
+                    <span class="cleo-bundle-card__price"><strong data-cleo-bundle-price>{{ current_variant.price | money }}</strong><s data-cleo-bundle-compare {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}>{{ current_variant.compare_at_price | money }}</s></span>
+                    <span class="cleo-bundle-card__perk">+ Free Copper Care Brush + FREE Travel Sleeve</span>
+                  </label>
+                  <label class="cleo-bundle-card">
+                    <input type="radio" name="cleo-bundle" value="{{ current_variant.id }}" form="{{ product_form_id }}" data-cleo-bundle-variant data-price="{{ couple_price }}" data-compare="{{ couple_compare }}" data-available="{{ current_variant.available }}" data-quantity="2" data-price-multiplier="1.5" data-compare-multiplier="2">
+                    <span class="cleo-bundle-card__image">{%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 96 | image_tag: loading: 'lazy', alt: product.title }}{%- endif -%}</span>
+                    <span class="cleo-bundle-card__body"><strong>Couple Bundle <em>Second Bottle 50%</em></strong><small>( 2 Products )</small></span>
+                    <span class="cleo-bundle-card__price"><strong data-cleo-bundle-price>{{ couple_price | money }}</strong><s data-cleo-bundle-compare>{{ couple_compare | money }}</s></span>
+                    <span class="cleo-bundle-card__perk">+ FREE 2 Copper Care Brushes + 2 Travel Sleeve</span>
+                  </label>
+                  <label class="cleo-bundle-card">
+                    <input type="radio" name="cleo-bundle" value="{{ current_variant.id }}" form="{{ product_form_id }}" data-cleo-bundle-variant data-price="{{ family_price }}" data-compare="{{ family_compare }}" data-available="{{ current_variant.available }}" data-quantity="3" data-price-multiplier="2" data-compare-multiplier="3">
+                    <span class="cleo-bundle-card__image">{%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 96 | image_tag: loading: 'lazy', alt: product.title }}{%- endif -%}</span>
+                    <span class="cleo-bundle-card__body"><strong>Family Bundle <em>Buy 2, Get 1 FREE</em></strong><small>( 3 Products )</small></span>
+                    <span class="cleo-bundle-card__price"><strong data-cleo-bundle-price>{{ family_price | money }}</strong><s data-cleo-bundle-compare>{{ family_compare | money }}</s></span>
+                    <span class="cleo-bundle-card__perk">+ FREE 3 Copper Care Brushes + 3 Travel Sleeve + Cleo Copper Wellness E-Book</span>
+                  </label>
+                </div>
+              </div> {% endcomment %}
+
+              <product-form>
+                {%- form 'product', product, id: product_form_id, class: 'shopify-product-form cleo-product-form', enctype: 'multipart/form-data' -%}
+                  <input type="hidden" name="id" value="{{ current_variant.id }}">
+                  <input type="hidden" name="quantity" value="1" data-cleo-product-quantity>
+                  <script type="application/json" data-cleo-variants>{{ product.variants | json }}</script>
+
+                  <kaching-bundle product-id="{{ product.id }}"></kaching-bundle>
+
+                  <div class="cleo-product-actions">
+                    <button type="submit" class="button w-full cleo-product-atc" {% unless current_variant.available %}disabled{% endunless %}>
+                      <span class="atc-btn-content">
+                        <svg class="atc-btn-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                          <path d="M8 10V7C8 4.8 9.8 3 12 3s4 1.8 4 4v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        <span data-cleo-submit-text>{%- if current_variant.available -%}Add to cart{%- else -%}Sold out{%- endif -%}</span>
+                      </span>
+                    </button>
+                    {%- if section.settings.show_dynamic_checkout -%}
+                      <div class="cleo-payment-button">
+                        {{ form | payment_button }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                  <input type="hidden" name="product-id" value="{{ product.id }}">
+                  <input type="hidden" name="section-id" value="template--21732445290636__main">
+                {%- endform -%}
+              </product-form>
+
+              <div class="feature-bar cleo-product-feature-bar" role="list">
+                {%- if feature_block_count > 0 -%}
+                  {%- assign feature_rendered_index = 0 -%}
+                  {%- for block in section.blocks -%}
+                    {%- if block.type == 'product_feature' -%}
+                      {%- assign feature_rendered_index = feature_rendered_index | plus: 1 -%}
+
+                      <div class="feature-item" role="listitem" {{ block.shopify_attributes }}>
+                        <span class="feature-icon" aria-hidden="true">
+                          {%- if block.settings.image != blank -%}
+                            {{
+                              block.settings.image
+                              | image_url: width: 120
+                              | image_tag:
+                                loading: 'lazy',
+                                widths: '32, 48, 64, 96, 120',
+                                sizes: '(max-width: 699px) 18px, 20px',
+                                alt: ''
+                            }}
+                          {%- else -%}
+                            {%- case feature_rendered_index -%}
+                              {%- when 1 -%}
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v9H3V7Zm11 3h4l3 3v3h-7v-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 18.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/></svg>
+                              {%- when 2 -%}
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M4 9h16v4H4V9Zm2 4h12v8H6v-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 9v12M12 9c-2.5 0-4-1-4-2.5S10.8 4 12 9Zm0 0c2.5 0 4-1 4-2.5S13.2 4 12 9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                              {%- else -%}
+                                <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="10" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 10V7a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                            {%- endcase -%}
+                          {%- endif -%}
+                        </span>
+
+                        {%- if block.settings.text != blank -%}
+                          <span class="feature-text">{{ block.settings.text }}</span>
+                        {%- endif -%}
+                      </div>
+
+                      {%- unless feature_rendered_index == feature_block_count -%}
+                        <span class="feature-divider" aria-hidden="true">&bull;</span>
+                      {%- endunless -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- else -%}
+                  <div class="feature-item" role="listitem">
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v9H3V7Zm11 3h4l3 3v3h-7v-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 18.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                    <span class="feature-text">Free shipping on all orders</span>
+                  </div>
+                  <span class="feature-divider" aria-hidden="true">&bull;</span>
+                  <div class="feature-item" role="listitem">
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9h16v4H4V9Zm2 4h12v8H6v-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 9v12M12 9c-2.5 0-4-1-4-2.5S10.8 4 12 9Zm0 0c2.5 0 4-1 4-2.5S13.2 4 12 9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                    <span class="feature-text">Makes a great gift</span>
+                  </div>
+                  <span class="feature-divider" aria-hidden="true">&bull;</span>
+                  <div class="feature-item" role="listitem">
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="10" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 10V7a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                    <span class="feature-text">Secure checkout</span>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="certificate-pdf-block cleo-certificate">
+                <div class="certificate-pdf-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v4h4M9 10h6M9 13h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="17" cy="16" r="2.2" stroke="currentColor" stroke-width="1.5"/><path d="m15.8 18-.6 3 1.8-1 1.8 1-.6-3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="certificate-pdf-content">
+                  <div class="certificate-pdf-title">Access Your Certificate of Authenticity</div>
+                  <div class="certificate-pdf-subtitle">Verified lab certification PDF &darr;</div>
+                </div>
+                <div class="certificate-pdf-stars">&#9733;<br>&#9733;<br>&#9733;</div>
+              </div>
+
+              <div class="product-usp-grid cleo-product-usp-grid">
+                {%- if usp_block_count > 0 -%}
+                  {%- assign usp_render_index = 0 -%}
+                  {%- for block in section.blocks -%}
+                    {%- if block.type == 'product_usp' -%}
+                      {%- assign usp_render_index = usp_render_index | plus: 1 -%}
+                      <div class="product-usp-grid__item" {{ block.shopify_attributes }}>
+                        <span class="cleo-usp-icon" aria-hidden="true">
+                          {%- if block.settings.image != blank -%}
+                            {{
+                              block.settings.image
+                              | image_url: width: 160
+                              | image_tag:
+                                loading: 'lazy',
+                                widths: '48, 72, 96, 120, 160',
+                                sizes: '(max-width: 699px) 36px, 45px',
+                                alt: ''
+                            }}
+                          {%- else -%}
+                            {%- case usp_render_index -%}
+                              {%- when 1 -%}
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v9H3V7Zm11 3h4l3 3v3h-7v-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 18.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/></svg>
+                              {%- when 2 -%}
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2.2 0 4 1.8 4 4 0 3-4 7-4 7s-4-4-4-7c0-2.2 1.8-4 4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 14v7l3-2 3 2v-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                              {%- when 3 -%}
+                                <svg viewBox="0 0 24 24" fill="none"><path d="m12 3 8 4-8 4-8-4 8-4Zm-8 4v10l8 4 8-4V7M12 11v10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                              {%- else -%}
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 19 6v5c0 4.6-2.8 8.3-7 10-4.2-1.7-7-5.4-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                            {%- endcase -%}
+                          {%- endif -%}
+                        </span>
+                        <div class="product-usp-grid__content">
+                          {%- if block.settings.title != blank -%}
+                            <p class="product-usp-grid__title">{{ block.settings.title }}</p>
+                          {%- endif -%}
+                          {%- if block.settings.text != blank -%}
+                            <p class="product-usp-grid__text">{{ block.settings.text }}</p>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- else -%}
+                  <div class="product-usp-grid__item"><span class="cleo-usp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v9H3V7Zm11 3h4l3 3v3h-7v-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6.5 18.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7"/></svg></span><div class="product-usp-grid__content"><p class="product-usp-grid__title">Express USA Shipping</p><p class="product-usp-grid__text">Ships in 1-2 business days</p></div></div>
+                  <div class="product-usp-grid__item"><span class="cleo-usp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c2.2 0 4 1.8 4 4 0 3-4 7-4 7s-4-4-4-7c0-2.2 1.8-4 4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 14v7l3-2 3 2v-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="product-usp-grid__content"><p class="product-usp-grid__title">Lab-Tested Pure Copper</p><p class="product-usp-grid__text">99.9% purity verified</p></div></div>
+                  <div class="product-usp-grid__item"><span class="cleo-usp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 8 4-8 4-8-4 8-4Zm-8 4v10l8 4 8-4V7M12 11v10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="product-usp-grid__content"><p class="product-usp-grid__title">Grip</p><p class="product-usp-grid__text">Comfortable Grip</p></div></div>
+                  <div class="product-usp-grid__item"><span class="cleo-usp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 19 6v5c0 4.6-2.8 8.3-7 10-4.2-1.7-7-5.4-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="product-usp-grid__content"><p class="product-usp-grid__title">Leak-proof</p><p class="product-usp-grid__text">Leak-proof threaded cap</p></div></div>
+                {%- endif -%}
+              </div>
+
+              {% comment %} {%- if product.description != blank -%}
+                <div class="accordion-list cleo-product-description">
+                  <accordion-disclosure class="accordion custom-faq-accordion">
+                    <details class="accordion__disclosure group" open>
+                      <summary>
+                        <span class="accordion__toggle h6 custom-accordion-css">
+                          <span class="text-with-icon gap-4">Product details</span>
+                          <svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+                            <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+                          </svg>
+                        </span>
+                      </summary>
+                      <div class="accordion__content custom-accordion-css rte">{{ product.description }}</div>
+                    </details>
+                  </accordion-disclosure>
+                </div>
+              {%- endif -%}
+
+              {%- if accordion_block_count > 0 -%}
+                <div class="accordion-list cleo-product-description">
+                  {%- for block in section.blocks -%}
+                    {%- if block.type == 'accordion' -%}
+                      <accordion-disclosure class="accordion custom-faq-accordion" {{ block.shopify_attributes }}>
+                        <details class="accordion__disclosure group"{% if block.settings.open %} open{% endif %}>
+                          <summary>
+                            <span class="accordion__toggle h6 custom-accordion-css">
+                              <span class="text-with-icon gap-4">{{ block.settings.heading }}</span>
+                              <svg aria-hidden="true" focusable="false" fill="none" width="10" class="group-expanded:rotate icon icon-chevron-down" viewBox="0 0 10 10">
+                                <path d="m1 3 4 4 4-4" stroke="currentColor" stroke-linecap="square"/>
+                              </svg>
+                            </span>
+                          </summary>
+                          <div class="accordion__content custom-accordion-css rte">{{ block.settings.content }}</div>
+                        </details>
+                      </accordion-disclosure>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%} {% endcomment %}
+            </div>
+          </safe-sticky>
+        </div>
+      </product-rerender>
+    </div>
+  </div>
+
+  {%- if section.settings.show_sticky_add_to_cart -%}
+    <product-rerender
+      id="{{ product_form_id }}-sticky-bar"
+      observe-form="{{ product_form_id }}"
+      data-cleo-sticky-wrapper
+    >
+      <product-sticky-bar
+        form="{{ product_form_id }}"
+        class="product-sticky-bar"
+        data-cleo-sticky-bar
+        aria-hidden="true"
+      >
+        <div class="product-sticky-bar__info sm-max:hidden">
+          <div class="h-stack gap-6">
+            {%- if product.featured_image != blank -%}
+              {{
+                product.featured_image
+                | image_url: width: 180
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '60, 120, 180',
+                  sizes: '60px',
+                  alt: product.title
+              }}
+            {%- endif -%}
+
+            <div class="v-stack">
+              <span class="h6 product-sticky-bar-title" data-cleo-sticky-title>{{ product.title }}</span>
+              <price-list class="price-list">
+                <div class="product-page-custom-price-container">
+                  <div>
+                    <sale-price class="h6 text-subdued product-page-custom-price" data-cleo-sticky-price>
+                      <span class="sr-only">Sale price</span>{{ current_variant.price | money }}
+                    </sale-price>
+                  </div>
+                </div>
+              </price-list>
+            </div>
+          </div>
+        </div>
+
+        <buy-buttons class="buy-buttons" template="layout-b" form="{{ product_form_id }}">
+          <button
+            type="submit"
+            class="button"
+            form="{{ product_form_id }}"
+            data-cleo-sticky-submit
+            {% unless current_variant.available %}disabled{% endunless %}
+          >
+            <span data-cleo-sticky-submit-text>{%- if current_variant.available -%}Add to cart{%- else -%}Sold out{%- endif -%}</span>
+          </button>
+        </buy-buttons>
+      </product-sticky-bar>
+    </product-rerender>
+  {%- endif -%}
+</section>
+
+
+<template data-cleo-mobile-gallery-template="{{ section.id }}">
+  <div class="cleo-mobile-product-gallery" data-cleo-mobile-product-gallery>
+    <div class="cleo-mobile-product-gallery__viewport" data-cleo-mobile-gallery-viewport>
+      {%- for image in product.images -%}
+        <div
+          class="cleo-mobile-product-gallery__slide"
+          data-cleo-mobile-gallery-slide
+          data-image-id="{{ image.id }}"
+        >
+          <img
+            src="{{ image | image_url: width: 1200 }}"
+            srcset="
+              {{ image | image_url: width: 360 }} 360w,
+              {{ image | image_url: width: 540 }} 540w,
+              {{ image | image_url: width: 720 }} 720w,
+              {{ image | image_url: width: 900 }} 900w,
+              {{ image | image_url: width: 1200 }} 1200w
+            "
+            sizes="calc(100vw - 24px)"
+            width="{{ image.width }}"
+            height="{{ image.height }}"
+            alt="{{ image.alt | default: product.title | escape }}"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            {% if forloop.first %}fetchpriority="high"{% endif %}
+          >
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if product.images.size > 1 -%}
+      <div class="cleo-mobile-product-gallery__thumbs" data-cleo-mobile-gallery-thumbs>
+        {%- for image in product.images -%}
+          <button
+            type="button"
+            class="cleo-mobile-product-gallery__thumb"
+            data-cleo-mobile-gallery-thumb="{{ forloop.index0 }}"
+            aria-label="Show product image {{ forloop.index }}"
+            aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+          >
+            <img
+              src="{{ image | image_url: width: 180 }}"
+              width="90"
+              height="90"
+              alt="{{ image.alt | default: product.title | escape }}"
+              loading="lazy"
+            >
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</template>
+
+<script type="application/json" data-cleo-product-variants="{{ section.id }}">
+[
+  {%- for variant in product.variants -%}
+    {
+      "id": {{ variant.id | json }},
+      "available": {{ variant.available | json }},
+      "price": {{ variant.price | json }},
+      "price_formatted": {{ variant.price | money | json }},
+      "inventory_quantity": {{ variant.inventory_quantity | default: 0 | json }},
+      "inventory_management": {{ variant.inventory_management | json }},
+      "inventory_policy": {{ variant.inventory_policy | json }}
+    }{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+]
+</script>
+
+<script>
+  (() => {
+    'use strict';
+
+    const sectionId = {{ section.id | json }};
+    const productFormId = {{ product_form_id | json }};
+    const productTitle = {{ product.title | json }};
+    const featuredImageUrl = {% if product.featured_image %}{{ product.featured_image | image_url: width: 1600 | json }}{% else %}null{% endif %};
+    const root = document.getElementById(`shopify-section-${sectionId}`);
+
+    if (!root || root.dataset.cleoProductEnhanced === 'true') return;
+    root.dataset.cleoProductEnhanced = 'true';
+
+    const config = {
+      showStockUrgency: {{ section.settings.show_stock_urgency | json }},
+      lowStockThreshold: {{ section.settings.stock_low_threshold | json }},
+      lowStockText: {{ section.settings.stock_low_text | json }},
+      inStockText: {{ section.settings.stock_in_stock_text | json }},
+      preorderText: {{ section.settings.stock_preorder_text | json }},
+      outOfStockText: {{ section.settings.stock_out_text | json }},
+      autoOpenCartDrawer: {{ section.settings.auto_open_cart_drawer | json }},
+      loadingText: {{ section.settings.atc_loading_text | json }},
+      addedText: {{ section.settings.atc_added_text | json }}
+    };
+
+    const variantDataElement = root.querySelector(`[data-cleo-product-variants="${sectionId}"]`);
+    let variants = [];
+
+    try {
+      variants = JSON.parse(variantDataElement?.textContent || '[]');
+    } catch (error) {
+      console.warn('[Cleo product] Variant inventory JSON could not be parsed.', error);
+    }
+
+    const variantsById = new Map(variants.map((variant) => [String(variant.id), variant]));
+    const productFormsSelector = 'form[action*="/cart/add"]';
+    const getAjaxForms = () => Array.from(root.querySelectorAll(productFormsSelector));
+    let variantUpdateTimer = null;
+    let stickyVisibilityFrame = null;
+
+    const getStickyBar = () => root.querySelector('[data-cleo-sticky-bar]');
+    const getStickySubmitButton = () => root.querySelector('[data-cleo-sticky-submit]');
+    const getMainAddToCartButton = () => {
+      const productForm = document.getElementById(productFormId);
+      return productForm?.querySelector('.cleo-product-atc, [type="submit"]:not([name="checkout"])') || null;
+    };
+
+    const setStickyBarVisibility = (shouldShow) => {
+      const stickyBar = getStickyBar();
+      if (!stickyBar) return;
+
+      const visible = Boolean(shouldShow);
+      stickyBar.classList.toggle('is-visible', visible);
+      stickyBar.classList.toggle('cleo-is-visible', visible);
+      stickyBar.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    };
+
+    const updateStickyBarVisibility = () => {
+      stickyVisibilityFrame = null;
+
+      const stickyBar = getStickyBar();
+      const mainButton = getMainAddToCartButton();
+
+      if (!stickyBar || !mainButton) {
+        setStickyBarVisibility(false);
+        return;
+      }
+
+      const buttonStyle = window.getComputedStyle(mainButton);
+      const buttonRect = mainButton.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+      const hasSize = buttonRect.width > 0 && buttonRect.height > 0;
+      const isRendered = buttonStyle.display !== 'none'
+        && buttonStyle.visibility !== 'hidden'
+        && buttonStyle.opacity !== '0';
+      const isInsideViewport = buttonRect.bottom > 0
+        && buttonRect.top < viewportHeight
+        && buttonRect.right > 0
+        && buttonRect.left < viewportWidth;
+
+      setStickyBarVisibility(!(hasSize && isRendered && isInsideViewport));
+    };
+
+    const scheduleStickyBarVisibilityUpdate = () => {
+      if (stickyVisibilityFrame) return;
+      stickyVisibilityFrame = window.requestAnimationFrame(updateStickyBarVisibility);
+    };
+
+    const getVariantIdFromForm = (form) => {
+      const idInput = form?.querySelector('[name="id"]');
+      return idInput?.value ? String(idInput.value) : null;
+    };
+
+    const getCurrentVariantId = (preferredForm = null, eventVariant = null) => {
+      const eventVariantId = eventVariant?.id || eventVariant?.variant?.id || eventVariant?.detail?.variant?.id;
+      if (eventVariantId) return String(eventVariantId);
+
+      const preferredId = getVariantIdFromForm(preferredForm);
+      if (preferredId) return preferredId;
+
+      for (const form of getAjaxForms()) {
+        const formId = getVariantIdFromForm(form);
+        if (formId) return formId;
+      }
+
+      const urlVariantId = new URL(window.location.href).searchParams.get('variant');
+      if (urlVariantId) return String(urlVariantId);
+
+      const firstAvailable = variants.find((variant) => variant.available);
+      return firstAvailable ? String(firstAvailable.id) : (variants[0] ? String(variants[0].id) : null);
+    };
+
+    const findOrCreateStockBlock = () => {
+      let block = root.querySelector('[data-cleo-stock-urgency], .stock-urgency-block');
+
+      if (!block) {
+        block = document.createElement('div');
+        block.className = 'stock-urgency-block';
+        block.dataset.cleoStockUrgency = '';
+        block.setAttribute('role', 'status');
+        block.setAttribute('aria-live', 'polite');
+        block.innerHTML = '<span class="stock-urgency-dot" aria-hidden="true"></span><span class="stock-urgency-text"></span>';
+
+        const insertionTarget = root.querySelector('.cleo-product-actions')
+          || root.querySelector(`${productFormsSelector} [type="submit"]`)
+          || root.querySelector(productFormsSelector);
+
+        if (insertionTarget) {
+          insertionTarget.insertAdjacentElement('beforebegin', block);
+        }
+      }
+
+      if (block) {
+        block.dataset.cleoStockUrgency = '';
+        block.setAttribute('role', 'status');
+        block.setAttribute('aria-live', 'polite');
+
+        if (!block.querySelector('.stock-urgency-dot')) {
+          const dot = document.createElement('span');
+          dot.className = 'stock-urgency-dot';
+          dot.setAttribute('aria-hidden', 'true');
+          block.prepend(dot);
+        }
+
+        if (!block.querySelector('.stock-urgency-text')) {
+          const text = document.createElement('span');
+          text.className = 'stock-urgency-text';
+          block.append(text);
+        }
+      }
+
+      return block;
+    };
+
+    const formatStockText = (template, quantity) => String(template || '')
+      .replace(/\[quantity\]/gi, String(Math.max(0, Number(quantity) || 0)))
+      .replace(/\{quantity\}/gi, String(Math.max(0, Number(quantity) || 0)));
+
+    const getStockState = (variant) => {
+      if (!variant) {
+        return { state: 'unknown', text: '', buttonDisabled: false };
+      }
+
+      const tracked = Boolean(variant.inventory_management);
+      const quantity = Number(variant.inventory_quantity) || 0;
+      const allowsOverselling = variant.inventory_policy === 'continue';
+
+      if (!variant.available && !allowsOverselling) {
+        return {
+          state: 'out-of-stock',
+          text: config.outOfStockText,
+          buttonDisabled: true
+        };
+      }
+
+      if (tracked && quantity <= 0 && allowsOverselling) {
+        return {
+          state: 'preorder',
+          text: config.preorderText,
+          buttonDisabled: false
+        };
+      }
+
+      if (tracked && quantity > 0 && quantity <= Number(config.lowStockThreshold || 0)) {
+        return {
+          state: 'low-stock',
+          text: formatStockText(config.lowStockText, quantity),
+          buttonDisabled: false
+        };
+      }
+
+      return {
+        state: 'in-stock',
+        text: config.inStockText,
+        buttonDisabled: false
+      };
+    };
+
+    const syncStickyBarState = (variant, state) => {
+      const stickyButton = getStickySubmitButton();
+      const stickyPrice = root.querySelector('[data-cleo-sticky-price]');
+
+      if (
+        stickyPrice
+        && variant?.price_formatted
+        && stickyPrice.dataset.cleoCurrentPrice !== variant.price_formatted
+      ) {
+        const screenReaderLabel = stickyPrice.querySelector('.sr-only');
+        const prefix = screenReaderLabel ? screenReaderLabel.outerHTML : '';
+        stickyPrice.innerHTML = `${prefix}${variant.price_formatted}`;
+        stickyPrice.dataset.cleoCurrentPrice = variant.price_formatted;
+      }
+
+      if (!stickyButton || stickyButton.getAttribute('aria-busy') === 'true') return;
+
+      const shouldDisable = Boolean(state?.buttonDisabled);
+      const stickyLabel = stickyButton.querySelector('[data-cleo-sticky-submit-text]');
+
+      if (stickyButton.disabled !== shouldDisable) stickyButton.disabled = shouldDisable;
+      stickyButton.setAttribute('aria-disabled', shouldDisable ? 'true' : 'false');
+      stickyButton.dataset.cleoSoldOut = shouldDisable ? 'true' : 'false';
+
+      if (stickyLabel) {
+        stickyLabel.textContent = shouldDisable ? 'Sold out' : 'Add to cart';
+      }
+    };
+
+    const setFormAvailability = (variant, state) => {
+      getAjaxForms().forEach((form) => {
+        const formVariantId = getVariantIdFromForm(form);
+        if (formVariantId && String(formVariantId) !== String(variant?.id || '')) return;
+
+        form.querySelectorAll('[type="submit"]:not([name="checkout"])').forEach((button) => {
+          if (button.getAttribute('aria-busy') === 'true') return;
+
+          const shouldDisable = Boolean(state.buttonDisabled);
+          if (button.disabled !== shouldDisable) button.disabled = shouldDisable;
+          button.setAttribute('aria-disabled', shouldDisable ? 'true' : 'false');
+          button.dataset.cleoSoldOut = shouldDisable ? 'true' : 'false';
+        });
+      });
+
+      syncStickyBarState(variant, state);
+    };
+
+    const updateStockUrgency = (preferredForm = null, eventVariant = null) => {
+      const variantId = getCurrentVariantId(preferredForm, eventVariant);
+      if (!variantId) return;
+
+      const variant = variantsById.get(String(variantId));
+      const stockState = getStockState(variant);
+      const existingBlock = root.querySelector('[data-cleo-stock-urgency], .stock-urgency-block');
+
+      if (!config.showStockUrgency) {
+        if (existingBlock) existingBlock.hidden = true;
+      } else {
+        const block = existingBlock || findOrCreateStockBlock();
+
+        if (block) {
+          const textElement = block.querySelector('.stock-urgency-text');
+          block.hidden = !stockState.text;
+          block.dataset.stockState = stockState.state;
+
+          if (textElement && textElement.textContent !== stockState.text) {
+            textElement.textContent = stockState.text;
+          }
+        }
+      }
+
+      setFormAvailability(variant, stockState);
+      scheduleStickyBarVisibilityUpdate();
+    };
+
+    const scheduleStockUpdate = (preferredForm = null, eventVariant = null) => {
+      window.clearTimeout(variantUpdateTimer);
+      variantUpdateTimer = window.setTimeout(() => {
+        updateStockUrgency(preferredForm, eventVariant);
+      }, 30);
+    };
+
+    const getCartSectionHandles = () => {
+      const candidates = [
+        ['cart-drawer', 'cart-drawer, #CartDrawer, .cart-drawer'],
+        ['cart-icon-bubble', '#cart-icon-bubble, [data-cart-icon-bubble], .header__icon--cart'],
+        ['cart-live-region-text', '#cart-live-region-text, [data-cart-live-region]'],
+        ['cart-notification-product', '#cart-notification-product, cart-notification'],
+        ['cart-notification-button', '#cart-notification-button, [data-cart-notification-button]']
+      ];
+
+      const presentHandles = candidates
+        .filter(([, selector]) => document.querySelector(selector))
+        .map(([handle]) => handle);
+
+      const handles = ['cart-drawer', 'cart-icon-bubble', ...presentHandles];
+      return [...new Set(handles)].slice(0, 5);
+    };
+
+    const getSectionSelectorCandidates = (sectionHandle) => {
+      const selectors = {
+        'cart-drawer': ['#CartDrawer', 'cart-drawer', '.cart-drawer'],
+        'cart-icon-bubble': ['#cart-icon-bubble', '[data-cart-icon-bubble]', '.header__icon--cart'],
+        'cart-live-region-text': ['#cart-live-region-text', '[data-cart-live-region]'],
+        'cart-notification-product': ['#cart-notification-product', 'cart-notification'],
+        'cart-notification-button': ['#cart-notification-button', '[data-cart-notification-button]']
+      };
+
+      return [
+        `#shopify-section-${sectionHandle}`,
+        `[id^="shopify-section-"][id$="__${sectionHandle}"]`,
+        ...(selectors[sectionHandle] || [])
+      ];
+    };
+
+    const replaceRenderedSection = (sectionHandle, html) => {
+      if (!html) return false;
+
+      const parsedDocument = new DOMParser().parseFromString(html, 'text/html');
+      const selectorCandidates = getSectionSelectorCandidates(sectionHandle);
+
+      for (const selector of selectorCandidates) {
+        const currentElement = document.querySelector(selector);
+        const incomingElement = parsedDocument.querySelector(selector);
+
+        if (!currentElement || !incomingElement) continue;
+
+        const isDrawerElement = currentElement.matches('cart-drawer, #CartDrawer, .cart-drawer');
+        const isShopifySection = currentElement.id?.startsWith('shopify-section-');
+
+        if (isDrawerElement || isShopifySection) {
+          currentElement.innerHTML = incomingElement.innerHTML;
+        } else {
+          currentElement.replaceWith(incomingElement.cloneNode(true));
+        }
+
+        return true;
+      }
+
+      return false;
+    };
+
+    const renderCartSectionsFallback = (response) => {
+      let renderedAnySection = false;
+
+      Object.entries(response?.sections || {}).forEach(([sectionHandle, html]) => {
+        renderedAnySection = replaceRenderedSection(sectionHandle, html) || renderedAnySection;
+      });
+
+      return renderedAnySection;
+    };
+
+    const renderCartWithThemeApi = (response) => {
+      const renderers = [
+        document.querySelector('cart-drawer'),
+        document.querySelector('cart-notification'),
+        document.querySelector('[data-cart-drawer]')
+      ].filter(Boolean);
+
+      for (const renderer of renderers) {
+        if (typeof renderer.renderContents !== 'function') continue;
+
+        try {
+          renderer.renderContents(response);
+          return true;
+        } catch (error) {
+          console.warn('[Cleo product] Theme cart renderer failed, using generic fallback.', error);
+        }
+      }
+
+      return false;
+    };
+
+    const openCartDrawer = () => {
+      if (config.autoOpenCartDrawer === false) return;
+
+      if (window.CleoCart && typeof window.CleoCart.open === 'function') {
+        window.CleoCart.open();
+        return;
+      }
+
+      const drawer = document.querySelector('cart-drawer, #CartDrawer, [data-cart-drawer], .cart-drawer');
+      const notification = document.querySelector('cart-notification');
+
+      if (drawer && typeof drawer.open === 'function') {
+        drawer.open();
+        return;
+      }
+
+      if (notification && typeof notification.open === 'function') {
+        notification.open();
+        return;
+      }
+
+      const dialog = drawer?.matches('dialog') ? drawer : drawer?.querySelector('dialog');
+      if (dialog && typeof dialog.showModal === 'function' && !dialog.open) {
+        dialog.showModal();
+        return;
+      }
+
+      if (drawer) {
+        drawer.hidden = false;
+        drawer.removeAttribute('aria-hidden');
+        drawer.setAttribute('aria-hidden', 'false');
+        drawer.setAttribute('open', '');
+        drawer.classList.add('active', 'is-open', 'open');
+        document.documentElement.classList.add('overflow-hidden', 'cleo-cart-drawer-open');
+      }
+    };
+
+    const refreshCartDrawer = async () => {
+      if (window.CleoCart && typeof window.CleoCart.refresh === 'function') {
+        return window.CleoCart.refresh();
+      }
+
+      document.dispatchEvent(new CustomEvent('cart:refresh', {
+        bubbles: true,
+        detail: { source: 'cleo-product-form' }
+      }));
+      return null;
+    };
+
+    const dispatchCartEvents = (response, formData, cart = null) => {
+      const detail = {
+        source: 'cleo-product-form',
+        productVariantId: String(formData.get('id') || ''),
+        cart,
+        cartData: cart || response,
+        addResponse: response,
+        sections: response?.sections || {}
+      };
+
+      ['cart:updated', 'cart:change', 'cart:refresh', 'product:added'].forEach((eventName) => {
+        document.dispatchEvent(new CustomEvent(eventName, { bubbles: true, detail }));
+      });
+    };
+
+    const getAtcMessageElement = (form) => {
+      let message = form.querySelector('[data-cleo-atc-message]');
+
+      if (!message) {
+        message = document.createElement('div');
+        message.className = 'cleo-atc-message';
+        message.dataset.cleoAtcMessage = '';
+        message.setAttribute('role', 'alert');
+        message.hidden = true;
+        form.appendChild(message);
+      }
+
+      return message;
+    };
+
+    const setAtcMessage = (form, messageText, type = 'error') => {
+      const message = getAtcMessageElement(form);
+      message.textContent = messageText || '';
+      message.dataset.messageType = type;
+      message.hidden = !messageText;
+    };
+
+    const getButtonLabelElement = (button) => button?.querySelector(
+      '[data-add-to-cart-text], .atc-btn-content, .button__text, span'
+    ) || button;
+
+    const setButtonLoading = (button, isLoading) => {
+      if (!button) return;
+
+      const label = getButtonLabelElement(button);
+
+      if (isLoading) {
+        if (!button.dataset.cleoOriginalDisabled) {
+          button.dataset.cleoOriginalDisabled = button.disabled ? 'true' : 'false';
+        }
+        if (label && !label.dataset.cleoOriginalHtml) {
+          label.dataset.cleoOriginalHtml = label.innerHTML;
+        }
+
+        button.disabled = true;
+        button.setAttribute('aria-disabled', 'true');
+        button.setAttribute('aria-busy', 'true');
+        button.classList.add('is-loading');
+        if (label) label.textContent = config.loadingText || 'Adding...';
+        return;
+      }
+
+      button.removeAttribute('aria-busy');
+      button.classList.remove('is-loading');
+    };
+
+    const restoreButton = (button, showSuccess = false) => {
+      if (!button) return;
+
+      const label = getButtonLabelElement(button);
+      const originalHtml = label?.dataset.cleoOriginalHtml;
+
+      if (showSuccess && label) {
+        label.textContent = config.addedText || 'Added to cart';
+      }
+
+      window.setTimeout(() => {
+        if (label && originalHtml !== undefined) {
+          label.innerHTML = originalHtml;
+          delete label.dataset.cleoOriginalHtml;
+        }
+
+        const wasOriginallyDisabled = button.dataset.cleoOriginalDisabled === 'true';
+        button.disabled = wasOriginallyDisabled;
+        button.setAttribute('aria-disabled', wasOriginallyDisabled ? 'true' : 'false');
+        delete button.dataset.cleoOriginalDisabled;
+        updateStockUrgency();
+      }, showSuccess ? 900 : 0);
+    };
+
+    const parseJsonResponse = async (response) => {
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) return response.json();
+
+      const text = await response.text();
+      try {
+        return JSON.parse(text);
+      } catch (_) {
+        return { description: text || 'Unable to add this item to the cart.' };
+      }
+    };
+
+    const submitProductForm = async (form, submitter) => {
+      const formData = new FormData(form);
+      const variantId = formData.get('id');
+      const variant = variantsById.get(String(variantId || ''));
+
+      if (!variantId) {
+        setAtcMessage(form, 'Please select a product option before adding to cart.');
+        return;
+      }
+
+      if (variant && !variant.available && variant.inventory_policy !== 'continue') {
+        setAtcMessage(form, config.outOfStockText);
+        updateStockUrgency(form);
+        return;
+      }
+
+      const cartSectionHandles = getCartSectionHandles();
+      formData.set('sections', cartSectionHandles.join(','));
+      formData.set('sections_url', `${window.location.pathname}${window.location.search}`);
+
+      setAtcMessage(form, '');
+      setButtonLoading(submitter, true);
+
+      try {
+        const shopifyRoot = window.Shopify?.routes?.root || '/';
+        const response = await fetch(`${shopifyRoot}cart/add.js`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: formData,
+          credentials: 'same-origin'
+        });
+
+        const responseData = await parseJsonResponse(response);
+
+        if (!response.ok || responseData?.status) {
+          throw new Error(
+            responseData?.description
+            || responseData?.message
+            || 'This item could not be added to the cart.'
+          );
+        }
+
+        const usesCleoCartDrawer = Boolean(document.querySelector('cart-drawer#cart-drawer [data-cleo-cart-drawer-content]'));
+        if (!usesCleoCartDrawer) {
+          const renderedByTheme = renderCartWithThemeApi(responseData);
+          if (!renderedByTheme) renderCartSectionsFallback(responseData);
+        }
+
+        openCartDrawer();
+        const cart = await refreshCartDrawer();
+        dispatchCartEvents(responseData, formData, cart);
+        setAtcMessage(form, '');
+        setButtonLoading(submitter, false);
+        restoreButton(submitter, true);
+
+        window.requestAnimationFrame(() => {
+          updateStockUrgency(form);
+        });
+      } catch (error) {
+        console.error('[Cleo product] Add to cart failed.', error);
+        setAtcMessage(form, error.message || 'Unable to add this item to the cart.');
+        setButtonLoading(submitter, false);
+        restoreButton(submitter, false);
+      }
+    };
+
+    root.addEventListener('submit', (event) => {
+      const form = event.target.closest(productFormsSelector);
+      if (!form || !root.contains(form) || form.hasAttribute('data-cleo-native-cart')) return;
+
+      const submitter = event.submitter || form.querySelector('[type="submit"]:not([name="checkout"])');
+      const isCheckoutButton = submitter?.name === 'checkout'
+        || submitter?.closest('.shopify-payment-button, shopify-accelerated-checkout');
+
+      if (isCheckoutButton) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      submitProductForm(form, submitter);
+    }, true);
+
+    root.addEventListener('change', (event) => {
+      const form = event.target.closest(productFormsSelector);
+      if (
+        event.target.matches('select, input[type="radio"], input[name="id"], input[name^="options"]')
+        || event.target.closest('.cleo-option, variant-selects, variant-radios')
+      ) {
+        scheduleStockUpdate(form);
+        window.setTimeout(() => scheduleStockUpdate(form), 100);
+      }
+    });
+
+    root.addEventListener('input', (event) => {
+      if (event.target.matches('select, input[type="radio"], input[name="id"]')) {
+        scheduleStockUpdate(event.target.closest(productFormsSelector));
+      }
+    });
+
+    ['variant:change', 'variant-changed', 'product:variant-change', 'product:variant-changed'].forEach((eventName) => {
+      document.addEventListener(eventName, (event) => {
+        const variant = event.detail?.variant || event.detail;
+        scheduleStockUpdate(null, variant);
+      });
+    });
+
+    const productMutationObserver = new MutationObserver((mutations) => {
+      const relevantMutation = mutations.some((mutation) =>
+        mutation.type === 'childList'
+        || (mutation.type === 'attributes' && ['value', 'checked', 'disabled'].includes(mutation.attributeName))
+      );
+
+      if (relevantMutation) {
+        scheduleStockUpdate();
+        scheduleStickyBarVisibilityUpdate();
+      }
+    });
+
+    productMutationObserver.observe(root, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['value', 'checked', 'disabled']
+    });
+
+    const getLazyAttribute = (element, names) => {
+      for (const name of names) {
+        const value = element?.getAttribute(name);
+        if (value) return value;
+      }
+      return '';
+    };
+
+    const hydrateMobileImage = (image, isFirstImage = false) => {
+      if (!image) return;
+
+      const lazySrc = getLazyAttribute(image, [
+        'data-src',
+        'data-lazy-src',
+        'data-original',
+        'data-image-src'
+      ]);
+      const lazySrcset = getLazyAttribute(image, [
+        'data-srcset',
+        'data-lazy-srcset'
+      ]);
+      const lazySizes = getLazyAttribute(image, ['data-sizes']);
+      const currentSrc = image.getAttribute('src') || '';
+      const hasPlaceholderSource = !currentSrc
+        || currentSrc === '#'
+        || currentSrc.startsWith('data:image/gif')
+        || currentSrc.startsWith('data:image/svg+xml');
+
+      if (hasPlaceholderSource && lazySrc) image.setAttribute('src', lazySrc);
+      if (!image.getAttribute('srcset') && lazySrcset) image.setAttribute('srcset', lazySrcset);
+      if (!image.getAttribute('sizes') && lazySizes) image.setAttribute('sizes', lazySizes);
+
+      image.hidden = false;
+      image.removeAttribute('hidden');
+      image.removeAttribute('aria-hidden');
+      image.classList.remove('lazyload', 'lazyloading');
+      image.classList.add('lazyloaded', 'loaded');
+      image.loading = isFirstImage ? 'eager' : 'lazy';
+
+      if (isFirstImage) {
+        image.setAttribute('fetchpriority', 'high');
+      }
+
+      if (featuredImageUrl && isFirstImage) {
+        image.addEventListener('error', () => {
+          if (image.dataset.cleoFallbackApplied === 'true') return;
+          image.dataset.cleoFallbackApplied = 'true';
+          image.removeAttribute('srcset');
+          image.src = featuredImageUrl;
+        }, { once: true });
+      }
+    };
+
+    const ensureMobileGalleryVisible = () => {
+      if (!window.matchMedia('(max-width: 699px)').matches) return;
+
+      const gallery = root.querySelector('.cleo-product-gallery');
+      const frame = gallery?.querySelector('.cleo-product-gallery__frame');
+      const carousel = gallery?.querySelector('.product-gallery__carousel');
+
+      if (!gallery || !frame) return;
+
+      let mediaItems = Array.from(
+        (carousel || frame).querySelectorAll('.product-gallery__media')
+      );
+
+      if (!mediaItems.length && featuredImageUrl) {
+        const fallbackCarousel = carousel || document.createElement('div');
+        const fallbackMedia = document.createElement('div');
+        const fallbackImage = document.createElement('img');
+
+        if (!carousel) {
+          fallbackCarousel.className = 'product-gallery__carousel';
+          frame.appendChild(fallbackCarousel);
+        }
+
+        fallbackMedia.className = 'product-gallery__media';
+        fallbackMedia.dataset.cleoMobileGeneratedMedia = 'true';
+        fallbackImage.className = 'cleo-mobile-gallery-fallback';
+        fallbackImage.src = featuredImageUrl;
+        fallbackImage.alt = productTitle || '';
+        fallbackImage.loading = 'eager';
+        fallbackImage.setAttribute('fetchpriority', 'high');
+        fallbackMedia.appendChild(fallbackImage);
+        fallbackCarousel.appendChild(fallbackMedia);
+        mediaItems = [fallbackMedia];
+      }
+
+      mediaItems.forEach((media, mediaIndex) => {
+        media.hidden = false;
+        media.removeAttribute('hidden');
+        media.removeAttribute('inert');
+        media.setAttribute('aria-hidden', 'false');
+
+        media.querySelectorAll('[hidden]').forEach((element) => {
+          if (element.matches('script, template')) return;
+          element.hidden = false;
+          element.removeAttribute('hidden');
+        });
+
+        media.querySelectorAll('source').forEach((source) => {
+          const lazySrcset = getLazyAttribute(source, ['data-srcset', 'data-lazy-srcset']);
+          if (!source.getAttribute('srcset') && lazySrcset) {
+            source.setAttribute('srcset', lazySrcset);
+          }
+        });
+
+        media.querySelectorAll('img').forEach((image, imageIndex) => {
+          hydrateMobileImage(image, mediaIndex === 0 && imageIndex === 0);
+        });
+      });
+
+      const firstMedia = mediaItems[0];
+      let firstImage = firstMedia?.querySelector('img');
+
+      if (firstMedia && !firstImage && featuredImageUrl) {
+        firstImage = document.createElement('img');
+        firstImage.className = 'cleo-mobile-gallery-fallback';
+        firstImage.src = featuredImageUrl;
+        firstImage.alt = productTitle || '';
+        firstMedia.appendChild(firstImage);
+        hydrateMobileImage(firstImage, true);
+      }
+
+      if (firstImage && featuredImageUrl) {
+        const currentSrc = firstImage.currentSrc || firstImage.getAttribute('src') || '';
+        if (!currentSrc || currentSrc === '#') {
+          firstImage.src = featuredImageUrl;
+        }
+
+        window.setTimeout(() => {
+          if (firstImage.complete && firstImage.naturalWidth === 0 && firstImage.dataset.cleoFallbackApplied !== 'true') {
+            firstImage.dataset.cleoFallbackApplied = 'true';
+            firstImage.removeAttribute('srcset');
+            firstImage.src = featuredImageUrl;
+          }
+        }, 350);
+      }
+
+      const thumbnails = Array.from(gallery.querySelectorAll('.product-gallery__thumbnail'));
+      if (thumbnails.length && !thumbnails.some((thumbnail) => thumbnail.getAttribute('aria-current') === 'true')) {
+        thumbnails[0].setAttribute('aria-current', 'true');
+      }
+
+      if (carousel && !carousel.dataset.cleoMobilePositioned) {
+        carousel.scrollLeft = 0;
+        carousel.dataset.cleoMobilePositioned = 'true';
+      }
+    };
+
+    const mobileGalleryTemplate = root.querySelector(
+      `[data-cleo-mobile-gallery-template="${sectionId}"]`
+    );
+    let mobileGalleryScrollTimer = null;
+
+    const updateMobileGalleryState = (mobileGallery, index, shouldScroll = false) => {
+      if (!mobileGallery) return;
+
+      const viewport = mobileGallery.querySelector('[data-cleo-mobile-gallery-viewport]');
+      const slides = Array.from(mobileGallery.querySelectorAll('[data-cleo-mobile-gallery-slide]'));
+      const thumbs = Array.from(mobileGallery.querySelectorAll('[data-cleo-mobile-gallery-thumb]'));
+
+      if (!viewport || !slides.length) return;
+
+      const safeIndex = Math.max(0, Math.min(Number(index) || 0, slides.length - 1));
+
+      thumbs.forEach((thumb, thumbIndex) => {
+        thumb.setAttribute('aria-current', thumbIndex === safeIndex ? 'true' : 'false');
+      });
+
+      if (shouldScroll) {
+        const targetLeft = slides[safeIndex].offsetLeft;
+        viewport.scrollTo({ left: targetLeft, behavior: 'smooth' });
+      }
+
+      const activeThumb = thumbs[safeIndex];
+      const thumbsViewport = mobileGallery.querySelector('[data-cleo-mobile-gallery-thumbs]');
+
+      /*
+       * Do not use scrollIntoView() here. On iOS Safari, the browser toolbar
+       * changes the viewport height while the customer scrolls vertically.
+       * That resize used to run this function and scroll the whole page back
+       * to the gallery. This calculation only moves the horizontal thumb row.
+       */
+      if (activeThumb && thumbsViewport) {
+        const visibleLeft = thumbsViewport.scrollLeft;
+        const visibleRight = visibleLeft + thumbsViewport.clientWidth;
+        const thumbLeft = activeThumb.offsetLeft;
+        const thumbRight = thumbLeft + activeThumb.offsetWidth;
+        const thumbIsVisible = thumbLeft >= visibleLeft && thumbRight <= visibleRight;
+
+        if (!thumbIsVisible) {
+          const maxScrollLeft = Math.max(0, thumbsViewport.scrollWidth - thumbsViewport.clientWidth);
+          const centeredLeft = thumbLeft - ((thumbsViewport.clientWidth - activeThumb.offsetWidth) / 2);
+          const targetLeft = Math.max(0, Math.min(maxScrollLeft, centeredLeft));
+
+          thumbsViewport.scrollTo({
+            left: targetLeft,
+            behavior: shouldScroll ? 'smooth' : 'auto'
+          });
+        }
+      }
+    };
+
+    const bindMobileGallery = (mobileGallery) => {
+      if (!mobileGallery || mobileGallery.dataset.cleoBound === 'true') return;
+      mobileGallery.dataset.cleoBound = 'true';
+
+      const viewport = mobileGallery.querySelector('[data-cleo-mobile-gallery-viewport]');
+      const slides = Array.from(mobileGallery.querySelectorAll('[data-cleo-mobile-gallery-slide]'));
+      const thumbs = Array.from(mobileGallery.querySelectorAll('[data-cleo-mobile-gallery-thumb]'));
+
+      thumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          updateMobileGalleryState(
+            mobileGallery,
+            Number(thumb.dataset.cleoMobileGalleryThumb || 0),
+            true
+          );
+        });
+      });
+
+      viewport?.addEventListener('scroll', () => {
+        window.clearTimeout(mobileGalleryScrollTimer);
+        mobileGalleryScrollTimer = window.setTimeout(() => {
+          const viewportWidth = viewport.clientWidth || 1;
+          const activeIndex = Math.round(viewport.scrollLeft / viewportWidth);
+          updateMobileGalleryState(mobileGallery, activeIndex, false);
+        }, 70);
+      }, { passive: true });
+
+      slides.forEach((slide, index) => {
+        const image = slide.querySelector('img');
+        if (!image) return;
+
+        image.hidden = false;
+        image.removeAttribute('hidden');
+        image.removeAttribute('aria-hidden');
+
+        if (index === 0) {
+          image.loading = 'eager';
+          image.setAttribute('fetchpriority', 'high');
+        }
+
+        image.addEventListener('error', () => {
+          if (!featuredImageUrl || image.dataset.cleoFallbackApplied === 'true') return;
+          image.dataset.cleoFallbackApplied = 'true';
+          image.removeAttribute('srcset');
+          image.src = featuredImageUrl;
+        }, { once: true });
+      });
+
+      updateMobileGalleryState(mobileGallery, 0, false);
+    };
+
+    const mountReliableMobileGallery = () => {
+      const gallery = root.querySelector('.cleo-product-gallery');
+      if (!gallery) return;
+
+      const isMobile = window.matchMedia('(max-width: 699px)').matches;
+      let mobileGallery = gallery.querySelector('[data-cleo-mobile-product-gallery]');
+      const wasAlreadyMounted = Boolean(
+        mobileGallery && gallery.classList.contains('is-mobile-gallery-mounted')
+      );
+
+      if (!isMobile) {
+        mobileGallery?.remove();
+        gallery.classList.remove('is-mobile-gallery-mounted');
+        return;
+      }
+
+      if (!mobileGallery && mobileGalleryTemplate?.content) {
+        const fragment = mobileGalleryTemplate.content.cloneNode(true);
+        gallery.insertBefore(fragment, gallery.firstChild);
+        mobileGallery = gallery.querySelector('[data-cleo-mobile-product-gallery]');
+      }
+
+      const mobileSlides = mobileGallery
+        ? mobileGallery.querySelectorAll('[data-cleo-mobile-gallery-slide]')
+        : [];
+
+      if (!mobileGallery || !mobileSlides.length) {
+        mobileGallery?.remove();
+        gallery.classList.remove('is-mobile-gallery-mounted');
+        ensureMobileGalleryVisible();
+        return;
+      }
+
+      gallery.classList.add('is-mobile-gallery-mounted');
+      bindMobileGallery(mobileGallery);
+
+      /* Preserve the active slide after harmless viewport-height changes. */
+      if (!wasAlreadyMounted) {
+        window.requestAnimationFrame(() => {
+          const viewport = mobileGallery.querySelector('[data-cleo-mobile-gallery-viewport]');
+          if (viewport) viewport.scrollLeft = 0;
+          updateMobileGalleryState(mobileGallery, 0, false);
+        });
+      }
+    };
+
+    let mobileGalleryAnimationFrame = null;
+    let mobileGalleryFixTimers = [];
+    let responsiveResizeTimer = null;
+    let lastResponsiveWidth = window.innerWidth;
+
+    const scheduleMobileGalleryFix = () => {
+      if (mobileGalleryAnimationFrame) {
+        window.cancelAnimationFrame(mobileGalleryAnimationFrame);
+      }
+
+      mobileGalleryFixTimers.forEach((timer) => window.clearTimeout(timer));
+      mobileGalleryFixTimers = [];
+
+      mobileGalleryAnimationFrame = window.requestAnimationFrame(() => {
+        mobileGalleryAnimationFrame = null;
+        mountReliableMobileGallery();
+      });
+
+      mobileGalleryFixTimers.push(window.setTimeout(mountReliableMobileGallery, 180));
+      mobileGalleryFixTimers.push(window.setTimeout(mountReliableMobileGallery, 700));
+    };
+
+    const handleResponsiveResize = () => {
+      const currentWidth = window.innerWidth;
+
+      /* iOS changes viewport height while scrolling; ignore height-only resizes. */
+      if (Math.abs(currentWidth - lastResponsiveWidth) < 2) return;
+
+      lastResponsiveWidth = currentWidth;
+      window.clearTimeout(responsiveResizeTimer);
+      responsiveResizeTimer = window.setTimeout(scheduleMobileGalleryFix, 120);
+      scheduleStickyBarVisibilityUpdate();
+    };
+
+    const mobileBreakpoint = window.matchMedia('(max-width: 699px)');
+
+    window.addEventListener('popstate', () => {
+      scheduleStockUpdate();
+      scheduleStickyBarVisibilityUpdate();
+    });
+    window.addEventListener('load', () => {
+      scheduleMobileGalleryFix();
+      scheduleStickyBarVisibilityUpdate();
+    }, { once: true });
+    window.addEventListener('pageshow', () => {
+      scheduleMobileGalleryFix();
+      scheduleStickyBarVisibilityUpdate();
+    });
+    window.addEventListener('scroll', scheduleStickyBarVisibilityUpdate, { passive: true });
+    window.addEventListener('resize', handleResponsiveResize, { passive: true });
+
+    if (typeof mobileBreakpoint.addEventListener === 'function') {
+      mobileBreakpoint.addEventListener('change', scheduleMobileGalleryFix);
+    } else if (typeof mobileBreakpoint.addListener === 'function') {
+      mobileBreakpoint.addListener(scheduleMobileGalleryFix);
+    }
+
+    document.addEventListener('shopify:section:load', scheduleMobileGalleryFix);
+    document.addEventListener('shopify:block:select', scheduleMobileGalleryFix);
+
+    scheduleMobileGalleryFix();
+    updateStockUrgency();
+    scheduleStickyBarVisibilityUpdate();
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "Cleo main product",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "4.8 (380 reviews)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quantity",
+      "label": "Show quantity selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "label": "Show dynamic checkout",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sticky_add_to_cart",
+      "label": "Show sticky add to cart",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "AJAX cart and stock urgency"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_open_cart_drawer",
+      "label": "Open cart drawer after adding",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "atc_loading_text",
+      "label": "Add to cart loading text",
+      "default": "Adding..."
+    },
+    {
+      "type": "text",
+      "id": "atc_added_text",
+      "label": "Add to cart success text",
+      "default": "Added to cart"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stock_urgency",
+      "label": "Show dynamic stock urgency",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "stock_low_threshold",
+      "label": "Low stock threshold",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "stock_low_text",
+      "label": "Low stock text",
+      "info": "Use [quantity] to display the selected variant inventory.",
+      "default": "Hurry - only [quantity] left in stock"
+    },
+    {
+      "type": "text",
+      "id": "stock_in_stock_text",
+      "label": "In stock text",
+      "default": "In stock and ready to ship"
+    },
+    {
+      "type": "text",
+      "id": "stock_preorder_text",
+      "label": "Continue selling text",
+      "default": "Available on backorder"
+    },
+    {
+      "type": "text",
+      "id": "stock_out_text",
+      "label": "Out of stock text",
+      "default": "Currently out of stock"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit_pill",
+      "name": "Benefit pill",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Pill text",
+          "default": "Benefit"
+        }
+      ]
+    },
+    {
+      "type": "product_feature",
+      "name": "Feature bar item",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Feature text"
+        }
+      ]
+    },
+    {
+      "type": "product_usp",
+      "name": "Product USP",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "USP title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "USP description"
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Material"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>100% Pure Copper</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "open",
+          "label": "Open by default",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo main product",
+      "blocks": [
+        {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Leak-proof"
+          }
+        },
+        {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Durable"
+          }
+        },
+        {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Pure Copper"
+          }
+        },
+        {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Handcrafted"
+          }
+        },
+        {
+          "type": "product_feature",
+          "settings": {
+            "text": "Free shipping on all orders"
+          }
+        },
+        {
+          "type": "product_feature",
+          "settings": {
+            "text": "Makes a great gift"
+          }
+        },
+        {
+          "type": "product_feature",
+          "settings": {
+            "text": "Secure checkout"
+          }
+        },
+        {
+          "type": "product_usp",
+          "settings": {
+            "title": "Express USA Shipping",
+            "text": "Ships in 1-2 business days"
+          }
+        },
+        {
+          "type": "product_usp",
+          "settings": {
+            "title": "Lab-Tested Pure Copper",
+            "text": "99.9% purity verified"
+          }
+        },
+        {
+          "type": "product_usp",
+          "settings": {
+            "title": "Grip",
+            "text": "Comfortable Grip"
+          }
+        },
+        {
+          "type": "product_usp",
+          "settings": {
+            "title": "Leak-proof",
+            "text": "Leak-proof threaded cap"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

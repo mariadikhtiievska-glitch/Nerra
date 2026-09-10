@@ -1,0 +1,43 @@
+<style data-cleo-component-css="article">
+  .cleo-article {
+    width: min(860px, calc(100vw - 40px));
+    margin: 0 auto;
+    padding: 56px 0;
+    line-height: 1.75;
+  }
+  
+  .cleo-article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  .article-text {
+    padding: 20px 0;
+  }
+  .cleo-page-title{
+    font-size:16px;
+  }
+</style>
+
+<article class="cleo-article">
+  <h1 class="cleo-page-title">{{ article.title }}</h1>
+  {%- if article.image -%}
+    {{ article.image | image_url: width: 1400 | image_tag: loading: 'eager', alt: article.title }}
+  {%- endif -%}
+  <div class="article-text">{{ article.content }}</div>
+</article>
+
+{% schema %}
+{
+  "name": "Cleo article",
+  "enabled_on": {
+    "templates": ["article"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Cleo article"
+    }
+  ]
+}
+{% endschema %}

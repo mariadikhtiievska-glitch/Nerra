@@ -1,0 +1,517 @@
+<body class="features--zoom-image  color-scheme color-scheme--scheme-1"><template id="drawer-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+
+      <footer part="footer">
+        <slot name="footer"></slot>
+      </footer>
+    </div>
+  </div>
+</template><template id="modal-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template><template id="popover-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <slot name="header"></slot>
+
+        <dialog-close-button style="display: contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="14" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="body">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template><template id="header-search-default-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <slot></slot>
+    </div>
+  </div>
+</template><template id="video-media-default-template">
+  <slot></slot>
+
+  <svg part="play-button" fill="none" width="48" height="48" viewBox="0 0 48 48">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M48 24c0 13.255-10.745 24-24 24S0 37.255 0 24 10.745 0 24 0s24 10.745 24 24Zm-18 0-9-6.6v13.2l9-6.6Z" fill="var(--play-button-background, #efefef)"/>
+  </svg>
+</template>
+<loading-bar class="loading-bar" aria-hidden="true"></loading-bar>
+    <a href="#main" allow-hash-change class="skip-to-content sr-only">Skip to content</a><div class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+      <span id="status-announcement"></span>
+    </div>
+
+    <div class="sr-only" role="alert" aria-live="assertive" aria-atomic="true">
+      <span id="error-announcement"></span>
+    </div>
+
+    <span id="header-scroll-tracker" style="position: absolute; width: 1px; height: 1px; top: var(--header-scroll-tracker-offset, 10px); left: 0;"></span><!-- BEGIN sections: header-group -->
+<aside id="shopify-section-sections--21732440211596__announcement_bar_d3tA7z" class="shopify-section shopify-section-group-header-group shopify-section--announcement-bar"><style>
+    :root {
+      --announcement-bar-is-sticky: 1;}#shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+
+      .shopify-section--header ~ #shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        top: calc(var(--header-is-sticky, 0) * var(--header-height, 0px));
+        z-index: 4; /* We have to lower the z-index in case the announcement bar is displayed after the header */
+      }#shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+      --announcement-bar-font-size: 0.625rem;
+    }
+
+    @media screen and (min-width: 999px) {
+      #shopify-section-sections--21732440211596__announcement_bar_d3tA7z {
+        --announcement-bar-font-size: 0.75rem;
+      }
+    }
+  </style>
+
+  <height-observer variable="announcement-bar">
+    <div class="announcement-bar color-scheme color-scheme--scheme-2ce84c52-5a2f-46a9-8178-3124763aa3f7"><announcement-bar-carousel
+        allow-swipe
+        
+          autoplay="5"
+        
+        id="carousel-sections--21732440211596__announcement_bar_d3tA7z"
+        class="announcement-bar__carousel"
+      ><p class="prose heading is-selected" >Use code <strong>CLEO10</strong> for an extra 10% off at checkout</p></announcement-bar-carousel></div>
+  </height-observer>
+
+  
+</aside><header id="shopify-section-sections--21732440211596__header" class="shopify-section shopify-section-group-header-group shopify-section--header"><style>
+  :root {
+    --header-is-sticky: 1;
+  }
+
+  #shopify-section-sections--21732440211596__header {
+    --header-grid: "primary-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 7fr);
+    --header-padding-block: 1rem;
+    --header-transparent-header-text-color: 255 255 255;
+    --header-separation-border-color: 255 255 255 / 0.15;
+
+    position: relative;
+    z-index: 4;
+  }
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-sections--21732440211596__header {
+      --header-padding-block: 1.6rem;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-sections--21732440211596__header {--header-grid: "logo primary-nav secondary-nav" / minmax(max-content, 1fr) auto minmax(max-content, 1fr);}
+  }#shopify-section-sections--21732440211596__header {
+      position: sticky;
+      top: 0;
+    }
+
+    .shopify-section--announcement-bar ~ #shopify-section-sections--21732440211596__header {
+      top: calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px));
+    }#shopify-section-sections--21732440211596__header {
+      --header-logo-width: 150px;
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-sections--21732440211596__header {
+        --header-logo-width: 220px;
+      }
+    }</style>
+
+<height-observer variable="header">
+  <x-header
+    
+    class="header color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75"
+  >
+      <a href="/" class="header__logo"><span class="sr-only">Cleo Home</span><img src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}" alt="Cleo Home" srcset="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 440w, {{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 556w" width="556" height="141" sizes="220px" class="header__logo-image"><img src="{{ 'cleo-static-d20425c87685.png' | asset_url }}" alt="" width="193" height="49" sizes="220px" class="header__logo-image header__logo-image--transparent"></a>
+    
+<nav
+        class="header__primary-nav header__primary-nav--center"
+        aria-label="Primary navigation"
+      >
+        <button
+          type="button"
+          aria-controls="sidebar-menu"
+          
+            class="md:hidden"
+          
+        >
+          <span class="sr-only">Navigation menu</span><svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-hamburger" viewBox="0 0 24 24">
+      <path d="M1 19h22M1 12h22M1 5h22" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+    </svg></button><ul class="contents unstyled-list md-max:hidden">
+
+              <li class="header__primary-nav-item"><a
+                    href="/"
+                    data-title="Home"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Home</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="/collections/all"
+                    data-title="Shop"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                      aria-current="page"
+                    
+                  >Shop</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="/pages/contact"
+                    data-title="Contact"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Contact</a></li>
+
+              <li class="header__primary-nav-item"><a
+                    href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0Mzc4MzQwLCJuYmYiOjE3ODM3NzM1NDB9.4xQw_52ptNuvmpjWSn4fFYIbIV8z0x_7dMpFamM_k4E&region_country=US"
+                    data-title="Track Order"
+                    class="block h6 c-h__pnt-font-size"
+                    
+                  >Track Order</a></li>
+
+              <li class="header__primary-nav-item"><dropdown-menu-disclosure follow-summary-link trigger="hover"><details class="header__menu-disclosure">
+                      <summary data-follow-link="/pages/our-story" class="h6 c-h__pnt-font-size" data-title="About">About</summary><ul class="header__dropdown-menu header__dropdown-menu--restrictable unstyled-list" role="list"><li><a href="/pages/faqs" class="link-faded-reverse" >FAQs</a></li><li><a href="/pages/how-to-clean" class="link-faded-reverse" >How to clean</a></li></ul></details></dropdown-menu-disclosure></li></ul></nav><nav class="header__secondary-nav" aria-label="Secondary navigation"><ul class="contents unstyled-list"><li class="header__search-link">
+            <a href="/search" aria-controls="header-search-sections--21732440211596__header">
+              <span class="sr-only">Search</span><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-search" viewBox="0 0 24 24">
+      <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+      <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg></a>
+          </li><li class="relative header__cart-link">
+          <a
+            href="/cart"
+            
+              aria-controls="cart-drawer"
+            
+            data-no-instant
+          >
+            <span class="sr-only">Cart</span><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-cart" viewBox="0 0 24 24"><path d="M10 7h13l-4 9H7.5L5 3H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9" cy="20" r="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="17" cy="20" r="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><cart-dot class="header__cart-dot  "></cart-dot>
+          </a>
+        </li><li class="header__account-link ">
+            <shopify-store store-domain="https://cleolifestyle.com" country="US" language="en"></shopify-store>
+<shopify-account menu="customer-account-main-menu">
+              <div slot="signed-out-avatar"><svg aria-hidden="true" fill="none" focusable="false" width="30" class="header__nav-icon icon icon-account" viewBox="0 0 24 24">
+      <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+    </svg></div>
+            </shopify-account>
+          </li></ul>
+    </nav><header-search id="header-search-sections--21732440211596__header" class="header-search">
+  <div class="container">
+    <form id="predictive-search-form" action="/search" method="GET" aria-owns="header-predictive-search" class="header-search__form" role="search">
+      <div class="header-search__form-control"><svg aria-hidden="true" fill="none" focusable="false" width="20" class="icon icon-search" viewBox="0 0 24 24">
+      <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+      <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+    </svg><input
+          type="search"
+          name="q"
+          spellcheck="false"
+          class="header-search__input h5 sm:h4"
+          aria-label="Search"
+          placeholder="Search for..."
+        >
+
+        <dialog-close-button class="contents">
+          <button type="button">
+            <span class="sr-only">Close</span><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </div>
+    </form>
+
+    <predictive-search id="header-predictive-search" class="predictive-search">
+      <div class="predictive-search__content" slot="results"></div>
+    </predictive-search>
+  </div>
+</header-search>
+<template id="header-sidebar-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <dialog-close-button class="contents">
+          <button type="button" part="close-button tap-area" aria-label="Close"><svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+      <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+  </button>
+        </dialog-close-button>
+      </header>
+
+      <div part="panel-list">
+        <slot name="main-panel"></slot><slot name="collapsible-panel"></slot></div>
+    </div>
+  </div>
+</template>
+
+<header-sidebar id="sidebar-menu" class="header-sidebar drawer drawer--sm color-scheme color-scheme--scheme-ed33a2b6-9183-44ba-aa66-49321d9bae1c" template="header-sidebar-template" open-from="left"><div class="header-sidebar__main-panel" slot="main-panel">
+    <div class="header-sidebar__scroller">
+      <ul class="header-sidebar__linklist  unstyled-list" role="list"><li class ="custom-seperator"><a href="/" class="header-sidebar__linklist-button h6">Home</a></li><li class ="custom-seperator"><a href="/collections/all" class="header-sidebar__linklist-button h6">Shop</a></li><li class ="custom-seperator"><a href="/pages/contact" class="header-sidebar__linklist-button h6">Contact</a></li><li class ="custom-seperator"><a href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0Mzc4MzQwLCJuYmYiOjE3ODM3NzM1NDB9.4xQw_52ptNuvmpjWSn4fFYIbIV8z0x_7dMpFamM_k4E&region_country=US" class="header-sidebar__linklist-button h6">Track Order</a></li><li class ="custom-seperator"><button
+                type="button"
+                class="header-sidebar__linklist-button h6"
+                aria-controls="header-panel-5"
+                aria-expanded="false"
+              >About<svg aria-hidden="true" focusable="false" fill="none" width="12" class="icon icon-chevron-right  icon--direction-aware" viewBox="0 0 10 10">
+      <path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"/>
+    </svg></button></li></ul>
+    </div><div class="header-sidebar__footer"><shopify-account menu="customer-account-main-menu">
+            <div slot="signed-out-avatar">
+              <div class="text-with-icon smallcaps sm:hidden font-15"><svg aria-hidden="true" fill="none" focusable="false" width="20" class="icon icon-account" viewBox="0 0 24 24">
+      <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/>
+    </svg>Login</div>
+            </div>
+          </shopify-account></div></div><header-sidebar-collapsible-panel class="header-sidebar__collapsible-panel" slot="collapsible-panel">
+      <div class="header-sidebar__scroller"><div id="header-panel-5" class="header-sidebar__sub-panel" hidden>
+              <button
+                type="button"
+                class="header-sidebar__back-button link-faded  text-with-icon h6 md:hidden"
+                data-action="close-panel"
+              ><svg aria-hidden="true" focusable="false" fill="none" width="12" class="icon icon-chevron-left  icon--direction-aware" viewBox="0 0 10 10">
+      <path d="M7 1 3 5l4 4" stroke="currentColor" stroke-linecap="square"/>
+    </svg>About</button>
+
+              <ul class="header-sidebar__linklist  unstyled-list" role="list"><li class ="custom-seperator"><a href="/pages/faqs" class="header-sidebar__linklist-button h6">FAQs</a></li><li class ="custom-seperator"><a href="/pages/how-to-clean" class="header-sidebar__linklist-button h6">How to clean</a></li></ul></div></div>
+    </header-sidebar-collapsible-panel></header-sidebar>
+</x-header>
+</height-observer>
+
+
+
+
+
+</header>
+<!-- END sections: header-group --><!-- BEGIN sections: overlay-group -->
+{% render 'cleo-dynamic-cart-drawer' %}
+<!-- END sections: overlay-group --><main id="main" class="anchor">
+      {% render 'cleo-dynamic-collection-main' %}
+<!-- BEGIN sections: footer-group -->
+<section id="shopify-section-sections--21732440113292__newsletter_H8CGGU" class="shopify-section shopify-section-group-footer-group shopify-section--newsletter"><style>
+  #shopify-section-sections--21732440113292__newsletter_H8CGGU {--content-over-media-overlay: 0 0 0 / 0.54;}
+</style><div class="color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75 color-scheme--bg-7eb689cfb117fe317faa299210e9fb5a color-scheme--with-image-overlay">
+  <div class="newsletter content-over-media content-over-media--auto"><picture><source
+            media="(max-width: 699px)"
+            srcset="{{ 'cleo-static-7f11eb353252.png' | asset_url }} 400w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 600w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 800w, {{ 'cleo-static-7f11eb353252.png' | asset_url }} 1000w"
+            width="393"
+            height="383"
+          ><img src="{{ 'cleo-static-a656d4ae97f6.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 200w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 300w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 400w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 500w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 600w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 700w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 800w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 900w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1000w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1200w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1400w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1600w, {{ 'cleo-static-a656d4ae97f6.png' | asset_url }} 1800w" width="1918" height="235" sizes="100vw"></picture><div class="content section-stack gap-8 text-center flex m-w-934 align-item-center">
+  <div class="section-header  justify-self-center text-center"><div class="prose"><h2 class="h2 custom-heading  ">Start Your Wellness Ritual Today</h2></div></div><form method="post" action="/contact#newsletter-form-sections--21732440113292__newsletter_H8CGGU" id="newsletter-form-sections--21732440113292__newsletter_H8CGGU" accept-charset="UTF-8" class="form justify-self-center"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="contact[tags]" value="newsletter">
+
+          <div class="form-row"><div class="form-control" ><input
+        id="input--sections--21732440113292__newsletter_H8CGGU--contactemail"
+        class="input"
+        type="email"
+        
+          dir="ltr"
+        
+        
+          placeholder="E-mail"
+        
+        
+  name="contact[email]"
+  
+  
+  
+  
+  
+  autocomplete="email"
+  
+  enterkeyhint="send"
+  required
+  
+  
+  
+
+      ><label for="input--sections--21732440113292__newsletter_H8CGGU--contactemail" class="sr-only">E-mail</label></div>
+<button type="submit"  class="button" >Sign up</button></div></form></div>
+  </div>
+</div>
+
+
+</section><footer id="shopify-section-sections--21732440113292__footer" class="shopify-section shopify-section-group-footer-group shopify-section--footer"><style>
+  #shopify-section-sections--21732440113292__footer {
+    --footer-content-justify-items: space-between;
+  }
+</style><div class="footer color-scheme color-scheme--scheme-36df0279-2075-42f5-83ae-f80ecef35f75 color-scheme--bg-7eb689cfb117fe317faa299210e9fb5a ">
+  <div class="container">
+    <div class="footer__inner"><div class="footer__block-list"><div class="footer__block footer__block--image" ><div
+    class="footer-image-block"
+    style="
+      --footer-image-text-size-desktop: 18px;
+      --footer-image-text-size-mobile: 16px;
+    "
+  ><img src="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }}" alt="" srcset="{{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 200w, {{ 'cleo-static-9f609c6ffb96.png' | asset_url }} 400w" width="556" height="141" sizes="200px" style="--image-max-width: 200px" class="constrained-image"><div class="footer-image-block__text">
+        <p>Ancient wellness wisdom for modern life. Handcrafted copper bottles designed for your daily ritual.</p>
+      </div></div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">Footer Main</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/" class="link-faded">Home</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/collections/all" class="link-faded">Shop</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/contact" class="link-faded">Contact</a>
+                          </li><li class="footer-custom-link">
+                            <a href="https://shopify.com/71141359756/account/orders?locale=en&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtMmVjcHktdGcubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzg0Mzc4MzQwLCJuYmYiOjE3ODM3NzM1NDB9.4xQw_52ptNuvmpjWSn4fFYIbIV8z0x_7dMpFamM_k4E&region_country=US" class="link-faded">Track Order</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/our-story" class="link-faded">About</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/blogs/news" class="link-faded">Blogs</a>
+                          </li></ul>
+                    </div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">App terms & policies</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/pages/terms-of-service-cleo-community-ios" class="link-faded">Terms of Service  (iOS)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/terms-of-service-cleo-community-android" class="link-faded">Terms of Service  (Android)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/privacy-policy-cleo-community-ios" class="link-faded">Privacy Policy  (iOS)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/privacy-policy-cleo-lifestyle-android" class="link-faded">Privacy Policy — (Android)</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/pages/account-deletion" class="link-faded">Account & Data Deletion</a>
+                          </li></ul>
+                    </div></div><div class="footer__block footer__block--links" ><div class="v-stack gap-4 sm:gap-5"><p class="h6 footer-custom-header">Policies</p><ul class="v-stack gap-2.5 unstyled-list" role="list"><li class="footer-custom-link">
+                            <a href="/policies/privacy-policy" class="link-faded">Privacy policy </a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/refund-policy" class="link-faded">Refund Policy</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/shipping-policy" class="link-faded">Shipping Policy</a>
+                          </li><li class="footer-custom-link">
+                            <a href="/policies/terms-of-service" class="link-faded">Terms of Service</a>
+                          </li></ul>
+                    </div></div></div><div class="footer-social-aside"><ul class="social-media social-media--list unstyled-list" role="list"><li class="social-media__item branding-colors--facebook">
+      <a href="https://www.facebook.com/cleolifestyleofficial" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Facebook"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-facebook" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M10.183 21.85v-8.868H7.2V9.526h2.983V6.982a4.17 4.17 0 0 1 4.44-4.572 22.33 22.33 0 0 1 2.667.144v3.084h-1.83a1.44 1.44 0 0 0-1.713 1.68v2.208h3.423l-.447 3.456h-2.97v8.868h-3.57Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--twitter">
+      <a href="https://x.com/Cleolifestyle" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Twitter"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-twitter" viewBox="0 0 24 24">
+      <path d="M16.94 4h2.715l-5.93 6.777L20.7 20h-5.462l-4.278-5.593L6.065 20H3.35l6.342-7.25L3 4h5.6l3.868 5.113L16.94 4Zm-.952 14.375h1.504L7.784 5.54H6.17l9.818 12.836Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--instagram">
+      <a href="https://www.instagram.com/cleo.lifestyle_/" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Instagram"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-instagram" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4c-2.607 0-2.934.011-3.958.058-1.022.046-1.72.209-2.33.446a4.705 4.705 0 0 0-1.7 1.107 4.706 4.706 0 0 0-1.108 1.7c-.237.611-.4 1.31-.446 2.331C2.41 9.066 2.4 9.392 2.4 12c0 2.607.011 2.934.058 3.958.046 1.022.209 1.72.446 2.33a4.706 4.706 0 0 0 1.107 1.7c.534.535 1.07.863 1.7 1.108.611.237 1.309.4 2.33.446 1.025.047 1.352.058 3.959.058s2.934-.011 3.958-.058c1.022-.046 1.72-.209 2.33-.446a4.706 4.706 0 0 0 1.7-1.107 4.706 4.706 0 0 0 1.108-1.7c.237-.611.4-1.31.446-2.33.047-1.025.058-1.352.058-3.959s-.011-2.934-.058-3.958c-.047-1.022-.209-1.72-.446-2.33a4.706 4.706 0 0 0-1.107-1.7 4.705 4.705 0 0 0-1.7-1.108c-.611-.237-1.31-.4-2.331-.446C14.934 2.41 14.608 2.4 12 2.4Zm0 1.73c2.563 0 2.867.01 3.88.056.935.042 1.443.199 1.782.33.448.174.768.382 1.104.718.336.336.544.656.718 1.104.131.338.287.847.33 1.783.046 1.012.056 1.316.056 3.879 0 2.563-.01 2.867-.056 3.88-.043.935-.199 1.444-.33 1.782a2.974 2.974 0 0 1-.719 1.104 2.974 2.974 0 0 1-1.103.718c-.339.131-.847.288-1.783.33-1.012.046-1.316.056-3.88.056-2.563 0-2.866-.01-3.878-.056-.936-.042-1.445-.199-1.783-.33a2.974 2.974 0 0 1-1.104-.718 2.974 2.974 0 0 1-.718-1.104c-.131-.338-.288-.847-.33-1.783-.047-1.012-.056-1.316-.056-3.879 0-2.563.01-2.867.056-3.88.042-.935.199-1.443.33-1.782.174-.448.382-.768.718-1.104a2.974 2.974 0 0 1 1.104-.718c.338-.131.847-.288 1.783-.33C9.133 4.14 9.437 4.13 12 4.13Zm0 11.07a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm0-8.13a4.93 4.93 0 1 0 0 9.86 4.93 4.93 0 0 0 0-9.86Zm6.276-.194a1.152 1.152 0 1 1-2.304 0 1.152 1.152 0 0 1 2.304 0Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--pinterest">
+      <a href="https://www.pinterest.com/Cleolifestyleofficial/" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on Pinterest"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-pinterest" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.765 2.401c3.59-.054 5.837 1.4 6.895 3.95.349.842.722 2.39.442 3.675-.112.512-.144 1.048-.295 1.53-.308.983-.708 1.853-1.238 2.603-.72 1.02-1.81 1.706-3.182 2.052-1.212.305-2.328-.152-2.976-.643-.206-.156-.483-.36-.56-.643h-.029c-.046.515-.244 1.062-.383 1.531-.193.65-.23 1.321-.472 1.929a12.345 12.345 0 0 1-.942 1.868c-.184.302-.692 1.335-1.061 1.347-.04-.078-.057-.108-.06-.245-.118-.19-.035-.508-.087-.766-.082-.4-.145-1.123-.06-1.53v-.643c.096-.442.092-.894.207-1.317.25-.92.39-1.895.648-2.848.249-.915.477-1.916.678-2.847.045-.21-.21-.815-.265-1.041-.174-.713-.042-1.7.176-2.236.275-.674 1.08-1.703 2.122-1.439.838.212 1.371 1.118 1.09 2.266-.295 1.205-.677 2.284-.943 3.49-.068.311.05.641.118.827.248.672 1 1.324 2.004 1.072 1.52-.383 2.193-1.76 2.652-3.246.124-.402.109-.781.206-1.225.204-.935.118-2.331-.177-3.061-.472-1.17-1.353-1.92-2.563-2.328L12.707 4.3c-.56-.128-1.626.064-2.004.183-1.69.535-2.737 1.427-3.388 3.032-.222.546-.344 1.1-.383 1.868l-.03.276c.13.686.144 1.14.413 1.653.132.252.447.451.5.765.032.185-.104.464-.147.613-.065.224-.041.48-.147.673-.192.349-.714.087-.943-.061-1.192-.77-2.175-2.995-1.62-5.144.085-.332.09-.62.206-.919.723-1.844 1.802-2.978 3.359-3.95.583-.364 1.37-.544 2.092-.734l1.149-.154Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--youtube">
+      <a href="https://www.youtube.com/@Cleo-Lifestyle" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on YouTube"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-youtube" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M20.44 5.243c.929.244 1.66.963 1.909 1.876.451 1.654.451 5.106.451 5.106s0 3.452-.451 5.106a2.681 2.681 0 0 1-1.91 1.876c-1.684.443-8.439.443-8.439.443s-6.754 0-8.439-.443a2.682 2.682 0 0 1-1.91-1.876c-.45-1.654-.45-5.106-.45-5.106s0-3.452.45-5.106a2.681 2.681 0 0 1 1.91-1.876c1.685-.443 8.44-.443 8.44-.443s6.754 0 8.438.443Zm-5.004 6.982L9.792 15.36V9.091l5.646 3.134Z" fill="currentColor"/>
+    </svg></a>
+    </li><li class="social-media__item branding-colors--tiktok">
+      <a href="https://www.tiktok.com/@cleo_home" class="tap-area" target="_blank" rel="noopener" aria-label="Follow on TikTok"><svg aria-hidden="true" focusable="false" width="24" class="icon icon-tiktok" viewBox="0 0 24 24">
+      <path d="M20.027 10.168a5.125 5.125 0 0 1-4.76-2.294v7.893a5.833 5.833 0 1 1-5.834-5.834c.122 0 .241.011.361.019v2.874c-.12-.014-.237-.036-.36-.036a2.977 2.977 0 0 0 0 5.954c1.644 0 3.096-1.295 3.096-2.94L12.56 2.4h2.75a5.122 5.122 0 0 0 4.72 4.573v3.195" fill="currentColor"/>
+    </svg></a>
+    </li></ul><div class="footer__aside"><p class="heading text-subdued text-xxs">
+          © 2026 - Cleo Home
+<a target="_blank" rel="nofollow" href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></p></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+</footer>
+<!-- END sections: footer-group --></main>
+    
+  <div id="shopify-block-AL0RMblhsdmpUTkV6M__8924079168617604943" class="shopify-block shopify-app-block">
+<!-- BEGIN app snippet: alireviews_variables --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_box --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_star_rating --> <!-- BEGIN app snippet: load_js_widget --><!-- END app snippet --> <!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_tab --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_popup --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_carousel --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_review_media_carousel --><!-- END app snippet -->
+<!-- BEGIN app snippet: config_widget_reviews_carousel_legacy --><!-- END app snippet -->
+
+
+</div><div id="shopify-block-AU3lEazhVcWdYUm5Db__16510219240223340300" class="shopify-block shopify-app-block">
+
+
+
+
+
+
+
+<div class="whatmore-base" data-wht-widget="wgt_spotlight">
+  <div id="whatmoreShopId" data-wh="71141359756"> </div>
+  <div id="whatmoreProductId" data-wh=""> </div>
+  <div id="whatmoreExtensionType" data-wh="collection"> </div>
+  <div class="whatmore-template-type" data-wh="template-embed"> </div><div id="whatmoreVariantId" data-wh=""> </div><div id="whatmoreEmbedAppPositionPortrait" data-wh="right"> </div><div id="whatmoreEmbedAppHorizontalPaddingPortrait" data-wh="5"> </div><div id="whatmoreEmbedAppVerticalPaddingPortrait" data-wh="150"> </div><div id="whatmoreEmbedAppVideoPlayerSizePortrait" data-wh="50"> </div><div id="whatmoreEmbedAppPositionLandscape" data-wh="right"> </div><div id="whatmoreEmbedAppHorizontalPaddingLandscape" data-wh="5"> </div><div id="whatmoreEmbedAppVerticalPaddingLandscape" data-wh="150"> </div><div id="whatmoreEmbedAppVideoPlayerSizeLandscape" data-wh="50"> </div><div id="whatmoreEmbedAppUseVariant" data-wh="false"> </div><div id="whatmoreEmbedAppVideoTitle" data-wh=""> </div>
+    <div id="whatmoreIsInDesignMode" data-wh='false'> </div>
+  
+<div class="whatmore-widget" data-wh="embed"></div>
+
+  
+  
+      <div id="whatmore-anchor" style="width:0px; height: 0px;">
+          <a aria-label="Visit Whatmore homepage" href="https://www.whatmore.ai"></a>
+      </div>
+  
+
+  <div class="whatmore-render-root"></div>
+
+</div>
+
+<!-- BEGIN app snippet: whatmore-init -->
+<!-- END app snippet -->
+
+</div><div id="shopify-block-ATzdJWHhyNmRuTEpFd__10312807297210203588" class="shopify-block shopify-app-block">
+
+
+</div>
+
+  <div class="preview-page-note" aria-hidden="true">Static HTML/CSS preview copied from Cleo Lifestyle public storefront.</div>
+</body>

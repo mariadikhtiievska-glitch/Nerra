@@ -1,0 +1,650 @@
+{% doc %}
+Renders the collection toolbar, filters, and product grid.
+
+@param {object} section - The parent collection section.
+{% enddoc %}
+
+{%- liquid
+  assign current_sort = collection.sort_by | default: collection.default_sort_by
+  assign products_per_page = section.settings.products_per_page | default: 12
+-%}
+
+<section
+  id="CleoMainCollection-{{ section.id }}"
+  class="shopify-section shopify-section--main-collection"
+  data-cleo-main-collection
+  data-section-id="{{ section.id }}"
+>
+  <h1 class="sr-only">{{ collection.title }}</h1>
+
+  <div class="color-scheme color-scheme--scheme-da62a118-22e7-49ef-8ce6-b3d06255bd44">
+    <div class="container">
+      <div class="v-stack gap-6 sm:gap-12">
+        {%- paginate collection.products by products_per_page -%}
+          <height-observer
+            variable="collection-toolbar"
+            class="collection-toolbar full-bleed"
+          >
+            <div class="collection-toolbar__button-list">
+              <div class="collection-toolbar__button-container md:hidden">
+                <button
+                  type="button"
+                  aria-controls="facets-drawer-{{ section.id }}"
+                  aria-expanded="false"
+                  class="collection-toolbar__button heading text-xxs w-full"
+                  data-cleo-filter-toggle
+                >
+                  {{ section.settings.filter_label | default: 'Filter' | escape }}
+                </button>
+              </div>
+
+              <div class="collection-toolbar__button-container">
+                <button
+                  type="button"
+                  aria-controls="sort-by-popover-{{ section.id }}"
+                  aria-expanded="false"
+                  class="collection-toolbar__button heading text-xxs w-full"
+                  data-cleo-popover-toggle
+                >
+                  <span class="text-with-icon justify-center">
+                    {{ section.settings.sort_label | default: 'Sort by' | escape }}
+
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      fill="none"
+                      width="10"
+                      class="icon icon-chevron-down"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        d="m1 3 4 4 4-4"
+                        stroke="currentColor"
+                        stroke-linecap="square"
+                      />
+                    </svg>
+                  </span>
+                </button>
+
+                <facets-sort-popover
+                  id="sort-by-popover-{{ section.id }}"
+                  section-id="{{ section.id }}"
+                  class="popover popover--bottom-end color-scheme color-scheme--dialog"
+                  close-on-listbox-select
+                  data-cleo-popover
+                >
+                  <p class="h4" slot="header">{{ section.settings.sort_label | default: 'Sort by' | escape }}</p>
+
+                  <form
+                    method="get"
+                    action="{{ collection.url }}"
+                    class="popover__value-list"
+                    data-cleo-sort-form
+                  >
+                    {%- for filter in collection.filters -%}
+                      {%- case filter.type -%}
+                        {%- when 'boolean', 'list' -%}
+                          {%- for active_value in filter.active_values -%}
+                            <input
+                              type="hidden"
+                              name="{{ active_value.param_name }}"
+                              value="{{ active_value.value | escape }}"
+                            >
+                          {%- endfor -%}
+
+                        {%- when 'price_range' -%}
+                          {%- if filter.min_value.value != nil -%}
+                            <input
+                              type="hidden"
+                              name="{{ filter.min_value.param_name }}"
+                              value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                            >
+                          {%- endif -%}
+
+                          {%- if filter.max_value.value != nil -%}
+                            <input
+                              type="hidden"
+                              name="{{ filter.max_value.param_name }}"
+                              value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                            >
+                          {%- endif -%}
+                      {%- endcase -%}
+                    {%- endfor -%}
+
+                    {%- for option in collection.sort_options -%}
+                      <button
+                        type="submit"
+                        class="popover__value-option group{% if option.value == current_sort %} is-selected{% endif %}"
+                        role="option"
+                        name="sort_by"
+                        value="{{ option.value }}"
+                        data-cleo-sort-option
+                        {% if option.value == current_sort %}
+                          aria-selected="true"
+                        {% else %}
+                          aria-selected="false"
+                        {% endif %}
+                      >
+                        <span class="reversed-link">
+                          {{ option.name }}
+                        </span>
+                      </button>
+                    {%- endfor -%}
+                  </form>
+                </facets-sort-popover>
+              </div>
+            </div>
+
+            <p
+              class="collection-toolbar__products-count h6 text-subdued md-max:hidden"
+              data-cleo-product-count
+            >
+              {{ paginate.items }} products
+            </p>
+
+            <collection-layout-switch
+              device="mobile"
+              class="collection-toolbar__layout-switch-list sm:hidden"
+              aria-controls="product-list-{{ section.id }}"
+            >
+              <button
+                type="button"
+                value="large"
+                class="collection-toolbar__button"
+                aria-label="Switch to larger product images"
+                data-cleo-layout="large"
+              >
+                <svg
+                  role="presentation"
+                  width="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path fill="currentColor" d="M0 0h18v18H0z"/>
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                value="medium"
+                class="collection-toolbar__button is-active"
+                aria-label="Switch to smaller product images"
+                data-cleo-layout="medium"
+              >
+                <svg
+                  role="presentation"
+                  width="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M0 0h8v8H0zM0 10h8v8H0zM10 0h8v8h-8zM10 10h8v8h-8z"
+                  />
+                </svg>
+              </button>
+            </collection-layout-switch>
+
+            <collection-layout-switch
+              device="desktop"
+              class="collection-toolbar__layout-switch-list sm-max:hidden"
+              aria-controls="product-list-{{ section.id }}"
+            >
+              <button
+                type="button"
+                value="large"
+                class="collection-toolbar__button is-active"
+                aria-label="Switch to larger product images"
+                data-cleo-layout="large"
+              >
+                <svg
+                  role="presentation"
+                  width="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M0 0h8v8H0zM0 10h8v8H0zM10 0h8v8h-8zM10 10h8v8h-8z"
+                  />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                value="medium"
+                class="collection-toolbar__button"
+                aria-label="Switch to smaller product images"
+                data-cleo-layout="medium"
+              >
+                <svg
+                  role="presentation"
+                  width="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M0 0h4v4H0zM0 7h4v4H0zM0 14h4v4H0zM7 0h4v4H7zM7 7h4v4H7zM7 14h4v4H7zM14 0h4v4h-4zM14 7h4v4h-4zM14 14h4v4h-4z"
+                  />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                value="compact"
+                class="collection-toolbar__button"
+                aria-label="Switch to compact product images"
+                data-cleo-layout="compact"
+              >
+                <svg
+                  role="presentation"
+                  width="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M0 0h18v2H0zm0 4h18v2H0zm0 4h18v2H0zm0 4h18v2H0zm0 4h18v2H0z"
+                  />
+                </svg>
+              </button>
+            </collection-layout-switch>
+          </height-observer>
+
+          <div class="collection">
+            <button
+              type="button"
+              class="cleo-drawer-overlay cleo-filter-overlay"
+              data-cleo-filter-close
+              aria-label="Close filters"
+            ></button>
+
+            <facets-drawer
+              id="facets-drawer-{{ section.id }}"
+              class="facets-drawer drawer drawer--sm color-scheme color-scheme--dialog md:hidden"
+              data-cleo-filter-panel
+            >
+              <div
+                class="cleo-filter-drawer__header"
+                slot="header"
+              >
+                <p class="h4">Filters</p>
+
+                <button
+                  type="button"
+                  class="circle-button"
+                  data-cleo-filter-close
+                  aria-label="Close filters"
+                >
+                  &times;
+                </button>
+              </div>
+
+              {%- render 'cleo-dynamic-facets',
+                collection: collection,
+                drawer: true
+              -%}
+            </facets-drawer>
+
+            <safe-sticky class="facets-sidebar md-max:hidden">
+              {%- render 'cleo-dynamic-facets',
+                collection: collection,
+                drawer: false
+              -%}
+            </safe-sticky>
+
+            <div
+              class="collection__main"
+              data-cleo-collection-main
+            >
+              <product-list
+                id="product-list-{{ section.id }}"
+                class="product-list"
+                collection-mobile-layout="medium"
+                collection-desktop-layout="large"
+              >
+                {%- for product in collection.products -%}
+                  {%- render 'cleo-dynamic-product-card',
+                    product: product,
+                    section_id: section.id,
+                    show_quick_add: section.settings.show_quick_add,
+                    image_sizes: '(max-width: 699px) calc(100vw / 2), (max-width: 999px) calc(100vw / 3 - 64px), calc((100vw - 96px) / 3 - (24px / 3 * 2))'
+                  -%}
+                {%- else -%}
+                  <p class="h5 text-center">No products found</p>
+                {%- endfor -%}
+              </product-list>
+
+              {%- if paginate.pages > 1 -%}
+                <nav
+                  class="pagination"
+                  role="navigation"
+                  aria-label="Pagination"
+                >
+                  {%- if paginate.previous -%}
+                    <a
+                      href="{{ paginate.previous.url }}"
+                      class="pagination__item"
+                    >
+                      Previous
+                    </a>
+                  {%- endif -%}
+
+                  <span class="pagination__item is-active">
+                    {{ paginate.current_page }} / {{ paginate.pages }}
+                  </span>
+
+                  {%- if paginate.next -%}
+                    <a
+                      href="{{ paginate.next.url }}"
+                      class="pagination__item"
+                    >
+                      Next
+                    </a>
+                  {%- endif -%}
+                </nav>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endpaginate -%}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      function initializeCleoCollection(sectionElement) {
+        if (!sectionElement) return;
+
+        if (sectionElement.dataset.cleoCollectionInitialized === 'true') {
+          return;
+        }
+
+        sectionElement.dataset.cleoCollectionInitialized = 'true';
+
+        const sectionId = sectionElement.dataset.sectionId;
+
+        const sortButton = sectionElement.querySelector(
+          '[data-cleo-popover-toggle]'
+        );
+
+        const sortPopover = sectionElement.querySelector(
+          '[data-cleo-popover]'
+        );
+
+        const sortForm = sectionElement.querySelector(
+          '[data-cleo-sort-form]'
+        );
+
+        function openSortPopover() {
+          if (!sortPopover || !sortButton) return;
+
+          sortPopover.classList.add('cleo-sort-popover--open');
+          sortPopover.setAttribute('open', '');
+          sortButton.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeSortPopover() {
+          if (!sortPopover || !sortButton) return;
+
+          sortPopover.classList.remove('cleo-sort-popover--open');
+          sortPopover.removeAttribute('open');
+          sortButton.setAttribute('aria-expanded', 'false');
+        }
+
+        function updateSelectedSort(selectedValue) {
+          const sortOptions = sectionElement.querySelectorAll(
+            '[data-cleo-sort-option]'
+          );
+
+          sortOptions.forEach(function(option) {
+            const isSelected = option.value === selectedValue;
+
+            option.setAttribute(
+              'aria-selected',
+              isSelected ? 'true' : 'false'
+            );
+
+            option.classList.toggle('is-selected', isSelected);
+          });
+        }
+
+        function refreshSectionReferences() {
+          return {
+            collectionMain: sectionElement.querySelector(
+              '[data-cleo-collection-main]'
+            ),
+            productCount: sectionElement.querySelector(
+              '[data-cleo-product-count]'
+            )
+          };
+        }
+
+        async function updateCollection(url, pushToHistory) {
+          if (sectionElement.classList.contains('is-sorting')) {
+            return;
+          }
+
+          sectionElement.classList.add('is-sorting');
+          sectionElement.setAttribute('aria-busy', 'true');
+
+          try {
+            const response = await fetch(url.toString(), {
+              method: 'GET',
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            });
+
+            if (!response.ok) {
+              throw new Error('Collection sorting request failed.');
+            }
+
+            const responseHtml = await response.text();
+
+            const parser = new DOMParser();
+
+            const responseDocument = parser.parseFromString(
+              responseHtml,
+              'text/html'
+            );
+
+            const newSection = responseDocument.querySelector(
+              '#CleoMainCollection-' + CSS.escape(sectionId)
+            );
+
+            if (!newSection) {
+              throw new Error('Updated collection section was not found.');
+            }
+
+            const currentReferences = refreshSectionReferences();
+
+            const newCollectionMain = newSection.querySelector(
+              '[data-cleo-collection-main]'
+            );
+
+            const newProductCount = newSection.querySelector(
+              '[data-cleo-product-count]'
+            );
+
+            if (
+              currentReferences.collectionMain &&
+              newCollectionMain
+            ) {
+              currentReferences.collectionMain.innerHTML =
+                newCollectionMain.innerHTML;
+            }
+
+            if (
+              currentReferences.productCount &&
+              newProductCount
+            ) {
+              currentReferences.productCount.innerHTML =
+                newProductCount.innerHTML;
+            }
+
+            if (pushToHistory) {
+              window.history.pushState(
+                {
+                  cleoCollectionUrl: url.toString()
+                },
+                '',
+                url.toString()
+              );
+            }
+
+            sectionElement.dispatchEvent(
+              new CustomEvent('cleo:collection:updated', {
+                bubbles: true,
+                detail: {
+                  url: url.toString()
+                }
+              })
+            );
+          } catch (error) {
+            console.error(error);
+            window.location.href = url.toString();
+          } finally {
+            sectionElement.classList.remove('is-sorting');
+            sectionElement.removeAttribute('aria-busy');
+          }
+        }
+
+        async function handleSortOptionClick(event) {
+          const sortOption = event.target.closest(
+            '[data-cleo-sort-option]'
+          );
+
+          if (!sortOption) return;
+
+          event.preventDefault();
+          event.stopPropagation();
+
+          const selectedSortValue = sortOption.value;
+
+          updateSelectedSort(selectedSortValue);
+          closeSortPopover();
+
+          const targetUrl = new URL(
+            window.location.href,
+            window.location.origin
+          );
+
+          targetUrl.searchParams.set(
+            'sort_by',
+            selectedSortValue
+          );
+
+          targetUrl.searchParams.delete('page');
+
+          await updateCollection(targetUrl, true);
+        }
+
+        if (sortButton && sortPopover) {
+          sortButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isOpen = sortPopover.classList.contains(
+              'cleo-sort-popover--open'
+            );
+
+            if (isOpen) {
+              closeSortPopover();
+            } else {
+              openSortPopover();
+            }
+          });
+
+          sortPopover.addEventListener('click', function(event) {
+            event.stopPropagation();
+          });
+        }
+
+        if (sortForm) {
+          sortForm.addEventListener(
+            'click',
+            handleSortOptionClick
+          );
+
+          sortForm.addEventListener('submit', function(event) {
+            const submitter = event.submitter;
+
+            if (
+              submitter &&
+              submitter.matches('[data-cleo-sort-option]')
+            ) {
+              event.preventDefault();
+            }
+          });
+        }
+
+        document.addEventListener('click', function(event) {
+          if (!sortPopover || !sortButton) return;
+
+          if (
+            !sortPopover.contains(event.target) &&
+            !sortButton.contains(event.target)
+          ) {
+            closeSortPopover();
+          }
+        });
+
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+            closeSortPopover();
+
+            if (sortButton) {
+              sortButton.focus();
+            }
+          }
+        });
+
+        window.addEventListener('popstate', function() {
+          const currentUrl = new URL(
+            window.location.href,
+            window.location.origin
+          );
+
+          const selectedSortValue =
+            currentUrl.searchParams.get('sort_by');
+
+          if (selectedSortValue) {
+            updateSelectedSort(selectedSortValue);
+          }
+
+          updateCollection(currentUrl, false);
+        });
+      }
+
+      function initializeAllCleoCollections(container) {
+        const root = container || document;
+
+        root
+          .querySelectorAll('[data-cleo-main-collection]')
+          .forEach(function(sectionElement) {
+            initializeCleoCollection(sectionElement);
+          });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener(
+          'DOMContentLoaded',
+          function() {
+            initializeAllCleoCollections(document);
+          }
+        );
+      } else {
+        initializeAllCleoCollections(document);
+      }
+
+      document.addEventListener(
+        'shopify:section:load',
+        function(event) {
+          initializeAllCleoCollections(event.target);
+        }
+      );
+    })();
+  </script>
+</section>

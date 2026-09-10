@@ -1,0 +1,110 @@
+{% liquid
+  capture cleo_native_layout
+    echo content_for_layout
+  endcapture
+
+  capture cleo_static_body
+    render 'cleo-static-body-router'
+  endcapture
+
+  assign cleo_static_body = cleo_static_body | remove: '<div class="preview-page-note" aria-hidden="true">Static HTML/CSS preview copied from Cleo Lifestyle public storefront.</div>'
+
+  capture cleo_static_popup
+    render 'cleo-dynamic-popup'
+  endcapture
+
+  assign cleo_header_begin = '<!-- BEGIN sections: header-group -->'
+  assign cleo_header_end = '<!-- END sections: header-group -->'
+  assign cleo_footer_begin = '<!-- BEGIN sections: footer-group -->'
+  assign cleo_footer_end = '<!-- END sections: footer-group -->'
+  assign cleo_main_begin = '<main id="main" class="anchor">'
+%}
+{% capture cleo_header_sections %}
+  {% sections 'header-group' %}
+{% endcapture %}
+{% capture cleo_footer_sections %}
+  {% sections 'footer-group' %}
+{% endcapture %}
+<!doctype html>
+<html
+  class="no-js{% if request.design_mode %} shopify-design-mode{% endif %}"
+  lang="{{ request.locale.iso_code | default: 'en' }}"
+  dir="ltr"
+>
+  <head>
+    {%- render 'theme-favicon', favicon_set: 'neera-living' -%}
+
+    {% capture cleo_static_head %}
+      {% render 'cleo-static-head-router' %}
+    {% endcapture %}
+
+    {% assign neera_social_image = 'neera-tab-icon-v2-180.png' | asset_url | prepend: 'https:' %}
+
+    {% if cleo_static_head contains 'new_1_1.png' %}
+      {% assign cleo_static_head = cleo_static_head
+        | replace: 'http://cleolifestyle.com/cdn/shop/files/new_1_1.png?v=1749114823&width=2048', neera_social_image
+        | replace: 'https://cleolifestyle.com/cdn/shop/files/new_1_1.png?v=1749114823&width=2048', neera_social_image
+        | replace: 'https://cleolifestyle.com/cdn/shop/files/new_1_1.png?crop=center&height=1200&v=1749114823&width=1200', neera_social_image
+        | replace: '<meta property="og:image:width" content="1200">', '<meta property="og:image:width" content="180">'
+        | replace: '<meta property="og:image:height" content="628">', '<meta property="og:image:height" content="180">'
+      %}
+    {% endif %}
+
+    {% assign cleo_static_head = cleo_static_head
+      | replace: 'Cleo Home LLC', 'Neera Living'
+      | replace: 'Cleo Lifestyle', 'Neera Living'
+      | replace: 'Cleo lifestyle', 'Neera Living'
+      | replace: 'Cleo Home', 'Neera Living'
+      | replace: 'Cleo', 'Neera Living'
+      | replace: 'CLEO', 'NEERA LIVING'
+      | replace: 'name="cleo-preview-source"', 'name="theme-preview-source"'
+      | replace: 'https://cleolifestyle.com', 'https://neera-living.com'
+      | replace: 'http://cleolifestyle.com', 'https://neera-living.com'
+    %}
+
+    {{ cleo_static_head }}
+
+    {% unless cleo_static_head contains '<title' %}
+      <title>{{ page_title | escape }}</title>
+    {% endunless %}
+
+    {%- if request.page_type == 'product' -%}
+      <script type="application/ld+json">{{ product | structured_data }}</script>
+    {%- endif -%}
+    {{ 'cleo-theme.css' | asset_url | stylesheet_tag }}
+    {{ 'cleo-hybrid.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'cleo-theme.js' | asset_url }}" defer></script>
+    {{ content_for_header }}
+  </head>
+
+  {% # theme-check-disable UnclosedHTMLElement %}
+  {% if cleo_static_body contains cleo_header_begin and cleo_static_body contains cleo_footer_begin and cleo_static_body contains cleo_main_begin %}
+    {% liquid
+      assign cleo_before_header = cleo_static_body | split: cleo_header_begin | first
+      assign cleo_after_header_begin = cleo_static_body | split: cleo_header_begin | last
+      assign cleo_after_header = cleo_after_header_begin | split: cleo_header_end | last
+      assign cleo_between_header_and_main = cleo_after_header | split: cleo_main_begin | first
+      assign cleo_after_footer_begin = cleo_after_header | split: cleo_footer_begin | last
+      assign cleo_after_footer = cleo_after_footer_begin | split: cleo_footer_end | last
+
+      assign cleo_before_header = cleo_before_header | remove: cleo_static_popup
+    %}
+    {{ cleo_before_header -}}
+    {{- cleo_header_sections -}}
+    {{- cleo_between_header_and_main -}}
+    <main id="main" class="anchor cleo-native-layout" role="main" tabindex="-1">
+      {{- cleo_native_layout -}}
+    </main>
+    {{- cleo_footer_sections -}}
+    {{- cleo_after_footer }}
+  {% else %}
+    <body class="features--zoom-image color-scheme color-scheme--scheme-1">
+      {{ cleo_header_sections }}
+      <main id="main" class="anchor cleo-native-layout" role="main" tabindex="-1">
+        {{ cleo_native_layout }}
+      </main>
+      {{ cleo_footer_sections }}
+    </body>
+  {% endif %}
+  {% # theme-check-enable UnclosedHTMLElement %}
+</html>

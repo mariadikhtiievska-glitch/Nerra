@@ -1,0 +1,65 @@
+<section
+  id="CleoDisclaimer-{{ section.id }}"
+  class="cleo-disclaimer"
+  style="
+    --disclaimer-bg: {{ section.settings.background_color }};
+    --disclaimer-color: {{ section.settings.text_color }};
+    --disclaimer-size: {{ section.settings.font_size }}px;
+    --disclaimer-mobile-size: {{ section.settings.mobile_font_size }}px;
+    --disclaimer-width: {{ section.settings.max_width }}px;
+    --disclaimer-padding: {{ section.settings.padding_y }}px;
+  "
+>
+  <div>{{ section.settings.text }}</div>
+</section>
+
+<style>
+  #CleoDisclaimer-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--disclaimer-padding) 32px;
+    background: var(--disclaimer-bg);
+    color: var(--disclaimer-color);
+    text-align: center;
+  }
+
+  #CleoDisclaimer-{{ section.id }} > div {
+    width: min(var(--disclaimer-width), 100%);
+    font-size: var(--disclaimer-size);
+    line-height: 1.5;
+    opacity: 0.5;
+  }
+
+  #CleoDisclaimer-{{ section.id }} p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #CleoDisclaimer-{{ section.id }} {
+      padding-inline: 16px;
+    }
+
+    #CleoDisclaimer-{{ section.id }} > div {
+      box-sizing: border-box;
+      padding-inline: 16px;
+      font-size: var(--disclaimer-mobile-size);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cleo disclaimer",
+  "settings": [
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>*Information shared is for cultural and lifestyle context only. These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.*</p>" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f3e9dc" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#2a2520" },
+    { "type": "range", "id": "font_size", "label": "Desktop font size", "min": 7, "max": 16, "step": 1, "unit": "px", "default": 10 },
+    { "type": "range", "id": "mobile_font_size", "label": "Mobile font size", "min": 6, "max": 12, "step": 1, "unit": "px", "default": 7 },
+    { "type": "range", "id": "max_width", "label": "Content width", "min": 600, "max": 1400, "step": 20, "unit": "px", "default": 1000 },
+    { "type": "range", "id": "padding_y", "label": "Vertical padding", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 20 }
+  ],
+  "presets": [{ "name": "Cleo disclaimer" }]
+}
+{% endschema %}

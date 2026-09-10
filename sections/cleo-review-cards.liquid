@@ -1,0 +1,384 @@
+<section
+  id="CleoReviews-{{ section.id }}"
+  class="cleo-reviews"
+  style="
+    --reviews-bg: {{ section.settings.background_color }};
+    --reviews-width: {{ section.settings.max_width }}px;
+    --reviews-gap: {{ section.settings.card_gap }}px;
+    --reviews-padding-top: {{ section.settings.padding_top }}px;
+    --reviews-padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="cleo-reviews__container">
+    {%- if section.settings.heading != blank -%}
+      <h2>{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="cleo-reviews__slider">
+      <button
+        class="cleo-reviews__arrow cleo-reviews__arrow--prev"
+        type="button"
+        data-cleo-slider="#CleoReviewTrack-{{ section.id }}"
+        data-direction="prev"
+        aria-label="Previous reviews"
+      >
+        &#8249;
+      </button>
+
+      <div id="CleoReviewTrack-{{ section.id }}" class="cleo-reviews__track">
+        {%- for block in section.blocks -%}
+          {%- assign review_rating = block.settings.rating | default: 5 -%}
+          <article class="cleo-review" {{ block.shopify_attributes }}>
+            <div class="cleo-review__main-image">
+              {%- render 'cleo-image',
+                image: block.settings.image,
+                asset: block.settings.fallback_asset,
+                width: 900,
+                height: 900,
+                sizes: '(max-width: 749px) 82vw, 380px',
+                alt: block.settings.name
+              -%}
+            </div>
+
+            <div class="cleo-review__box">
+              <div class="cleo-review__top">
+                <div class="cleo-review__stars" aria-label="{{ review_rating }} out of 5 stars">
+                  {%- for index in (1..review_rating) -%}
+                    <span aria-hidden="true">&#9733;</span>
+                  {%- endfor -%}
+                </div>
+
+                {%- if block.settings.customer_image != blank or block.settings.customer_fallback_asset != blank -%}
+                  <div class="cleo-review__customer">
+                    {%- render 'cleo-image',
+                      image: block.settings.customer_image,
+                      asset: block.settings.customer_fallback_asset,
+                      width: 160,
+                      height: 160,
+                      sizes: '58px',
+                      alt: block.settings.name
+                    -%}
+                  </div>
+                {%- endif -%}
+              </div>
+
+              {%- if block.settings.quote != blank -%}
+                <blockquote>{{ block.settings.quote }}</blockquote>
+              {%- endif -%}
+
+              <div class="cleo-review__bottom">
+                <div class="cleo-review__name">
+                  <strong>{{ block.settings.name }}</strong>
+                  {%- if block.settings.country != blank -%}
+                    <span class="cleo-review__country" aria-label="{{ block.settings.country }}">
+                      {%- render 'cleo-country-flag', country: block.settings.country, unique_id: block.id -%}
+                    </span>
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.badge != blank -%}
+                  <span class="cleo-review__verified">&#10003; {{ block.settings.badge }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      <button
+        class="cleo-reviews__arrow cleo-reviews__arrow--next"
+        type="button"
+        data-cleo-slider="#CleoReviewTrack-{{ section.id }}"
+        data-direction="next"
+        aria-label="Next reviews"
+      >
+        &#8250;
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  #CleoReviews-{{ section.id }} {
+    overflow: hidden;
+    padding-block: var(--reviews-padding-top) var(--reviews-padding-bottom);
+    background: var(--reviews-bg);
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-reviews__container {
+    width: min(var(--reviews-width), 100%);
+    margin-inline: auto;
+    padding-inline: 20px;
+    box-sizing: border-box;
+  }
+
+  #CleoReviews-{{ section.id }} h2 {
+    margin: 0 0 28px;
+    color: #895737;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-reviews__slider {
+    position: relative;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-reviews__track {
+    display: flex;
+    gap: var(--reviews-gap);
+    align-items: stretch;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-reviews__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review {
+    display: flex;
+    min-width: 0;
+    flex: 0 0 calc((100% - (2 * var(--reviews-gap))) / 3);
+    flex-direction: column;
+    scroll-snap-align: start;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__main-image {
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: 16px;
+    background: #eeeeee;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__main-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__box {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-top: 16px;
+    padding: 18px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    min-height: 360px;
+    box-sizing: border-box;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__stars {
+    color: #c08552;
+    font-size: 16px;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__customer {
+    width: 58px;
+    height: 58px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__customer img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #CleoReviews-{{ section.id }} blockquote {
+    margin: 14px 0 18px;
+    color: #2a2520;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__name strong {
+    color: #895737;
+    font-size: 16px;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__name span {
+    display: inline-grid;
+    min-width: 28px;
+    height: auto;
+    place-items: center;
+    {% comment %} border: 1px solid #e0d5cb; {% endcomment %}
+    border-radius: 4px;
+    color: #6b6158;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-review__verified {
+    border-radius: 20px;
+    background: #f6eee7;
+    color: #895737;
+    padding: 4px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-reviews__arrow {
+    position: absolute;
+    top: 40%;
+    z-index: 2;
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #8b5635;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 1;
+    transform: translateY(-50%);
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-reviews__arrow--prev {
+    left: -20px;
+  }
+
+  #CleoReviews-{{ section.id }} .cleo-reviews__arrow--next {
+    right: -20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    #CleoReviews-{{ section.id }} {
+      padding-block: 28px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-reviews__container {
+      width: 100%;
+      padding-inline: 0;
+    }
+
+    #CleoReviews-{{ section.id }} h2 {
+      padding-inline: 16px;
+      font-size: 24px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-reviews__slider {
+      padding-left: 10px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-reviews__track {
+      gap: 14px;
+      padding: 0 16px 14px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-review {
+      flex-basis: 88%;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-review__box {
+      padding: 16px;
+      min-height: 0;
+    }
+
+    #CleoReviews-{{ section.id }} blockquote {
+      font-size: 14px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-review__customer {
+      width: 52px;
+      height: 52px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-review__name strong,
+    #CleoReviews-{{ section.id }} .cleo-review__stars {
+      font-size: 12px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-review__name .cleo-review__country {
+      width: 32px;
+      min-width: 32px;
+      height: 32px;
+      border: 0;
+      border-radius: 0;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-review__name .cleo-review__country svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-review__verified {
+      font-size: 10px;
+    }
+
+    #CleoReviews-{{ section.id }} .cleo-reviews__arrow {
+      display: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Cleo review cards",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f8eadc" },
+    { "type": "range", "id": "max_width", "label": "Content width", "min": 800, "max": 1600, "step": 20, "unit": "px", "default": 1180 },
+    { "type": "range", "id": "card_gap", "label": "Card gap", "min": 8, "max": 48, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Main image" },
+        { "type": "text", "id": "fallback_asset", "label": "Main fallback asset" },
+        { "type": "image_picker", "id": "customer_image", "label": "Customer image" },
+        { "type": "text", "id": "customer_fallback_asset", "label": "Customer fallback asset" },
+        { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "I've been loving this copper water bottle set. The quality is fantastic, and the hammered design gives it a stylish touch." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Lexy" },
+        { "type": "text", "id": "country", "label": "Country label", "default": "US" },
+        { "type": "text", "id": "badge", "label": "Badge", "default": "Verified" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cleo review cards",
+      "blocks": [
+        { "type": "review", "settings": { "fallback_asset": "cleo-static-6495e98ca899.png", "customer_fallback_asset": "cleo-static-dd0dcfd057b4.jpg", "name": "Lexy" } },
+        { "type": "review", "settings": { "fallback_asset": "cleo-static-17b0edb58f29.png", "customer_fallback_asset": "cleo-static-09b26ecf431a.jpg", "name": "Isabelle", "country": "UK" } },
+        { "type": "review", "settings": { "fallback_asset": "cleo-static-d3d11484487a.png", "customer_fallback_asset": "cleo-static-96c5abab68bc.jpg", "name": "AJ" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
