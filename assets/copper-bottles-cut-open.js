@@ -9,11 +9,16 @@
 // position pixel threshold so it stays accurate if content above the
 // trigger changes length.
 //
-// The trigger block is `[data-cls-coppercutopen-sticky-trigger]` — per the
-// Figma layer name on the sticky bar ("appears from Block 12 onward only"),
-// this must be added to the Final CTA + Product Card section's outer
-// wrapper once that section is built. Until then this behavior silently
-// no-ops (guard clause below).
+// The trigger is `[data-cls-coppercutopen-sticky-trigger]`, a 1px marker at
+// the very top of the Final CTA + Product Card section (node 120:2, the
+// "Block 12" the sticky bar's own Figma layer name refers to). Watching a
+// thin marker at the section's top — rather than the whole (very tall)
+// section — means the bar appears as soon as the visitor reaches the CTA,
+// not only after they've scrolled past its entire height. That matters
+// here specifically: the Final CTA section is tall and sits near the end
+// of the page, so requiring it to fully exit the viewport turned out to be
+// unreachable within the page's actual scroll height (verified live —
+// the bar never appeared even at max scroll before this fix).
 (function () {
   var bar = document.querySelector('[data-cls-coppercutopen-sticky-bar]');
   var trigger = document.querySelector('[data-cls-coppercutopen-sticky-trigger]');

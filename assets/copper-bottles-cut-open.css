@@ -1024,6 +1024,11 @@
   padding: 48px 20px;
 }
 
+.cls-coppercutopen-final-cta__trigger-marker {
+  width: 100%;
+  height: 1px;
+}
+
 .cls-coppercutopen-final-cta__photo {
   position: relative;
   width: 100%;
