@@ -579,3 +579,89 @@
     aspect-ratio: 800 / 500;
   }
 }
+
+/* Block 6 — Four Ways a Bottle Fakes It (node 84:12) */
+
+.cls-coppercutopen-four-ways {
+  background: var(--cls-coppercutopen-investigation-bg);
+  padding: 44px 0;
+}
+
+.cls-coppercutopen-four-ways__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cls-coppercutopen-four-ways__text {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 0 20px;
+}
+
+.cls-coppercutopen-four-ways__heading {
+  margin: 0;
+  font-family: var(--cls-coppercutopen-font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+  color: var(--cls-coppercutopen-ink);
+}
+
+.cls-coppercutopen-four-ways__list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.cls-coppercutopen-four-ways__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cls-coppercutopen-four-ways__item-label {
+  margin: 0;
+  font-family: var(--cls-coppercutopen-font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  color: var(--cls-coppercutopen-ink);
+}
+
+.cls-coppercutopen-four-ways__item-body {
+  margin: 0;
+  font-family: var(--cls-coppercutopen-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--cls-coppercutopen-ink);
+}
+
+.cls-coppercutopen-four-ways__illustration img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .cls-coppercutopen-four-ways__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    align-items: start;
+    gap: 32px;
+    padding: 0 40px;
+  }
+
+  .cls-coppercutopen-four-ways__text {
+    padding: 0;
+  }
+
+  .cls-coppercutopen-four-ways__illustration {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}

@@ -177,7 +177,45 @@
         "body": "<p>Mine was $26. It arrived looking exactly like the photographs, and for about three weeks it was fine.</p><p>Then the finish went at the cap. Not tarnish — tarnish is even and slow and it looks like age. This was a chip, and under the chip was something silver.</p><p><strong>I put a magnet on it. The magnet stayed.</strong></p><p>What bothered me was not the $26. It was that I had spent three weeks drinking <strong>out of it with no idea</strong>, and that if the plating had held a little longer I would still have no idea. There was nothing on the listing, nothing in the packaging and nothing in the product itself that would have told me.</p><p>So I wanted to know how common it was. Not from reviews, and not from other people’s blog posts — <strong>from the inside of the bottles.</strong></p>",
         "photo_fallback": "copper-bottles-cut-open-nine-parcels.jpg"
       }
+    },
+    "four-ways": {
+      "type": "copper-bottles-cut-open-four-ways",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "label": "Plating",
+            "body": "A steel or aluminium body with a copper layer on the outside, sometimes only microns thick. It photographs beautifully and it fails a magnet in three seconds — if the core is steel. If the core is aluminium, the magnet says nothing at all."
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "label": "Lining",
+            "body": "A lacquer or epoxy film sprayed on the inside wall so the bottle never tarnishes and the seller never has to explain patina to a customer. Six of my nine had one. It is the most common substitution in this category and the least visible, because from the outside a lined bottle looks better than an honest one — it stays bright forever."
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "label": "Alloys",
+            "body": "Copper melted down with zinc or iron from scrap and sold as pure. Brass reads as copper to the eye once it is polished and hammered. It also brings whatever else was in the scrap, which is why lead shows up in test reports for this category at all."
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "label": "Machine pressing",
+            "body": "Not a fake material — a fake story. A stamped dimple pattern repeats identically around the circumference because a die made it. Photograph the same point on the opposite side of the bottle. If the dimples match exactly, nobody hammered anything."
+          }
+        }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4"],
+      "settings": {
+        "heading": "Four ways a bottle can look like copper and not be copper",
+        "illustration_fallback": "copper-bottles-cut-open-four-ways-illustration.png"
+      }
     }
   },
-  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this"]
+  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this", "four-ways"]
 }
