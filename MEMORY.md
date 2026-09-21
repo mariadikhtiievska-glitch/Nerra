@@ -813,3 +813,185 @@ settings values specifically, verify by pulling the file back down rather
 than trusting the push success message (has been flaky twice).
 
 **Remaining sections not yet built:** Footer disclaimer.
+
+---
+
+# Copper Bottles Cut Open advertorial — build conventions
+
+A second, fully isolated advertorial landing page on the same store
+(**neera-living.myshopify.com**), separate from the `neera-advertorial`
+project documented above — own layout, own template, own prefix, own
+CSS/JS. Nothing here touches or reuses `neera-advertorial`'s files beyond
+two genuinely shared theme snippets (see below). Same working style as the
+rest of this line of advertorial projects: phased, section-by-section,
+stop and wait for confirmation after each section, no unsolicited
+additions.
+
+Design source: Figma — a different file from `neera-advertorial`'s —
+fileKey `OUgtWs66J8luxTHB3XXkYS`
+(https://www.figma.com/design/OUgtWs66J8luxTHB3XXkYS/Neera-Living-Adv--Copy-),
+frame `80:4` "Advertorial — Teardown · Mobile 390" (390px wide, 1:1 real
+mobile scale, confirmed via `get_metadata` — same convention as the sibling
+project: use Figma values directly as mobile CSS px, no division). Content
+follows an investigative "I cut open 10 copper bottles" teardown format.
+Figma access for this project required authorizing the remote
+`plugin:figma:figma` MCP server via OAuth (the local Dev Mode MCP server
+used on the sibling project wasn't connected this session).
+
+## Class prefix
+
+**`cls-coppercutopen-`** — every class in every section/CSS/JS file on this
+page is scoped under this prefix, per the user's explicit instruction.
+
+## Files
+
+- `layout/copper-bottles-cut-open.liquid` — standalone layout, no
+  dependency on `theme.liquid`. Own `<head>`, loads Google Fonts (only the
+  weights actually used by built sections so far — extend as new sections
+  need more), `copper-bottles-cut-open.css`, `copper-bottles-cut-open.js`.
+  Shares only `snippets/theme-favicon.liquid` (favicon_set `'neera-living'`,
+  already existed, reused as-is) and `snippets/theme-styles-variables.liquid`
+  (generic Horizon CSS custom properties) from the shared theme — not
+  `assets/cleo-theme.css`, which is `neera-advertorial`'s own token set, to
+  keep this project's isolation clean.
+- `templates/page.copper-bottles-cut-open.json` — dedicated page template.
+  **Gotcha confirmed here:** Shopify rejects a template whose `"order"`
+  array is empty (`"order: can't be blank"`, confirmed via an actual failed
+  `theme push`) — a template can't be pushed/previewed until it has at
+  least one real section in `order`. The sticky bar doesn't count (it's
+  global chrome rendered directly from the layout via `{% section %}`, not
+  a template entry), so the results table had to be built and added to
+  `order` before either section could be previewed live.
+- `sections/copper-bottles-cut-open-{section-name}.liquid` — one file per
+  section. Content is schema-driven via `settings`/`blocks`, editable in
+  the customizer, per the brief. CTA buttons use `url`-type settings (no
+  `"default"` key in the schema — confirmed via the sibling project's own
+  gotcha that a `url` setting's schema `"default"` is invalid and breaks
+  the whole section file; use Liquid's `| default:` filter in the markup
+  instead).
+- `assets/copper-bottles-cut-open.css` / `assets/copper-bottles-cut-open.js`
+  — single shared stylesheet/script for the whole page, loaded once from
+  the layout.
+
+## Rules
+
+- **Mobile-first CSS**, single breakpoint `@media (min-width: 768px)` —
+  same convention as `neera-advertorial`.
+- Every class prefixed `cls-coppercutopen-*`.
+- Content fidelity: copy pulled verbatim from Figma via `get_design_context`
+  (including quote-mark styling, e.g. curly quotes on 9 of the 10 results-
+  table rows but not row 10, which is a fact statement, not a claim — matches
+  Figma exactly, not a typo).
+- Read a file before editing it. Template JSON edits preserve `block_order`
+  and existing settings byte-for-byte.
+- No unsolicited additions — build exactly the section handed over, stop
+  and show the diff before starting the next one.
+- Self-verify each section on the preview theme (Chrome MCP) before
+  presenting it.
+
+## Mobile responsiveness checklist (carried over from sibling projects)
+
+Same recurring-fixes list as `neera-advertorial`'s (see above) applies here
+too — apply proactively rather than rediscovering via feedback. Notably
+used so far:
+- Fixed/sticky bottom bars: `visibility: hidden` + `transform` (not
+  transform alone) while hidden, plus
+  `padding-bottom: calc(<val> + env(safe-area-inset-bottom))`.
+- Horizontally-scrollable tables: `overflow-x: auto` +
+  `-webkit-overflow-scrolling: touch` on a wrapper, `table-layout: fixed` +
+  an explicit `min-width` on the table itself so columns never shrink below
+  their natural Figma widths.
+
+## Build log
+
+- **Layout scaffold + Sticky bar — done 2026-09-21.** Created
+  `layout/copper-bottles-cut-open.liquid`,
+  `templates/page.copper-bottles-cut-open.json` (initially empty `order`,
+  see gotcha above),
+  `sections/copper-bottles-cut-open-sticky-bar.liquid`,
+  `assets/copper-bottles-cut-open.css`, `assets/copper-bottles-cut-open.js`.
+  Sticky bar (Figma node `85:27`) is global chrome rendered directly from
+  the layout, not a template entry — mirrors `neera-advertorial`'s sticky
+  bar pattern exactly.
+  - **Trigger block resolved by inference, not a literal Figma match:** the
+    node's own layer name is "Sticky bar — appears from Block 12 onward
+    only", but no frame in the file is literally named "BLOCK 12". The
+    page's real block sequence runs ...BLOCK 11 ("What the $30 Actually
+    Buys", node `84:73`) → a nested frame `120:2` labeled "BLOCK 10 — Final
+    CTA + Product Card" (reused/leftover numbering from the sibling
+    project's own "Block 10" Final CTA node, same class of mislabeling
+    documented there) → BLOCK 13 (FAQ). The sequential gap between 11 and
+    13 is exactly one block, so "Block 12" is almost certainly this Final
+    CTA + Product Card node. **Not yet built or confirmed** — the sticky
+    bar's JS (`assets/copper-bottles-cut-open.js`) watches
+    `[data-cls-coppercutopen-sticky-trigger]` via `IntersectionObserver`
+    and no-ops (guard clause) until that attribute exists in the DOM.
+    **When the Final CTA + Product Card section is eventually built, add
+    `data-cls-coppercutopen-sticky-trigger` to its outer wrapper** — this
+    is the one remaining piece needed to make the sticky bar actually
+    appear on scroll.
+  - Button label/URL are section settings (`button_label` default
+    "CHECK AVAILABILITY 👉" — emoji is literal Figma content, not a CSS
+    icon; `button_url`, no schema default per the `url`-type gotcha above).
+    Colors pulled via `get_variable_defs` on node `85:27`: bar background
+    `color/cream` = `#ffffff` (distinct from `neera-advertorial`'s own
+    `--cls-neera-cream` `#faf6ef` — different design system, don't conflate).
+    Button `#ffd000`, 44px tall, 296px wide (`max-width: 100%` fallback per
+    the mobile-responsiveness checklist), 8px radius, Instrument Sans
+    SemiBold 17px/20px/0.2px tracking, `text-transform: uppercase`.
+  - Self-verified on preview theme `151103340731`: bar exists in DOM,
+    correctly hidden (`visibility: hidden`, `translateY` off-screen) since
+    its trigger doesn't exist yet; button text/href/background all correct;
+    no console errors attributable to this project's files (one
+    pre-existing unrelated JSON-parse exception on the page, same signature
+    already documented as pre-existing noise in the sibling project).
+
+- **Results table ("All Ten Results") — done 2026-09-21.** Created
+  `sections/copper-bottles-cut-open-results-table.liquid` from Figma node
+  `104:32` (the 641px-wide reference version the user linked directly;
+  confirmed the in-page mobile node `82:2`/`83:x` uses the *same* literal
+  column widths, i.e. the design is already built to overflow past 390px
+  and require horizontal scroll on mobile by design, not a mistake to
+  scale down). Real `<table>` markup (not a div-grid), `table-layout:
+  fixed` with explicit per-column widths matching Figma exactly (30 / 56 /
+  190 / 96 / 74 / 170px) wrapped in an `overflow-x: auto` scroll container,
+  `min-width: 720px` on the table so columns never shrink. All 10 rows are
+  a repeating `row` block (number, paid, listing_claimed, magnet, interior,
+  lab_result, highlight checkbox) — added as explicit template-JSON block
+  entries (not relying on presets, per the sibling project's own gotcha
+  about template-JSON sections not inheriting preset blocks). Row 10 is
+  the only row with `highlight: true` (2px top/bottom rule + `rgba(0, 0,
+  0, 0.08)` background, exact Figma value). Mobile-only "Swipe to see more
+  →" hint text (`display: none` at `≥768px`) — the text-hint option from
+  the two offered, not a gradient fade. Block label setting added per the
+  user's explicit ask even though it doesn't render by default (Figma's
+  "BLOCK 4 —" text is a dev-mode frame-name annotation, not a real content
+  node in `104:32` — confirmed via `get_design_context`, so it stays
+  blank/hidden unless a merchant fills it in). Footer note paragraph
+  ("Bottle 10 is the expensive one...") included even though not itemized
+  in the user's numbered spec, since it's real visible content inside the
+  linked Figma node itself — pulled verbatim as a `footer_note` setting.
+  This section is the template's first (and currently only) `order` entry,
+  which is what made the template pushable at all (see the empty-`order`
+  gotcha above).
+  - Self-verified on preview theme `151103340731` at desktop width: all 6
+    columns render correctly with real Figma copy (including the curly-
+    quote vs. no-quote distinction on row 10), row 10 highlight background
+    confirmed via computed style (`rgba(0, 0, 0, 0.08)`), scroll container
+    `overflow-x: auto` + table `min-width: 720px` confirmed via computed
+    style, swipe hint correctly hidden at desktop width. Narrow/mobile-
+    width scroll behavior itself not physically verified — same
+    `resize_window` limitation documented in the sibling project's own
+    MEMORY.md (doesn't produce a true narrow viewport in this environment)
+    applies here too.
+
+## Status
+
+Two sections built and self-verified on preview theme `151103340731`:
+Sticky bar (visible-on-trigger logic in place but inert until the Final
+CTA + Product Card section adds its trigger marker) and the Results table.
+Live push not yet done — preview only so far. Remaining sections: everything
+else in the teardown format (magnet test, cut-open comparison, lab results,
+cost breakdown, self-check checklist, FAQ, sponsored-content disclosure,
+countdown-timer CTA banner) — to be handed over section by section per the
+user's stated workflow.
