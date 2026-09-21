@@ -238,6 +238,12 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-results-table__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
   .cls-coppercutopen-results-table__swipe-hint {
     display: none;
   }
