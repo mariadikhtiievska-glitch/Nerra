@@ -38,3 +38,59 @@
 
   observer.observe(trigger);
 })();
+
+// Final CTA countdown timer (node 120:16) — rolling duration per visitor:
+// the first time someone loads the page, a countdown of the configured
+// length starts and is saved in localStorage so it survives a refresh
+// instead of resetting; if a visitor's countdown has already run out, a
+// fresh one starts automatically so the timer stays evergreen rather than
+// freezing at zero.
+(function () {
+  var el = document.querySelector('[data-cls-coppercutopen-countdown]');
+  if (!el) return;
+
+  var daysEl = el.querySelector('[data-countdown-days]');
+  var hoursEl = el.querySelector('[data-countdown-hours]');
+  var minutesEl = el.querySelector('[data-countdown-minutes]');
+  var secondsEl = el.querySelector('[data-countdown-seconds]');
+  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+  var durationMs = (parseFloat(el.dataset.durationHours) || 20) * 60 * 60 * 1000;
+  var storageKey = 'clsCoppercutopenCountdownEnd';
+  var endTime = null;
+
+  try {
+    var stored = window.localStorage.getItem(storageKey);
+    if (stored) endTime = parseInt(stored, 10);
+  } catch (e) {}
+
+  function startNewCountdown() {
+    endTime = Date.now() + durationMs;
+    try {
+      window.localStorage.setItem(storageKey, String(endTime));
+    } catch (e) {}
+  }
+
+  if (!endTime || endTime <= Date.now()) startNewCountdown();
+
+  function pad(value) {
+    return String(value).padStart(2, '0');
+  }
+
+  function update() {
+    var remaining = endTime - Date.now();
+    if (remaining <= 0) {
+      startNewCountdown();
+      remaining = endTime - Date.now();
+    }
+
+    var totalSeconds = Math.floor(remaining / 1000);
+    daysEl.textContent = pad(Math.floor(totalSeconds / 86400));
+    hoursEl.textContent = pad(Math.floor((totalSeconds % 86400) / 3600));
+    minutesEl.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
+    secondsEl.textContent = pad(totalSeconds % 60);
+  }
+
+  update();
+  setInterval(update, 1000);
+})();

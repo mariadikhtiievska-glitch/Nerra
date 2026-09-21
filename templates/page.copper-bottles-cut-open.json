@@ -279,7 +279,33 @@
         "photo_fallback": "copper-bottles-cut-open-tenth-bottle.jpg",
         "caption": "Bottle 10 · $59 · 99.9% copper · no lining, no core"
       }
+    },
+    "what-30-buys": {
+      "type": "copper-bottles-cut-open-what-30-buys",
+      "settings": {
+        "heading": "What the difference actually pays for",
+        "body": "<p>Going back to the arithmetic from earlier, here is the same subtraction run in the other direction.</p><p>An hour of hand-raising and hammering per bottle, which is why no two of them are <strong>identical</strong> and why the dimple pattern does not repeat.</p><p>A <strong>laboratory invoice</strong> against every production batch, not every hundredth one, with the certificate published on the product page rather than produced on request.</p><p>A bare interior, and the returns that come with it from people who <strong>think</strong> a darkening bottle is a <strong>broken bottle.</strong></p><p>A cap made from the same solid copper as the body, which is the single most common place to save $2.</p><p><strong>Stock held</strong> in the United States, so the thing <strong>arrives</strong> in a day or two <strong>instead</strong> of three weeks from overseas.</p><p>And the care brush and the sleeve in the box, rather than sold back to you as accessories.</p><p>Thirty dollars, once. Copper does not degrade, and with a lemon and a minute a week the bottle outlasts the argument.</p>"
+      }
+    },
+    "final-cta": {
+      "type": "copper-bottles-cut-open-final-cta",
+      "blocks": {
+        "check-1": { "type": "checkmark", "settings": { "text": "✅ Lab-Verified 99.9% Pure Copper" } },
+        "check-2": { "type": "checkmark", "settings": { "text": "✅ No Alloys, No Coatings, No Plastic" } },
+        "check-3": { "type": "checkmark", "settings": { "text": "✅ Over 22,600+ Happy Customers" } },
+        "check-4": { "type": "checkmark", "settings": { "text": "✅ Free Shipping · Ships in 1–2 Days" } }
+      },
+      "block_order": ["check-1", "check-2", "check-3", "check-4"],
+      "settings": {
+        "photo_fallback": "copper-bottles-cut-open-complete-set.jpg",
+        "promo_prefix": "Use code",
+        "promo_code": "NEERA10",
+        "promo_suffix": "for an extra 10%",
+        "countdown_duration_hours": 20,
+        "price_headline": "59$ - Copper Doesn’t Expire",
+        "button_label": "CHECK AVAILABILITY 👉"
+      }
     }
   },
-  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this", "four-ways", "lab-confirmed", "math", "self-check", "tenth-bottle"]
+  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this", "four-ways", "lab-confirmed", "math", "self-check", "tenth-bottle", "what-30-buys", "final-cta"]
 }
