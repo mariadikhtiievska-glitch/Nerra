@@ -364,13 +364,25 @@
     line-height: 32px;
   }
 
+  /* Photo + caption share a grid cell via __media so the caption sits
+     right under the photo — a bare grid-column: 1/-1 on the caption
+     alone would put it in a new row spanning the full grid, which waits
+     for the (much taller) text column to finish first, stranding it far
+     below the photo with a large empty gap. Found via computed
+     grid-template-rows during verification, not visible in a casual
+     screenshot. */
+  .cls-coppercutopen-hero__media {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .cls-coppercutopen-hero__photo {
     border-radius: 8px;
     aspect-ratio: 340 / 255;
   }
 
   .cls-coppercutopen-hero__caption-wrap {
-    grid-column: 1 / -1;
     padding: 0;
   }
 }
@@ -538,13 +550,21 @@
     line-height: 42px;
   }
 
+  /* Photo + caption share a grid cell via __media — see Hero's comment
+     for why a full-span caption alone strands it below the taller text
+     column instead of sitting under the photo. */
+  .cls-coppercutopen-what-i-found__media {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .cls-coppercutopen-what-i-found__photo {
     border-radius: 8px;
     aspect-ratio: 340 / 420;
   }
 
   .cls-coppercutopen-what-i-found__caption-wrap {
-    grid-column: 1 / -1;
     padding: 0;
   }
 }
@@ -1031,9 +1051,11 @@
 
 @media (min-width: 768px) {
   /* Two-column grid: photo left, text right (6th in the alternating
-     sequence) — flipped column widths + order: -1 on the photo, same
-     technique as Opening Test/Why I Did This. Caption spans both
-     columns since it applies to the photo regardless of which side. */
+     sequence) — flipped column widths + order: -1, same technique as
+     Opening Test/Why I Did This. order: -1 moved to __media (not
+     __photo directly) since __media is now the direct grid child —
+     see the comment on Hero's __media for why photo + caption need to
+     share a grid cell instead of the caption spanning full width. */
   .cls-coppercutopen-tenth-bottle__inner {
     max-width: 800px;
     margin: 0 auto;
@@ -1053,14 +1075,19 @@
     line-height: 42px;
   }
 
-  .cls-coppercutopen-tenth-bottle__photo {
+  .cls-coppercutopen-tenth-bottle__media {
     order: -1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cls-coppercutopen-tenth-bottle__photo {
     border-radius: 8px;
     aspect-ratio: 340 / 380;
   }
 
   .cls-coppercutopen-tenth-bottle__caption-wrap {
-    grid-column: 1 / -1;
     padding: 0;
   }
 }
