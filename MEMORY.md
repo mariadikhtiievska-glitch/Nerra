@@ -990,8 +990,89 @@ used so far:
 Two sections built and self-verified on preview theme `151103340731`:
 Sticky bar (visible-on-trigger logic in place but inert until the Final
 CTA + Product Card section adds its trigger marker) and the Results table.
-Live push not yet done — preview only so far. Remaining sections: everything
-else in the teardown format (magnet test, cut-open comparison, lab results,
-cost breakdown, self-check checklist, FAQ, sponsored-content disclosure,
-countdown-timer CTA banner) — to be handed over section by section per the
-user's stated workflow.
+
+**Deployment workflow changed 2026-09-21 — see the repo's own `CLAUDE.md`.**
+`shopify theme push` is no longer used directly. All code now goes through
+git: commit → push to `dev` → GitHub integration auto-syncs to the
+**Nerra/dev** theme (`#151435509947`) for testing → merge `dev` into
+`main` → auto-syncs to the **live** theme (`#150169321659`). `main` and
+`dev` were both re-synced with actual live-theme content as part of that
+change (see git history) before this new workflow started. An
+**Nerra/main** theme (`#151433609403`) also exists as the integration's
+own mirror of `main`.
+**Gotcha:** after a push to `dev`, the Nerra/dev preview can lag the
+actual synced files by several seconds even after the GitHub sync itself
+completes (confirmed via pulling the theme's files directly, which showed
+the new content already present while the storefront preview was still
+serving a stale cached render) — do a cache-busting reload
+(`?_cb=<anything>`) before concluding a section didn't sync.
+
+- **Block 1 — Hero built 2026-09-21.** `sections/copper-bottles-cut-open-hero.liquid`
+  from node `80:7`. Breadcrumb, headline, italic subhead, byline, and
+  caption are plain `text` settings (not richtext — no inline formatting
+  in this block's copy); photo via `image_picker` + fallback filename
+  `copper-bottles-cut-open-hero-photo.jpg` (downloaded from Figma at
+  1280×956, 450/900w responsive variants generated). Full-bleed photo
+  (edge-to-edge on mobile despite the Figma export's own `px-24` on that
+  container — the child image's declared width exceeds the padded
+  content box, i.e. an intentional bleed, confirmed against the reference
+  screenshot). Desktop: centered ~800px column (no two-column pairing —
+  this is a long-form article header, not a marketing split like the
+  sibling project's Hero), not confirmed with the user beforehand since
+  the shape made a two-column layout inapplicable.
+  - **Found: this Figma file's named variables aren't globally
+    consistent.** `get_variable_defs` on Hero's node (`80:7`) returned
+    `color/ink` = `#000000` and `color/ink-muted` = `#6b6b6b` — different
+    from the results table's `#2a241f`/`#6e655c` for the *same variable
+    names*. Added a CSS comment recording this and started calling
+    `get_variable_defs` per-node rather than assuming reuse. New tokens:
+    `--cls-coppercutopen-ink-muted-neutral` (`#6b6b6b`),
+    `--cls-coppercutopen-investigation-bg` (`#f4f4f4`, this block's
+    background) — `--cls-coppercutopen-ink` (`#000000`) already existed
+    from the sticky bar and happened to match.
+
+- **Block 2 — Opening Test (magnet test) built 2026-09-21.**
+  `sections/copper-bottles-cut-open-opening-test.liquid` from node `81:2`.
+  Body copy is a single `richtext` setting (8 paragraphs incl. inline
+  `<strong>` runs matching Figma's mixed Medium/Bold text) rather than
+  separate settings per paragraph — simpler for the merchant to edit as
+  flowing prose, matches the sibling project's richtext-for-inline-bold
+  pattern. Photo (magnet held against a bottle) downloaded at 1280×1589
+  with 450/900w variants. Same `color/ink` (`#000000`) /
+  `color/investigation` (`#f4f4f4`) as Hero, confirmed via
+  `get_variable_defs` on this node specifically (not assumed).
+
+- **Block 3 — What I Found built 2026-09-21.**
+  `sections/copper-bottles-cut-open-what-i-found.liquid` from node `81:14`.
+  Heading (`text`) + richtext body (9 paragraphs, heavy inline bold) +
+  macro cut-wall photo + caption (`text`). White background (`#ffffff`,
+  not the investigation gray — confirmed from the JSX export, this block
+  genuinely differs from its neighbors). Base body paragraph style here is
+  17px/26px regular (Figma's "Body/Regular"), distinct from Opening Test's
+  17px/28px medium ("Body/Medium") — same `.cls-coppercutopen-rte` shared
+  class reused, weight/line-height overridden per-component since a single
+  shared rule can't serve both.
+  - **Flagged, not silently fixed:** the macro photo's *Figma source file
+    itself* has a caption baked into the image pixels
+    ("Bottle 4 · $29 · listed as 100% pure copper") that doesn't match the
+    real, separate text-layer caption used for the `caption` setting
+    ("Bottle 4 · $27 · listed as 100% pure copper, lab-tested" — different
+    price, plus "lab-tested"). Rendered exactly as Figma actually displays
+    it (both captions visible, since that's genuinely what's in the
+    design file) rather than guessing which number is "correct" and
+    silently overriding the other. At the `≥768px` crop (800/600
+    landscape `object-fit: cover`) the baked-in caption mostly gets cropped
+    out of view; at mobile's taller 390/484 crop it's more likely to show.
+    Worth asking the user whether the source photo should be re-exported
+    without the baked caption, or the text-layer caption's price corrected
+    to match.
+
+**Now built:** Sticky bar (global chrome), Hero, Opening Test, What I
+Found, Results table — all self-verified on the Nerra/dev theme.
+**Remaining sections** (continuing per "please continue working on
+sections for now," 2026-09-21): Why I Did This, Four Ways a Bottle Fakes
+It, What the Lab Confirmed, Why $29 Cannot Buy What It Says, Check Yours
+in 60 Seconds, The Tenth Bottle, What the $30 Actually Buys, Final CTA +
+Product Card (**must add `data-cls-coppercutopen-sticky-trigger` to this
+one's outer wrapper** — see the sticky bar's build log above), FAQ,
+Footer.
