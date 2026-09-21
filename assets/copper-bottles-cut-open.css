@@ -239,9 +239,47 @@
 
 @media (min-width: 768px) {
   .cls-coppercutopen-results-table__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 40px;
+  }
+
+  /* Scale the table itself up too (not just the container) — otherwise
+     it would just sit at its old 720px min-width, left-aligned in a
+     much wider box. Column widths scaled ~1.6x from their mobile
+     values, same ratio the container widened by (800px -> 1280px). */
+  .cls-coppercutopen-results-table__table {
+    min-width: 1120px;
+  }
+
+  .cls-coppercutopen-results-table__table th:nth-child(1),
+  .cls-coppercutopen-results-table__table td:nth-child(1) {
+    width: 50px;
+  }
+
+  .cls-coppercutopen-results-table__table th:nth-child(2),
+  .cls-coppercutopen-results-table__table td:nth-child(2) {
+    width: 90px;
+  }
+
+  .cls-coppercutopen-results-table__table th:nth-child(3),
+  .cls-coppercutopen-results-table__table td:nth-child(3) {
+    width: 300px;
+  }
+
+  .cls-coppercutopen-results-table__table th:nth-child(4),
+  .cls-coppercutopen-results-table__table td:nth-child(4) {
+    width: 150px;
+  }
+
+  .cls-coppercutopen-results-table__table th:nth-child(5),
+  .cls-coppercutopen-results-table__table td:nth-child(5) {
+    width: 120px;
+  }
+
+  .cls-coppercutopen-results-table__table th:nth-child(6),
+  .cls-coppercutopen-results-table__table td:nth-child(6) {
+    width: 260px;
   }
 
   .cls-coppercutopen-results-table__swipe-hint {
