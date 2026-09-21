@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "layout": "neera-advertorial",
   "sections": {
@@ -11,38 +20,58 @@
           }
         }
       },
-      "block_order": ["message-1"]
+      "block_order": [
+        "message-1"
+      ],
+      "settings": {}
     },
     "hero": {
-      "type": "cls-neera-hero"
+      "type": "cls-neera-hero",
+      "settings": {}
     },
     "problem": {
-      "type": "cls-neera-problem"
+      "type": "cls-neera-problem",
+      "settings": {}
     },
     "why-copper": {
       "type": "cls-neera-why-copper",
       "blocks": {
         "feature-1": {
           "type": "feature",
-          "settings": { "text": "99.9% pure copper, lab-tested after every manufacturing batch" }
+          "settings": {
+            "text": "99.9% pure copper, lab-tested after every manufacturing batch"
+          }
         },
         "feature-2": {
           "type": "feature",
-          "settings": { "text": "Hand-hammered exterior that increases contact area with water" }
+          "settings": {
+            "text": "Hand-hammered exterior that increases contact area with water"
+          }
         },
         "feature-3": {
           "type": "feature",
-          "settings": { "text": "Naturally antimicrobial surface" }
+          "settings": {
+            "text": "Naturally antimicrobial surface"
+          }
         },
         "feature-4": {
           "type": "feature",
-          "settings": { "text": "Zero plastic and zero microplastic risk" }
+          "settings": {
+            "text": "Zero plastic and zero microplastic risk"
+          }
         }
       },
-      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4"]
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4"
+      ],
+      "settings": {}
     },
     "reasons-opener": {
-      "type": "cls-neera-reasons-opener"
+      "type": "cls-neera-reasons-opener",
+      "settings": {}
     },
     "reason-10": {
       "type": "cls-neera-reason",
@@ -51,8 +80,8 @@
         "heading": "Microplastics accumulate. Your bottle may be part of the load.",
         "body": "<p>Studies suggest the average person has already ingested a significant amount of microplastics through <strong>drinking water alone.</strong> These particles do not simply pass through; they can accumulate. Every time you drink from a <strong>plastic bottle</strong>, you may be adding to that load. Switching to a pure copper vessel removes one daily source of <strong>microplastic</strong> exposure. You are not <strong>performing</strong> a dramatic <strong>“detox.”</strong> You are simply stopping the addition.</p>",
         "photo_image_fallback": "neera-reason-10.jpg",
-        "background": "cream",
-        "image_position": "left"
+        "image_position": "left",
+        "background": "cream"
       }
     },
     "reason-9": {
@@ -62,8 +91,8 @@
         "heading": "Plastic and even some metals are not neutral.",
         "body": "<p><strong>Plastic can release BPA, </strong>phthalates, and other compounds into water, especially when bottles sit in heat or are reused for long periods. Stainless steel is more stable, yet microscopic scratches become places where bacteria thrive. <strong>Aluminum often relies on an inner lining that can degrade. </strong>Pure copper does not leach plastic compounds. Its surface has natural antimicrobial properties that have been studied for decades. The difference is not theoretical — it is material science.</p>",
         "photo_image_fallback": "neera-reason-9.jpg",
-        "background": "cream-alt",
-        "image_position": "right"
+        "image_position": "right",
+        "background": "cream-alt"
       }
     },
     "reason-8": {
@@ -73,8 +102,8 @@
         "heading": "Copper has been used for water storage for centuries.",
         "body": "<p><strong>Tamra Jal </strong>— water stored in copper — is not a social-media invention. Families across the Indian subcontinent have kept water in copper vessels for generations. The practice is part of a broader understanding that the vessel matters as much as the water itself. <strong>Neera</strong> simply brings that <strong>tradition into a modern,</strong> leak-proof, hand-hammered form that fits real life: car cup holders, travel, and daily desks.</p>",
         "photo_image_fallback": "neera-reason-8.jpg",
-        "background": "cream",
-        "image_position": "left"
+        "image_position": "left",
+        "background": "cream"
       }
     },
     "reason-7": {
@@ -84,8 +113,8 @@
         "heading": "A naturally antimicrobial surface.",
         "body": "<p><strong>Copper</strong> is one of only a handful of materials with inherent antimicrobial properties. Hospitals have <strong>installed copper surfaces</strong> for this reason. When water rests inside a pure copper bottle, it sits against a surface that <strong>actively discourages</strong> many common bacteria. Plastic and scratched steel do not offer the same environment. <strong>This is not a marketing slogan — it is a documented characteristic of the metal.</strong></p>",
         "photo_image_fallback": "neera-reason-7.jpg",
-        "background": "cream-alt",
-        "image_position": "right"
+        "image_position": "right",
+        "background": "cream-alt"
       }
     },
     "reason-6": {
@@ -95,8 +124,8 @@
         "heading": "It turns hydration into a ritual.",
         "body": "<p>Fill the bottle in the evening. Let it rest overnight. <strong>Drink in the morning.</strong> That simple sequence transforms something automatic into something intentional. Many <strong>Neera </strong>owners tell us the ritual itself <strong>changes</strong> how they <strong>relate to water.</strong> It is no longer just another bottle on the desk — it is a <strong>quiet daily practice.</strong></p>",
         "photo_image_fallback": "neera-reason-6.jpg",
-        "background": "cream",
-        "image_position": "left"
+        "image_position": "left",
+        "background": "cream"
       }
     },
     "reason-5": {
@@ -106,8 +135,8 @@
         "heading": "Hand-hammered means more contact area.",
         "body": "<p>Machine-smooth<strong> copper </strong>is<strong> beautiful.</strong> Hand-hammered copper is functional. Each strike creates micro-indentations that increase the surface area in <strong>contact</strong> with the <strong>water.</strong> The texture is not decoration alone — it is part of how the vessel works. <strong>No two Neera bottles are identical.</strong> That irregularity is the point.</p>",
         "photo_image_fallback": "neera-reason-5.jpg",
-        "background": "cream-alt",
-        "image_position": "right"
+        "image_position": "right",
+        "background": "cream-alt"
       }
     },
     "reason-4": {
@@ -117,8 +146,8 @@
         "heading": "Lab-tested purity you can verify.",
         "body": "<p>The market is full of bottles that look like copper and are not. Some are copper-plated <strong>aluminum.</strong> Some contain mixed metals. Every batch of <strong>Neera</strong> bottles is tested after manufacturing for material purity. We provide access to the Certificate of Authenticity so you can see the verification yourself. <strong>Real copper is non-magnetic. </strong>The hand-hammered pattern is irregular. The certificate is available. These are the simple checks that matter.</p>",
         "photo_image_fallback": "neera-reason-4.jpg",
-        "background": "cream",
-        "image_position": "left"
+        "image_position": "left",
+        "background": "cream"
       }
     },
     "reason-3": {
@@ -128,8 +157,8 @@
         "heading": "Designed for real life, not just the shelf.",
         "body": "<p>34 ounces — enough for a full day of <strong>intentional sipping</strong>. Leak-proof threaded cap that opens and closes with a single twist. Dimensions that fit most standard U.S. car cup holders and kitchen cabinets. Weight that feels solid without being heavy. Every bottle ships with a <strong>Copper Care Brush</strong> and a Travel Sleeve. This is not a decorative object. It is built to be used every day.</p>",
         "photo_image_fallback": "neera-reason-3.jpg",
-        "background": "cream-alt",
-        "image_position": "right"
+        "image_position": "right",
+        "background": "cream-alt"
       }
     },
     "reason-2": {
@@ -139,8 +168,8 @@
         "heading": "Better for the planet — and for the bottles that come after yours.",
         "body": "<p>One<strong> copper bottle</strong> replaces hundreds of single-use plastic bottles over its lifetime. <strong>Pure copper </strong>does not degrade the way plastic does. With simple care it can serve for <strong>decades </strong>and, i<strong>n many families, </strong>become something that is passed on. Choosing <strong>Neera </strong>is not another purchase in a <strong>cycle</strong> of replacements. It is a decision to step out of that cycle.</p>",
         "photo_image_fallback": "neera-reason-2.jpg",
-        "background": "cream",
-        "image_position": "left"
+        "image_position": "left",
+        "background": "cream"
       }
     },
     "reason-1": {
@@ -150,8 +179,8 @@
         "heading": "The Neera promise: a small brand that takes every order seriously.",
         "body": "<p>We are not a giant corporation. We are a small team that built <strong>Neera </strong>around one idea: everyday drinkware <strong>should be made with natural materials,</strong> real craftsmanship, and integrity. If something is not right with your order, reach out. <strong>We will make it right</strong> — no run-around, no script. Free shipping on every order. Use code <strong>NEERA10</strong> for an extra <strong>10% </strong>off. Buy more and save up to 15%. You are not only buying a bottle. You are supporting a way of making things that still cares about the person on the other end.</p>",
         "photo_image_fallback": "neera-reason-1.jpg",
-        "background": "cream-alt",
-        "image_position": "right"
+        "image_position": "right",
+        "background": "cream-alt"
       }
     },
     "how-to-use": {
@@ -159,43 +188,125 @@
       "blocks": {
         "step-1": {
           "type": "step",
-          "settings": { "text": "In the evening, fill the bottle with clean, filtered, room-temperature or cool water." }
+          "settings": {
+            "text": "In the evening, fill the bottle with clean, filtered, room-temperature or cool water."
+          }
         },
         "step-2": {
           "type": "step",
-          "settings": { "text": "Let it rest for 6–8 hours, or overnight." }
+          "settings": {
+            "text": "Let it rest for 6–8 hours, or overnight."
+          }
         },
         "step-3": {
           "type": "step",
-          "settings": { "text": "In the morning, drink. Throughout the day you can refill and use it as you would any water bottle." }
+          "settings": {
+            "text": "In the morning, drink. Throughout the day you can refill and use it as you would any water bottle."
+          }
         },
         "step-4": {
           "type": "step",
-          "settings": { "text": "Once a week, or whenever you notice tarnish, clean with lemon and salt or mild soap and the included soft brush. Rinse thoroughly." }
+          "settings": {
+            "text": "Once a week, or whenever you notice tarnish, clean with lemon and salt or mild soap and the included soft brush. Rinse thoroughly."
+          }
         }
       },
-      "block_order": ["step-1", "step-2", "step-3", "step-4"]
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4"
+      ],
+      "settings": {}
     },
     "comparison": {
       "type": "cls-neera-comparison",
       "blocks": {
-        "row-1": { "type": "row", "settings": { "feature": "Naturally Antimicrobial", "steel_value": false, "plastic_value": false } },
-        "row-2": { "type": "row", "settings": { "feature": "Naturally Alkalizes Water", "steel_value": false, "plastic_value": false } },
-        "row-3": { "type": "row", "settings": { "feature": "100% Plastic & BPA Free", "steel_value": true, "plastic_value": false } },
-        "row-4": { "type": "row", "settings": { "feature": "Supports Ayurvedic Rituals", "steel_value": false, "plastic_value": false } },
-        "row-5": { "type": "row", "settings": { "feature": "Zero Microplastic Risk", "steel_value": true, "plastic_value": false } }
+        "row-1": {
+          "type": "row",
+          "settings": {
+            "feature": "Naturally Antimicrobial",
+            "steel_value": false,
+            "plastic_value": false
+          }
+        },
+        "row-2": {
+          "type": "row",
+          "settings": {
+            "feature": "Naturally Alkalizes Water",
+            "steel_value": false,
+            "plastic_value": false
+          }
+        },
+        "row-3": {
+          "type": "row",
+          "settings": {
+            "feature": "100% Plastic & BPA Free",
+            "steel_value": true,
+            "plastic_value": false
+          }
+        },
+        "row-4": {
+          "type": "row",
+          "settings": {
+            "feature": "Supports Ayurvedic Rituals",
+            "steel_value": false,
+            "plastic_value": false
+          }
+        },
+        "row-5": {
+          "type": "row",
+          "settings": {
+            "feature": "Zero Microplastic Risk",
+            "steel_value": true,
+            "plastic_value": false
+          }
+        }
       },
-      "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5"]
+      "block_order": [
+        "row-1",
+        "row-2",
+        "row-3",
+        "row-4",
+        "row-5"
+      ],
+      "settings": {}
     },
     "included": {
       "type": "cls-neera-included",
       "blocks": {
-        "item-1": { "type": "item", "settings": { "text": "34 oz Hand-Hammered Pure Copper Bottle" } },
-        "item-2": { "type": "item", "settings": { "text": "Copper Care Brush" } },
-        "item-3": { "type": "item", "settings": { "text": "Travel Sleeve" } },
-        "item-4": { "type": "item", "settings": { "text": "Access to Certificate of Authenticity (lab-tested purity)" } }
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "text": "34 oz Hand-Hammered Pure Copper Bottle"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "text": "Copper Care Brush"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "text": "Travel Sleeve"
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "text": "Access to Certificate of Authenticity (lab-tested purity)"
+          }
+        }
       },
-      "block_order": ["item-1", "item-2", "item-3", "item-4"]
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4"
+      ],
+      "settings": {}
     },
     "final-cta": {
       "type": "cls-neera-final-cta",
@@ -206,13 +317,55 @@
     "reviews": {
       "type": "cls-neera-reviews",
       "blocks": {
-        "review-1": { "type": "review", "settings": { "rating": 5, "quote": "I’ve been loving this copper water bottle. The quality is fantastic, and the hammered design gives it a stylish touch. It keeps my water fresh, and the included brush makes cleaning super easy.", "attribution": "Lexy, Verified Buyer" } },
-        "review-2": { "type": "review", "settings": { "rating": 5, "quote": "Size is ideal to carry with you anytime. Quality is better than expected. Easy cleaning with the side brush. To make a change in your life and keep yourself hydrated — it’s worth the money.", "attribution": "Isabelle, Verified Buyer" } },
-        "review-3": { "type": "review", "settings": { "rating": 5, "quote": "I really love this water bottle! It’s beautiful, stylish, and always with me — at the gym, at home, or in the car. It feels comfortable in my hand, the lid is secure, and I’ve even received a few compliments on it.", "attribution": "AJ, Verified Buyer" } },
-        "review-4": { "type": "review", "settings": { "rating": 5, "quote": "What delicious water from this bottle. I pour already filtered water and it turns out to be the purest taste, like from a spring. It also looks very beautiful.", "attribution": "Alex, Verified Buyer" } },
-        "review-5": { "type": "review", "settings": { "rating": 5, "quote": "This bottle is beautiful — detailed by hand. Comes with a brush as a gift. I bought it for its multiple benefits. Thank you very much!", "attribution": "Max, Verified Buyer" } }
+        "review-1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I’ve been loving this copper water bottle. The quality is fantastic, and the hammered design gives it a stylish touch. It keeps my water fresh, and the included brush makes cleaning super easy.",
+            "attribution": "Lexy, Verified Buyer"
+          }
+        },
+        "review-2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Size is ideal to carry with you anytime. Quality is better than expected. Easy cleaning with the side brush. To make a change in your life and keep yourself hydrated — it’s worth the money.",
+            "attribution": "Isabelle, Verified Buyer"
+          }
+        },
+        "review-3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I really love this water bottle! It’s beautiful, stylish, and always with me — at the gym, at home, or in the car. It feels comfortable in my hand, the lid is secure, and I’ve even received a few compliments on it.",
+            "attribution": "AJ, Verified Buyer"
+          }
+        },
+        "review-4": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "What delicious water from this bottle. I pour already filtered water and it turns out to be the purest taste, like from a spring. It also looks very beautiful.",
+            "attribution": "Alex, Verified Buyer"
+          }
+        },
+        "review-5": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "This bottle is beautiful — detailed by hand. Comes with a brush as a gift. I bought it for its multiple benefits. Thank you very much!",
+            "attribution": "Max, Verified Buyer"
+          }
+        }
       },
-      "block_order": ["review-1", "review-2", "review-3", "review-4", "review-5"]
+      "block_order": [
+        "review-1",
+        "review-2",
+        "review-3",
+        "review-4",
+        "review-5"
+      ],
+      "settings": {}
     },
     "faq": {
       "type": "cls-neera-faq",
@@ -225,18 +378,81 @@
             "open": true
           }
         },
-        "faq-2": { "type": "faq", "settings": { "question": "Will the water taste metallic?" } },
-        "faq-3": { "type": "faq", "settings": { "question": "How do I clean the bottle?" } },
-        "faq-4": { "type": "faq", "settings": { "question": "Does darkening or black spots mean something is wrong?" } },
-        "faq-5": { "type": "faq", "settings": { "question": "Can I put lemon water or hot drinks in it?" } },
-        "faq-6": { "type": "faq", "settings": { "question": "How do I know this is real copper?" } },
-        "faq-7": { "type": "faq", "settings": { "question": "What about shipping and if something is wrong?" } }
+        "faq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Will the water taste metallic?"
+          }
+        },
+        "faq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I clean the bottle?"
+          }
+        },
+        "faq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "Does darkening or black spots mean something is wrong?"
+          }
+        },
+        "faq-5": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I put lemon water or hot drinks in it?"
+          }
+        },
+        "faq-6": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I know this is real copper?"
+          }
+        },
+        "faq-7": {
+          "type": "faq",
+          "settings": {
+            "question": "What about shipping and if something is wrong?"
+          }
+        }
       },
-      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4", "faq-5", "faq-6", "faq-7"]
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "faq-5",
+        "faq-6",
+        "faq-7"
+      ],
+      "settings": {}
     },
     "footer": {
-      "type": "cls-neera-footer"
+      "type": "cls-neera-footer",
+      "settings": {}
     }
   },
-  "order": ["top-bar", "hero", "problem", "why-copper", "reasons-opener", "reason-10", "reason-9", "reason-8", "reason-7", "reason-6", "reason-5", "reason-4", "reason-3", "reason-2", "reason-1", "how-to-use", "comparison", "included", "final-cta", "reviews", "faq", "footer"]
+  "order": [
+    "top-bar",
+    "hero",
+    "problem",
+    "why-copper",
+    "reasons-opener",
+    "reason-10",
+    "reason-9",
+    "reason-8",
+    "reason-7",
+    "reason-6",
+    "reason-5",
+    "reason-4",
+    "reason-3",
+    "reason-2",
+    "reason-1",
+    "how-to-use",
+    "comparison",
+    "included",
+    "final-cta",
+    "reviews",
+    "faq",
+    "footer"
+  ]
 }
