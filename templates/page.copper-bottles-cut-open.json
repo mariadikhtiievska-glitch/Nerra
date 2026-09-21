@@ -1,0 +1,148 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "copper-bottles-cut-open",
+  "sections": {
+    "results-table": {
+      "type": "copper-bottles-cut-open-results-table",
+      "blocks": {
+        "row-1": {
+          "type": "row",
+          "settings": {
+            "number": "1",
+            "paid": "$19",
+            "listing_claimed": "“Pure Copper Water Bottle”",
+            "magnet": "Body + cap",
+            "interior": "Lined",
+            "lab_result": "Copper-plated steel"
+          }
+        },
+        "row-2": {
+          "type": "row",
+          "settings": {
+            "number": "2",
+            "paid": "$22",
+            "listing_claimed": "“100% Pure Copper, Ayurvedic”",
+            "magnet": "No response",
+            "interior": "Lined",
+            "lab_result": "Copper over aluminium"
+          }
+        },
+        "row-3": {
+          "type": "row",
+          "settings": {
+            "number": "3",
+            "paid": "$24",
+            "listing_claimed": "“Hammered Copper Bottle”",
+            "magnet": "Cap only",
+            "interior": "Lined",
+            "lab_result": "Copper body, plated steel cap"
+          }
+        },
+        "row-4": {
+          "type": "row",
+          "settings": {
+            "number": "4",
+            "paid": "$27",
+            "listing_claimed": "“100% Pure Copper · Lab-Tested”",
+            "magnet": "No response",
+            "interior": "Lined",
+            "lab_result": "Copper alloy, zinc content"
+          }
+        },
+        "row-5": {
+          "type": "row",
+          "settings": {
+            "number": "5",
+            "paid": "$29",
+            "listing_claimed": "“Pure Copper, Hand-Hammered”",
+            "magnet": "No response",
+            "interior": "Lined",
+            "lab_result": "Copper, interior lacquer, machine-pressed"
+          }
+        },
+        "row-6": {
+          "type": "row",
+          "settings": {
+            "number": "6",
+            "paid": "$29",
+            "listing_claimed": "“Ayurvedic Copper Bottle”",
+            "magnet": "Body + cap",
+            "interior": "Unlined",
+            "lab_result": "Copper-plated steel"
+          }
+        },
+        "row-7": {
+          "type": "row",
+          "settings": {
+            "number": "7",
+            "paid": "$32",
+            "listing_claimed": "“99.9% Pure Copper”",
+            "magnet": "No response",
+            "interior": "Lined",
+            "lab_result": "Copper alloy, zinc content"
+          }
+        },
+        "row-8": {
+          "type": "row",
+          "settings": {
+            "number": "8",
+            "paid": "$35",
+            "listing_claimed": "“Handmade Pure Copper”",
+            "magnet": "No response",
+            "interior": "Unlined",
+            "lab_result": "Solid copper, machine-pressed"
+          }
+        },
+        "row-9": {
+          "type": "row",
+          "settings": {
+            "number": "9",
+            "paid": "$39",
+            "listing_claimed": "“Pure Copper, Leak-Proof”",
+            "magnet": "Cap only",
+            "interior": "Unlined",
+            "lab_result": "Copper body, plated cap, machine-pressed"
+          }
+        },
+        "row-10": {
+          "type": "row",
+          "settings": {
+            "number": "10",
+            "paid": "$59",
+            "listing_claimed": "99.9% pure copper, hand-hammered",
+            "magnet": "No response",
+            "interior": "Unlined",
+            "lab_result": "99.9% copper — matches the listing",
+            "highlight": true
+          }
+        }
+      },
+      "block_order": [
+        "row-1",
+        "row-2",
+        "row-3",
+        "row-4",
+        "row-5",
+        "row-6",
+        "row-7",
+        "row-8",
+        "row-9",
+        "row-10"
+      ],
+      "settings": {
+        "block_label": "",
+        "heading": "All ten results",
+        "footer_note": "Bottle 10 is the expensive one I bought as a control. More on that further down. Lab reports for all ten are linked at the bottom of this page."
+      }
+    }
+  },
+  "order": ["results-table"]
+}

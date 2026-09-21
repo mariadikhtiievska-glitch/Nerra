@@ -1,0 +1,233 @@
+/* Copper Bottles Cut Open advertorial — shared stylesheet for
+   layout/copper-bottles-cut-open.liquid. Single mobile-first breakpoint at
+   768px. All selectors scoped under cls-coppercutopen-*. */
+
+:root {
+  --cls-coppercutopen-cream: #ffffff;
+  --cls-coppercutopen-gold: #ffd000;
+  --cls-coppercutopen-ink: #000000;
+  --cls-coppercutopen-text-ink: #2a241f;
+  --cls-coppercutopen-text-ink-muted: #6e655c;
+  --cls-coppercutopen-rule: #d8d2c7;
+  --cls-coppercutopen-row-highlight: rgba(0, 0, 0, 0.08);
+
+  --cls-coppercutopen-font-body: 'Instrument Sans', var(--font-body--family, system-ui), sans-serif;
+  --cls-coppercutopen-font-heading: 'Newsreader', var(--font-heading--family, Georgia), serif;
+}
+
+.cls-coppercutopen-body,
+.cls-coppercutopen-body * {
+  box-sizing: border-box;
+}
+
+.cls-coppercutopen-body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--cls-coppercutopen-font-body);
+  color: var(--cls-coppercutopen-ink);
+}
+
+.cls-coppercutopen-main {
+  display: block;
+}
+
+.cls-coppercutopen-main img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Sticky bar (node 85:27) — hidden until JS marks it visible after the
+   visitor scrolls past the Final CTA + Product Card block ("Block 12" per
+   the Figma layer name; see assets/copper-bottles-cut-open.js). */
+
+.cls-coppercutopen-sticky-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 16px;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px));
+  background: var(--cls-coppercutopen-cream);
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    transform var(--animation-speed-slow, 0.2s) var(--animation-easing, ease-in-out),
+    visibility 0s linear var(--animation-speed-slow, 0.2s);
+}
+
+.cls-coppercutopen-sticky-bar--visible {
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    transform var(--animation-speed-slow, 0.2s) var(--animation-easing, ease-in-out),
+    visibility 0s linear 0s;
+}
+
+.cls-coppercutopen-sticky-bar__button {
+  display: flex;
+  width: 296px;
+  max-width: 100%;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--cls-coppercutopen-gold);
+  color: var(--cls-coppercutopen-ink);
+  font-family: var(--cls-coppercutopen-font-body);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Results table — "All Ten Results" (node 104:32) */
+
+.cls-coppercutopen-results-table {
+  background: var(--cls-coppercutopen-cream);
+  padding: 40px 0;
+}
+
+.cls-coppercutopen-results-table__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 20px;
+}
+
+.cls-coppercutopen-results-table__eyebrow {
+  margin: 0;
+  font-family: var(--cls-coppercutopen-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--cls-coppercutopen-text-ink-muted);
+}
+
+.cls-coppercutopen-results-table__heading {
+  margin: 0;
+  font-family: var(--cls-coppercutopen-font-heading);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 29px;
+  letter-spacing: -0.2px;
+  color: var(--cls-coppercutopen-text-ink);
+}
+
+.cls-coppercutopen-results-table__swipe-hint {
+  margin: 0;
+  font-family: var(--cls-coppercutopen-font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--cls-coppercutopen-text-ink-muted);
+}
+
+.cls-coppercutopen-results-table__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cls-coppercutopen-results-table__table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.cls-coppercutopen-results-table__table th,
+.cls-coppercutopen-results-table__table td {
+  padding: 12px 6px;
+  text-align: left;
+  vertical-align: top;
+  font-family: var(--cls-coppercutopen-font-body);
+}
+
+.cls-coppercutopen-results-table__table th:first-child,
+.cls-coppercutopen-results-table__table td:first-child {
+  padding-left: 8px;
+}
+
+.cls-coppercutopen-results-table__table th:last-child,
+.cls-coppercutopen-results-table__table td:last-child {
+  padding-right: 8px;
+}
+
+.cls-coppercutopen-results-table__table thead th {
+  border-bottom: 2px solid var(--cls-coppercutopen-rule);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--cls-coppercutopen-text-ink-muted);
+}
+
+.cls-coppercutopen-results-table__table tbody td {
+  border-bottom: 1px solid var(--cls-coppercutopen-rule);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+  color: var(--cls-coppercutopen-text-ink);
+}
+
+.cls-coppercutopen-results-table__table tbody tr.cls-coppercutopen-results-table__row--highlight td {
+  border-top: 2px solid var(--cls-coppercutopen-rule);
+  border-bottom: 2px solid var(--cls-coppercutopen-rule);
+  background: var(--cls-coppercutopen-row-highlight);
+}
+
+.cls-coppercutopen-results-table__table th:nth-child(1),
+.cls-coppercutopen-results-table__table td:nth-child(1) {
+  width: 30px;
+}
+
+.cls-coppercutopen-results-table__table th:nth-child(2),
+.cls-coppercutopen-results-table__table td:nth-child(2) {
+  width: 56px;
+}
+
+.cls-coppercutopen-results-table__table th:nth-child(3),
+.cls-coppercutopen-results-table__table td:nth-child(3) {
+  width: 190px;
+}
+
+.cls-coppercutopen-results-table__table th:nth-child(4),
+.cls-coppercutopen-results-table__table td:nth-child(4) {
+  width: 96px;
+}
+
+.cls-coppercutopen-results-table__table th:nth-child(5),
+.cls-coppercutopen-results-table__table td:nth-child(5) {
+  width: 74px;
+}
+
+.cls-coppercutopen-results-table__table th:nth-child(6),
+.cls-coppercutopen-results-table__table td:nth-child(6) {
+  width: 170px;
+}
+
+.cls-coppercutopen-results-table__footer-note {
+  margin: 0;
+  font-family: var(--cls-coppercutopen-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--cls-coppercutopen-text-ink-muted);
+}
+
+@media (min-width: 768px) {
+  .cls-coppercutopen-results-table__swipe-hint {
+    display: none;
+  }
+}
