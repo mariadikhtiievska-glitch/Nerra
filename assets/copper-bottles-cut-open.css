@@ -262,6 +262,13 @@
   gap: 24px;
 }
 
+.cls-coppercutopen-hero__title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 20px;
+}
+
 .cls-coppercutopen-hero__text {
   display: flex;
   flex-direction: column;
@@ -337,17 +344,25 @@
 }
 
 @media (min-width: 768px) {
-  /* Two-column grid: text left, photo right — same pattern as Four Ways /
-     Check Yours in 60 Seconds. Hero is the alternation anchor (text-left/
-     photo-right); DOM order already matches, no order override needed. */
+  /* Wider container + proportional column split (55/45), matching
+     neera-advertorial.css's Hero exactly, instead of this page's older
+     fixed-340px-photo-column pattern. __title (breadcrumb + heading)
+     spans the full width as its own row, left-aligned, above the
+     2-column row (__text left, __media right). */
   .cls-coppercutopen-hero__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
-    align-items: start;
-    gap: 32px;
-    padding: 0 40px;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    align-items: center;
+    column-gap: 56px;
+    row-gap: 24px;
+    padding: 64px 40px;
+  }
+
+  .cls-coppercutopen-hero__title {
+    grid-column: 1 / -1;
+    padding: 0;
   }
 
   .cls-coppercutopen-hero__text {
@@ -379,7 +394,7 @@
 
   .cls-coppercutopen-hero__photo {
     border-radius: 8px;
-    aspect-ratio: 340 / 255;
+    aspect-ratio: 4 / 3;
   }
 
   .cls-coppercutopen-hero__caption-wrap {
@@ -440,19 +455,21 @@
 
 @media (min-width: 768px) {
   /* Two-column grid: photo left, text right (2nd in the alternating
-     sequence, Hero being 1st). Column widths are flipped (340px first,
-     1fr second) versus the text-left variant, and order: -1 on the photo
-     moves it into that first narrow column despite being second in DOM
-     — order changes visual placement order but not track widths, so both
-     have to change together for the swap to land correctly. */
+     sequence, Hero being 1st). Wider container + proportional 45/55
+     split, matching neera-advertorial.css. Column proportions are
+     flipped (45fr first, 55fr second) versus the text-left variant, and
+     order: -1 on the photo moves it into that first (narrower) column
+     despite being second in DOM — order changes visual placement order
+     but not track widths, so both have to change together for the swap
+     to land correctly. */
   .cls-coppercutopen-opening-test__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
-    align-items: start;
-    gap: 32px;
-    padding: 0 40px;
+    grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+    align-items: center;
+    gap: 56px;
+    padding: 64px 40px;
   }
 
   .cls-coppercutopen-opening-test__body {
@@ -530,15 +547,17 @@
 
 @media (min-width: 768px) {
   /* Two-column grid: text left, photo right (3rd in the alternating
-     sequence). DOM order already matches, no order override needed. */
+     sequence). Wider container + proportional 55/45 split, matching
+     neera-advertorial.css. DOM order already matches, no order
+     override needed. */
   .cls-coppercutopen-what-i-found__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
-    align-items: start;
-    gap: 32px;
-    padding: 0 40px;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    align-items: center;
+    gap: 56px;
+    padding: 64px 40px;
   }
 
   .cls-coppercutopen-what-i-found__text {
@@ -620,16 +639,17 @@
 
 @media (min-width: 768px) {
   /* Two-column grid: photo left, text right (4th in the alternating
-     sequence) — flipped column widths + order: -1 on the photo, same
-     technique as Opening Test. */
+     sequence) — flipped column proportions + order: -1 on the photo,
+     same technique as Opening Test. Wider container + proportional
+     45/55 split, matching neera-advertorial.css. */
   .cls-coppercutopen-why-i-did-this__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
-    align-items: start;
-    gap: 32px;
-    padding: 0 40px;
+    grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+    align-items: center;
+    gap: 56px;
+    padding: 64px 40px;
   }
 
   .cls-coppercutopen-why-i-did-this__text {
@@ -714,14 +734,16 @@
 }
 
 @media (min-width: 768px) {
+  /* Wider container + proportional 55/45 split, matching
+     neera-advertorial.css (was a fixed 340px media column). */
   .cls-coppercutopen-four-ways__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
-    align-items: start;
-    gap: 32px;
-    padding: 0 40px;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    align-items: center;
+    gap: 56px;
+    padding: 64px 40px;
   }
 
   .cls-coppercutopen-four-ways__text {
@@ -810,15 +832,17 @@
 
 @media (min-width: 768px) {
   /* Two-column grid: text left, photo right (5th in the alternating
-     sequence). DOM order already matches, no order override needed. */
+     sequence). Wider container + proportional 55/45 split, matching
+     neera-advertorial.css. DOM order already matches, no order
+     override needed. */
   .cls-coppercutopen-lab-confirmed__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
-    align-items: start;
-    gap: 32px;
-    padding: 0 40px;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    align-items: center;
+    gap: 56px;
+    padding: 64px 40px;
   }
 
   .cls-coppercutopen-lab-confirmed__text {
@@ -962,15 +986,16 @@
 
 @media (min-width: 768px) {
   /* Two-column grid, matching Four Ways' pattern (same list+media shape):
-     text column left, photo column right (~340px), top-aligned. */
+     text column left, photo column right. Wider container + proportional
+     55/45 split, matching neera-advertorial.css. */
   .cls-coppercutopen-self-check__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
-    align-items: start;
-    gap: 32px;
-    padding: 0 40px 44px;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    align-items: center;
+    gap: 56px;
+    padding: 64px 40px;
   }
 
   .cls-coppercutopen-self-check__text {
@@ -1051,19 +1076,21 @@
 
 @media (min-width: 768px) {
   /* Two-column grid: photo left, text right (6th in the alternating
-     sequence) — flipped column widths + order: -1, same technique as
-     Opening Test/Why I Did This. order: -1 moved to __media (not
+     sequence) — flipped column proportions + order: -1, same technique
+     as Opening Test/Why I Did This. order: -1 moved to __media (not
      __photo directly) since __media is now the direct grid child —
      see the comment on Hero's __media for why photo + caption need to
-     share a grid cell instead of the caption spanning full width. */
+     share a grid cell instead of the caption spanning full width.
+     Wider container + proportional 45/55 split, matching
+     neera-advertorial.css. */
   .cls-coppercutopen-tenth-bottle__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
-    align-items: start;
-    gap: 32px;
-    padding: 0 40px;
+    grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+    align-items: center;
+    gap: 56px;
+    padding: 64px 40px;
   }
 
   .cls-coppercutopen-tenth-bottle__text {

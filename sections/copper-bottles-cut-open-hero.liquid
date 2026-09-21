@@ -1,6 +1,6 @@
 <div id="ClsCoppercutopenHero-{{ section.id }}" class="cls-coppercutopen-hero">
   <div class="cls-coppercutopen-hero__inner">
-    <div class="cls-coppercutopen-hero__text">
+    <div class="cls-coppercutopen-hero__title">
       {%- if section.settings.breadcrumb != blank -%}
         <p class="cls-coppercutopen-hero__breadcrumb">{{ section.settings.breadcrumb | escape }}</p>
       {%- endif -%}
@@ -8,7 +8,9 @@
       {%- if section.settings.heading != blank -%}
         <h1 class="cls-coppercutopen-hero__heading">{{ section.settings.heading | escape }}</h1>
       {%- endif -%}
+    </div>
 
+    <div class="cls-coppercutopen-hero__text">
       {%- if section.settings.subhead != blank -%}
         <p class="cls-coppercutopen-hero__subhead">{{ section.settings.subhead | escape }}</p>
       {%- endif -%}
