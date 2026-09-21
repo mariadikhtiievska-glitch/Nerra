@@ -345,10 +345,12 @@
 
 @media (min-width: 768px) {
   /* Wider container + proportional column split (55/45), matching
-     neera-advertorial.css's Hero exactly, instead of this page's older
-     fixed-340px-photo-column pattern. __title (breadcrumb + heading)
-     spans the full width as its own row, left-aligned, above the
-     2-column row (__text left, __media right). */
+     neera-advertorial.css's Hero. __title (breadcrumb + heading) and
+     __text (subhead + byline) both sit in column 1, stacked (title
+     above text), so the title's width matches the text column instead
+     of spanning the full row — __media spans both rows in column 2
+     (grid-row: 1 / 3) so the photo runs the full combined height of
+     title + text and stays vertically centered against them. */
   .cls-coppercutopen-hero__inner {
     max-width: 1280px;
     margin: 0 auto;
@@ -361,11 +363,14 @@
   }
 
   .cls-coppercutopen-hero__title {
-    grid-column: 1 / -1;
+    grid-column: 1;
+    grid-row: 1;
     padding: 0;
   }
 
   .cls-coppercutopen-hero__text {
+    grid-column: 1;
+    grid-row: 2;
     padding: 0;
   }
 
@@ -387,6 +392,8 @@
      grid-template-rows during verification, not visible in a casual
      screenshot. */
   .cls-coppercutopen-hero__media {
+    grid-column: 2;
+    grid-row: 1 / 3;
     display: flex;
     flex-direction: column;
     gap: 8px;
