@@ -1,15 +1,22 @@
 # Deployment workflow — read before touching any Shopify theme file
 
 This repo is connected to Shopify via the **GitHub integration**, which
-auto-syncs on every push:
+auto-syncs on every push — but **only to two unpublished mirror themes**,
+never directly to the actual live/published theme:
 
-- `main` branch → live theme **"10-08 of BKP Neera Living - Vikrant Dev"**
-  (`#150169321659`) on `neera-living.myshopify.com`.
-- `dev` branch → unpublished theme **"Nerra/dev"** (`#151435509947`) on the
-  same store, used for testing before anything reaches customers.
-- There is also an unpublished **"Nerra/main"** theme (`#151433609403`),
-  the GitHub integration's own preview mirror of `main` — separate from the
-  live theme itself.
+- `dev` branch → unpublished theme **"Nerra/dev"** (`#151435509947`), used
+  for testing before anything reaches customers.
+- `main` branch → unpublished theme **"Nerra/main"** (`#151433609403`).
+- The actual **live theme** — **"10-08 of BKP Neera Living - Vikrant Dev"**
+  (`#150169321659`) — is a *separate* theme on `neera-living.myshopify.com`
+  and is **not** kept in sync automatically by pushing to `main`.
+  **Confirmed 2026-09-21** by pulling both themes' files directly after a
+  `main` push: "Nerra/main" had the new content immediately, the actual
+  live theme did not, even after ~40s. Making a merge-to-`main` actually
+  reach customers requires a **manual publish** in Shopify Admin (Online
+  Store → Themes → publish "Nerra/main"), or someone explicitly asking for
+  that theme to be published — never assume a `main` push alone means the
+  storefront changed.
 
 ## Standing rule: never `shopify theme push` directly
 
@@ -24,7 +31,11 @@ changes.** All code changes must go through git:
 4. Test the change on the Nerra/dev theme/preview.
 5. Once confirmed working, merge `dev` into `main` (a real `git merge`, or
    a pull request) and push. The GitHub integration syncs this to the
-   **live theme** automatically.
+   **Nerra/main** theme automatically — **this is still a staging/mirror
+   theme, not the live site.** Getting it in front of customers is a
+   separate, explicit step: publishing "Nerra/main" in Shopify Admin. Ask
+   the user before doing that (or tell them it's ready for them to
+   publish) — don't treat a `main` push as equivalent to going live.
 
 `shopify theme pull`/`push` at the CLI is still fine for **read-only
 diagnostics** (e.g. `theme pull --only <file>` into a scratch dir to check
