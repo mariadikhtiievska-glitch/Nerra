@@ -1180,3 +1180,72 @@ Nerra/dev.
    itself ("$29") that doesn't match its separate text caption ("$27...
    lab-tested") — a pre-existing Figma-source inconsistency, not fixed
    silently.
+
+## Desktop layout bugs found and fixed, 2026-09-21
+
+The theme was published (Nerra/main went live) and the user reported the
+desktop view still looked like mobile — narrow/stacked at full browser
+width. Diagnosed by reading `assets/copper-bottles-cut-open.css` in full
+before writing anything: the single-breakpoint pattern *was* present (14
+separate `@media (min-width: 768px)` blocks, one per section, no typos),
+but incomplete in specific ways. Reported the full per-section audit
+before touching any CSS, per the user's explicit phased-workflow request,
+then fixed four things one at a time — each committed to `dev`, tested
+live on Nerra/dev via claude-in-chrome, then merged to `main` only after
+the user confirmed, and the live (Nerra/main) deploy verified by pulling
+the file directly from that theme after each merge:
+
+1. **Results table container.** `.cls-coppercutopen-results-table__inner`
+   never got the `max-width: 800px; margin: 0 auto` treatment every other
+   section's `__inner` already had — its `@media` block only ever hid the
+   mobile swipe-hint. Added the missing container rule.
+2. **Final CTA's `__inner` convention.** This section put its flex layout
+   directly on the outer section wrapper instead of a dedicated `__inner`
+   element, so there was nowhere to apply the standard max-width pattern
+   — it happened to look fine on its own (photo and card each had
+   independent width caps) but was structurally inconsistent. Added a
+   proper `__inner` wrapper (in both the Liquid and the CSS) and moved
+   the flex layout there; the photo's redundant standalone
+   `max-width: 800px` was removed since `__inner` now constrains it.
+3. **Desktop typography.** Read `assets/neera-advertorial.css` in full
+   (1,444 lines) and extracted the actual desktop values rather than
+   inventing numbers — **36px/42px is the dominant desktop heading size**
+   in that reference file (6 of 9 scaled section headings use it: Problem,
+   Why Copper, How to Use, Comparison, Included, FAQ; a few others use
+   context-specific sizes, e.g. Hero's 56/60, and two headings — Reviews,
+   Final CTA — don't scale at all). **Critically, that reference file
+   never overrides any body/paragraph/richtext font-size at any
+   breakpoint anywhere** — confirmed by grepping every `font-size`
+   declaration inside every `@media` block in the file. Applied 36px/42px
+   to the 9 `copper-bottles-cut-open` sections whose heading used the
+   matching 28px/32px base style with no prior desktop override (What I
+   Found, Why I Did This, Four Ways, What the Lab Confirmed, Math, Check
+   Yours in 60 Seconds, The Tenth Bottle, What the $30 Buys, FAQ) and left
+   all body/richtext copy and 18px subhead-tier text (FAQ questions,
+   feature/item labels) untouched, matching the reference exactly. Hero
+   was out of scope (already has its own bespoke H1 scale from earlier
+   work, a different Figma type style than the other sections). Results
+   Table's 22px heading was also left unscaled — no equivalent size
+   exists anywhere in the reference file to pull a value from, so
+   inventing one would have been a guess, not an extracted value.
+4. **Check Yours in 60 Seconds → 2-column grid.** Converted from a
+   stacked-with-wide-landscape-photo desktop treatment to the same
+   `grid-template-columns: minmax(0,1fr) minmax(0,340px)` pattern Four
+   Ways uses (same list+media shape). No Liquid changes needed — the
+   markup already had the same `__inner > (__text + __photo)` structure.
+   Kept the photo's `aspect-ratio: 1/1` (matches mobile) instead of the
+   old `800/500` landscape crop, since a landscape crop at a ~340px grid
+   column would look unusually thin, and square keeps both
+   "Machine-pressed"/"Hand-raised" captions visible via the existing
+   `object-position: 50% 100%` fix.
+
+**Lesson for any future "desktop looks broken" report on this or a
+sibling project:** read the actual CSS file in full before assuming the
+breakpoint is missing — it's rarely a binary "exists vs. doesn't," and
+the specific gaps (one section's container, headings not scaling while
+containers do) only show up by reading every `@media` block, not by
+skimming. When asked to match another project's type scale, grep that
+project's actual `@media` blocks for the real values rather than
+proposing new numbers — the reference project here turned out to scale
+headings only, never body copy, which was narrower than assumed at
+first.
