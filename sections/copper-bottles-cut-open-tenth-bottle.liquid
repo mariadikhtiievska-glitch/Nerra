@@ -1,0 +1,92 @@
+<div id="ClsCoppercutopenTenthBottle-{{ section.id }}" class="cls-coppercutopen-tenth-bottle">
+  <div class="cls-coppercutopen-tenth-bottle__inner">
+    <div class="cls-coppercutopen-tenth-bottle__text">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-coppercutopen-tenth-bottle__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <div class="cls-coppercutopen-tenth-bottle__body cls-coppercutopen-rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-coppercutopen-tenth-bottle__photo">
+      {%- if section.settings.photo != blank -%}
+        <img
+          src="{{ section.settings.photo | image_url: width: 1280 }}"
+          srcset="
+            {{ section.settings.photo | image_url: width: 450 }} 450w,
+            {{ section.settings.photo | image_url: width: 900 }} 900w,
+            {{ section.settings.photo | image_url: width: 1280 }} 1280w
+          "
+          sizes="100vw"
+          alt="{{ section.settings.photo.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.photo.width }}"
+          height="{{ section.settings.photo.height }}"
+        >
+      {%- elsif section.settings.photo_fallback != blank -%}
+        <img
+          src="{{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }}"
+          srcset="
+            {{ section.settings.photo_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w,
+            {{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w,
+            {{ section.settings.photo_fallback | asset_url }} 1280w
+          "
+          sizes="100vw"
+          alt="Bottle 10, cut open, interior visible"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.caption != blank -%}
+      <div class="cls-coppercutopen-tenth-bottle__caption-wrap">
+        <p class="cls-coppercutopen-tenth-bottle__caption">{{ section.settings.caption | escape }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "The tenth bottle",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The tenth bottle, and the part where I have to declare something"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body copy",
+      "default": "<p>I bought a tenth bottle as a control — the most expensive one I could find that published a lab report before I paid, rather than after I asked. It cost $59. It is made by a company called Neera.</p><p>Here is the declaration: <strong>Neera paid for this testing,</strong> and this article is published on their site. You should weigh everything above accordingly. The reason I agreed to it is that they asked for exactly one thing — that their bottle go on the same saw as the other nine, and that the <strong>result be published</strong> whatever it was.</p><p><strong>It went through</strong> the same seven steps. Same magnet, same scale, same torch, same jig, same bench, same lab.</p><p>One material, all the way through. No core, no plating boundary, no film on the inside wall. The colour is uniform from the outer surface to the inner because there is nothing in there but copper. The hammer pattern does not repeat, because a person put it there. The lab came back at 99.9%.</p><p>It is the only bottle of the ten that was what it said it was. That is a lower bar than it sounds like, and nine companies failed it.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_fallback",
+      "label": "Photo fallback filename",
+      "info": "Used only if no photo is set above. Must be an asset filename already uploaded to this theme.",
+      "default": "copper-bottles-cut-open-tenth-bottle.jpg"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Photo caption",
+      "default": "Bottle 10 · $59 · 99.9% copper · no lining, no core"
+    }
+  ],
+  "presets": [
+    {
+      "name": "The tenth bottle"
+    }
+  ]
+}
+{% endschema %}

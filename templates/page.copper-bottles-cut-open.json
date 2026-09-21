@@ -270,7 +270,16 @@
         "closing_line": "Mine failed three of the four. I kept it on the shelf as a reminder.",
         "photo_fallback": "copper-bottles-cut-open-side-by-side.jpg"
       }
+    },
+    "tenth-bottle": {
+      "type": "copper-bottles-cut-open-tenth-bottle",
+      "settings": {
+        "heading": "The tenth bottle, and the part where I have to declare something",
+        "body": "<p>I bought a tenth bottle as a control — the most expensive one I could find that published a lab report before I paid, rather than after I asked. It cost $59. It is made by a company called Neera.</p><p>Here is the declaration: <strong>Neera paid for this testing,</strong> and this article is published on their site. You should weigh everything above accordingly. The reason I agreed to it is that they asked for exactly one thing — that their bottle go on the same saw as the other nine, and that the <strong>result be published</strong> whatever it was.</p><p><strong>It went through</strong> the same seven steps. Same magnet, same scale, same torch, same jig, same bench, same lab.</p><p>One material, all the way through. No core, no plating boundary, no film on the inside wall. The colour is uniform from the outer surface to the inner because there is nothing in there but copper. The hammer pattern does not repeat, because a person put it there. The lab came back at 99.9%.</p><p>It is the only bottle of the ten that was what it said it was. That is a lower bar than it sounds like, and nine companies failed it.</p>",
+        "photo_fallback": "copper-bottles-cut-open-tenth-bottle.jpg",
+        "caption": "Bottle 10 · $59 · 99.9% copper · no lining, no core"
+      }
     }
   },
-  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this", "four-ways", "lab-confirmed", "math", "self-check"]
+  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this", "four-ways", "lab-confirmed", "math", "self-check", "tenth-bottle"]
 }
