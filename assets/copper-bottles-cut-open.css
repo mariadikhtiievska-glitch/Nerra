@@ -337,13 +337,21 @@
 }
 
 @media (min-width: 768px) {
+  /* Two-column grid: text left, photo right — same pattern as Four Ways /
+     Check Yours in 60 Seconds. Hero is the alternation anchor (text-left/
+     photo-right); DOM order already matches, no order override needed. */
   .cls-coppercutopen-hero__inner {
     max-width: 800px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    align-items: start;
+    gap: 32px;
+    padding: 0 40px;
   }
 
   .cls-coppercutopen-hero__text {
-    padding: 0 40px;
+    padding: 0;
   }
 
   .cls-coppercutopen-hero__heading {
@@ -358,13 +366,12 @@
 
   .cls-coppercutopen-hero__photo {
     border-radius: 8px;
-    margin: 0 40px;
-    width: auto;
-    aspect-ratio: 800 / 480;
+    aspect-ratio: 340 / 255;
   }
 
   .cls-coppercutopen-hero__caption-wrap {
-    padding: 10px 40px 40px;
+    grid-column: 1 / -1;
+    padding: 0;
   }
 }
 
@@ -420,20 +427,30 @@
 }
 
 @media (min-width: 768px) {
+  /* Two-column grid: photo left, text right (2nd in the alternating
+     sequence, Hero being 1st). Column widths are flipped (340px first,
+     1fr second) versus the text-left variant, and order: -1 on the photo
+     moves it into that first narrow column despite being second in DOM
+     — order changes visual placement order but not track widths, so both
+     have to change together for the swap to land correctly. */
   .cls-coppercutopen-opening-test__inner {
     max-width: 800px;
     margin: 0 auto;
-  }
-
-  .cls-coppercutopen-opening-test__body {
+    display: grid;
+    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+    align-items: start;
+    gap: 32px;
     padding: 0 40px;
   }
 
+  .cls-coppercutopen-opening-test__body {
+    padding: 0;
+  }
+
   .cls-coppercutopen-opening-test__photo {
-    margin: 0 40px;
-    width: auto;
+    order: -1;
     border-radius: 8px;
-    aspect-ratio: 800 / 600;
+    aspect-ratio: 340 / 420;
   }
 }
 
@@ -500,13 +517,20 @@
 }
 
 @media (min-width: 768px) {
+  /* Two-column grid: text left, photo right (3rd in the alternating
+     sequence). DOM order already matches, no order override needed. */
   .cls-coppercutopen-what-i-found__inner {
     max-width: 800px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    align-items: start;
+    gap: 32px;
+    padding: 0 40px;
   }
 
   .cls-coppercutopen-what-i-found__text {
-    padding: 0 40px;
+    padding: 0;
   }
 
   .cls-coppercutopen-what-i-found__heading {
@@ -515,14 +539,13 @@
   }
 
   .cls-coppercutopen-what-i-found__photo {
-    margin: 0 40px;
-    width: auto;
     border-radius: 8px;
-    aspect-ratio: 800 / 600;
+    aspect-ratio: 340 / 420;
   }
 
   .cls-coppercutopen-what-i-found__caption-wrap {
-    padding: 10px 40px 0;
+    grid-column: 1 / -1;
+    padding: 0;
   }
 }
 
@@ -576,13 +599,21 @@
 }
 
 @media (min-width: 768px) {
+  /* Two-column grid: photo left, text right (4th in the alternating
+     sequence) — flipped column widths + order: -1 on the photo, same
+     technique as Opening Test. */
   .cls-coppercutopen-why-i-did-this__inner {
     max-width: 800px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+    align-items: start;
+    gap: 32px;
+    padding: 0 40px;
   }
 
   .cls-coppercutopen-why-i-did-this__text {
-    padding: 0 40px;
+    padding: 0;
   }
 
   .cls-coppercutopen-why-i-did-this__heading {
@@ -591,10 +622,9 @@
   }
 
   .cls-coppercutopen-why-i-did-this__photo {
-    margin: 0 40px;
-    width: auto;
+    order: -1;
     border-radius: 8px;
-    aspect-ratio: 800 / 500;
+    aspect-ratio: 1 / 1;
   }
 }
 
@@ -759,13 +789,20 @@
 }
 
 @media (min-width: 768px) {
+  /* Two-column grid: text left, photo right (5th in the alternating
+     sequence). DOM order already matches, no order override needed. */
   .cls-coppercutopen-lab-confirmed__inner {
     max-width: 800px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    align-items: start;
+    gap: 32px;
+    padding: 0 40px;
   }
 
   .cls-coppercutopen-lab-confirmed__text {
-    padding: 0 40px;
+    padding: 0;
   }
 
   .cls-coppercutopen-lab-confirmed__heading {
@@ -774,10 +811,8 @@
   }
 
   .cls-coppercutopen-lab-confirmed__photo {
-    margin: 0 40px;
-    width: auto;
     border-radius: 8px;
-    aspect-ratio: 800 / 420;
+    aspect-ratio: 340 / 260;
   }
 }
 
@@ -995,13 +1030,22 @@
 }
 
 @media (min-width: 768px) {
+  /* Two-column grid: photo left, text right (6th in the alternating
+     sequence) — flipped column widths + order: -1 on the photo, same
+     technique as Opening Test/Why I Did This. Caption spans both
+     columns since it applies to the photo regardless of which side. */
   .cls-coppercutopen-tenth-bottle__inner {
     max-width: 800px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+    align-items: start;
+    gap: 32px;
+    padding: 0 40px;
   }
 
   .cls-coppercutopen-tenth-bottle__text {
-    padding: 0 40px;
+    padding: 0;
   }
 
   .cls-coppercutopen-tenth-bottle__heading {
@@ -1010,14 +1054,14 @@
   }
 
   .cls-coppercutopen-tenth-bottle__photo {
-    margin: 0 40px;
-    width: auto;
+    order: -1;
     border-radius: 8px;
-    aspect-ratio: 800 / 500;
+    aspect-ratio: 340 / 380;
   }
 
   .cls-coppercutopen-tenth-bottle__caption-wrap {
-    padding: 0 40px;
+    grid-column: 1 / -1;
+    padding: 0;
   }
 }
 
