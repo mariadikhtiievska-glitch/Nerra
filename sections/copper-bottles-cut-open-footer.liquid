@@ -1,0 +1,60 @@
+<div id="ClsCoppercutopenFooter-{{ section.id }}" class="cls-coppercutopen-footer">
+  <div class="cls-coppercutopen-footer__inner">
+    {%- if section.settings.site_line != blank -%}
+      <p>{{ section.settings.site_line | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.disclosure != blank -%}
+      <p>{{ section.settings.disclosure | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.wellness_disclaimer != blank -%}
+      <p>{{ section.settings.wellness_disclaimer | escape }}</p>
+    {%- endif -%}
+
+    <p class="cls-coppercutopen-footer__meta">
+      &copy; {{ 'now' | date: '%Y' }} {{ section.settings.company_name | escape }}
+      {%- if shop.privacy_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.privacy_policy.url }}">Privacy Policy</a>{% endif -%}
+      {%- if shop.refund_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.refund_policy.url }}">Refund Policy</a>{% endif -%}
+      {%- if shop.shipping_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.shipping_policy.url }}">Shipping Policy</a>{% endif -%}
+      {%- if shop.terms_of_service.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.terms_of_service.url }}">Terms of Service</a>{% endif -%}
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "site_line",
+      "label": "Site line",
+      "default": "neera-living.com — Sponsored content. Individual results may vary."
+    },
+    {
+      "type": "textarea",
+      "id": "disclosure",
+      "label": "Sponsored-testing disclosure",
+      "default": "Testing described on this page was commissioned and paid for by Neera Living. Bottles were purchased anonymously from public marketplace listings by the author. Composition analysis was performed by CALIMP, an independent laboratory. Full reports for all ten bottles are available on request."
+    },
+    {
+      "type": "textarea",
+      "id": "wellness_disclaimer",
+      "label": "Wellness / FDA disclaimer",
+      "default": "Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA."
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company name",
+      "default": "Neera Living"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

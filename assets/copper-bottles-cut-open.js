@@ -94,3 +94,19 @@
   update();
   setInterval(update, 1000);
 })();
+
+// FAQ accordion (node 84:116) — single-open behavior: opening one <details>
+// closes any other open one in the same list.
+(function () {
+  var list = document.querySelector('[data-cls-coppercutopen-faq]');
+  if (!list) return;
+
+  var items = Array.prototype.slice.call(list.querySelectorAll('.cls-coppercutopen-faq__item'));
+
+  list.addEventListener('toggle', function (event) {
+    if (!event.target.open) return;
+    items.forEach(function (item) {
+      if (item !== event.target) item.open = false;
+    });
+  }, true);
+})();
