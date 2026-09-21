@@ -1,0 +1,63 @@
+<div
+  id="ClsNeeraTopBar-{{ section.id }}"
+  class="cls-neera-top-bar"
+  data-cls-neera-top-bar
+  data-interval="{{ section.settings.rotation_seconds | times: 1000 }}"
+>
+  {%- for block in section.blocks -%}
+    {%- if block.settings.text != blank -%}
+      <p
+        class="cls-neera-top-bar__message"
+        {% if forloop.first %}
+          data-cls-neera-top-bar-active
+        {% endif %}
+        {{ block.shopify_attributes }}
+      >{{ block.settings.text | escape }}</p>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Neera top bar",
+  "settings": [
+    {
+      "type": "range",
+      "id": "rotation_seconds",
+      "label": "Seconds between messages",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message",
+          "default": "50% off autumn sale · only 254 left"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Neera top bar",
+      "blocks": [
+        {
+          "type": "message",
+          "settings": {
+            "text": "50% off autumn sale · only 254 left"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

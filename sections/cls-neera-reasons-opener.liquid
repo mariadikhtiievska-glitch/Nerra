@@ -1,0 +1,36 @@
+<div id="ClsNeeraReasonsOpener-{{ section.id }}" class="cls-neera-reasons-opener">
+  <div class="cls-neera-reasons-opener__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="cls-neera-reasons-opener__eyebrow cls-neera-type-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="cls-neera-reasons-opener__heading cls-neera-type-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera reasons opener",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE TEN REASONS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ten reasons people are moving their daily water into copper"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Neera reasons opener"
+    }
+  ]
+}
+{% endschema %}

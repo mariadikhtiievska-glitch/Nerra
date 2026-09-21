@@ -1,0 +1,107 @@
+<div id="ClsNeeraComparison-{{ section.id }}" class="cls-neera-comparison">
+  <div class="cls-neera-comparison__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="cls-neera-comparison__heading cls-neera-type-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="cls-neera-comparison__table" role="table">
+      <div class="cls-neera-comparison__row cls-neera-comparison__row--header" role="row">
+        <span class="cls-neera-comparison__cell cls-neera-comparison__cell--feature">{{ section.settings.header_feature_label | escape }}</span>
+        <span class="cls-neera-comparison__cell cls-neera-comparison__cell--header-col">{{ section.settings.header_neera_label | escape }}</span>
+        <span class="cls-neera-comparison__cell cls-neera-comparison__cell--header-col">{{ section.settings.header_steel_label | escape }}</span>
+        <span class="cls-neera-comparison__cell cls-neera-comparison__cell--header-col">{{ section.settings.header_plastic_label | escape }}</span>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.settings.feature != blank -%}
+          <div class="cls-neera-comparison__row" role="row" {{ block.shopify_attributes }}>
+            <span class="cls-neera-comparison__cell cls-neera-comparison__cell--feature">{{ block.settings.feature | escape }}</span>
+            <span class="cls-neera-comparison__cell cls-neera-comparison__cell--mark cls-neera-comparison__cell--check-accent">✓</span>
+            <span class="cls-neera-comparison__cell cls-neera-comparison__cell--mark {% if block.settings.steel_value %}cls-neera-comparison__cell--check-muted{% else %}cls-neera-comparison__cell--cross{% endif %}">{% if block.settings.steel_value %}✓{% else %}×{% endif %}</span>
+            <span class="cls-neera-comparison__cell cls-neera-comparison__cell--mark {% if block.settings.plastic_value %}cls-neera-comparison__cell--check-muted{% else %}cls-neera-comparison__cell--cross{% endif %}">{% if block.settings.plastic_value %}✓{% else %}×{% endif %}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera comparison table",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why choose copper over regular bottles?"
+    },
+    {
+      "type": "header",
+      "content": "Column labels"
+    },
+    {
+      "type": "text",
+      "id": "header_feature_label",
+      "label": "Feature column label",
+      "default": "Feature / Benefit"
+    },
+    {
+      "type": "text",
+      "id": "header_neera_label",
+      "label": "Neera column label",
+      "default": "NEERA"
+    },
+    {
+      "type": "text",
+      "id": "header_steel_label",
+      "label": "Steel column label",
+      "default": "STEEL"
+    },
+    {
+      "type": "text",
+      "id": "header_plastic_label",
+      "label": "Plastic column label",
+      "default": "PLASTIC"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature",
+          "label": "Feature / benefit"
+        },
+        {
+          "type": "checkbox",
+          "id": "steel_value",
+          "label": "Steel has this",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "plastic_value",
+          "label": "Plastic has this",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Neera comparison table",
+      "blocks": [
+        { "type": "row", "settings": { "feature": "Naturally Antimicrobial", "steel_value": false, "plastic_value": false } },
+        { "type": "row", "settings": { "feature": "Naturally Alkalizes Water", "steel_value": false, "plastic_value": false } },
+        { "type": "row", "settings": { "feature": "100% Plastic & BPA Free", "steel_value": true, "plastic_value": false } },
+        { "type": "row", "settings": { "feature": "Supports Ayurvedic Rituals", "steel_value": false, "plastic_value": false } },
+        { "type": "row", "settings": { "feature": "Zero Microplastic Risk", "steel_value": true, "plastic_value": false } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,123 @@
+<div id="ClsNeeraHowToUse-{{ section.id }}" class="cls-neera-how-to-use">
+  <div class="cls-neera-how-to-use__inner">
+    <div class="cls-neera-how-to-use__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-neera-how-to-use__heading cls-neera-type-heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ol class="cls-neera-how-to-use__steps">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <li class="cls-neera-how-to-use__step" {{ block.shopify_attributes }}>
+                <span class="cls-neera-how-to-use__step-badge cls-neera-type-body-medium" aria-hidden="true">{{ forloop.index }}</span>
+                <span class="cls-neera-how-to-use__step-text cls-neera-type-body">{{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ol>
+      {%- endif -%}
+
+      {%- if section.settings.notes_heading != blank or section.settings.notes_body != blank -%}
+        <div class="cls-neera-how-to-use__notes">
+          {%- if section.settings.notes_heading != blank -%}
+            <p class="cls-neera-how-to-use__notes-heading">{{ section.settings.notes_heading | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.notes_body != blank -%}
+            <p class="cls-neera-how-to-use__notes-body">{{ section.settings.notes_body }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-neera-how-to-use__photo">
+      {%- if section.settings.photo_image != blank -%}
+        <img
+          src="{{ section.settings.photo_image | image_url: width: 900 }}"
+          srcset="{{ section.settings.photo_image | image_url: width: 450 }} 450w, {{ section.settings.photo_image | image_url: width: 900 }} 900w, {{ section.settings.photo_image | image_url: width: 1050 }} 1050w"
+          sizes="(min-width: 768px) 560px, 100vw"
+          alt="{{ section.settings.photo_image.alt | default: section.settings.heading | escape }}"
+          loading="lazy"
+        >
+      {%- else -%}
+        <img
+          src="{{ section.settings.photo_image_fallback | asset_url }}"
+          srcset="{{ section.settings.photo_image_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w, {{ section.settings.photo_image_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w, {{ section.settings.photo_image_fallback | asset_url }} 1280w"
+          sizes="(min-width: 768px) 560px, 100vw"
+          alt="{{ section.settings.heading | escape }}"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera how to use",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How to make it part of your day"
+    },
+    {
+      "type": "header",
+      "content": "Important notes"
+    },
+    {
+      "type": "text",
+      "id": "notes_heading",
+      "label": "Notes heading",
+      "default": "Important notes"
+    },
+    {
+      "type": "richtext",
+      "id": "notes_body",
+      "label": "Notes body",
+      "default": "<p>Do not store acidic liquids (lemon water, juices) or carbonated drinks for long periods. Do not put the bottle in the dishwasher or leave it in the refrigerator for extended time. Hot beverages are not recommended. Natural patina (darkening) is normal for pure copper and is not a defect.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_image",
+      "label": "Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_image_fallback",
+      "label": "Photo fallback asset",
+      "default": "neera-how-to-use.jpg"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Step text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Neera how to use",
+      "blocks": [
+        { "type": "step", "settings": { "text": "In the evening, fill the bottle with clean, filtered, room-temperature or cool water." } },
+        { "type": "step", "settings": { "text": "Let it rest for 6–8 hours, or overnight." } },
+        { "type": "step", "settings": { "text": "In the morning, drink. Throughout the day you can refill and use it as you would any water bottle." } },
+        { "type": "step", "settings": { "text": "Once a week, or whenever you notice tarnish, clean with lemon and salt or mild soap and the included soft brush. Rinse thoroughly." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

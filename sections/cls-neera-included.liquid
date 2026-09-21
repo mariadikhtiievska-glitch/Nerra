@@ -1,0 +1,145 @@
+<div id="ClsNeeraIncluded-{{ section.id }}" class="cls-neera-included">
+  <div class="cls-neera-included__inner">
+    <div class="cls-neera-included__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-neera-included__heading cls-neera-type-heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="cls-neera-included__list">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <li class="cls-neera-included__item" {{ block.shopify_attributes }}>
+                <span class="cls-neera-included__item-bar" aria-hidden="true"></span>
+                <span class="cls-neera-included__item-text cls-neera-type-body">{{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-neera-included__photo">
+      {%- if section.settings.photo_image != blank -%}
+        <img
+          src="{{ section.settings.photo_image | image_url: width: 900 }}"
+          srcset="{{ section.settings.photo_image | image_url: width: 450 }} 450w, {{ section.settings.photo_image | image_url: width: 900 }} 900w, {{ section.settings.photo_image | image_url: width: 1050 }} 1050w"
+          sizes="(min-width: 768px) 560px, 100vw"
+          alt="{{ section.settings.photo_image.alt | default: section.settings.heading | escape }}"
+          loading="lazy"
+        >
+      {%- else -%}
+        <img
+          src="{{ section.settings.photo_image_fallback | asset_url }}"
+          srcset="{{ section.settings.photo_image_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w, {{ section.settings.photo_image_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w, {{ section.settings.photo_image_fallback | asset_url }} 1280w"
+          sizes="(min-width: 768px) 560px, 100vw"
+          alt="{{ section.settings.heading | escape }}"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+
+    <div class="cls-neera-included__badges">
+      <span class="cls-neera-included__badge">{{ section.settings.badge_1 | escape }}</span>
+      <span class="cls-neera-included__badge">{{ section.settings.badge_2 | escape }}</span>
+      <span class="cls-neera-included__badge">{{ section.settings.badge_3 | escape }}</span>
+      <span class="cls-neera-included__badge">{{ section.settings.badge_4 | escape }}</span>
+      <span class="cls-neera-included__badge">{{ section.settings.badge_5 | escape }}</span>
+      <span class="cls-neera-included__badge">{{ section.settings.badge_6 | escape }}</span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera included + trust",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What’s included with every Neera bottle"
+    },
+    {
+      "type": "header",
+      "content": "Photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_image",
+      "label": "Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_image_fallback",
+      "label": "Photo fallback asset",
+      "default": "neera-complete-set.jpg"
+    },
+    {
+      "type": "header",
+      "content": "Trust badges"
+    },
+    {
+      "type": "text",
+      "id": "badge_1",
+      "label": "Badge 1",
+      "default": "Free Shipping on All Orders"
+    },
+    {
+      "type": "text",
+      "id": "badge_2",
+      "label": "Badge 2",
+      "default": "Secure Checkout"
+    },
+    {
+      "type": "text",
+      "id": "badge_3",
+      "label": "Badge 3",
+      "default": "Makes a Great Gift"
+    },
+    {
+      "type": "text",
+      "id": "badge_4",
+      "label": "Badge 4",
+      "default": "4.8/5 Rating"
+    },
+    {
+      "type": "text",
+      "id": "badge_5",
+      "label": "Badge 5",
+      "default": "100,000+ Customers"
+    },
+    {
+      "type": "text",
+      "id": "badge_6",
+      "label": "Badge 6",
+      "default": "400,000+ Products Sold"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Included item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Item text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Neera included + trust",
+      "blocks": [
+        { "type": "item", "settings": { "text": "34 oz Hand-Hammered Pure Copper Bottle" } },
+        { "type": "item", "settings": { "text": "Copper Care Brush" } },
+        { "type": "item", "settings": { "text": "Travel Sleeve" } },
+        { "type": "item", "settings": { "text": "Access to Certificate of Authenticity (lab-tested purity)" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,117 @@
+<div id="ClsNeeraHero-{{ section.id }}" class="cls-neera-hero">
+  <div class="cls-neera-hero__content">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="cls-neera-hero__heading cls-neera-type-heading">{{ section.settings.heading | escape }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.subhead != blank -%}
+      <p class="cls-neera-hero__subhead cls-neera-type-body-italic-lead">{{ section.settings.subhead | escape }}</p>
+    {%- endif -%}
+
+    <div class="cls-neera-hero__byline">
+      <div class="cls-neera-hero__avatar">
+        {%- if section.settings.avatar_image != blank -%}
+          <img
+            src="{{ section.settings.avatar_image | image_url: width: 150 }}"
+            alt="{{ section.settings.avatar_image.alt | default: section.settings.byline_details | escape }}"
+            width="75"
+            height="75"
+            loading="eager"
+          >
+        {%- else -%}
+          <img
+            src="{{ section.settings.avatar_image_fallback | replace: '.jpg', '-150.jpg' | asset_url }}"
+            alt="{{ section.settings.byline_details | escape }}"
+            width="75"
+            height="75"
+            loading="eager"
+          >
+        {%- endif -%}
+      </div>
+      {%- if section.settings.byline_details != blank -%}
+        <p class="cls-neera-hero__byline-text">{{ section.settings.byline_details | escape | newline_to_br }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="cls-neera-hero__photo">
+    {%- if section.settings.hero_image != blank -%}
+      <img
+        src="{{ section.settings.hero_image | image_url: width: 900 }}"
+        srcset="{{ section.settings.hero_image | image_url: width: 450 }} 450w, {{ section.settings.hero_image | image_url: width: 900 }} 900w, {{ section.settings.hero_image | image_url: width: 1280 }} 1280w"
+        sizes="(min-width: 768px) 640px, 100vw"
+        alt="{{ section.settings.hero_image.alt | default: section.settings.heading | escape }}"
+        loading="eager"
+      >
+    {%- else -%}
+      <img
+        src="{{ section.settings.hero_image_fallback | asset_url }}"
+        srcset="{{ section.settings.hero_image_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w, {{ section.settings.hero_image_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w, {{ section.settings.hero_image_fallback | asset_url }} 1280w"
+        sizes="(min-width: 768px) 640px, 100vw"
+        alt="{{ section.settings.heading | escape }}"
+        loading="eager"
+      >
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "10 Reasons The Inflammation, Gut Issues, And Afternoon Fog You Blame On Age Might Be What You’re Drinking Out Of"
+    },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Subhead",
+      "default": "You sleep seven or eight hours. You eat clean. You take the supplements. And still, by three in the afternoon the fog rolls in, your stomach feels off, and that low-grade inflammation never quite leaves. You’ve started blaming your age. What if it isn’t your age? What if it’s the vessel you’ve been refilling every single day?"
+    },
+    {
+      "type": "header",
+      "content": "Author byline"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar_image",
+      "label": "Author photo"
+    },
+    {
+      "type": "text",
+      "id": "avatar_image_fallback",
+      "label": "Author photo fallback asset",
+      "default": "neera-hero-author-avatar.jpg"
+    },
+    {
+      "type": "textarea",
+      "id": "byline_details",
+      "label": "Byline details",
+      "default": "By Dr. Ryan Patel, MD\n\nMedical School\nLast updated September 2026\nLab-Tested Pure Copper Collection"
+    },
+    {
+      "type": "header",
+      "content": "Hero photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero photo"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_fallback",
+      "label": "Hero photo fallback asset",
+      "default": "neera-hero-photo.jpg"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Neera hero"
+    }
+  ]
+}
+{% endschema %}

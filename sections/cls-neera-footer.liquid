@@ -1,0 +1,57 @@
+<div id="ClsNeeraFooter-{{ section.id }}" class="cls-neera-footer">
+  <div class="cls-neera-footer__inner">
+    {%- if section.settings.disclaimer != blank -%}
+      <div class="cls-neera-footer__disclaimer">{{ section.settings.disclaimer }}</div>
+    {%- endif -%}
+
+    <p class="cls-neera-footer__meta">
+      © {{ 'now' | date: '%Y' }} {{ section.settings.brand_name | escape }}
+      {%- if shop.privacy_policy.url != blank %} · <a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a>{% endif -%}
+      {%- if shop.refund_policy.url != blank %} · <a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>{% endif -%}
+      {%- if shop.shipping_policy.url != blank %} · <a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a>{% endif -%}
+      {%- if shop.terms_of_service.url != blank %} · <a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a>{% endif -%}
+      {%- if section.settings.show_accessibility_link %} · <a href="#add-aacc-link">{{ section.settings.accessibility_link_label | escape }}</a>{% endif -%}
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera footer",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "default": "<p>Individual experiences vary. Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA.</p>"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name (for copyright line)",
+      "default": "Neera Living"
+    },
+    {
+      "type": "header",
+      "content": "Accessibility Assistant link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_accessibility_link",
+      "label": "Show Accessibility Assistant link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "accessibility_link_label",
+      "label": "Link label",
+      "default": "Accessibility Assistant"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Neera footer"
+    }
+  ]
+}
+{% endschema %}

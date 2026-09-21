@@ -1,0 +1,41 @@
+<!doctype html>
+<html
+  class="no-js{% if request.design_mode %} shopify-design-mode{% endif %}"
+  lang="{{ request.locale.iso_code | default: 'en' }}"
+  dir="ltr"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    {%- render 'theme-favicon', favicon_set: 'neera-living' -%}
+
+    <title>{{ page_title | escape }}</title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:wght@400;600&family=Lora:wght@600&display=swap"
+      rel="stylesheet"
+    >
+
+    {%- render 'theme-styles-variables' -%}
+    {{ 'neera-advertorial.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="cls-neera-body">
+    <main id="MainContent" class="cls-neera-main">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'cls-neera-sticky-bar' %}
+
+    <script src="{{ 'neera-advertorial.js' | asset_url }}" defer></script>
+  </body>
+</html>

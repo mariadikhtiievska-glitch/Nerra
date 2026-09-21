@@ -1,0 +1,93 @@
+<div id="ClsNeeraProblem-{{ section.id }}" class="cls-neera-problem">
+  <div class="cls-neera-problem__inner">
+    <div class="cls-neera-problem__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-neera-problem__heading cls-neera-type-heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.paragraph_1 != blank -%}
+        <div class="cls-neera-problem__paragraph cls-neera-type-body">{{ section.settings.paragraph_1 }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.paragraph_2 != blank -%}
+        <div class="cls-neera-problem__paragraph cls-neera-type-body">{{ section.settings.paragraph_2 }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.paragraph_3 != blank -%}
+        <div class="cls-neera-problem__paragraph cls-neera-type-body">{{ section.settings.paragraph_3 }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-neera-problem__photo">
+      {%- if section.settings.photo_image != blank -%}
+        <img
+          src="{{ section.settings.photo_image | image_url: width: 900 }}"
+          srcset="{{ section.settings.photo_image | image_url: width: 450 }} 450w, {{ section.settings.photo_image | image_url: width: 900 }} 900w, {{ section.settings.photo_image | image_url: width: 1280 }} 1280w"
+          sizes="(min-width: 768px) 560px, 100vw"
+          alt="{{ section.settings.photo_image.alt | default: section.settings.heading | escape }}"
+          loading="lazy"
+        >
+      {%- else -%}
+        <img
+          src="{{ section.settings.photo_image_fallback | asset_url }}"
+          srcset="{{ section.settings.photo_image_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w, {{ section.settings.photo_image_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w, {{ section.settings.photo_image_fallback | asset_url }} 1280w"
+          sizes="(min-width: 768px) 560px, 100vw"
+          alt="{{ section.settings.heading | escape }}"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera the problem",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What if it isn’t your age?"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_1",
+      "label": "Paragraph 1",
+      "default": "<p>Many of us quietly accept afternoon fog, a restless gut, and persistent <strong>low-level inflammation</strong> as the price of getting older. Yet there is another factor most people <strong>never examine:</strong> the container they drink from every day for decades.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_2",
+      "label": "Paragraph 2",
+      "default": "<p>Plastic bottles can shed microplastics and compounds such as <strong>BPA</strong> and phthalates into the water. <strong>Even high-quality</strong> stainless steel develops microscopic scratches over time — places where bacteria can settle and multiply. <strong>Aluminum bottles</strong> often hide a thin liner that eventually wears. <strong>Copper is different.</strong> For centuries, water stored in pure copper vessels was part of daily life in <strong>Ayurvedic</strong> tradition. Not because it was trendy, but because the material itself behaves differently.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_3",
+      "label": "Paragraph 3",
+      "default": "<p>This is not a <strong>“promise”</strong> that one bottle will erase every symptom. It is an invitation to remove one constant source of plastic and chemical exposure and replace it with a <strong>vessel</strong> that has been used for water storage for thousands of years — now made for modern life.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_image",
+      "label": "Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_image_fallback",
+      "label": "Photo fallback asset",
+      "default": "neera-problem-bottles.jpg"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Neera the problem"
+    }
+  ]
+}
+{% endschema %}

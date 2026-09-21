@@ -1,0 +1,1443 @@
+/* Neera Living advertorial — shared stylesheet for layout/neera-advertorial.liquid.
+   Single mobile-first breakpoint at 768px. All selectors scoped under cls-neera-*. */
+
+/* Third-party "Accessibility Assistant" app fix — its left-side drawer
+   (#aa-cc-left-drawer-menu) sits parked just off-screen (left: -100%) when
+   closed, but its own box-shadow still bleeds ~15px onto the visible page
+   at the left viewport edge (confirmed via live DOM inspection: the shadow
+   persists at a fixed screen position while scrolling, unrelated to any of
+   our own sections). Neutralize the shadow only while the drawer is
+   actually closed/hidden, so it still looks correct if a visitor opens it. */
+#aa-cc-left-drawer-menu[aria-hidden='true'] {
+  box-shadow: none;
+}
+
+:root {
+  --cls-neera-cream: #faf6ef;
+  --cls-neera-cream-alt: #f1e9dc;
+  --cls-neera-ink: #2a241f;
+  --cls-neera-ink-muted: #6e655c;
+  --cls-neera-espresso: #341e0f;
+  --cls-neera-white: #ffffff;
+  --cls-neera-accent-red: #9c3d21;
+  --cls-neera-amber: #e9bc69;
+  --cls-neera-urgent-red: #e23300;
+
+  --cls-neera-font-body: 'Instrument Sans', var(--font-body--family, system-ui), sans-serif;
+  --cls-neera-font-heading: 'Newsreader', var(--font-heading--family, Georgia), serif;
+  --cls-neera-font-stat: 'Lora', var(--font-heading--family, Georgia), serif;
+}
+
+.cls-neera-body,
+.cls-neera-body * {
+  box-sizing: border-box;
+}
+
+.cls-neera-body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--cls-neera-font-body);
+  color: var(--cls-neera-ink);
+  background: var(--cls-neera-cream);
+}
+
+.cls-neera-main {
+  display: block;
+}
+
+.cls-neera-main img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Type scale — mirrors Figma's named text styles (get_variable_defs on node 2:2) */
+
+.cls-neera-type-eyebrow {
+  font-family: var(--cls-neera-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.cls-neera-type-heading {
+  font-family: var(--cls-neera-font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.cls-neera-type-subhead {
+  font-family: var(--cls-neera-font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.cls-neera-type-body {
+  font-family: var(--cls-neera-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.cls-neera-type-body-medium {
+  font-family: var(--cls-neera-font-body);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.cls-neera-type-body-italic-lead {
+  font-family: var(--cls-neera-font-body);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.cls-neera-type-body-small {
+  font-family: var(--cls-neera-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.cls-neera-type-body-micro {
+  font-family: var(--cls-neera-font-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+}
+
+.cls-neera-type-button {
+  font-family: var(--cls-neera-font-body);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+}
+
+.cls-neera-type-numeral-reason {
+  font-family: var(--cls-neera-font-heading);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 64px;
+  letter-spacing: -1px;
+}
+
+.cls-neera-type-numeral-stat {
+  font-family: var(--cls-neera-font-stat);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: -0.4px;
+}
+
+/* Top bar — rotating promo message (node 19:2) */
+
+.cls-neera-top-bar {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12px 20px;
+  background: var(--cls-neera-espresso);
+  overflow: hidden;
+}
+
+.cls-neera-top-bar__message {
+  margin: 0;
+  color: var(--cls-neera-cream);
+  font-family: var(--cls-neera-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.cls-neera-top-bar__message:not([data-cls-neera-top-bar-active]) {
+  display: none;
+}
+
+/* Sticky mobile Add-to-Cart bar (node 25:48) — global chrome rendered from the layout,
+   not part of the numbered content-section order. Mobile-only: neutralized with a real
+   media-query override at 768px+, not just a JS class removal. */
+
+.cls-neera-sticky-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  display: flex;
+  padding: 11px 16px;
+  padding-bottom: calc(11px + env(safe-area-inset-bottom, 0px));
+  background: var(--cls-neera-cream);
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    transform var(--animation-speed-slow, 0.2s) var(--animation-easing, ease-in-out),
+    visibility 0s linear var(--animation-speed-slow, 0.2s);
+}
+
+.cls-neera-sticky-bar--visible {
+  transform: translateY(0);
+  visibility: visible;
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.12);
+  transition:
+    transform var(--animation-speed-slow, 0.2s) var(--animation-easing, ease-in-out),
+    visibility 0s linear 0s;
+}
+
+.cls-neera-sticky-bar__button {
+  display: flex;
+  width: 100%;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--cls-neera-accent-red);
+  color: var(--cls-neera-cream);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .cls-neera-sticky-bar {
+    display: none;
+  }
+}
+
+/* Block 1 — Hero (node 19:8) */
+
+.cls-neera-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 36px 20px 39px;
+  background: var(--cls-neera-cream);
+}
+
+.cls-neera-hero__content {
+  display: contents;
+}
+
+.cls-neera-hero__heading {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-hero__subhead {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-hero__byline {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.cls-neera-hero__avatar {
+  position: relative;
+  flex: 0 0 75px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.cls-neera-hero__avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cls-neera-hero__byline-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: var(--cls-neera-espresso);
+  font-family: var(--cls-neera-font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+}
+
+.cls-neera-hero__photo {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cls-neera-hero__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  /* Two-column desktop layout: text column (~55%) left, photo column (~45%)
+     right, vertically centered against each other. .cls-neera-hero__content
+     switches from display:contents (invisible on mobile, children flow
+     directly in the mobile flex column) to a real flex column forming the
+     left grid cell. */
+  .cls-neera-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    align-items: center;
+    gap: 56px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .cls-neera-hero__heading {
+    font-size: 56px;
+    line-height: 60px;
+  }
+
+  .cls-neera-hero__subhead {
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  .cls-neera-hero__photo {
+    height: 100%;
+    min-height: 420px;
+    align-self: stretch;
+    border-radius: 10px;
+  }
+}
+
+/* Block 2 — The Problem (node 19:17) */
+
+.cls-neera-problem {
+  background: var(--cls-neera-cream-alt);
+}
+
+.cls-neera-problem__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 20px;
+}
+
+.cls-neera-problem__content {
+  display: contents;
+}
+
+.cls-neera-problem__heading {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-problem__paragraph {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-problem__paragraph p {
+  margin: 0;
+}
+
+.cls-neera-problem__photo {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cls-neera-problem__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  /* Two-column desktop layout: photo left (~45%), text right (~55%),
+     vertically centered. Mobile DOM order keeps the photo last (matches
+     Figma's mobile order); order:-1 visually moves it first on desktop
+     without duplicating markup, per this project's documented pattern for
+     rows that need a different (not simple-reverse) order per breakpoint. */
+  .cls-neera-problem__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 56px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-problem__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1 1 55%;
+  }
+
+  .cls-neera-problem__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .cls-neera-problem__photo {
+    order: -1;
+    flex: 0 0 45%;
+    height: 100%;
+    min-height: 380px;
+    align-self: stretch;
+    border-radius: 10px;
+  }
+}
+
+/* Block 3 — Why Copper (node 19:25) */
+
+.cls-neera-why-copper {
+  background: var(--cls-neera-cream);
+}
+
+.cls-neera-why-copper__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 40px 20px;
+}
+
+.cls-neera-why-copper__content {
+  display: contents;
+}
+
+.cls-neera-why-copper__heading {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-why-copper__paragraph {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-why-copper__paragraph p {
+  margin: 0;
+}
+
+.cls-neera-why-copper__features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cls-neera-why-copper__feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cls-neera-why-copper__feature-bar {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 4px;
+  background: var(--cls-neera-accent-red);
+}
+
+.cls-neera-why-copper__feature-text {
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-why-copper__photo {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cls-neera-why-copper__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  /* Text column left (~55%), photo right (~45%), vertically centered —
+     same pattern as Hero. Mobile DOM order (text, then photo) already
+     matches desktop, so no order override is needed here. */
+  .cls-neera-why-copper__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 56px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-why-copper__content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 1 1 55%;
+  }
+
+  .cls-neera-why-copper__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .cls-neera-why-copper__photo {
+    flex: 0 0 45%;
+    height: 100%;
+    min-height: 460px;
+    align-self: stretch;
+    border-radius: 10px;
+  }
+
+  .cls-neera-why-copper__photo img {
+    object-position: center 20%;
+  }
+}
+
+/* Block 4 — The Ten Reasons: section opener (node 19:47) */
+
+.cls-neera-reasons-opener {
+  background: var(--cls-neera-cream-alt);
+}
+
+.cls-neera-reasons-opener__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 40px 20px 24px;
+}
+
+.cls-neera-reasons-opener__eyebrow {
+  margin: 0;
+  color: var(--cls-neera-accent-red);
+}
+
+.cls-neera-reasons-opener__heading {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+@media (min-width: 768px) {
+  /* Short intro (eyebrow + heading, no photo) — single centered narrow
+     column rather than stretching two lines across the full row width. */
+  .cls-neera-reasons-opener__inner {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 64px 40px 40px;
+  }
+
+  .cls-neera-reasons-opener__heading {
+    font-size: 40px;
+    line-height: 46px;
+  }
+}
+
+/* Reason blocks (nodes 19:50–22:37) — one reusable section type,
+   instantiated once per reason with different settings/content. */
+
+.cls-neera-reason {
+  background: var(--cls-neera-cream);
+}
+
+.cls-neera-reason--cream-alt {
+  background: var(--cls-neera-cream-alt);
+}
+
+.cls-neera-reason__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 36px 20px;
+}
+
+.cls-neera-reason__content {
+  display: contents;
+}
+
+.cls-neera-reason__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cls-neera-reason__number {
+  flex: 0 0 auto;
+  width: 80px;
+  margin: 0;
+  color: var(--cls-neera-accent-red);
+  opacity: 0.3;
+}
+
+.cls-neera-reason__heading {
+  flex: 1 1 auto;
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-reason__body {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-reason__body p {
+  margin: 0;
+}
+
+.cls-neera-reason__photo {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cls-neera-reason__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  /* Zigzag two-column layout: text column + photo column, alternating
+     sides per instance via the image_position setting. Default (no
+     modifier class) is text-left/photo-right — DOM order already matches,
+     no order override needed. --image-left flips the photo to the left
+     with order:-1, same technique as Block 2. */
+  .cls-neera-reason__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 56px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 40px;
+  }
+
+  .cls-neera-reason__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1 1 55%;
+  }
+
+  .cls-neera-reason__heading {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .cls-neera-reason__photo {
+    flex: 0 0 45%;
+    height: 100%;
+    min-height: 360px;
+    align-self: stretch;
+    border-radius: 10px;
+  }
+
+  .cls-neera-reason--image-left .cls-neera-reason__photo {
+    order: -1;
+  }
+}
+
+/* Block 5 — How to Use (node 23:2) */
+
+.cls-neera-how-to-use {
+  background: var(--cls-neera-cream);
+}
+
+.cls-neera-how-to-use__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 40px 20px;
+}
+
+.cls-neera-how-to-use__content {
+  display: contents;
+}
+
+.cls-neera-how-to-use__heading {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-how-to-use__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cls-neera-how-to-use__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cls-neera-how-to-use__step-badge {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: var(--cls-neera-accent-red);
+  color: var(--cls-neera-cream);
+}
+
+.cls-neera-how-to-use__step-text {
+  flex: 1 1 auto;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-how-to-use__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--cls-neera-amber);
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-how-to-use__notes-heading {
+  margin: 0;
+  font-family: var(--cls-neera-font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.cls-neera-how-to-use__notes-body {
+  margin: 0;
+  font-family: var(--cls-neera-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.cls-neera-how-to-use__notes-body p {
+  margin: 0;
+}
+
+.cls-neera-how-to-use__photo {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cls-neera-how-to-use__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  /* Text column left (~55%: heading, steps, notes box), photo right
+     (~45%), vertically centered — same pattern as Hero/Why-Copper. */
+  .cls-neera-how-to-use__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 56px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-how-to-use__content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 1 1 55%;
+  }
+
+  .cls-neera-how-to-use__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .cls-neera-how-to-use__photo {
+    flex: 0 0 45%;
+    height: 100%;
+    min-height: 420px;
+    align-self: stretch;
+    border-radius: 10px;
+  }
+}
+
+/* Block 6 — Comparison Table (node 23:27). Column headers use Instrument
+   Sans instead of Figma's literal Work Sans — that font appears nowhere
+   else on the page, used only for 3 six-letter labels; not worth loading a
+   4th font family for. */
+
+.cls-neera-comparison {
+  background: var(--cls-neera-cream-alt);
+}
+
+.cls-neera-comparison__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 20px;
+}
+
+.cls-neera-comparison__heading {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-comparison__table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: var(--cls-neera-white);
+  border: 1px solid var(--cls-neera-espresso);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cls-neera-comparison__row {
+  display: flex;
+  align-items: center;
+  padding: 13px 8px 13px 12px;
+}
+
+.cls-neera-comparison__row:not(.cls-neera-comparison__row--header):not(:last-child) {
+  border-bottom: 1px solid var(--cls-neera-cream-alt);
+}
+
+.cls-neera-comparison__row--header {
+  background: var(--cls-neera-espresso);
+  color: var(--cls-neera-cream);
+}
+
+.cls-neera-comparison__cell--feature {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--cls-neera-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-comparison__row--header .cls-neera-comparison__cell--feature {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--cls-neera-cream);
+}
+
+.cls-neera-comparison__cell--header-col {
+  flex: 0 0 56px;
+  text-align: center;
+  font-family: var(--cls-neera-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--cls-neera-cream);
+}
+
+.cls-neera-comparison__cell--mark {
+  flex: 0 0 56px;
+  text-align: center;
+  font-family: var(--cls-neera-font-body);
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.cls-neera-comparison__cell--check-accent {
+  color: var(--cls-neera-accent-red);
+  font-size: 17px;
+}
+
+.cls-neera-comparison__cell--check-muted {
+  color: var(--cls-neera-ink-muted);
+  font-size: 17px;
+}
+
+.cls-neera-comparison__cell--cross {
+  color: var(--cls-neera-ink-muted);
+  font-size: 25px;
+}
+
+@media (min-width: 768px) {
+  /* No photo to pair with — single centered column, constrained width
+     rather than stretching the table edge-to-edge. */
+  .cls-neera-comparison__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-comparison__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .cls-neera-comparison__cell--header-col,
+  .cls-neera-comparison__cell--mark {
+    flex: 0 0 90px;
+  }
+}
+
+/* Block 7 — What's Included + Trust (node 24:2) */
+
+.cls-neera-included {
+  background: var(--cls-neera-cream);
+}
+
+.cls-neera-included__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 40px 20px;
+}
+
+.cls-neera-included__content {
+  display: contents;
+}
+
+.cls-neera-included__heading {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-included__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cls-neera-included__item {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.cls-neera-included__item-bar {
+  flex-shrink: 0;
+  width: 4px;
+  background: var(--cls-neera-accent-red);
+}
+
+.cls-neera-included__item-text {
+  flex: 1 1 auto;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-included__photo {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cls-neera-included__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cls-neera-included__badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  width: 100%;
+  background: var(--cls-neera-accent-red);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cls-neera-included__badge {
+  display: flex;
+  min-height: 70px;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 10px;
+  background: var(--cls-neera-cream-alt);
+  color: var(--cls-neera-espresso);
+  font-family: var(--cls-neera-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  /* Text column left (~55%), photo right (~45%), vertically centered —
+     same pattern as Hero/Why-Copper/How-to-Use. Trust badges don't pair
+     with either column, so they run full-width beneath both via a
+     dedicated grid row. */
+  .cls-neera-included__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    grid-template-areas:
+      "content photo"
+      "badges photo";
+    column-gap: 56px;
+    row-gap: 24px;
+    align-items: start;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-included__content {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .cls-neera-included__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .cls-neera-included__photo {
+    grid-area: photo;
+    height: 100%;
+    min-height: 380px;
+    align-self: stretch;
+    border-radius: 10px;
+  }
+
+  .cls-neera-included__badges {
+    grid-area: badges;
+  }
+}
+
+/* Block 10 — Final CTA + Product Card (node 25:33) */
+
+.cls-neera-final-cta {
+  background: var(--cls-neera-espresso);
+}
+
+.cls-neera-final-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 48px 20px;
+}
+
+.cls-neera-final-cta__photo {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cls-neera-final-cta__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cls-neera-final-cta__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 420px;
+  padding: 23px 17px;
+  border-radius: 6px;
+  background: var(--cls-neera-white);
+}
+
+.cls-neera-final-cta__headline {
+  margin: 0;
+  color: var(--cls-neera-urgent-red);
+  text-align: center;
+  font-family: var(--cls-neera-font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.cls-neera-final-cta__badges {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.cls-neera-final-cta__badge {
+  margin: 0;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background: var(--cls-neera-amber);
+  color: var(--cls-neera-ink);
+  font-family: var(--cls-neera-font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 23px;
+  text-align: center;
+}
+
+.cls-neera-final-cta__badge--rte p {
+  margin: 0;
+}
+
+.cls-neera-final-cta__price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.cls-neera-final-cta__price-value {
+  margin: 0;
+  color: var(--cls-neera-accent-red);
+}
+
+.cls-neera-final-cta__price-note {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+  font-family: var(--cls-neera-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.cls-neera-final-cta__button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 20px;
+  border-radius: 8px;
+  background: var(--cls-neera-accent-red);
+  color: var(--cls-neera-white);
+  text-align: center;
+  text-decoration: none;
+}
+
+.cls-neera-final-cta__countdown {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 26px;
+}
+
+.cls-neera-final-cta__countdown-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.cls-neera-final-cta__countdown-value {
+  color: var(--cls-neera-urgent-red);
+  font-family: var(--cls-neera-font-body);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cls-neera-final-cta__countdown-label {
+  color: var(--cls-neera-ink-muted);
+  font-family: var(--cls-neera-font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  /* Photo left, card right, vertically centered. */
+  .cls-neera-final-cta__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-final-cta__photo {
+    flex: 1 1 50%;
+    height: 100%;
+    min-height: 420px;
+    align-self: stretch;
+    border-radius: 10px;
+  }
+
+  .cls-neera-final-cta__card {
+    flex: 1 1 50%;
+    max-width: 440px;
+  }
+}
+
+/* Block 8 — Social Proof (node 24:36) */
+
+.cls-neera-reviews {
+  background: var(--cls-neera-cream-alt);
+}
+
+.cls-neera-reviews__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 40px 20px;
+}
+
+.cls-neera-reviews__heading {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-reviews__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cls-neera-reviews__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--cls-neera-accent-red);
+  border-radius: 10px;
+  background: var(--cls-neera-cream);
+}
+
+.cls-neera-reviews__stars {
+  margin: 0;
+  color: var(--cls-neera-accent-red);
+  font-family: var(--cls-neera-font-body);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.cls-neera-reviews__quote {
+  margin: 0;
+  color: var(--cls-neera-espresso);
+  font-family: var(--cls-neera-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.cls-neera-reviews__attribution {
+  margin: 0;
+  color: var(--cls-neera-ink-muted);
+  font-family: var(--cls-neera-font-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+}
+
+@media (min-width: 768px) {
+  /* All cards in a single centered row rather than a grid or stack. */
+  .cls-neera-reviews__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-reviews__heading {
+    text-align: center;
+  }
+
+  .cls-neera-reviews__list {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .cls-neera-reviews__card {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+/* Block 9 — FAQ accordion (node 25:2) */
+
+.cls-neera-faq {
+  background: var(--cls-neera-cream);
+}
+
+.cls-neera-faq__inner {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+}
+
+.cls-neera-faq__heading {
+  margin: 0 0 4px;
+  color: var(--cls-neera-espresso);
+}
+
+.cls-neera-faq__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cls-neera-faq__item {
+  border-bottom: 1px solid var(--cls-neera-cream-alt);
+  padding: 18px 0;
+}
+
+.cls-neera-faq__summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cls-neera-faq__summary::-webkit-details-marker {
+  display: none;
+}
+
+.cls-neera-faq__summary::marker {
+  display: none;
+  content: '';
+}
+
+.cls-neera-faq__question {
+  flex: 1 1 auto;
+  color: var(--cls-neera-espresso);
+  font-family: var(--cls-neera-font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.cls-neera-faq__icon {
+  flex-shrink: 0;
+  width: 16px;
+  text-align: right;
+  color: var(--cls-neera-accent-red);
+  font-family: var(--cls-neera-font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.cls-neera-faq__icon::before {
+  content: '+';
+}
+
+.cls-neera-faq__item[open] .cls-neera-faq__icon::before {
+  content: '−';
+}
+
+.cls-neera-faq__answer {
+  margin-top: 10px;
+  color: var(--cls-neera-espresso);
+  font-family: var(--cls-neera-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.cls-neera-faq__answer p {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  /* No photo/pairing content — single centered readable column. */
+  .cls-neera-faq__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-neera-faq__heading {
+    font-size: 36px;
+    line-height: 42px;
+    margin-bottom: 8px;
+  }
+}
+
+/* Footer — disclaimer (node 25:45) */
+
+.cls-neera-footer {
+  background: var(--cls-neera-espresso);
+  border-top: 1px solid var(--cls-neera-accent-red);
+}
+
+.cls-neera-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 20px 40px;
+  text-align: center;
+}
+
+.cls-neera-footer__disclaimer,
+.cls-neera-footer__meta {
+  margin: 0;
+  color: var(--cls-neera-cream);
+  opacity: 0.6;
+  font-family: var(--cls-neera-font-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+}
+
+.cls-neera-footer__disclaimer p {
+  margin: 0;
+}
+
+.cls-neera-footer__meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

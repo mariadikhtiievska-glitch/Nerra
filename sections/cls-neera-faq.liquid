@@ -1,0 +1,89 @@
+<div id="ClsNeeraFaq-{{ section.id }}" class="cls-neera-faq">
+  <div class="cls-neera-faq__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="cls-neera-faq__heading cls-neera-type-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="cls-neera-faq__list" data-cls-neera-faq-list>
+        {%- for block in section.blocks -%}
+          {%- if block.settings.question != blank -%}
+            <details
+              class="cls-neera-faq__item"
+              {% if block.settings.open %}open{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <summary class="cls-neera-faq__summary">
+                <span class="cls-neera-faq__question">{{ block.settings.question | escape }}</span>
+                <span class="cls-neera-faq__icon" aria-hidden="true"></span>
+              </summary>
+              {%- if block.settings.answer != blank -%}
+                <div class="cls-neera-faq__answer">{{ block.settings.answer }}</div>
+              {%- endif -%}
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Everything you need to know"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        },
+        {
+          "type": "checkbox",
+          "id": "open",
+          "label": "Open by default",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Neera FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is it safe to drink from every day?",
+            "answer": "<p>Yes. The Neera bottle is made from pure, food-grade copper and is safe for everyday use as drinkware. Use with clean, filtered, room-temperature or cool water. Follow the simple care instructions. These statements have not been evaluated by the FDA and are not intended as medical claims.</p>",
+            "open": true
+          }
+        },
+        { "type": "faq", "settings": { "question": "Will the water taste metallic?" } },
+        { "type": "faq", "settings": { "question": "How do I clean the bottle?" } },
+        { "type": "faq", "settings": { "question": "Does darkening or black spots mean something is wrong?" } },
+        { "type": "faq", "settings": { "question": "Can I put lemon water or hot drinks in it?" } },
+        { "type": "faq", "settings": { "question": "How do I know this is real copper?" } },
+        { "type": "faq", "settings": { "question": "What about shipping and if something is wrong?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

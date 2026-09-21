@@ -1,0 +1,41 @@
+<div
+  id="ClsNeeraStickyBar-{{ section.id }}"
+  class="cls-neera-sticky-bar"
+  data-cls-neera-sticky-bar
+  data-scroll-threshold="{{ section.settings.scroll_threshold }}"
+>
+  <a
+    class="cls-neera-sticky-bar__button cls-neera-type-button"
+    href="{{ section.settings.button_link | default: '/products/neera-copper-water-bottle-handcrafted-from-pure-copper' }}"
+  >
+    {{ section.settings.button_label | escape }}
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "Neera sticky bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Save up to 15% today"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "scroll_threshold",
+      "label": "Appears after scrolling (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    }
+  ]
+}
+{% endschema %}

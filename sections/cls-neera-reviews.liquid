@@ -1,0 +1,82 @@
+<div id="ClsNeeraReviews-{{ section.id }}" class="cls-neera-reviews">
+  <div class="cls-neera-reviews__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="cls-neera-reviews__heading cls-neera-type-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="cls-neera-reviews__list">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.quote != blank -%}
+            <div class="cls-neera-reviews__card" {{ block.shopify_attributes }}>
+              <p class="cls-neera-reviews__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+                {%- for i in (1..5) -%}
+                  {%- if i <= block.settings.rating -%}★{%- else -%}☆{%- endif -%}
+                {%- endfor -%}
+              </p>
+              <p class="cls-neera-reviews__quote">“{{ block.settings.quote | escape }}”</p>
+              {%- if block.settings.attribution != blank -%}
+                <p class="cls-neera-reviews__attribution">— {{ block.settings.attribution | escape }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Neera reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What people are saying"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "attribution",
+          "label": "Attribution",
+          "default": "Verified Buyer"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Neera reviews",
+      "blocks": [
+        { "type": "review", "settings": { "rating": 5, "quote": "I’ve been loving this copper water bottle. The quality is fantastic, and the hammered design gives it a stylish touch. It keeps my water fresh, and the included brush makes cleaning super easy.", "attribution": "Lexy, Verified Buyer" } },
+        { "type": "review", "settings": { "rating": 5, "quote": "Size is ideal to carry with you anytime. Quality is better than expected. Easy cleaning with the side brush. To make a change in your life and keep yourself hydrated — it’s worth the money.", "attribution": "Isabelle, Verified Buyer" } },
+        { "type": "review", "settings": { "rating": 5, "quote": "I really love this water bottle! It’s beautiful, stylish, and always with me — at the gym, at home, or in the car. It feels comfortable in my hand, the lid is secure, and I’ve even received a few compliments on it.", "attribution": "AJ, Verified Buyer" } },
+        { "type": "review", "settings": { "rating": 5, "quote": "What delicious water from this bottle. I pour already filtered water and it turns out to be the purest taste, like from a spring. It also looks very beautiful.", "attribution": "Alex, Verified Buyer" } },
+        { "type": "review", "settings": { "rating": 5, "quote": "This bottle is beautiful — detailed by hand. Comes with a brush as a gift. I bought it for its multiple benefits. Thank you very much!", "attribution": "Max, Verified Buyer" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
