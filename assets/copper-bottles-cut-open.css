@@ -244,6 +244,21 @@
     padding: 0 40px;
   }
 
+  .cls-coppercutopen-results-table__heading {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .cls-coppercutopen-results-table__table thead th {
+    font-size: 13px;
+    line-height: 17px;
+  }
+
+  .cls-coppercutopen-results-table__table tbody td {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
   /* Scale the table itself up too (not just the container) — otherwise
      it would just sit at its old 720px min-width, left-aligned in a
      much wider box. Column widths scaled ~1.6x from their mobile
