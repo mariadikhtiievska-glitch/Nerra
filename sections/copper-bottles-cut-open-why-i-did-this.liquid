@@ -1,0 +1,80 @@
+<div id="ClsCoppercutopenWhyIDidThis-{{ section.id }}" class="cls-coppercutopen-why-i-did-this">
+  <div class="cls-coppercutopen-why-i-did-this__inner">
+    <div class="cls-coppercutopen-why-i-did-this__text">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-coppercutopen-why-i-did-this__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <div class="cls-coppercutopen-why-i-did-this__body cls-coppercutopen-rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-coppercutopen-why-i-did-this__photo">
+      {%- if section.settings.photo != blank -%}
+        <img
+          src="{{ section.settings.photo | image_url: width: 1280 }}"
+          srcset="
+            {{ section.settings.photo | image_url: width: 450 }} 450w,
+            {{ section.settings.photo | image_url: width: 900 }} 900w,
+            {{ section.settings.photo | image_url: width: 1280 }} 1280w
+          "
+          sizes="100vw"
+          alt="{{ section.settings.photo.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.photo.width }}"
+          height="{{ section.settings.photo.height }}"
+        >
+      {%- elsif section.settings.photo_fallback != blank -%}
+        <img
+          src="{{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }}"
+          srcset="
+            {{ section.settings.photo_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w,
+            {{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w,
+            {{ section.settings.photo_fallback | asset_url }} 1280w
+          "
+          sizes="100vw"
+          alt="Nine bottles as they arrived, unstyled, all branding removed"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Why I did this",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "I started with one bottle and a bad feeling"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body copy",
+      "default": "<p>Mine was $26. It arrived looking exactly like the photographs, and for about three weeks it was fine.</p><p>Then the finish went at the cap. Not tarnish — tarnish is even and slow and it looks like age. This was a chip, and under the chip was something silver.</p><p><strong>I put a magnet on it. The magnet stayed.</strong></p><p>What bothered me was not the $26. It was that I had spent three weeks drinking <strong>out of it with no idea</strong>, and that if the plating had held a little longer I would still have no idea. There was nothing on the listing, nothing in the packaging and nothing in the product itself that would have told me.</p><p>So I wanted to know how common it was. Not from reviews, and not from other people’s blog posts — <strong>from the inside of the bottles.</strong></p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_fallback",
+      "label": "Photo fallback filename",
+      "info": "Used only if no photo is set above. Must be an asset filename already uploaded to this theme.",
+      "default": "copper-bottles-cut-open-nine-parcels.jpg"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why I did this"
+    }
+  ]
+}
+{% endschema %}
