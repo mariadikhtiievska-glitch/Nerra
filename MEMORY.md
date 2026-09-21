@@ -1249,3 +1249,66 @@ project's actual `@media` blocks for the real values rather than
 proposing new numbers — the reference project here turned out to scale
 headings only, never body copy, which was narrower than assumed at
 first.
+
+## Hero + alternating 2-column desktop layout, 2026-09-21
+
+After the "not 2 columns" report turned out to be about Hero/Opening
+Test (sections that were never claimed to be 2-column — the actual
+2-column sections, Four Ways/Self Check, were further down the page
+than the screenshots showed), the user asked for a real expansion:
+Hero plus every subsequent text+photo section should be 2-column at
+desktop too, alternating sides down the page. Confirmed the exact
+target class names for all six sections before writing any CSS, per
+the user's explicit ask, then implemented:
+
+1. Hero — text-left / photo-right (anchor)
+2. Opening Test — photo-left / text-right
+3. What I Found — text-left / photo-right
+4. Why I Did This — photo-left / text-right
+5. What the Lab Confirmed — text-left / photo-right
+6. The Tenth Bottle — photo-left / text-right
+
+Same grid technique as Four Ways/Self Check
+(`grid-template-columns: minmax(0,1fr) minmax(0,340px)`, `align-items:
+start`, `gap: 32px`) — those two untouched, already correct, not part
+of the alternation. No Liquid changes needed for the alternation
+itself: every section already had exactly two direct children of
+`__inner`. **Key technique for "photo-left" variants:** `order: -1`
+alone only changes visual placement order, not track widths — the
+`grid-template-columns` also has to flip (340px first, 1fr second) or
+the photo lands in the wide column instead of the narrow one. Photo
+aspect-ratios were recalculated per section for a ~340px-wide column
+(roughly preserving each photo's original mobile crop ratio), since
+the old desktop crops assumed an 800px single-column photo.
+
+**Self-caught bug during verification, fixed before reporting done:**
+a bare `grid-column: 1 / -1` on captions (Hero, What I Found, Tenth
+Bottle all have one) put them in a new grid row spanning full width —
+but grid row height is shared across all columns in that row, so the
+caption's row only started once the *entire* previous row finished,
+including the much taller text column. Confirmed via computed
+`grid-template-rows` (e.g. `1256px 21px` for What I Found) — not
+visible at a glance in a screenshot, which is what made this easy to
+ship by accident. **Fixed by wrapping photo + caption in a shared
+`__media` div** (new markup — the one exception to "no Liquid
+changes") that becomes the actual grid item; photo and caption stack
+via flex inside that one cell, independent of the text column's
+height. For Tenth Bottle's photo-left variant, `order: -1` moved from
+`__photo` to `__media` since `__media` is now the direct grid child.
+
+**Verification method that actually caught this:** computed styles
+(`getBoundingClientRect`, `getComputedStyle().gridTemplateRows`) — not
+screenshots. Screenshots in this environment have repeatedly proven
+unreliable for exact pixel-position judgments (scroll position drift
+between calls, apparent mismatches between visual position and
+measured position); trust computed layout numbers first, use
+screenshots only for a final sanity look once the numbers already
+check out.
+
+All 8 grid sections (6 new + Four Ways + Self Check) reconfirmed
+correct via computed `display`/`gridTemplateColumns`/photo-side after
+the caption fix. Mobile confirmed unaffected: the base (non-media-query)
+rule for every `__inner` is still plain `display:flex;
+flex-direction:column`, and the new `__media` wrapper has no rule at
+all outside the desktop `@media` block, so on mobile it's just an
+unstyled wrapper div — photo and caption stack exactly as before.
