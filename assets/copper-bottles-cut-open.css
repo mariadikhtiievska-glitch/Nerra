@@ -752,3 +752,39 @@
     aspect-ratio: 800 / 420;
   }
 }
+
+/* Block 8 — Why $29 Cannot Buy What It Says (node 84:40) */
+
+.cls-coppercutopen-math {
+  background: var(--cls-coppercutopen-investigation-bg);
+  padding-bottom: 44px;
+}
+
+.cls-coppercutopen-math__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 20px;
+}
+
+.cls-coppercutopen-math__heading {
+  margin: 0;
+  font-family: var(--cls-coppercutopen-font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+  color: var(--cls-coppercutopen-ink);
+}
+
+.cls-coppercutopen-math__body p {
+  font-weight: 400;
+  line-height: 26px;
+}
+
+@media (min-width: 768px) {
+  .cls-coppercutopen-math__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+}
