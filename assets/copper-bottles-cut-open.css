@@ -906,14 +906,20 @@
 }
 
 @media (min-width: 768px) {
+  /* Two-column grid, matching Four Ways' pattern (same list+media shape):
+     text column left, photo column right (~340px), top-aligned. */
   .cls-coppercutopen-self-check__inner {
     max-width: 800px;
     margin: 0 auto;
-    padding-bottom: 44px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    align-items: start;
+    gap: 32px;
+    padding: 0 40px 44px;
   }
 
   .cls-coppercutopen-self-check__text {
-    padding: 0 40px;
+    padding: 0;
   }
 
   .cls-coppercutopen-self-check__heading {
@@ -922,10 +928,7 @@
   }
 
   .cls-coppercutopen-self-check__photo {
-    margin: 0 40px;
-    width: auto;
     border-radius: 8px;
-    aspect-ratio: 800 / 500;
   }
 }
 
