@@ -21,6 +21,22 @@
         "caption": "All nine, bought online for $19–$39 from nine different sellers and sectioned on the same saw."
       }
     },
+    "opening-test": {
+      "type": "copper-bottles-cut-open-opening-test",
+      "settings": {
+        "body": "<p>Go and get your copper bottle. I’ll wait.</p><p>Now find a magnet. The one holding a photo to your fridge will do.</p><p>Hold it against the side of the bottle. Then against the cap, separately — the cap is where corners get cut first.</p><p><strong>Copper is not magnetic. Not weakly. Not at all.</strong></p><p>If the magnet grips, or drags, or hangs on for half a second before it slides, there is steel underneath whatever you are looking at.</p><p>Now the part nobody tells you: passing that test proves almost nothing.</p><p>Brass is not magnetic. Bronze is not magnetic. <strong>Aluminium is not magnetic.</strong> A steel bottle sprayed with copper-coloured paint can be non-magnetic too. The magnet catches one kind of fake and waves the rest through.</p><p>Which is how I ended up with nine bottles and a bandsaw.</p>",
+        "photo_fallback": "copper-bottles-cut-open-magnet-test.jpg"
+      }
+    },
+    "what-i-found": {
+      "type": "copper-bottles-cut-open-what-i-found",
+      "settings": {
+        "heading": "Nine bottles, nine sellers, one bandsaw",
+        "body": "<p>I bought nine bottles from nine different sellers. Prices ran from <strong>$19 to $39.</strong> Every listing used the word copper in the title. Four claimed <strong>100% pure copper.</strong> Two claimed lab testing. Five said hand-hammered or handmade.</p><p>Four of the nine responded to a magnet. On two of those, only the cap did — <strong>the body was copper</strong> and the cap was <strong>plated steel</strong>, which is the cheapest possible place to save money and the last place anyone looks.</p><p><strong>Six of the nine</strong> had a coating on the inside wall. You can see it once the bottle is open: a glossy film that stops neatly at the neck, where the spray gun stopped.</p><p>That sixth finding is the one that matters most, and it is the one I did not expect. A lacquered bottle is not a safety story. It is a pointlessness story. The entire <strong>reason</strong> to drink from copper is that the water touches copper. Put a film between the two and you have bought a heavy, expensive, copper-coloured container with a plastic interior — which is the thing most of these <strong>buyers were trying to get away from.</strong></p><p>Seven of the nine contained a metal that was <strong>not copper</strong> somewhere in the bottle: plated steel, a copper skin over aluminium, or copper alloyed down with zinc.</p><p>Two were solid copper the whole way through. Both were machine-pressed. Both were sold as <strong>hand-hammered.</strong></p><p>So the final count is not seven out of nine, or six out of nine. It is nine out of nine. Not one of the bottles I bought was what its listing said it was.</p><p>None of the nine sellers published a lab report. I asked all nine. Two replied. Neither sent anything.</p>",
+        "photo_fallback": "copper-bottles-cut-open-macro-wall.jpg",
+        "caption": "Bottle 4 · $27 · listed as 100% pure copper, lab-tested"
+      }
+    },
     "results-table": {
       "type": "copper-bottles-cut-open-results-table",
       "blocks": {
@@ -155,5 +171,5 @@
       }
     }
   },
-  "order": ["hero", "results-table"]
+  "order": ["hero", "opening-test", "what-i-found", "results-table"]
 }

@@ -1,0 +1,92 @@
+<div id="ClsCoppercutopenWhatIFound-{{ section.id }}" class="cls-coppercutopen-what-i-found">
+  <div class="cls-coppercutopen-what-i-found__inner">
+    <div class="cls-coppercutopen-what-i-found__text">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-coppercutopen-what-i-found__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <div class="cls-coppercutopen-what-i-found__body cls-coppercutopen-rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-coppercutopen-what-i-found__photo">
+      {%- if section.settings.photo != blank -%}
+        <img
+          src="{{ section.settings.photo | image_url: width: 1280 }}"
+          srcset="
+            {{ section.settings.photo | image_url: width: 450 }} 450w,
+            {{ section.settings.photo | image_url: width: 900 }} 900w,
+            {{ section.settings.photo | image_url: width: 1280 }} 1280w
+          "
+          sizes="100vw"
+          alt="{{ section.settings.photo.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.photo.width }}"
+          height="{{ section.settings.photo.height }}"
+        >
+      {%- elsif section.settings.photo_fallback != blank -%}
+        <img
+          src="{{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }}"
+          srcset="
+            {{ section.settings.photo_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w,
+            {{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w,
+            {{ section.settings.photo_fallback | asset_url }} 1280w
+          "
+          sizes="100vw"
+          alt="Macro shot of a cut bottle wall"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.caption != blank -%}
+      <div class="cls-coppercutopen-what-i-found__caption-wrap">
+        <p class="cls-coppercutopen-what-i-found__caption">{{ section.settings.caption | escape }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "What I found",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Nine bottles, nine sellers, one bandsaw"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body copy",
+      "default": "<p>I bought nine bottles from nine different sellers. Prices ran from <strong>$19 to $39.</strong> Every listing used the word copper in the title. Four claimed <strong>100% pure copper.</strong> Two claimed lab testing. Five said hand-hammered or handmade.</p><p>Four of the nine responded to a magnet. On two of those, only the cap did — <strong>the body was copper</strong> and the cap was <strong>plated steel</strong>, which is the cheapest possible place to save money and the last place anyone looks.</p><p><strong>Six of the nine</strong> had a coating on the inside wall. You can see it once the bottle is open: a glossy film that stops neatly at the neck, where the spray gun stopped.</p><p>That sixth finding is the one that matters most, and it is the one I did not expect. A lacquered bottle is not a safety story. It is a pointlessness story. The entire <strong>reason</strong> to drink from copper is that the water touches copper. Put a film between the two and you have bought a heavy, expensive, copper-coloured container with a plastic interior — which is the thing most of these <strong>buyers were trying to get away from.</strong></p><p>Seven of the nine contained a metal that was <strong>not copper</strong> somewhere in the bottle: plated steel, a copper skin over aluminium, or copper alloyed down with zinc.</p><p>Two were solid copper the whole way through. Both were machine-pressed. Both were sold as <strong>hand-hammered.</strong></p><p>So the final count is not seven out of nine, or six out of nine. It is nine out of nine. Not one of the bottles I bought was what its listing said it was.</p><p>None of the nine sellers published a lab report. I asked all nine. Two replied. Neither sent anything.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_fallback",
+      "label": "Photo fallback filename",
+      "info": "Used only if no photo is set above. Must be an asset filename already uploaded to this theme.",
+      "default": "copper-bottles-cut-open-macro-wall.jpg"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Photo caption",
+      "default": "Bottle 4 · $27 · listed as 100% pure copper, lab-tested"
+    }
+  ],
+  "presets": [
+    {
+      "name": "What I found"
+    }
+  ]
+}
+{% endschema %}
