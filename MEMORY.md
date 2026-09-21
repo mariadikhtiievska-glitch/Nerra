@@ -1067,12 +1067,116 @@ serving a stale cached render) — do a cache-busting reload
     without the baked caption, or the text-layer caption's price corrected
     to match.
 
-**Now built:** Sticky bar (global chrome), Hero, Opening Test, What I
-Found, Results table — all self-verified on the Nerra/dev theme.
-**Remaining sections** (continuing per "please continue working on
-sections for now," 2026-09-21): Why I Did This, Four Ways a Bottle Fakes
-It, What the Lab Confirmed, Why $29 Cannot Buy What It Says, Check Yours
-in 60 Seconds, The Tenth Bottle, What the $30 Actually Buys, Final CTA +
-Product Card (**must add `data-cls-coppercutopen-sticky-trigger` to this
-one's outer wrapper** — see the sticky bar's build log above), FAQ,
-Footer.
+- **Blocks 5–14 + Final CTA, all built 2026-09-21, completing the page.**
+  Continued straight through per "please continue working on sections for
+  now" rather than stopping after each one — see individual commits on
+  `dev` for full detail per section. Highlights:
+  - **Why I Did This** (`copper-bottles-cut-open-why-i-did-this.liquid`,
+    node `84:2`): personal-story section, heading + richtext body + photo.
+  - **Four Ways a Bottle Fakes It**
+    (`copper-bottles-cut-open-four-ways.liquid`, node `84:12`):
+    blocks-based 4-item list (max 4) + a flattened illustration (kept as
+    PNG, not JPEG, since it's flat-color line art). First section to use
+    a real two-column desktop grid (text left / illustration right,
+    ~340px) rather than the stacked text-then-photo pattern used
+    everywhere else — a judgment call made without a check-in, since the
+    content shape (list + diagram) doesn't fit the stacked pattern and
+    the choice was low-ambiguity.
+  - **What the Lab Confirmed** (`copper-bottles-cut-open-lab-confirmed.liquid`,
+    node `84:29`): heading + richtext body + document-link row (url
+    setting left unset, no fake PDF link) + photo. Caught that this
+    node's `color/cream-alt` resolves to the same `#f4f4f4` as
+    `color/investigation` (not the `#f1e9dc` JSX fallback) — no separate
+    token needed.
+  - **Why $29 Cannot Buy What It Says**
+    (`copper-bottles-cut-open-math.liquid`, node `84:40`): text-only, no
+    photo in this block.
+  - **Check Yours in 60 Seconds** (`copper-bottles-cut-open-self-check.liquid`,
+    node `84:47`): blocks-based 4-item self-check list — used the actual
+    *displayed* text for each item's title, not the stale Figma layer
+    names (e.g. layer "Check — 2. The pattern." displays as "2. The
+    interior."). Side-by-side photo has both captions ("Machine-pressed"/
+    "Hand-raised") baked into the source image with no discrepancy this
+    time; used `object-position: 50% 100%` on the square crop so
+    `object-fit: cover` never crops the caption strip off the bottom.
+  - **The Tenth Bottle** (`copper-bottles-cut-open-tenth-bottle.liquid`,
+    node `84:62`): the sponsored-content disclosure itself ("Neera paid
+    for this testing..."). White background (`color/cream` = `#ffffff`
+    here, confirmed via `get_variable_defs` — distinct from the
+    investigation-gray sections around it).
+  - **What the $30 Actually Buys**
+    (`copper-bottles-cut-open-what-30-buys.liquid`, node `84:73`'s own
+    text) + **Final CTA + Product Card**
+    (`copper-bottles-cut-open-final-cta.liquid`, node `120:2`, nested
+    inside `84:73`'s frame in Figma — confirmed by direct inspection this
+    *is* the sticky bar's "Block 12"). Final CTA has the promo-code
+    callout (code styled red via a plain setting + CSS, not baked into
+    richtext — richtext strips custom-styled spans), a rolling
+    per-visitor countdown (localStorage, same pattern as the sibling
+    project's Final CTA), blocks-based checkmark list (max 6), price
+    headline, and the primary CTA button. **Both this button's URL and
+    the sticky bar's are still unset** (fall back to `#`) — no real
+    product page identified for this store yet; ask the user rather than
+    guessing, same as the sibling project did for its own Final CTA link.
+  - **FAQ** (`copper-bottles-cut-open-faq.liquid`, node `84:116`): native
+    `<details>/<summary>` accordion, pure-CSS `+`/`−` via `[open]`,
+    single-open behavior via a `toggle`-event JS handler. All 6 questions
+    have real answer copy (no content gap this time, unlike the sibling
+    project's FAQ). New `--cls-coppercutopen-rule-neutral` token
+    (`#d9d9d9`, distinct from the results table's warm `#d8d2c7` rule).
+  - **Footer** (`copper-bottles-cut-open-footer.liquid`, node `85:21`):
+    sponsored-testing disclosure + wellness/FDA disclaimer + policy links
+    (`shop.privacy_policy` etc., only rendered if configured) + copyright
+    via `'now' | date: '%Y'`. **One deliberate content substitution:**
+    Figma's copy has a literal `[LAB NAME]` placeholder — replaced with
+    "CALIMP", the lab name already established elsewhere on this same
+    page (Hero byline, What the Lab Confirmed), since publishing a raw
+    bracket placeholder would be a worse error than filling in the name
+    the page already uses consistently.
+
+- **Sticky-bar trigger bug found and fixed via live testing, 2026-09-21.**
+  After the Final CTA section was built (giving the sticky bar its first
+  real trigger target), live-tested by scrolling to the actual max of the
+  page and the bar never appeared. Root cause: the trigger was the Final
+  CTA section's entire outer wrapper (~900px tall), and "wait for the
+  *whole* trigger element to scroll out of the viewport" was geometrically
+  unreachable — the section sits close to the end of the page, and even
+  at max scroll its bottom edge was still ~45px inside the viewport.
+  **Fixed** by replacing the trigger with a 1px marker at the very *top*
+  of the Final CTA section instead of observing the section itself — the
+  bar now appears as soon as the visitor reaches the CTA, which is both
+  reachable regardless of page length and a more typical pattern for a
+  persistent reminder bar (appear on arrival, not only after fully
+  passing by). Confirmed fixed via a **real** scroll (the `computer`
+  tool's scroll action) — note for future debugging: scrolling
+  programmatically via `javascript_exec` (`scrollTo`/`scrollBy`) did
+  **not** reliably trigger `IntersectionObserver` callbacks in this
+  remote Chrome environment, even after long waits; a real scroll action
+  did. Don't trust a JS-driven scroll to validate IntersectionObserver
+  behavior here — use the `computer` tool's scroll instead, and verify
+  the result with `getBoundingClientRect`/computed styles rather than a
+  screenshot (Shopify's own staff preview-mode toolbar overlays the
+  bottom of the viewport and can visually hide the bar even when it's
+  correctly positioned — same lesson already on record from the sibling
+  project).
+
+## Status
+
+**All 14 page sections plus the sticky bar are built and self-verified
+live on the Nerra/dev theme** (`#151435509947`, auto-synced via the
+GitHub integration from the `dev` branch): Sticky bar, Hero, Opening
+Test, What I Found, Results table, Why I Did This, Four Ways a Bottle
+Fakes It, What the Lab Confirmed, Why $29 Cannot Buy What It Says, Check
+Yours in 60 Seconds, The Tenth Bottle, What the $30 Actually Buys, Final
+CTA + Product Card (sticky-bar trigger confirmed firing correctly), FAQ,
+Footer. Not yet merged into `main` (i.e. not live) — per the new
+git-first workflow, that happens after the user reviews/tests on
+Nerra/dev.
+
+**Open items for the user, not yet resolved:**
+1. Both CTA buttons (sticky bar + Final CTA) have no real destination URL
+   set — need a real product page.
+2. The "What I Found" macro photo has a caption baked into the image
+   itself ("$29") that doesn't match its separate text caption ("$27...
+   lab-tested") — a pre-existing Figma-source inconsistency, not fixed
+   silently.
