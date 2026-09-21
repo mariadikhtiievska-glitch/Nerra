@@ -509,6 +509,11 @@
     padding: 0 40px;
   }
 
+  .cls-coppercutopen-what-i-found__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
   .cls-coppercutopen-what-i-found__photo {
     margin: 0 40px;
     width: auto;
@@ -578,6 +583,11 @@
 
   .cls-coppercutopen-why-i-did-this__text {
     padding: 0 40px;
+  }
+
+  .cls-coppercutopen-why-i-did-this__heading {
+    font-size: 36px;
+    line-height: 42px;
   }
 
   .cls-coppercutopen-why-i-did-this__photo {
@@ -668,6 +678,11 @@
     padding: 0;
   }
 
+  .cls-coppercutopen-four-ways__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
   .cls-coppercutopen-four-ways__illustration {
     border-radius: 8px;
     overflow: hidden;
@@ -753,6 +768,11 @@
     padding: 0 40px;
   }
 
+  .cls-coppercutopen-lab-confirmed__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
   .cls-coppercutopen-lab-confirmed__photo {
     margin: 0 40px;
     width: auto;
@@ -794,6 +814,11 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 0 40px;
+  }
+
+  .cls-coppercutopen-math__heading {
+    font-size: 36px;
+    line-height: 42px;
   }
 }
 
@@ -891,6 +916,11 @@
     padding: 0 40px;
   }
 
+  .cls-coppercutopen-self-check__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
   .cls-coppercutopen-self-check__photo {
     margin: 0 40px;
     width: auto;
@@ -971,6 +1001,11 @@
     padding: 0 40px;
   }
 
+  .cls-coppercutopen-tenth-bottle__heading {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
   .cls-coppercutopen-tenth-bottle__photo {
     margin: 0 40px;
     width: auto;
@@ -1016,6 +1051,11 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 0 40px;
+  }
+
+  .cls-coppercutopen-what-30-buys__heading {
+    font-size: 36px;
+    line-height: 42px;
   }
 }
 
@@ -1242,6 +1282,11 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 0 40px;
+  }
+
+  .cls-coppercutopen-faq__heading {
+    font-size: 36px;
+    line-height: 42px;
   }
 }
 
