@@ -231,7 +231,46 @@
         "heading": "The math doesn’t leave room",
         "body": "<p>Work backwards from the price tag.</p><p>A bottle listed at $29 on a marketplace leaves the seller somewhere <strong>around $9 to $12</strong> after platform fees, advertising, returns and shipping. <strong>That is the whole budget</strong> — metal, manufacture, cap, packaging, freight from Asia, and margin.</p><p>Now price the honest version. Machine-made copper bottles wholesale out of India at roughly $4 a unit, and that is the product category we are talking about: pressed on a line, sprayed inside, no testing. <strong>A bottle raised</strong> and hammered by hand is about an hour of somebody’s work. Batch testing at a <strong>laboratory</strong> is a real invoice per production run. Leaving the interior bare means accepting returns from customers who think tarnish is a defect, which costs money too.</p><p><strong>None of that fits inside $9.</strong></p><p>So something has to come out, and the order it comes out in is predictable. First the hand work — a die is faster and the listing can still say hammered. Then the testing, because nobody checks. Then the interior gets lacquered, because a bottle that never darkens generates fewer complaints. And if the number still does not work, the copper itself gets thinner, until it is a coating on something cheaper.</p><p><strong>That is not a conspiracy.</strong> Nobody in the chain is lying on purpose at every step. It is just what $29 buys once you subtract the fees, and the listing is written to make the subtraction invisible.</p><p>Which is also why the word copper does so much work in these titles. It is not a regulated claim on drinkware. It can legally describe a colour, a finish, a plating or a solid metal — four different products, one word, and the distinction buried in the specification block where nobody reads.</p>"
       }
+    },
+    "self-check": {
+      "type": "copper-bottles-cut-open-self-check",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "label": "1. The magnet.",
+            "body": "Body first, then the cap separately. Any grip at all means steel under the finish. Remember this only catches one kind of fake."
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "label": "2. The interior.",
+            "body": "Torch, phone camera, look down the neck. Real unlined copper is the same reddish-brown inside as out. Silver, grey or glossy means lined or plated."
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "label": "3. The patina.",
+            "body": "If your bottle has been in daily use for a month and the inside is still bright, it is not bare copper. Copper darkens. That is the whole mechanism."
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "label": "4. The certificate.",
+            "body": "Ask your seller for a composition report for your batch. The answer you get — or don’t get — is the test. A company that tests its batches can send it the same day."
+          }
+        }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4"],
+      "settings": {
+        "heading": "Four checks, on the bottle you already own",
+        "closing_line": "Mine failed three of the four. I kept it on the shelf as a reminder.",
+        "photo_fallback": "copper-bottles-cut-open-side-by-side.jpg"
+      }
     }
   },
-  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this", "four-ways", "lab-confirmed", "math"]
+  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this", "four-ways", "lab-confirmed", "math", "self-check"]
 }

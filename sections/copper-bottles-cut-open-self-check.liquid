@@ -1,0 +1,116 @@
+<div id="ClsCoppercutopenSelfCheck-{{ section.id }}" class="cls-coppercutopen-self-check">
+  <div class="cls-coppercutopen-self-check__inner">
+    <div class="cls-coppercutopen-self-check__text">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-coppercutopen-self-check__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      <div class="cls-coppercutopen-self-check__list">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.label != blank -%}
+            <div class="cls-coppercutopen-self-check__item" {{ block.shopify_attributes }}>
+              <p class="cls-coppercutopen-self-check__item-label">{{ block.settings.label | escape }}</p>
+              <p class="cls-coppercutopen-self-check__item-body">{{ block.settings.body | escape }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.closing_line != blank -%}
+        <p class="cls-coppercutopen-self-check__closing">{{ section.settings.closing_line | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-coppercutopen-self-check__photo">
+      {%- if section.settings.photo != blank -%}
+        <img
+          src="{{ section.settings.photo | image_url: width: 1280 }}"
+          srcset="
+            {{ section.settings.photo | image_url: width: 450 }} 450w,
+            {{ section.settings.photo | image_url: width: 900 }} 900w,
+            {{ section.settings.photo | image_url: width: 1280 }} 1280w
+          "
+          sizes="100vw"
+          alt="{{ section.settings.photo.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.photo.width }}"
+          height="{{ section.settings.photo.height }}"
+        >
+      {%- elsif section.settings.photo_fallback != blank -%}
+        <img
+          src="{{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }}"
+          srcset="
+            {{ section.settings.photo_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w,
+            {{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w,
+            {{ section.settings.photo_fallback | asset_url }} 1280w
+          "
+          sizes="100vw"
+          alt="Side by side: machine-pressed grid vs. hand-raised surface"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Check yours in 60 seconds",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Four checks, on the bottle you already own"
+    },
+    {
+      "type": "text",
+      "id": "closing_line",
+      "label": "Closing line",
+      "default": "Mine failed three of the four. I kept it on the shelf as a reminder."
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_fallback",
+      "label": "Photo fallback filename",
+      "info": "Used only if no photo is set above. Must be an asset filename already uploaded to this theme.",
+      "default": "copper-bottles-cut-open-side-by-side.jpg"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Check",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Check yours in 60 seconds",
+      "blocks": [
+        { "type": "item", "settings": { "label": "1. The magnet.", "body": "Body first, then the cap separately. Any grip at all means steel under the finish. Remember this only catches one kind of fake." } },
+        { "type": "item", "settings": { "label": "2. The interior.", "body": "Torch, phone camera, look down the neck. Real unlined copper is the same reddish-brown inside as out. Silver, grey or glossy means lined or plated." } },
+        { "type": "item", "settings": { "label": "3. The patina.", "body": "If your bottle has been in daily use for a month and the inside is still bright, it is not bare copper. Copper darkens. That is the whole mechanism." } },
+        { "type": "item", "settings": { "label": "4. The certificate.", "body": "Ask your seller for a composition report for your batch. The answer you get — or don’t get — is the test. A company that tests its batches can send it the same day." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
