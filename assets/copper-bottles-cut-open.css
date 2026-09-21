@@ -358,7 +358,7 @@
     grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
     align-items: center;
     column-gap: 56px;
-    row-gap: 24px;
+    row-gap: 8px;
     padding: 64px 40px;
   }
 
