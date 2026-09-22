@@ -1609,7 +1609,9 @@
 
 .cls-coppercutopen-footer {
   background: var(--cls-coppercutopen-investigation-bg);
-  padding: 32px 0 40px;
+  /* Bottom padding clears the fixed sticky bar (74px tall) plus a 24px
+     gap, so the footer's last line never sits underneath it. */
+  padding: 32px 0 calc(74px + 24px + env(safe-area-inset-bottom, 0px));
 }
 
 .cls-coppercutopen-footer__inner {
@@ -1636,7 +1638,6 @@
 @media (min-width: 768px) {
   .cls-coppercutopen-footer {
     padding-top: 22px;
-    padding-bottom: 22px;
   }
 
   .cls-coppercutopen-footer__inner {
