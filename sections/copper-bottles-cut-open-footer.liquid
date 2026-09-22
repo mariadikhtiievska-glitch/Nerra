@@ -14,10 +14,11 @@
 
     <p class="cls-coppercutopen-footer__meta">
       &copy; {{ 'now' | date: '%Y' }} {{ section.settings.company_name | escape }}
-      {%- if shop.privacy_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.privacy_policy.url }}">Privacy Policy</a>{% endif -%}
-      {%- if shop.refund_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.refund_policy.url }}">Refund Policy</a>{% endif -%}
-      {%- if shop.shipping_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.shipping_policy.url }}">Shipping Policy</a>{% endif -%}
-      {%- if shop.terms_of_service.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.terms_of_service.url }}">Terms of Service</a>{% endif -%}
+      {%- if shop.privacy_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a>{% endif -%}
+      {%- if shop.refund_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>{% endif -%}
+      {%- if shop.shipping_policy.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a>{% endif -%}
+      {%- if shop.terms_of_service.url != blank %}&nbsp;&middot;&nbsp;<a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a>{% endif -%}
+      {%- if section.settings.show_accessibility_link %}&nbsp;&middot;&nbsp;<a href="#add-aacc-link">{{ section.settings.accessibility_link_label | escape }}</a>{% endif -%}
     </p>
   </div>
 </div>
@@ -49,6 +50,22 @@
       "id": "company_name",
       "label": "Company name",
       "default": "Neera Living"
+    },
+    {
+      "type": "header",
+      "content": "Accessibility Assistant link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_accessibility_link",
+      "label": "Show Accessibility Assistant link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "accessibility_link_label",
+      "label": "Link label",
+      "default": "Accessibility Assistant"
     }
   ],
   "presets": [
