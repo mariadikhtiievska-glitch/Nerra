@@ -366,6 +366,11 @@ html {
   color: var(--cls-coppercutopen-ink-muted-neutral);
 }
 
+.cls-coppercutopen-hero__breadcrumb a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .cls-coppercutopen-hero__heading {
   margin: 0;
   font-family: var(--cls-coppercutopen-font-heading);

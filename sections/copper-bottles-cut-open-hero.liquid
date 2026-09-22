@@ -1,9 +1,9 @@
 <div id="ClsCoppercutopenHero-{{ section.id }}" class="cls-coppercutopen-hero">
   <div class="cls-coppercutopen-hero__inner">
     <div class="cls-coppercutopen-hero__title">
-      {%- if section.settings.breadcrumb != blank -%}
-        <p class="cls-coppercutopen-hero__breadcrumb">{{ section.settings.breadcrumb | escape }}</p>
-      {%- endif -%}
+      <p class="cls-coppercutopen-hero__breadcrumb">
+        <a href="{{ routes.root_url }}">Home</a>{%- if section.settings.breadcrumb != blank -%}{{ section.settings.breadcrumb | escape }}{%- endif -%}
+      </p>
 
       {%- if section.settings.heading != blank -%}
         <h1 class="cls-coppercutopen-hero__heading">{{ section.settings.heading | escape }}</h1>
@@ -67,8 +67,8 @@
     {
       "type": "text",
       "id": "breadcrumb",
-      "label": "Breadcrumb",
-      "default": "Home  >  Wellness  >  Drinkware  |  Advertorial"
+      "label": "Breadcrumb (after \"Home\")",
+      "default": "  >  Wellness  >  Drinkware  |  Advertorial"
     },
     {
       "type": "text",
