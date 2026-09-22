@@ -238,6 +238,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-results-table {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   .cls-coppercutopen-results-table__inner {
     max-width: 1280px;
     margin: 0 auto;
@@ -397,6 +402,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-hero {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Wider container + proportional column split (55/45), matching
      neera-advertorial.css's Hero. __title (breadcrumb + heading) and
      __text (subhead + byline) both sit in column 1, stacked (title
@@ -514,6 +524,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-opening-test {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Two-column grid: photo left, text right (2nd in the alternating
      sequence, Hero being 1st). Wider container + proportional 45/55
      split, matching neera-advertorial.css. Column proportions are
@@ -606,6 +621,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-what-i-found {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Two-column grid: text left, photo right (3rd in the alternating
      sequence). Wider container + proportional 55/45 split, matching
      neera-advertorial.css. DOM order already matches, no order
@@ -698,6 +718,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-why-i-did-this {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Two-column grid: photo left, text right (4th in the alternating
      sequence) — flipped column proportions + order: -1 on the photo,
      same technique as Opening Test. Wider container + proportional
@@ -794,6 +819,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-four-ways {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Wider container + proportional 55/45 split, matching
      neera-advertorial.css (was a fixed 340px media column). */
   .cls-coppercutopen-four-ways__inner {
@@ -891,6 +921,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-lab-confirmed {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Two-column grid: photo left, text right — flipped from the
      original text-left/photo-right per explicit request. Column
      proportions flipped (45fr first, 55fr second) + order: -1 on the
@@ -952,6 +987,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-math {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   .cls-coppercutopen-math__inner {
     max-width: 1280px;
     margin: 0 auto;
@@ -1048,6 +1088,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-self-check {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Two-column grid, matching Four Ways' pattern (same list+media shape):
      text column left, photo column right. Wider container + proportional
      55/45 split, matching neera-advertorial.css. */
@@ -1138,6 +1183,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-tenth-bottle {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Two-column grid: photo left, text right (6th in the alternating
      sequence) — flipped column proportions + order: -1, same technique
      as Opening Test/Why I Did This. order: -1 moved to __media (not
@@ -1232,6 +1282,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-what-30-buys {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   /* Two-column grid: text left, photo right — same 45/55 split +
      max-width:1280px/gap:56px/padding:64px 40px convention used
      elsewhere on the page. Photo moved here from Final CTA (was
@@ -1381,7 +1436,7 @@
      is now a single centered card, sized up since it no longer shares
      a column with a photo. */
   .cls-coppercutopen-final-cta {
-    padding: 64px 40px;
+    padding: 22px 40px;
   }
 
   .cls-coppercutopen-final-cta__inner {
@@ -1503,6 +1558,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-faq {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   .cls-coppercutopen-faq__inner {
     max-width: 1280px;
     margin: 0 auto;
@@ -1544,6 +1604,11 @@
 }
 
 @media (min-width: 768px) {
+  .cls-coppercutopen-footer {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
   .cls-coppercutopen-footer__inner {
     max-width: 1280px;
     margin: 0 auto;
