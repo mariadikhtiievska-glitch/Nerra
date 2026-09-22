@@ -2,36 +2,6 @@
   <div class="cls-coppercutopen-final-cta__trigger-marker" data-cls-coppercutopen-sticky-trigger aria-hidden="true"></div>
 
   <div class="cls-coppercutopen-final-cta__inner">
-    <div class="cls-coppercutopen-final-cta__photo">
-      {%- if section.settings.photo != blank -%}
-        <img
-          src="{{ section.settings.photo | image_url: width: 1280 }}"
-          srcset="
-            {{ section.settings.photo | image_url: width: 450 }} 450w,
-            {{ section.settings.photo | image_url: width: 900 }} 900w,
-            {{ section.settings.photo | image_url: width: 1280 }} 1280w
-          "
-          sizes="100vw"
-          alt="{{ section.settings.photo.alt | escape }}"
-          loading="lazy"
-          width="{{ section.settings.photo.width }}"
-          height="{{ section.settings.photo.height }}"
-        >
-      {%- elsif section.settings.photo_fallback != blank -%}
-        <img
-          src="{{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }}"
-          srcset="
-            {{ section.settings.photo_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w,
-            {{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w,
-            {{ section.settings.photo_fallback | asset_url }} 1280w
-          "
-          sizes="100vw"
-          alt="The complete Neera set"
-          loading="lazy"
-        >
-      {%- endif -%}
-    </div>
-
     <div class="cls-coppercutopen-final-cta__card">
       {%- if section.settings.promo_code != blank -%}
         <p class="cls-coppercutopen-final-cta__promo">
@@ -88,18 +58,6 @@
 {
   "name": "Final CTA",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "photo",
-      "label": "Photo"
-    },
-    {
-      "type": "text",
-      "id": "photo_fallback",
-      "label": "Photo fallback filename",
-      "info": "Used only if no photo is set above. Must be an asset filename already uploaded to this theme.",
-      "default": "copper-bottles-cut-open-complete-set.jpg"
-    },
     {
       "type": "text",
       "id": "promo_prefix",

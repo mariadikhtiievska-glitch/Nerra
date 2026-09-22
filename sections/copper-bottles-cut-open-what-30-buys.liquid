@@ -1,12 +1,44 @@
 <div id="ClsCoppercutopenWhat30Buys-{{ section.id }}" class="cls-coppercutopen-what-30-buys">
   <div class="cls-coppercutopen-what-30-buys__inner">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="cls-coppercutopen-what-30-buys__heading">{{ section.settings.heading | escape }}</h2>
-    {%- endif -%}
+    <div class="cls-coppercutopen-what-30-buys__text">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-coppercutopen-what-30-buys__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
 
-    {%- if section.settings.body != blank -%}
-      <div class="cls-coppercutopen-what-30-buys__body cls-coppercutopen-rte">{{ section.settings.body }}</div>
-    {%- endif -%}
+      {%- if section.settings.body != blank -%}
+        <div class="cls-coppercutopen-what-30-buys__body cls-coppercutopen-rte">{{ section.settings.body }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-coppercutopen-what-30-buys__photo">
+      {%- if section.settings.photo != blank -%}
+        <img
+          src="{{ section.settings.photo | image_url: width: 1280 }}"
+          srcset="
+            {{ section.settings.photo | image_url: width: 450 }} 450w,
+            {{ section.settings.photo | image_url: width: 900 }} 900w,
+            {{ section.settings.photo | image_url: width: 1280 }} 1280w
+          "
+          sizes="100vw"
+          alt="{{ section.settings.photo.alt | default: section.settings.heading | escape }}"
+          loading="lazy"
+          width="{{ section.settings.photo.width }}"
+          height="{{ section.settings.photo.height }}"
+        >
+      {%- elsif section.settings.photo_fallback != blank -%}
+        <img
+          src="{{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }}"
+          srcset="
+            {{ section.settings.photo_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w,
+            {{ section.settings.photo_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w,
+            {{ section.settings.photo_fallback | asset_url }} 1280w
+          "
+          sizes="100vw"
+          alt="The complete Neera set"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
@@ -25,6 +57,18 @@
       "id": "body",
       "label": "Body copy",
       "default": "<p>Going back to the arithmetic from earlier, here is the same subtraction run in the other direction.</p><p>An hour of hand-raising and hammering per bottle, which is why no two of them are <strong>identical</strong> and why the dimple pattern does not repeat.</p><p>A <strong>laboratory invoice</strong> against every production batch, not every hundredth one, with the certificate published on the product page rather than produced on request.</p><p>A bare interior, and the returns that come with it from people who <strong>think</strong> a darkening bottle is a <strong>broken bottle.</strong></p><p>A cap made from the same solid copper as the body, which is the single most common place to save $2.</p><p><strong>Stock held</strong> in the United States, so the thing <strong>arrives</strong> in a day or two <strong>instead</strong> of three weeks from overseas.</p><p>And the care brush and the sleeve in the box, rather than sold back to you as accessories.</p><p>Thirty dollars, once. Copper does not degrade, and with a lemon and a minute a week the bottle outlasts the argument.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_fallback",
+      "label": "Photo fallback filename",
+      "info": "Used only if no photo is set above. Must be an asset filename already uploaded to this theme.",
+      "default": "copper-bottles-cut-open-complete-set.jpg"
     }
   ],
   "presets": [
