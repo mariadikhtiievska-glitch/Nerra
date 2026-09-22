@@ -1353,18 +1353,36 @@
 }
 
 @media (min-width: 768px) {
+  /* Two-column grid: card left, photo right — same 45/55 split +
+     max-width:1280px/gap:56px/padding:64px 40px convention used
+     elsewhere on the page. DOM order is photo-then-card, so both
+     items get explicit grid-column placement rather than relying on
+     source order. */
   .cls-coppercutopen-final-cta {
-    padding: 48px 40px;
+    padding: 0;
   }
 
   .cls-coppercutopen-final-cta__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+    align-items: center;
+    gap: 56px;
+    padding: 64px 40px;
   }
 
   .cls-coppercutopen-final-cta__photo {
+    grid-column: 2;
+    grid-row: 1;
     border-radius: 8px;
-    aspect-ratio: 800 / 420;
+    aspect-ratio: 1 / 1;
+  }
+
+  .cls-coppercutopen-final-cta__card {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 auto;
   }
 }
 
