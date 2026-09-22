@@ -127,16 +127,27 @@
       answer.style.height = target + 'px';
     });
 
-    function onEnd(event) {
-      if (event.target !== answer || event.propertyName !== 'height') return;
+    function finish() {
       if (!opening) item.open = false;
       answer.style.height = '';
       answer.removeEventListener('transitionend', onEnd);
+      clearTimeout(timeoutId);
       answer._cleanup = null;
     }
+
+    function onEnd(event) {
+      if (event.target !== answer || event.propertyName !== 'height') return;
+      finish();
+    }
     answer.addEventListener('transitionend', onEnd);
+    // Fallback in case transitionend never fires (e.g. the tab was
+    // backgrounded mid-transition) — without this, a missed event
+    // leaves the item permanently stuck: `open` never flips and the
+    // inline height never clears, matching what was reported.
+    var timeoutId = setTimeout(finish, 300);
     answer._cleanup = function () {
       answer.removeEventListener('transitionend', onEnd);
+      clearTimeout(timeoutId);
       answer._cleanup = null;
     };
   }
