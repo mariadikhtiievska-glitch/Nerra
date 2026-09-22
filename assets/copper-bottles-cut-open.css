@@ -1567,9 +1567,7 @@
 }
 
 .cls-coppercutopen-faq__answer {
-  box-sizing: border-box;
   overflow: hidden;
-  padding-top: 10px;
   transition: height 0.25s ease;
 }
 
@@ -1585,6 +1583,15 @@
   font-weight: 400;
   line-height: 26px;
   color: var(--cls-coppercutopen-ink);
+}
+
+/* The question-to-answer gap lives on the first paragraph's margin
+   instead of the answer's own padding, so the animated height covers
+   0 -> full visible content with no fixed leftover chunk at the end
+   that would otherwise sit still while the rest of the collapse
+   finishes, reading as a stuck/stalled close. */
+.cls-coppercutopen-faq__answer p:first-child {
+  margin-top: 10px;
 }
 
 @media (min-width: 768px) {
