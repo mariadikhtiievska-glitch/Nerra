@@ -1532,20 +1532,50 @@
 }
 
 .cls-coppercutopen-faq__icon {
+  position: relative;
   flex-shrink: 0;
-  color: var(--cls-coppercutopen-ink-muted-neutral);
+  width: 16px;
+  height: 16px;
+  margin-top: 5px;
+}
+
+.cls-coppercutopen-faq__icon::before,
+.cls-coppercutopen-faq__icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--cls-coppercutopen-ink-muted-neutral);
+  transition: transform 0.25s ease;
 }
 
 .cls-coppercutopen-faq__icon::before {
-  content: '+';
+  width: 16px;
+  height: 2px;
+  transform: translate(-50%, -50%);
 }
 
-.cls-coppercutopen-faq__item[open] .cls-coppercutopen-faq__icon::before {
-  content: '\2212';
+.cls-coppercutopen-faq__icon::after {
+  width: 2px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+}
+
+/* Vertical bar rotates flat onto the horizontal one, turning + into − */
+.cls-coppercutopen-faq__item[open] .cls-coppercutopen-faq__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .cls-coppercutopen-faq__answer {
+  box-sizing: border-box;
+  overflow: hidden;
   padding-top: 10px;
+  transition: height 0.25s ease;
+}
+
+.cls-coppercutopen-faq__item:not([open]) .cls-coppercutopen-faq__answer {
+  display: block;
+  height: 0;
 }
 
 .cls-coppercutopen-faq__answer p {

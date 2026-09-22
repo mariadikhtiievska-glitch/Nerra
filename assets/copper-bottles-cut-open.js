@@ -95,17 +95,89 @@
 })();
 
 // FAQ accordion (node 84:116) — single-open behavior: opening one <details>
-// closes any other open one in the same list.
+// closes any other open one in the same list. Native <details> toggling is
+// instant with no animation hook, so the open/close is driven manually here:
+// intercept the summary click, set an explicit starting height, then
+// transition to the target height on the next frame. `_cleanup` tracks the
+// pending transitionend listener per answer so a rapid double-click cancels
+// the previous one instead of stacking listeners.
 (function () {
   var list = document.querySelector('[data-cls-coppercutopen-faq]');
   if (!list) return;
 
   var items = Array.prototype.slice.call(list.querySelectorAll('.cls-coppercutopen-faq__item'));
 
-  list.addEventListener('toggle', function (event) {
-    if (!event.target.open) return;
-    items.forEach(function (item) {
-      if (item !== event.target) item.open = false;
+  function openItem(item, answer) {
+    if (answer._cleanup) answer._cleanup();
+
+    answer.style.transition = 'none';
+    answer.style.height = answer.offsetHeight + 'px';
+    item.open = true;
+    var target = answer.scrollHeight;
+
+    requestAnimationFrame(function () {
+      answer.style.transition = '';
+      answer.style.height = target + 'px';
     });
-  }, true);
+
+    function onEnd(event) {
+      if (event.target !== answer || event.propertyName !== 'height') return;
+      answer.style.height = '';
+      answer.removeEventListener('transitionend', onEnd);
+      answer._cleanup = null;
+    }
+    answer.addEventListener('transitionend', onEnd);
+    answer._cleanup = function () {
+      answer.removeEventListener('transitionend', onEnd);
+      answer._cleanup = null;
+    };
+  }
+
+  function closeItem(item, answer) {
+    if (answer._cleanup) answer._cleanup();
+
+    answer.style.transition = 'none';
+    answer.style.height = answer.offsetHeight + 'px';
+
+    requestAnimationFrame(function () {
+      answer.style.transition = '';
+      answer.style.height = '0px';
+    });
+
+    function onEnd(event) {
+      if (event.target !== answer || event.propertyName !== 'height') return;
+      item.open = false;
+      answer.style.height = '';
+      answer.removeEventListener('transitionend', onEnd);
+      answer._cleanup = null;
+    }
+    answer.addEventListener('transitionend', onEnd);
+    answer._cleanup = function () {
+      answer.removeEventListener('transitionend', onEnd);
+      answer._cleanup = null;
+    };
+  }
+
+  items.forEach(function (item) {
+    var summary = item.querySelector('.cls-coppercutopen-faq__question');
+    var answer = item.querySelector('.cls-coppercutopen-faq__answer');
+    if (!summary || !answer) return;
+
+    summary.addEventListener('click', function (event) {
+      event.preventDefault();
+      var wasOpen = item.open;
+
+      items.forEach(function (other) {
+        if (other === item || !other.open) return;
+        var otherAnswer = other.querySelector('.cls-coppercutopen-faq__answer');
+        if (otherAnswer) closeItem(other, otherAnswer);
+      });
+
+      if (wasOpen) {
+        closeItem(item, answer);
+      } else {
+        openItem(item, answer);
+      }
+    });
+  });
 })();
