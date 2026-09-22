@@ -32,12 +32,25 @@
 }
 
 html {
-  /* Clips the horizontal shadow bleed from position:fixed elements
-     (e.g. the Accessibility Assistant app's off-screen drawer) that
-     overflow-x: hidden on the body alone doesn't catch, since fixed
-     elements aren't clipped by an ancestor's overflow the way
-     normal-flow content is. */
+  /* Kept as a harmless backstop, but overflow-x: hidden alone did not
+     fix the shadow bleed below when tested on a real phone — likely
+     because iOS Safari doesn't reliably clip position:fixed
+     descendants via an ancestor's overflow. The override below
+     targets the actual shadow directly instead. */
   overflow-x: hidden;
+}
+
+#aa-cc-left-drawer-menu {
+  /* The Accessibility Assistant app's drawer sits off-screen at
+     left:-326px, but its own box-shadow: 0 0 15px bleeds past its box
+     regardless of position, past the edge of this page's edge-to-edge
+     mobile layout. overflow-x: hidden on html/body doesn't clip it
+     (fixed-position elements escape ancestor overflow clipping on iOS
+     Safari), so the shadow itself is overridden directly instead.
+     !important is required since this app's own stylesheet loads
+     after ours (content_for_header comes after this file in
+     layout/copper-bottles-cut-open.liquid) and would otherwise win. */
+  box-shadow: none !important;
 }
 
 .cls-coppercutopen-body {
