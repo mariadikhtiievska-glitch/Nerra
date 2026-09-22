@@ -31,6 +31,15 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Clips the horizontal shadow bleed from position:fixed elements
+     (e.g. the Accessibility Assistant app's off-screen drawer) that
+     overflow-x: hidden on the body alone doesn't catch, since fixed
+     elements aren't clipped by an ancestor's overflow the way
+     normal-flow content is. */
+  overflow-x: hidden;
+}
+
 .cls-coppercutopen-body {
   margin: 0;
   overflow-x: hidden;
