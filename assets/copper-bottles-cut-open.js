@@ -98,55 +98,38 @@
 // closes any other open one in the same list. Native <details> toggling is
 // instant with no animation hook, so the open/close is driven manually here:
 // intercept the summary click, set an explicit starting height, then
-// transition to the target height on the next frame. `_cleanup` tracks the
-// pending transitionend listener per answer so a rapid double-click cancels
-// the previous one instead of stacking listeners.
+// transition to the target height on the next frame. A rapid second click
+// before that finishes must interrupt cleanly — animateAnswer cancels both
+// the previous pending rAF and its transitionend listener before reading
+// the answer's current (possibly mid-transition) height as the new start,
+// rather than assuming it's settled at 0 or the previous target.
 (function () {
   var list = document.querySelector('[data-cls-coppercutopen-faq]');
   if (!list) return;
 
   var items = Array.prototype.slice.call(list.querySelectorAll('.cls-coppercutopen-faq__item'));
 
-  function openItem(item, answer) {
+  function animateAnswer(item, answer, opening) {
+    if (answer._rafId) {
+      cancelAnimationFrame(answer._rafId);
+      answer._rafId = null;
+    }
     if (answer._cleanup) answer._cleanup();
 
     answer.style.transition = 'none';
     answer.style.height = answer.offsetHeight + 'px';
-    item.open = true;
-    var target = answer.scrollHeight;
+    if (opening) item.open = true;
+    var target = opening ? answer.scrollHeight : 0;
 
-    requestAnimationFrame(function () {
+    answer._rafId = requestAnimationFrame(function () {
+      answer._rafId = null;
       answer.style.transition = '';
       answer.style.height = target + 'px';
     });
 
     function onEnd(event) {
       if (event.target !== answer || event.propertyName !== 'height') return;
-      answer.style.height = '';
-      answer.removeEventListener('transitionend', onEnd);
-      answer._cleanup = null;
-    }
-    answer.addEventListener('transitionend', onEnd);
-    answer._cleanup = function () {
-      answer.removeEventListener('transitionend', onEnd);
-      answer._cleanup = null;
-    };
-  }
-
-  function closeItem(item, answer) {
-    if (answer._cleanup) answer._cleanup();
-
-    answer.style.transition = 'none';
-    answer.style.height = answer.offsetHeight + 'px';
-
-    requestAnimationFrame(function () {
-      answer.style.transition = '';
-      answer.style.height = '0px';
-    });
-
-    function onEnd(event) {
-      if (event.target !== answer || event.propertyName !== 'height') return;
-      item.open = false;
+      if (!opening) item.open = false;
       answer.style.height = '';
       answer.removeEventListener('transitionend', onEnd);
       answer._cleanup = null;
@@ -170,14 +153,10 @@
       items.forEach(function (other) {
         if (other === item || !other.open) return;
         var otherAnswer = other.querySelector('.cls-coppercutopen-faq__answer');
-        if (otherAnswer) closeItem(other, otherAnswer);
+        if (otherAnswer) animateAnswer(other, otherAnswer, false);
       });
 
-      if (wasOpen) {
-        closeItem(item, answer);
-      } else {
-        openItem(item, answer);
-      }
+      animateAnswer(item, answer, !wasOpen);
     });
   });
 })();
