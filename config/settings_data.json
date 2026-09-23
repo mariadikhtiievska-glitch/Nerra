@@ -113,6 +113,15 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
+    "sections": {
+      "copper-bottles-cut-open-sticky-bar": {
+        "type": "copper-bottles-cut-open-sticky-bar",
+        "settings": {
+          "button_label": "CHECK AVAILABILITY 👉",
+          "button_url": "shopify://products/neera-copper-water-bottle-handcrafted-from-pure-copper"
+        }
+      }
+    },
     "content_for_index": [],
     "blocks": {
       "15557474716127144420": {

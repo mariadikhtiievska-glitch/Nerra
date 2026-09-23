@@ -13,7 +13,7 @@
     "hero": {
       "type": "copper-bottles-cut-open-hero",
       "settings": {
-        "breadcrumb": "  >  Wellness  >  Drinkware  |  Advertorial",
+        "breadcrumb": ">  Wellness  >  Drinkware  |  Advertorial",
         "heading": "We Cut Open 9 “Amazon” Copper Bottles. What’s Actually Inside a $29 “Copper” Bottle.",
         "subhead": "Seven of the nine had something other than copper inside them. The other two lied about how they were made. Not one listing was accurate.",
         "byline": "By Ayan Decker ·  Lab analysis by CALIMP  ·  September 2026  ·  7 min read",
@@ -48,7 +48,8 @@
             "listing_claimed": "“Pure Copper Water Bottle”",
             "magnet": "Body + cap",
             "interior": "Lined",
-            "lab_result": "Copper-plated steel"
+            "lab_result": "Copper-plated steel",
+            "highlight": false
           }
         },
         "row-2": {
@@ -59,7 +60,8 @@
             "listing_claimed": "“100% Pure Copper, Ayurvedic”",
             "magnet": "No response",
             "interior": "Lined",
-            "lab_result": "Copper over aluminium"
+            "lab_result": "Copper over aluminium",
+            "highlight": false
           }
         },
         "row-3": {
@@ -70,7 +72,8 @@
             "listing_claimed": "“Hammered Copper Bottle”",
             "magnet": "Cap only",
             "interior": "Lined",
-            "lab_result": "Copper body, plated steel cap"
+            "lab_result": "Copper body, plated steel cap",
+            "highlight": false
           }
         },
         "row-4": {
@@ -81,7 +84,8 @@
             "listing_claimed": "“100% Pure Copper · Lab-Tested”",
             "magnet": "No response",
             "interior": "Lined",
-            "lab_result": "Copper alloy, zinc content"
+            "lab_result": "Copper alloy, zinc content",
+            "highlight": false
           }
         },
         "row-5": {
@@ -92,7 +96,8 @@
             "listing_claimed": "“Pure Copper, Hand-Hammered”",
             "magnet": "No response",
             "interior": "Lined",
-            "lab_result": "Copper, interior lacquer, machine-pressed"
+            "lab_result": "Copper, interior lacquer, machine-pressed",
+            "highlight": false
           }
         },
         "row-6": {
@@ -103,7 +108,8 @@
             "listing_claimed": "“Ayurvedic Copper Bottle”",
             "magnet": "Body + cap",
             "interior": "Unlined",
-            "lab_result": "Copper-plated steel"
+            "lab_result": "Copper-plated steel",
+            "highlight": false
           }
         },
         "row-7": {
@@ -114,7 +120,8 @@
             "listing_claimed": "“99.9% Pure Copper”",
             "magnet": "No response",
             "interior": "Lined",
-            "lab_result": "Copper alloy, zinc content"
+            "lab_result": "Copper alloy, zinc content",
+            "highlight": false
           }
         },
         "row-8": {
@@ -125,7 +132,8 @@
             "listing_claimed": "“Handmade Pure Copper”",
             "magnet": "No response",
             "interior": "Unlined",
-            "lab_result": "Solid copper, machine-pressed"
+            "lab_result": "Solid copper, machine-pressed",
+            "highlight": false
           }
         },
         "row-9": {
@@ -136,7 +144,8 @@
             "listing_claimed": "“Pure Copper, Leak-Proof”",
             "magnet": "Cap only",
             "interior": "Unlined",
-            "lab_result": "Copper body, plated cap, machine-pressed"
+            "lab_result": "Copper body, plated cap, machine-pressed",
+            "highlight": false
           }
         },
         "row-10": {
@@ -210,7 +219,12 @@
           }
         }
       },
-      "block_order": ["item-1", "item-2", "item-3", "item-4"],
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4"
+      ],
       "settings": {
         "heading": "Four ways a bottle can look like copper and not be copper",
         "illustration_fallback": "copper-bottles-cut-open-four-ways-illustration.png"
@@ -222,6 +236,7 @@
         "heading": "I didn’t want this to be my opinion",
         "body": "<p>A photograph of a cut bottle shows you there is a second metal in the wall. It does not tell you which metal, in what proportion, or whether anything else came along with it.</p><p>So one sample from each of the ten bottles went to CALIMP for composition analysis — copper percentage, lead, zinc, cadmium. The same parameters the better sellers in this category publish, so the numbers are comparable.</p><p>For reference, a properly made copper bottle reports around <strong>99.5%</strong> or higher copper, lead roughly ten times under the <strong>FDA</strong> limit, and no detectable cadmium. That is the bar. It is not a hard bar to hit if you are making the bottle out of copper.</p><p>All ten reports are published in full, including the results for the expensive bottle, and including anything in them I would rather not have found.</p>",
         "link_label": "Read all ten lab reports (PDF)",
+        "link_url": "",
         "photo_fallback": "copper-bottles-cut-open-lab-reports.jpg"
       }
     },
@@ -264,7 +279,12 @@
           }
         }
       },
-      "block_order": ["item-1", "item-2", "item-3", "item-4"],
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4"
+      ],
       "settings": {
         "heading": "Four checks, on the bottle you already own",
         "closing_line": "Mine failed three of the four. I kept it on the shelf as a reminder.",
@@ -276,6 +296,7 @@
       "settings": {
         "heading": "The tenth bottle, and the part where I have to declare something",
         "body": "<p>I bought a tenth bottle as a control — the most expensive one I could find that published a lab report before I paid, rather than after I asked. It cost $59. It is made by a company called Neera.</p><p>Here is the declaration: <strong>Neera paid for this testing,</strong> and this article is published on their site. You should weigh everything above accordingly. The reason I agreed to it is that they asked for exactly one thing — that their bottle go on the same saw as the other nine, and that the <strong>result be published</strong> whatever it was.</p><p><strong>It went through</strong> the same seven steps. Same magnet, same scale, same torch, same jig, same bench, same lab.</p><p>One material, all the way through. No core, no plating boundary, no film on the inside wall. The colour is uniform from the outer surface to the inner because there is nothing in there but copper. The hammer pattern does not repeat, because a person put it there. The lab came back at 99.9%.</p><p>It is the only bottle of the ten that was what it said it was. That is a lower bar than it sounds like, and nine companies failed it.</p>",
+        "photo": "shopify://shop_images/c6280025ec04ba054f43897119b997ccc60cea0a_1.jpg",
         "photo_fallback": "copper-bottles-cut-open-tenth-bottle.jpg",
         "caption": "Bottle 10 · $59 · 99.9% copper · no lining, no core"
       }
@@ -284,39 +305,108 @@
       "type": "copper-bottles-cut-open-what-30-buys",
       "settings": {
         "heading": "What the difference actually pays for",
-        "photo_fallback": "copper-bottles-cut-open-complete-set.jpg",
-        "body": "<p>Going back to the arithmetic from earlier, here is the same subtraction run in the other direction.</p><p>An hour of hand-raising and hammering per bottle, which is why no two of them are <strong>identical</strong> and why the dimple pattern does not repeat.</p><p>A <strong>laboratory invoice</strong> against every production batch, not every hundredth one, with the certificate published on the product page rather than produced on request.</p><p>A bare interior, and the returns that come with it from people who <strong>think</strong> a darkening bottle is a <strong>broken bottle.</strong></p><p>A cap made from the same solid copper as the body, which is the single most common place to save $2.</p><p><strong>Stock held</strong> in the United States, so the thing <strong>arrives</strong> in a day or two <strong>instead</strong> of three weeks from overseas.</p><p>And the care brush and the sleeve in the box, rather than sold back to you as accessories.</p><p>Thirty dollars, once. Copper does not degrade, and with a lemon and a minute a week the bottle outlasts the argument.</p>"
+        "body": "<p>Going back to the arithmetic from earlier, here is the same subtraction run in the other direction.</p><p>An hour of hand-raising and hammering per bottle, which is why no two of them are <strong>identical</strong> and why the dimple pattern does not repeat.</p><p>A <strong>laboratory invoice</strong> against every production batch, not every hundredth one, with the certificate published on the product page rather than produced on request.</p><p>A bare interior, and the returns that come with it from people who <strong>think</strong> a darkening bottle is a <strong>broken bottle.</strong></p><p>A cap made from the same solid copper as the body, which is the single most common place to save $2.</p><p><strong>Stock held</strong> in the United States, so the thing <strong>arrives</strong> in a day or two <strong>instead</strong> of three weeks from overseas.</p><p>And the care brush and the sleeve in the box, rather than sold back to you as accessories.</p><p>Thirty dollars, once. Copper does not degrade, and with a lemon and a minute a week the bottle outlasts the argument.</p>",
+        "photo_fallback": "copper-bottles-cut-open-complete-set.jpg"
       }
     },
     "final-cta": {
       "type": "copper-bottles-cut-open-final-cta",
       "blocks": {
-        "check-1": { "type": "checkmark", "settings": { "text": "✅ Lab-Verified 99.9% Pure Copper" } },
-        "check-2": { "type": "checkmark", "settings": { "text": "✅ No Alloys, No Coatings, No Plastic" } },
-        "check-3": { "type": "checkmark", "settings": { "text": "✅ Over 22,600+ Happy Customers" } },
-        "check-4": { "type": "checkmark", "settings": { "text": "✅ Free Shipping · Ships in 1–2 Days" } }
+        "check-1": {
+          "type": "checkmark",
+          "settings": {
+            "text": "✅ Lab-Verified 99.9% Pure Copper"
+          }
+        },
+        "check-2": {
+          "type": "checkmark",
+          "settings": {
+            "text": "✅ No Alloys, No Coatings, No Plastic"
+          }
+        },
+        "check-3": {
+          "type": "checkmark",
+          "settings": {
+            "text": "✅ Over 22,600+ Happy Customers"
+          }
+        },
+        "check-4": {
+          "type": "checkmark",
+          "settings": {
+            "text": "✅ Free Shipping · Ships in 1–2 Days"
+          }
+        }
       },
-      "block_order": ["check-1", "check-2", "check-3", "check-4"],
+      "block_order": [
+        "check-1",
+        "check-2",
+        "check-3",
+        "check-4"
+      ],
       "settings": {
         "promo_prefix": "Use code",
         "promo_code": "NEERA10",
         "promo_suffix": "for an extra 10%",
         "countdown_duration_hours": 20,
         "price_headline": "59$ - Copper Doesn’t Expire",
-        "button_label": "CHECK AVAILABILITY 👉"
+        "button_label": "CHECK AVAILABILITY 👉",
+        "button_url": "shopify://products/neera-copper-water-bottle-handcrafted-from-pure-copper"
       }
     },
     "faq": {
       "type": "copper-bottles-cut-open-faq",
       "blocks": {
-        "faq-1": { "type": "faq", "settings": { "question": "Which bottles did you test?", "answer": "<p>Nine bought anonymously from public marketplace listings between $19 and $39, from nine different sellers, all listed as copper, plus one $59 control. Price paid and lab result are published for each.</p>" } },
-        "faq-2": { "type": "faq", "settings": { "question": "Why won’t you name the sellers?", "answer": "<p>Because I tested one unit from each. One bottle tells you what arrived in that box. It does not prove what a seller ships every time, and I am not prepared to make a claim about a business on a sample of one. The bottles are numbered and the reports are published. Draw your own conclusions.</p>" } },
-        "faq-3": { "type": "faq", "settings": { "question": "Is a plated or lined bottle dangerous?", "answer": "<p>I am not going to tell you that, because I do not have evidence for it. The realistic outcomes are more ordinary: it is not what was advertised, the plating wears through at the cap, and a lined bottle gives you no copper contact at all. That is a value and honesty problem, not a safety scare. If you want to know what is in yours specifically, the only real answer is a composition report.</p>" } },
-        "faq-4": { "type": "faq", "settings": { "question": "My bottle passed the magnet test. Am I fine?", "answer": "<p>Not necessarily — that is the whole reason I cut mine open. Brass, bronze and aluminium are all non-magnetic. Check the interior colour and whether it has darkened after a month of use, then ask the seller for a report.</p>" } },
-        "faq-5": { "type": "faq", "settings": { "question": "Does a lacquered interior at least keep the bottle clean?", "answer": "<p>It keeps it shiny, which is not the same thing. It also removes the antimicrobial contact that is the entire reason to store water in copper. If you like the look and do not care about the mechanism, a lined bottle is a nice object. Just know that is what you bought.</p>" } },
-        "faq-6": { "type": "faq", "settings": { "question": "What if something is wrong with the bottle I order?", "answer": "<p>Free shipping on every order, shipped in one to two business days from the US. If something is not right when it arrives, contact them. They will make it right — no run-around, no script.</p>" } }
+        "faq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "Which bottles did you test?",
+            "answer": "<p>Nine bought anonymously from public marketplace listings between $19 and $39, from nine different sellers, all listed as copper, plus one $59 control. Price paid and lab result are published for each.</p>"
+          }
+        },
+        "faq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Why won’t you name the sellers?",
+            "answer": "<p>Because I tested one unit from each. One bottle tells you what arrived in that box. It does not prove what a seller ships every time, and I am not prepared to make a claim about a business on a sample of one. The bottles are numbered and the reports are published. Draw your own conclusions.</p>"
+          }
+        },
+        "faq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "Is a plated or lined bottle dangerous?",
+            "answer": "<p>I am not going to tell you that, because I do not have evidence for it. The realistic outcomes are more ordinary: it is not what was advertised, the plating wears through at the cap, and a lined bottle gives you no copper contact at all. That is a value and honesty problem, not a safety scare. If you want to know what is in yours specifically, the only real answer is a composition report.</p>"
+          }
+        },
+        "faq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "My bottle passed the magnet test. Am I fine?",
+            "answer": "<p>Not necessarily — that is the whole reason I cut mine open. Brass, bronze and aluminium are all non-magnetic. Check the interior colour and whether it has darkened after a month of use, then ask the seller for a report.</p>"
+          }
+        },
+        "faq-5": {
+          "type": "faq",
+          "settings": {
+            "question": "Does a lacquered interior at least keep the bottle clean?",
+            "answer": "<p>It keeps it shiny, which is not the same thing. It also removes the antimicrobial contact that is the entire reason to store water in copper. If you like the look and do not care about the mechanism, a lined bottle is a nice object. Just know that is what you bought.</p>"
+          }
+        },
+        "faq-6": {
+          "type": "faq",
+          "settings": {
+            "question": "What if something is wrong with the bottle I order?",
+            "answer": "<p>Free shipping on every order, shipped in one to two business days from the US. If something is not right when it arrives, contact them. They will make it right — no run-around, no script.</p>"
+          }
+        }
       },
-      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4", "faq-5", "faq-6"],
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "faq-5",
+        "faq-6"
+      ],
       "settings": {
         "heading": "Questions we expect after reading this"
       }
@@ -327,9 +417,26 @@
         "site_line": "neera-living.com — Sponsored content. Individual results may vary.",
         "disclosure": "Testing described on this page was commissioned and paid for by Neera Living. Bottles were purchased anonymously from public marketplace listings by the author. Composition analysis was performed by CALIMP, an independent laboratory. Full reports for all ten bottles are available on request.",
         "wellness_disclaimer": "Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA.",
-        "company_name": "Neera Living"
+        "company_name": "Neera Living",
+        "show_accessibility_link": true,
+        "accessibility_link_label": "Accessibility Assistant"
       }
     }
   },
-  "order": ["hero", "opening-test", "what-i-found", "results-table", "why-i-did-this", "four-ways", "lab-confirmed", "math", "self-check", "tenth-bottle", "what-30-buys", "final-cta", "faq", "footer"]
+  "order": [
+    "hero",
+    "opening-test",
+    "what-i-found",
+    "results-table",
+    "why-i-did-this",
+    "four-ways",
+    "lab-confirmed",
+    "math",
+    "self-check",
+    "tenth-bottle",
+    "what-30-buys",
+    "final-cta",
+    "faq",
+    "footer"
+  ]
 }
