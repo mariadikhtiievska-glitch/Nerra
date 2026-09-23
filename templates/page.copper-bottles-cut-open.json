@@ -234,8 +234,8 @@
       "type": "copper-bottles-cut-open-lab-confirmed",
       "settings": {
         "heading": "I didn’t want this to be my opinion",
-        "body": "<p>A photograph of a cut bottle shows you there is a second metal in the wall. It does not tell you which metal, in what proportion, or whether anything else came along with it.</p><p>So one sample from each of the ten bottles went to CALIMP for composition analysis — copper percentage, lead, zinc, cadmium. The same parameters the better sellers in this category publish, so the numbers are comparable.</p><p>For reference, a properly made copper bottle reports around <strong>99.5%</strong> or higher copper, lead roughly ten times under the <strong>FDA</strong> limit, and no detectable cadmium. That is the bar. It is not a hard bar to hit if you are making the bottle out of copper.</p><p>All ten reports are published in full, including the results for the expensive bottle, and including anything in them I would rather not have found.</p>",
-        "link_label": "Read all ten lab reports (PDF)",
+        "body": "<p>A photograph of a cut bottle shows you there is a second metal in the wall. It does not tell you which metal, in what proportion, or whether anything else came along with it.</p><p>So one sample from each of the ten bottles went to CALIMP for composition analysis — copper percentage, lead, zinc, cadmium. The same parameters the better sellers in this category publish, so the numbers are comparable.</p><p>For reference, a properly made copper bottle reports around <strong>99.5%</strong> or higher copper, lead roughly ten times under the <strong>FDA</strong> limit, and no detectable cadmium. That is the bar. It is not a hard bar to hit if you are making the bottle out of copper.</p>",
+        "link_label": "",
         "link_url": "",
         "photo_fallback": "copper-bottles-cut-open-lab-reports.jpg"
       }
