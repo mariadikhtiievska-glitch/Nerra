@@ -1,0 +1,189 @@
+{%- liquid
+  assign reason_classes = 'cls-copperwater10-reason cls-copperwater10-reason--' | append: section.settings.section_theme
+  if section.settings.top_rule
+    assign reason_classes = reason_classes | append: ' cls-copperwater10-reason--rule'
+  endif
+  if section.settings.image_position == 'left'
+    assign reason_classes = reason_classes | append: ' cls-copperwater10-reason--image-left'
+  endif
+-%}
+
+<div id="ClsCopperwater10Reason-{{ section.id }}" class="{{ reason_classes }}">
+  <div class="cls-copperwater10-reason__inner">
+    <div class="cls-copperwater10-reason__head">
+      {%- if section.settings.label != blank -%}
+        <p class="cls-copperwater10-reason__label">{{ section.settings.label | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cls-copperwater10-reason__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-copperwater10-reason__card cls-copperwater10-card cls-copperwater10-card--{{ section.settings.card_theme }}">
+      <div class="cls-copperwater10-card__image">
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 900 }}"
+            srcset="{{ section.settings.image | image_url: width: 450 }} 450w, {{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1280 }} 1280w"
+            sizes="(min-width: 768px) 500px, calc(100vw - 76px)"
+            alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+            loading="lazy"
+          >
+        {%- elsif section.settings.image_fallback != blank -%}
+          <img
+            src="{{ section.settings.image_fallback | replace: '.jpg', '-900.jpg' | asset_url }}"
+            srcset="{{ section.settings.image_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w, {{ section.settings.image_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w, {{ section.settings.image_fallback | asset_url }} 1280w"
+            sizes="(min-width: 768px) 500px, calc(100vw - 76px)"
+            alt="{{ section.settings.heading | escape }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+
+      <div class="cls-copperwater10-card__text">
+        {%- if section.settings.stat != blank -%}
+          <p class="cls-copperwater10-card__headline cls-copperwater10-card__headline--{{ section.settings.stat_style }}">
+            {{- section.settings.stat | escape | newline_to_br -}}
+          </p>
+        {%- endif -%}
+        {%- if section.settings.stat_caption != blank -%}
+          <p class="cls-copperwater10-card__line">{{ section.settings.stat_caption | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.source != blank -%}
+          <p class="cls-copperwater10-card__source">{{ section.settings.source | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.settings.body != blank -%}
+      <div class="cls-copperwater10-reason__body">{{ section.settings.body }}</div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.sticky_trigger -%}
+    <div class="cls-copperwater10-reason__trigger-marker" data-cls-copperwater10-sticky-trigger aria-hidden="true"></div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Reason",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "info": "e.g. 01 / IN YOUR BLOOD"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Image card"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_fallback",
+      "label": "Image fallback asset",
+      "info": "Theme asset used when no image is picked above."
+    },
+    {
+      "type": "textarea",
+      "id": "stat",
+      "label": "Stat",
+      "info": "Large text on the card. Press Enter for a line break."
+    },
+    {
+      "type": "select",
+      "id": "stat_style",
+      "label": "Stat style",
+      "options": [
+        { "value": "numeral-xl", "label": "Large copper number (60px)" },
+        { "value": "numeral-lg", "label": "Medium copper number (44px)" },
+        { "value": "headline", "label": "Serif headline (26px)" }
+      ],
+      "default": "numeral-xl"
+    },
+    {
+      "type": "text",
+      "id": "stat_caption",
+      "label": "Stat caption"
+    },
+    {
+      "type": "text",
+      "id": "source",
+      "label": "Source citation",
+      "info": "Optional. Leave blank to hide."
+    },
+    {
+      "type": "select",
+      "id": "card_theme",
+      "label": "Card colour",
+      "options": [
+        { "value": "dark", "label": "Dark" },
+        { "value": "light", "label": "Light" }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "header",
+      "content": "Body"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_theme",
+      "label": "Section colour",
+      "options": [
+        { "value": "dark", "label": "Dark" },
+        { "value": "warm", "label": "Warm (cream)" }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "checkbox",
+      "id": "top_rule",
+      "label": "Show divider line above",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Card position (desktop)",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_trigger",
+      "label": "Show sticky bar after this reason",
+      "info": "The sticky bar appears once the visitor scrolls past the end of this section. Turn on for one reason only.",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reason"
+    }
+  ]
+}
+{% endschema %}

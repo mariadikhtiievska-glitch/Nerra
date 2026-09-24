@@ -18,6 +18,7 @@
   --cls-copperwater10-cream-alt: #f1e9dc;
   --cls-copperwater10-copper: #b87333;
   --cls-copperwater10-copper-deep: #cd7f32;
+  --cls-copperwater10-ink-raised: #37312b;
   --cls-copperwater10-rule: #d8d2c7;
   --cls-copperwater10-white: #ffffff;
   --cls-copperwater10-price-red: #9c3d21;
@@ -176,6 +177,11 @@
   color: var(--cls-copperwater10-cream);
 }
 
+.cls-copperwater10-card--light {
+  background: var(--cls-copperwater10-cream-alt);
+  color: var(--cls-copperwater10-ink);
+}
+
 .cls-copperwater10-card__image {
   position: relative;
   width: 100%;
@@ -206,12 +212,37 @@
   line-height: 32px;
 }
 
+.cls-copperwater10-card__headline--numeral-xl,
+.cls-copperwater10-card__headline--numeral-lg {
+  line-height: 40px;
+  letter-spacing: -0.5px;
+  color: var(--cls-copperwater10-copper);
+}
+
+.cls-copperwater10-card__headline--numeral-xl {
+  font-size: 60px;
+}
+
+.cls-copperwater10-card__headline--numeral-lg {
+  font-size: 44px;
+}
+
 .cls-copperwater10-card__line {
   margin: 0;
   font-family: var(--cls-copperwater10-font-body);
   font-size: 17px;
   font-weight: 400;
   line-height: 26px;
+}
+
+.cls-copperwater10-card__source {
+  margin: 0;
+  padding-top: 6px;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.2px;
 }
 
 /* Block 1 — Hero (node 154:5) */
@@ -494,5 +525,142 @@
 
   .cls-copperwater10-comparison__table tbody th {
     padding-left: 16px;
+  }
+}
+
+/* Block 4 — Reason (nodes 180:3–181:71): one reusable section placed ten
+   times. Per-instance settings (all confirmed per node in Figma):
+   section_theme — dark (01–05, "body world") / warm (06–10, "copper world");
+   card_theme — dark / light (04, 07–10); top_rule — 1px line above
+   (02–05 cream, 07–10 rule colour); stat_style — 60px / 44px copper
+   numeral or 26px serif headline. A dark card on a dark section is
+   raised (#37312b = ink + ~6% cream, sampled from Figma); a dark card on
+   a warm section (06) is plain ink. */
+
+.cls-copperwater10-reason--dark {
+  background: var(--cls-copperwater10-ink);
+  color: var(--cls-copperwater10-cream);
+}
+
+.cls-copperwater10-reason--warm {
+  background: var(--cls-copperwater10-cream);
+  color: var(--cls-copperwater10-ink);
+}
+
+.cls-copperwater10-reason--dark.cls-copperwater10-reason--rule {
+  border-top: 1px solid var(--cls-copperwater10-cream);
+}
+
+.cls-copperwater10-reason--warm.cls-copperwater10-reason--rule {
+  border-top: 1px solid var(--cls-copperwater10-rule);
+}
+
+.cls-copperwater10-reason--dark .cls-copperwater10-card--dark {
+  background: var(--cls-copperwater10-ink-raised);
+}
+
+.cls-copperwater10-reason__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px 20px;
+}
+
+.cls-copperwater10-reason__head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cls-copperwater10-reason__label {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--cls-copperwater10-copper);
+}
+
+.cls-copperwater10-reason__heading {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-heading);
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.cls-copperwater10-reason__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.cls-copperwater10-reason__body p {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.cls-copperwater10-reason__body strong,
+.cls-copperwater10-reason__body b {
+  font-weight: 600;
+}
+
+.cls-copperwater10-reason__trigger-marker {
+  width: 100%;
+  height: 1px;
+}
+
+@media (min-width: 768px) {
+  /* Two columns, 55/45: label + heading + body left, image card right.
+     On mobile the card sits between heading and body, so the text is two
+     sibling grid items (head, body) sharing column 1 while the card spans
+     both rows of column 2; head hugs the bottom of its row and body the
+     top of its, keeping them together when the card is taller.
+     --image-left mirrors the areas and the column widths together. */
+  .cls-copperwater10-reason__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    grid-template-areas:
+      "head card"
+      "body card";
+    column-gap: 56px;
+    row-gap: 16px;
+    align-items: start;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 40px;
+  }
+
+  .cls-copperwater10-reason--image-left .cls-copperwater10-reason__inner {
+    grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+    grid-template-areas:
+      "card head"
+      "card body";
+  }
+
+  .cls-copperwater10-reason__head {
+    grid-area: head;
+    align-self: end;
+  }
+
+  .cls-copperwater10-reason__body {
+    grid-area: body;
+    align-self: start;
+  }
+
+  .cls-copperwater10-reason__card {
+    grid-area: card;
+    align-self: center;
+  }
+
+  .cls-copperwater10-reason__heading {
+    font-size: 32px;
+    line-height: 38px;
   }
 }

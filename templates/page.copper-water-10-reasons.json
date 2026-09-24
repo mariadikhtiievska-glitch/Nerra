@@ -116,12 +116,202 @@
         "col_3_label": "PLASTIC",
         "transition_line": "Here’s where the plastic ends up — and the one change that stops adding to it ↓"
       }
+    },
+    "reason-01": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "01 / IN YOUR BLOOD",
+        "heading": "Plastic has already been found in human blood.",
+        "image_fallback": "copper-water-10-reasons-reason-01.jpg",
+        "stat": "77%",
+        "stat_style": "numeral-xl",
+        "stat_caption": "of people tested had plastic in their blood.",
+        "source": "",
+        "card_theme": "dark",
+        "body": "<p>In 2022, scientists in Amsterdam tested the blood of 22 healthy adult donors. In 17 of them — <strong>77%</strong> — they found plastic particles circulating in the bloodstream.</p><p>The most common plastic they found was PET. <strong>That is the plastic single-use water bottles are made from.</strong></p><p>Your blood reaches every organ in your body, so what travels in it does not stay in one place. Nobody chose this exposure. But one of the ways it gets in is something you refill with your own hands every morning.</p>",
+        "section_theme": "dark",
+        "top_rule": false,
+        "image_position": "right",
+        "sticky_trigger": false
+      }
+    },
+    "reason-02": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "02 / IN YOUR HEART",
+        "heading": "People with plastic in their arteries had 4.5× the risk of heart attack, stroke or death.",
+        "image_fallback": "copper-water-10-reasons-reason-02.jpg",
+        "stat": "4.5×",
+        "stat_style": "numeral-xl",
+        "stat_caption": "higher risk of heart attack, stroke or death.",
+        "source": "Marfella et al., New England Journal of Medicine, 2024",
+        "card_theme": "dark",
+        "body": "<p>In 2024, the New England Journal of Medicine published a study of patients having plaque removed from the main artery in their neck. In <strong>58% of them</strong>, researchers found plastic inside the plaque. Under the microscope it showed up as jagged-edged foreign particles.</p><p>The researchers followed those patients for almost three years. People whose plaque contained plastic had a <strong>4.5 times higher risk</strong> of heart attack, stroke or death from any cause than people whose plaque did not.</p><p>The authors are clear that this shows a link, not proof that plastic caused those events. It is still the kind of link most people would rather not test on themselves.</p>",
+        "section_theme": "dark",
+        "top_rule": true,
+        "image_position": "left",
+        "sticky_trigger": false
+      }
+    },
+    "reason-03": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "03 / IN YOUR BRAIN",
+        "heading": "There was about 50% more plastic in human brains in 2024 than in 2016.",
+        "image_fallback": "copper-water-10-reasons-reason-03.jpg",
+        "stat": "+50% in 8 years",
+        "stat_style": "numeral-lg",
+        "stat_caption": "more plastic in human brain tissue.",
+        "source": "Nihart et al., Nature Medicine, 2025",
+        "card_theme": "dark",
+        "body": "<p>A 2025 study in Nature Medicine analysed tissue samples from autopsies. The brain samples contained <strong>more micro- and nanoplastic than the liver or kidney samples</strong> — most of it in the form of tiny shards and flakes.</p><p>Samples from 2024 contained <strong>roughly 50% more plastic</strong> than samples from 2016.</p><p>Scientists are still debating how best to measure plastic in tissue and what it means for health. What is not in dispute is the direction: exposure is rising, and it is rising in the organ you would most want to protect.</p>",
+        "section_theme": "dark",
+        "top_rule": true,
+        "image_position": "right",
+        "sticky_trigger": false
+      }
+    },
+    "reason-04": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "04 / YOUR HORMONES",
+        "heading": "Some plastic chemicals act like hormones in your body.",
+        "image_fallback": "copper-water-10-reasons-reason-04.jpg",
+        "stat": "Banned from baby bottles.",
+        "stat_style": "headline",
+        "stat_caption": "“BPA-free” doesn’t mean plastic-free.",
+        "source": "FDA, 2012 · EU Regulation 2024/3190",
+        "card_theme": "light",
+        "body": "<p>BPA and phthalates are chemicals used to make plastic hard or flexible. They are known <strong>endocrine disruptors</strong> — they can imitate or interfere with hormones such as estrogen.</p><p>The FDA stopped allowing BPA in baby bottles in 2012. The European Union has since banned it from food and drink containers altogether.</p><p>“BPA-free” on a label usually means BPA was replaced with a close chemical relative, such as BPS. <strong>It does not mean the bottle is plastic-free.</strong></p>",
+        "section_theme": "dark",
+        "top_rule": true,
+        "image_position": "left",
+        "sticky_trigger": false
+      }
+    },
+    "reason-05": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "05 / THE SOURCE",
+        "heading": "One litre of bottled water: about 240,000 plastic particles.",
+        "image_fallback": "copper-water-10-reasons-reason-05.jpg",
+        "stat": "240,000",
+        "stat_style": "numeral-xl",
+        "stat_caption": "plastic particles in one litre of bottled water.",
+        "source": "Qian et al., PNAS, 2024",
+        "card_theme": "dark",
+        "body": "<p>In 2024, researchers at Columbia and Rutgers used a new laser-imaging method to look inside bottled water. They counted <strong>roughly 240,000 plastic particles per litre</strong> — about nine in ten of them nanoplastics, small enough to pass into tissue.</p><p>Heat, sunlight and age increase shedding. The bottle left in a hot car, the one riding around in a gym bag, the one you have been refilling for months.</p><p>If you drink two litres a day out of plastic, this is one of the largest daily exposures you have — <strong>and the easiest one to cut.</strong></p>",
+        "section_theme": "dark",
+        "top_rule": true,
+        "image_position": "right",
+        "sticky_trigger": false
+      }
+    },
+    "reason-06": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "06 / THE ONE YOU CONTROL",
+        "heading": "You can’t filter your blood. You can change your bottle.",
+        "image_fallback": "copper-water-10-reasons-reason-06.jpg",
+        "stat": "700 litres\na year.",
+        "stat_style": "numeral-lg",
+        "stat_caption": "You choose what they touch.",
+        "source": "",
+        "card_theme": "dark",
+        "body": "<p>You cannot control the air in your city or every meal you eat out.</p><p>But the vessel you drink from — <strong>around 700 litres a year</strong> at two litres a day — is one exposure you decide on completely. <strong>Pure copper sheds zero plastic.</strong> No lining, no coating, nothing between the metal and your water.</p><p>This is not a cure for anything. It is removing one source, permanently, with one purchase.</p>",
+        "section_theme": "warm",
+        "top_rule": false,
+        "image_position": "left",
+        "sticky_trigger": true
+      }
+    },
+    "reason-07": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "07 / CLEANER WATER",
+        "heading": "Water stored overnight in copper had no detectable harmful bacteria.",
+        "image_fallback": "copper-water-10-reasons-reason-07.jpg",
+        "stat": "16 hours in copper.",
+        "stat_style": "headline",
+        "stat_caption": "No detectable bacteria.",
+        "source": "Illustration based on Sudha et al., J Health Popul Nutr, 2012",
+        "card_theme": "light",
+        "body": "<p>In a 2012 study, researchers deliberately contaminated drinking water with bacteria including E. coli, then stored it in copper pots at room temperature. <strong>After 16 hours, the bacteria could no longer be recovered.</strong></p><p>It is the same property that led the US EPA to register copper alloys as antimicrobial surfaces, and why hospitals install copper on door handles and bed rails.</p><p>Plastic and steel just hold your water. <strong>Copper does something to it.</strong></p>",
+        "section_theme": "warm",
+        "top_rule": true,
+        "image_position": "right",
+        "sticky_trigger": false
+      }
+    },
+    "reason-08": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "08 / COPPER OUTSIDE, PLASTIC INSIDE",
+        "heading": "Many cheap “copper” bottles are lined with plastic on the inside.",
+        "image_fallback": "copper-water-10-reasons-reason-08.jpg",
+        "stat": "Copper outside. Plastic inside.",
+        "stat_style": "headline",
+        "stat_caption": "Check what your water actually touches.",
+        "source": "",
+        "card_theme": "light",
+        "body": "<p>To stop a bottle from darkening, many sellers spray a lacquer or epoxy coating on the inside wall.</p><p>The result is a bottle your water never touches as copper. <strong>You paid for copper and you drink from plastic</strong> — the exact thing you were trying to avoid.</p><p>Every Neera bottle is <strong>bare copper inside</strong>: 99.9% pure, food-grade, lab-tested after every batch, with the certificate published on the product page.</p>",
+        "section_theme": "warm",
+        "top_rule": true,
+        "image_position": "left",
+        "sticky_trigger": false
+      }
+    },
+    "reason-09": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "09 / THE 3 P.M. FOG",
+        "heading": "That afternoon fog might just be thirst.",
+        "image_fallback": "copper-water-10-reasons-reason-09.jpg",
+        "stat": "3 p.m. fog?",
+        "stat_style": "headline",
+        "stat_caption": "Start with 1 litre at 7 a.m.",
+        "source": "",
+        "card_theme": "light",
+        "body": "<p>That 3 p.m. slump you blame on age, sleep or lunch? Studies have linked <strong>even mild dehydration</strong> to fatigue, headaches and poorer focus — and most adults do not drink enough to avoid it.</p><p>In Ayurveda, the practice of Tamra Jal is simple: fill a copper vessel at night, let it rest, drink it first thing in the morning before coffee and before your phone.</p><p><strong>A full litre done before your day starts.</strong> The bottle on the counter does what willpower never did.</p>",
+        "section_theme": "warm",
+        "top_rule": true,
+        "image_position": "right",
+        "sticky_trigger": false
+      }
+    },
+    "reason-10": {
+      "type": "copper-water-10-reasons-reason",
+      "settings": {
+        "label": "10 / THE SWITCH",
+        "heading": "100,000+ people have already made the switch.",
+        "image_fallback": "copper-water-10-reasons-reason-10.jpg",
+        "stat": "100,000+",
+        "stat_style": "numeral-xl",
+        "stat_caption": "people made the switch.",
+        "source": "",
+        "card_theme": "light",
+        "body": "<p>Over <strong>400,000 Neera products sold</strong>, shipped to more than 10 countries, rated <strong>4.8 out of 5</strong> across our site and marketplaces. Around 9,000 bottles went out last month alone.</p><p>They are not buying a trend. They are cutting one daily source of plastic — and drinking more water because of it.</p>",
+        "section_theme": "warm",
+        "top_rule": true,
+        "image_position": "left",
+        "sticky_trigger": false
+      }
     }
   },
   "order": [
     "announcement",
     "hero",
     "quote",
-    "comparison"
+    "comparison",
+    "reason-01",
+    "reason-02",
+    "reason-03",
+    "reason-04",
+    "reason-05",
+    "reason-06",
+    "reason-07",
+    "reason-08",
+    "reason-09",
+    "reason-10"
   ]
 }
