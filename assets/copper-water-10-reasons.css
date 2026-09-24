@@ -280,21 +280,53 @@
   color: var(--cls-copperwater10-ink-muted);
 }
 
+/* Customer quote (Figma node 154:9 — its own block in Figma, rendered by
+   the hero section so it can sit in the hero's left column on desktop).
+   Mobile: 14px flex gap + 10px = Figma's 24px between image card and quote. */
+.cls-copperwater10-hero__quote {
+  margin-top: 10px;
+}
+
 @media (min-width: 768px) {
-  /* Two columns, 55/45: heading + subhead left, image card right,
-     vertically centred — same grid as copper-bottles-cut-open's Hero. */
+  /* Two columns, 55/45: heading + subhead with the customer quote below
+     them on the left, image card on the right spanning both rows and
+     vertically centred. Text hugs the bottom of its row and the quote the
+     top of its, so the pair stays together when the card is taller. */
   .cls-copperwater10-hero__inner {
     display: grid;
     grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
-    align-items: center;
-    gap: 56px;
+    grid-template-areas:
+      "text card"
+      "quote card";
+    column-gap: 56px;
+    row-gap: 32px;
     max-width: 1280px;
     margin: 0 auto;
     padding: 64px 40px;
   }
 
   .cls-copperwater10-hero__text {
+    grid-area: text;
+    align-self: end;
+  }
+
+  .cls-copperwater10-hero__card {
+    grid-area: card;
+    align-self: center;
+  }
+
+  .cls-copperwater10-hero__quote {
+    grid-area: quote;
+    align-self: start;
+    margin-top: 0;
+  }
+
+  .cls-copperwater10-hero__text {
     gap: 18px;
+  }
+
+  .cls-copperwater10-hero__quote .cls-copperwater10-quote__card {
+    padding: 24px;
   }
 
   .cls-copperwater10-hero__heading {
@@ -306,12 +338,6 @@
     font-size: 20px;
     line-height: 32px;
   }
-}
-
-/* Block 2 — Customer quote strip (node 154:9) */
-
-.cls-copperwater10-quote__inner {
-  padding: 4px 20px 20px;
 }
 
 .cls-copperwater10-quote__card {
@@ -385,20 +411,6 @@
 
 .cls-copperwater10-quote__label {
   font-style: italic;
-}
-
-@media (min-width: 768px) {
-  /* Single centred column (~800px) — a lone quote card has nothing to
-     pair with, and stretched to 1280px its line length gets unreadable. */
-  .cls-copperwater10-quote__inner {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 40px 64px;
-  }
-
-  .cls-copperwater10-quote__card {
-    padding: 24px;
-  }
 }
 
 /* Block 3 — Comparison table + transition line (node 179:12). Real

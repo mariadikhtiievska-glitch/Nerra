@@ -25,12 +25,7 @@
         "subhead": "Plastic has been found in human blood, arteries and brains. Here’s the one source you can cut tonight.",
         "image_fallback": "copper-water-10-reasons-hero.jpg",
         "card_headline": "Plastic is already in your blood.",
-        "card_line": "Your water bottle is the one source you control."
-      }
-    },
-    "quote": {
-      "type": "copper-water-10-reasons-quote",
-      "settings": {
+        "card_line": "Your water bottle is the one source you control.",
         "stars": 5,
         "quote": "“What delicious water from this bottle. I pour already filtered water and it turns out to be the purest taste, like from a spring.”",
         "avatar_fallback": "copper-water-10-reasons-avatar.jpg",
@@ -415,7 +410,6 @@
   "order": [
     "announcement",
     "hero",
-    "quote",
     "comparison",
     "reason-01",
     "reason-02",
