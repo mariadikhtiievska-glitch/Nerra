@@ -1,0 +1,58 @@
+<div
+  id="ClsCopperwater10Announcement-{{ section.id }}"
+  class="cls-copperwater10-announcement"
+  data-cls-copperwater10-announcement
+  data-interval="{{ section.settings.interval | times: 1000 }}"
+>
+  {%- for block in section.blocks -%}
+    {%- if block.settings.message != blank -%}
+      <p
+        class="cls-copperwater10-announcement__message"
+        {% if forloop.first %}data-cls-copperwater10-announcement-active{% endif %}
+        {{ block.shopify_attributes }}
+      >
+        {{ block.settings.message }}
+      </p>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "range",
+      "id": "interval",
+      "label": "Seconds per message",
+      "info": "Only used when there is more than one message.",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "message",
+          "label": "Message"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        { "type": "message", "settings": { "message": "Use code <strong>NEERA10</strong> for an extra 10% off" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

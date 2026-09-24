@@ -1,0 +1,46 @@
+<div
+  id="ClsCopperwater10StickyBar-{{ section.id }}"
+  class="cls-copperwater10-sticky-bar"
+  data-cls-copperwater10-sticky-bar
+>
+  <div class="cls-copperwater10-sticky-bar__inner">
+    {%- if section.settings.text != blank -%}
+      <p class="cls-copperwater10-sticky-bar__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+    <a
+      class="cls-copperwater10-sticky-bar__button"
+      href="{{ section.settings.button_url | default: '/products/neera-copper-water-bottle-handcrafted-from-pure-copper' }}"
+    >
+      {{- section.settings.button_label | escape -}}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sticky bar",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Appears once the visitor scrolls past the reason section that has \"Show sticky bar after this reason\" turned on."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "Save 10% with <strong>NEERA10</strong>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Start Your Ritual →"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    }
+  ]
+}
+{% endschema %}

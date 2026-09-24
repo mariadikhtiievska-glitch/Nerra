@@ -1,0 +1,278 @@
+/* Copper Water 10 Reasons advertorial — shared stylesheet for
+   layout/copper-water-10-reasons.liquid. Mobile-first, single breakpoint
+   at 768px. All selectors scoped under cls-copperwater10-*.
+   Figma: file Gz4CJafXq2reQajax8zBPc, frame 154:2 (390px wide, 1:1 mobile
+   scale — Figma values are used directly as mobile CSS px). */
+
+/* Third-party "Accessibility Assistant" app — its closed drawer sits just
+   off-screen but its box-shadow bleeds onto the left viewport edge. Scoped
+   to the closed state so the drawer still looks right when opened. */
+#aa-cc-left-drawer-menu[aria-hidden='true'] {
+  box-shadow: none;
+}
+
+:root {
+  --cls-copperwater10-ink: #2a241f;
+  --cls-copperwater10-ink-muted: #6e655c;
+  --cls-copperwater10-cream: #faf6ef;
+  --cls-copperwater10-cream-alt: #f1e9dc;
+  --cls-copperwater10-copper: #b87333;
+  --cls-copperwater10-copper-deep: #cd7f32;
+  --cls-copperwater10-rule: #d8d2c7;
+  --cls-copperwater10-white: #ffffff;
+  --cls-copperwater10-price-red: #9c3d21;
+  --cls-copperwater10-espresso: #341e0f;
+  --cls-copperwater10-radius-card: 12px;
+
+  --cls-copperwater10-font-body: 'Instrument Sans', var(--font-body--family, system-ui), sans-serif;
+  --cls-copperwater10-font-heading: 'Newsreader', var(--font-heading--family, Georgia), serif;
+  --cls-copperwater10-font-stat: 'Lora', var(--font-heading--family, Georgia), serif;
+}
+
+.cls-copperwater10-body,
+.cls-copperwater10-body * {
+  box-sizing: border-box;
+}
+
+.cls-copperwater10-body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--cls-copperwater10-font-body);
+  color: var(--cls-copperwater10-ink);
+  background: var(--cls-copperwater10-cream);
+}
+
+.cls-copperwater10-main {
+  display: block;
+}
+
+.cls-copperwater10-main img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Announcement bar (node 154:3) — rotates only when more than one message
+   block exists (see copper-water-10-reasons.js). */
+
+.cls-copperwater10-announcement {
+  display: flex;
+  justify-content: center;
+  padding: 12px 16px;
+  background: var(--cls-copperwater10-ink);
+}
+
+.cls-copperwater10-announcement__message {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--cls-copperwater10-cream);
+  text-align: center;
+}
+
+.cls-copperwater10-announcement__message strong {
+  font-weight: 600;
+}
+
+.cls-copperwater10-announcement__message:not([data-cls-copperwater10-announcement-active]) {
+  display: none;
+}
+
+/* Sticky bar (node 156:30) — global chrome rendered from the layout. Shown
+   on mobile and desktop, once the visitor scrolls past the reason flagged
+   as the trigger. visibility: hidden (not transform alone) while hidden so
+   nothing paints off-screen. No box-shadow — none in Figma. */
+
+.cls-copperwater10-sticky-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  background: var(--cls-copperwater10-ink);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    transform var(--animation-speed-slow, 0.2s) var(--animation-easing, ease-in-out),
+    visibility 0s linear var(--animation-speed-slow, 0.2s);
+}
+
+.cls-copperwater10-sticky-bar--visible {
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    transform var(--animation-speed-slow, 0.2s) var(--animation-easing, ease-in-out),
+    visibility 0s linear 0s;
+}
+
+.cls-copperwater10-sticky-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px 12px 16px;
+}
+
+.cls-copperwater10-sticky-bar__text {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--cls-copperwater10-cream);
+}
+
+.cls-copperwater10-sticky-bar__text strong {
+  font-weight: 600;
+}
+
+.cls-copperwater10-sticky-bar__button {
+  flex: 0 0 auto;
+  max-width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: var(--cls-copperwater10-copper-deep);
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: var(--cls-copperwater10-white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  /* Bar background stays full-bleed; its content lines up with the
+     page's 1280px content column instead of hugging the screen edges. */
+  .cls-copperwater10-sticky-bar__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 40px;
+  }
+}
+
+/* Image card — the "CREATIVE" frames (hero 179:2, reasons, offer): image on
+   top, headline + line pinned to the bottom of a fixed-height card.
+   Shared by every section that has one; colour variants via modifiers. */
+
+.cls-copperwater10-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+  min-height: 438px;
+  padding: 18px;
+  border-radius: var(--cls-copperwater10-radius-card);
+  overflow: hidden;
+}
+
+.cls-copperwater10-card--dark {
+  background: var(--cls-copperwater10-ink);
+  color: var(--cls-copperwater10-cream);
+}
+
+.cls-copperwater10-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1280 / 1031;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.cls-copperwater10-card__image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cls-copperwater10-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cls-copperwater10-card__headline {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-heading);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.cls-copperwater10-card__line {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+/* Block 1 — Hero (node 154:5) */
+
+.cls-copperwater10-hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 20px 20px;
+}
+
+.cls-copperwater10-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cls-copperwater10-hero__heading {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-heading);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: -0.5px;
+  color: var(--cls-copperwater10-ink);
+}
+
+.cls-copperwater10-hero__subhead {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 30px;
+  color: var(--cls-copperwater10-ink-muted);
+}
+
+@media (min-width: 768px) {
+  /* Two columns, 55/45: heading + subhead left, image card right,
+     vertically centred — same grid as copper-bottles-cut-open's Hero. */
+  .cls-copperwater10-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    align-items: center;
+    gap: 56px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-copperwater10-hero__text {
+    gap: 18px;
+  }
+
+  .cls-copperwater10-hero__heading {
+    font-size: 44px;
+    line-height: 52px;
+  }
+
+  .cls-copperwater10-hero__subhead {
+    font-size: 20px;
+    line-height: 32px;
+  }
+}

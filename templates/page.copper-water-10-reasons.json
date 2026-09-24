@@ -1,0 +1,31 @@
+{
+  "layout": "copper-water-10-reasons",
+  "sections": {
+    "announcement": {
+      "type": "copper-water-10-reasons-announcement",
+      "blocks": {
+        "message-1": {
+          "type": "message",
+          "settings": {
+            "message": "Use code <strong>NEERA10</strong> for an extra 10% off"
+          }
+        }
+      },
+      "block_order": ["message-1"],
+      "settings": {
+        "interval": 4
+      }
+    },
+    "hero": {
+      "type": "copper-water-10-reasons-hero",
+      "settings": {
+        "heading": "10 Reasons Copper Water Is the Easiest Health Upgrade You’ll Make This Year",
+        "subhead": "Plastic has been found in human blood, arteries and brains. Here’s the one source you can cut tonight.",
+        "image_fallback": "copper-water-10-reasons-hero.jpg",
+        "card_headline": "Plastic is already in your blood.",
+        "card_line": "Your water bottle is the one source you control."
+      }
+    }
+  },
+  "order": ["announcement", "hero"]
+}
