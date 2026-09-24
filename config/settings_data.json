@@ -120,6 +120,14 @@
           "button_label": "CHECK AVAILABILITY 👉",
           "button_url": "shopify://products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz"
         }
+      },
+      "copper-water-10-reasons-sticky-bar": {
+        "type": "copper-water-10-reasons-sticky-bar",
+        "settings": {
+          "text": "Save 10% with <strong>NEERA10</strong>",
+          "button_label": "Start Your Ritual →",
+          "button_url": "shopify://products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz"
+        }
       }
     },
     "content_for_index": [],
