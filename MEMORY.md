@@ -15,9 +15,15 @@ the sibling projects.
 
 ## Store / theme
 
-- Live theme: **"10-08 of BKP Neera Living - Vikrant Dev"** (`#150169321659`),
-  pulled via `shopify theme pull --store neera-living.myshopify.com --live`
-  on 2026-09-10.
+- **Current live theme: "Nerra/main" (`#151433609403`)**, fed by the `main`
+  branch through the GitHub integration — a push to `main` is a live deploy
+  (see `CLAUDE.md`). Confirmed 2026-09-24 via `shopify theme list`.
+- Original live theme: **"10-08 of BKP Neera Living - Vikrant Dev"**
+  (`#150169321659`), pulled via `shopify theme pull --store
+  neera-living.myshopify.com --live` on 2026-09-10 as this repo's starting
+  point. **Now unpublished** — replaced by Nerra/main once the git
+  workflow was set up. Older log entries below that say "live theme
+  `150169321659`" describe that earlier period.
 - This is a **Shopify Horizon-based theme** wearing a custom "Cleo Lifestyle"
   skin (rebranded to Neera Living via string-replace in `layout/theme.liquid`,
   history predates this project — not something we touch). Has the standard
@@ -31,11 +37,9 @@ the sibling projects.
     `--cleo-soft` (#f8eadc), `--cleo-copper` (#895737), `--cleo-copper-dark`
     (#4d2e20), `--cleo-ink` (#201814), `--cleo-white`, `--cleo-muted`
     (#7b675a), `--cleo-border`, `--cleo-shadow`.
-- No git remote / GitHub theme integration is connected (unlike
-  wheremysocks-theme). Local git repo only, initialized 2026-09-10 as a
-  safety net for reviewing diffs section-by-section. Deployment method
-  (manual `shopify theme push` vs. GitHub integration) not yet decided —
-  confirm with user before first push to the live theme.
+- Git repo initialized 2026-09-10; since 2026-09-21 connected to Shopify
+  via the GitHub integration (`dev` → Nerra/dev `#151435509947`, `main` →
+  Nerra/main `#151433609403`, live). See `CLAUDE.md` for the deploy rules.
 
 ## Class prefix
 
@@ -995,11 +999,13 @@ CTA + Product Card section adds its trigger marker) and the Results table.
 `shopify theme push` is no longer used directly. All code now goes through
 git: commit → push to `dev` → GitHub integration auto-syncs to the
 **Nerra/dev** theme (`#151435509947`) for testing → merge `dev` into
-`main` → auto-syncs to the **live** theme (`#150169321659`). `main` and
-`dev` were both re-synced with actual live-theme content as part of that
-change (see git history) before this new workflow started. An
-**Nerra/main** theme (`#151433609403`) also exists as the integration's
-own mirror of `main`.
+`main` → auto-syncs to **Nerra/main** (`#151433609403`), **which is the
+live, published theme** (the old live theme `#150169321659` was
+unpublished when the store switched to Nerra/main). `main` and `dev` were
+both re-synced with actual live-theme content as part of that change (see
+git history) before this new workflow started. Merge to `main` only when
+the user asks, then verify by pulling the changed files back from
+`#151433609403`.
 **Gotcha:** after a push to `dev`, the Nerra/dev preview can lag the
 actual synced files by several seconds even after the GitHub sync itself
 completes (confirmed via pulling the theme's files directly, which showed
@@ -1312,3 +1318,87 @@ rule for every `__inner` is still plain `display:flex;
 flex-direction:column`, and the new `__media` wrapper has no rule at
 all outside the desktop `@media` block, so on mobile it's just an
 unstyled wrapper div — photo and caption stack exactly as before.
+
+---
+
+# Copper Water 10 Reasons advertorial — build conventions
+
+Third fully isolated advertorial page on neera-living.myshopify.com, built
+2026-09-24. Own layout/template/sections/CSS/JS; shares only
+`snippets/theme-favicon.liquid` and `snippets/theme-styles-variables.liquid`.
+
+Design source: Figma fileKey `Gz4CJafXq2reQajax8zBPc`, frame `154:2`
+("Advertorial — 10 Reasons Listicle · Mobile 390 · v2", 390px wide, 1:1 —
+Figma values used directly as mobile px) and sticky bar frame `156:30`.
+The user's brief mentioned attached page copy but none was ever attached —
+**Figma text is the copy**. No desktop frame; desktop layouts were proposed
+per section and confirmed by the user before building.
+
+## Prefix and files
+
+- Class/JS prefix **`cls-copperwater10-`**; slug `copper-water-10-reasons`.
+- `layout/copper-water-10-reasons.liquid`,
+  `templates/page.copper-water-10-reasons.json`,
+  `sections/copper-water-10-reasons-{announcement,hero,comparison,reason,offer,sources,footer,sticky-bar}.liquid`,
+  `assets/copper-water-10-reasons.{css,js}`, fallback images
+  `assets/copper-water-10-reasons-*.jpg` (+ `-450`/`-900`, avatar `-80`).
+- Section order: announcement → hero (incl. customer quote) → comparison
+  (incl. transition line) → reason-01…reason-10 → offer → sources → footer.
+  Sticky bar is rendered from the layout, not the template.
+
+## Decisions (confirmed by the user)
+
+- **Sticky bar**: shown on mobile AND desktop (no ≥768px hide). Appears
+  after the visitor scrolls past the **end of Reason 06** — a 1px marker
+  (`margin-top:-1px` so it adds no height) rendered by the reason section
+  whose `sticky_trigger` checkbox is on (only reason-06). IntersectionObserver
+  + `hasShown` flag. Verified with real scroll-wheel input.
+- **Top bar is not sticky** (despite the Figma layer name); single message
+  block from Figma, rotation JS only runs with 2+ messages.
+- **Duplicates kept as in Figma**: the disclaimer appears under the offer
+  card AND in the footer; "Buy More, Save More — up to 15% off" appears next
+  to the price AND in the discount box.
+- **CTA links** (offer + sticky bar) → `/products/neera-copper-water-bottle-handcrafted-from-pure-copper`.
+- **Customer quote lives inside the hero section** (user request after
+  seeing the live desktop page): on desktop it sits under the subhead in the
+  hero's left column (grid areas `"text card" / "quote card"`); mobile order
+  and spacing unchanged from Figma (quote below the image card, 24px gap).
+  Figma has it as a separate block (`154:9`); the separate quote section
+  was deleted.
+- **Reason 05 & 08 headings** wrap to 3 lines vs Figma's 2 (+32px each):
+  the Google Fonts Newsreader renders ~3% wider than Figma's. User said
+  it's fine — don't "fix" with letter-spacing.
+- Footer policy link labels are text settings with Figma's Title Case
+  defaults (Shopify's own titles are lowercase "Privacy policy"); URLs still
+  come from `shop.*_policy`.
+
+## Implementation notes
+
+- Shared `.cls-copperwater10-card` component (image on top, text pinned to
+  the bottom of a 438px min-height card) used by hero, all reasons and the
+  offer (offer overrides: no min-height, 46px gap). On desktop, reason cards
+  get a 32px image→stat gap (the 60px/40px numerals otherwise crowd the image).
+- Reason section settings, all per-instance and checked per Figma node:
+  `section_theme` dark (01–05) / warm (06–10); `card_theme` dark/light
+  (light: 04, 07–10); `top_rule` (02–05 cream line, 07–10 rule line);
+  `stat_style` numeral-xl 60px / numeral-lg 44px / headline 26px;
+  optional `source`; `image_position` alternates right/left on desktop.
+  Dark card on a dark section = `#37312b` (ink + ~6% cream, pixel-sampled
+  from Figma); comparison copper column body = copper at 10% over white
+  (`#f7f0ea`, sampled) — Figma's exported code claimed solid copper for both.
+- Figma images are zoomed/offset inside their slots; each fallback image was
+  **pre-cropped to exactly the visible slot region** (PIL, cover-fit math)
+  so a plain `object-fit: cover` reproduces the design. Reason 09's slot is
+  12px taller in Figma and reason 02's card padding is 12px not 18px —
+  normalised to match the other nine.
+- Mobile verification that works here: fetch the page HTML and load it
+  into a 390px **`srcdoc` iframe with `sandbox="allow-same-origin"`** (no
+  scripts). Without the sandbox, the store's app scripts inside the iframe
+  froze the tab (CDP timeouts). Create the iframe in one JS call and measure
+  in a later call — never `await` long waits inside the page.
+
+## Status (2026-09-24)
+
+All sections built, verified at 390px (positions match Figma except the
+two heading wraps above) and desktop, merged to `main` and **live** on
+Nerra/main; live files verified identical to the repo via pull-back.
