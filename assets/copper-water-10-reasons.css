@@ -936,9 +936,9 @@
 }
 
 @media (min-width: 768px) {
-  /* Single centred 800px column — a numbered reading list. */
+  /* Same 1280px content width as the other sections. */
   .cls-copperwater10-sources__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 48px 40px 8px;
   }
@@ -988,7 +988,7 @@
 
 @media (min-width: 768px) {
   .cls-copperwater10-footer__inner {
-    max-width: 800px;
+    max-width: 1280px;
     margin: 0 auto;
     padding-right: 40px;
     padding-left: 40px;
