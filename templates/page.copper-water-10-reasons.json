@@ -37,11 +37,91 @@
         "reviewer_name": "Alex",
         "reviewer_label": "Verified Buyer"
       }
+    },
+    "comparison": {
+      "type": "copper-water-10-reasons-comparison",
+      "blocks": {
+        "row-1": {
+          "type": "row",
+          "settings": {
+            "label": "Sheds plastic into your water",
+            "copper": "Zero",
+            "copper_muted": false,
+            "steel": "Zero",
+            "plastic": "Yes — more with heat and age"
+          }
+        },
+        "row-2": {
+          "type": "row",
+          "settings": {
+            "label": "Plastic touching your water",
+            "copper": "None",
+            "copper_muted": false,
+            "steel": "Often the lid and straw",
+            "plastic": "All of it"
+          }
+        },
+        "row-3": {
+          "type": "row",
+          "settings": {
+            "label": "Antimicrobial surface",
+            "copper": "Naturally",
+            "copper_muted": false,
+            "steel": "No",
+            "plastic": "No"
+          }
+        },
+        "row-4": {
+          "type": "row",
+          "settings": {
+            "label": "Adds to your water",
+            "copper": "A trace of an essential mineral",
+            "copper_muted": false,
+            "steel": "Nothing",
+            "plastic": "Particles and compounds"
+          }
+        },
+        "row-5": {
+          "type": "row",
+          "settings": {
+            "label": "Keeps drinks ice-cold",
+            "copper": "No — built for room-temp water",
+            "copper_muted": true,
+            "steel": "Yes, for hours",
+            "plastic": "No"
+          }
+        },
+        "row-6": {
+          "type": "row",
+          "settings": {
+            "label": "Lifespan",
+            "copper": "Decades",
+            "copper_muted": false,
+            "steel": "Years",
+            "plastic": "Months"
+          }
+        }
+      },
+      "block_order": [
+        "row-1",
+        "row-2",
+        "row-3",
+        "row-4",
+        "row-5",
+        "row-6"
+      ],
+      "settings": {
+        "col_1_label": "COPPER",
+        "col_2_label": "STEEL",
+        "col_3_label": "PLASTIC",
+        "transition_line": "Here’s where the plastic ends up — and the one change that stops adding to it ↓"
+      }
     }
   },
   "order": [
     "announcement",
     "hero",
-    "quote"
+    "quote",
+    "comparison"
   ]
 }

@@ -1,0 +1,118 @@
+<div id="ClsCopperwater10Comparison-{{ section.id }}" class="cls-copperwater10-comparison">
+  <div class="cls-copperwater10-comparison__inner">
+    <div class="cls-copperwater10-comparison__frame">
+      <table class="cls-copperwater10-comparison__table">
+        <colgroup>
+          <col class="cls-copperwater10-comparison__col--label">
+          <col class="cls-copperwater10-comparison__col--copper">
+          <col class="cls-copperwater10-comparison__col--steel">
+          <col class="cls-copperwater10-comparison__col--plastic">
+        </colgroup>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col" class="cls-copperwater10-comparison__highlight">{{ section.settings.col_1_label | escape }}</th>
+            <th scope="col">{{ section.settings.col_2_label | escape }}</th>
+            <th scope="col">{{ section.settings.col_3_label | escape }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            <tr {{ block.shopify_attributes }}>
+              <th scope="row">{{ block.settings.label | escape }}</th>
+              <td class="cls-copperwater10-comparison__highlight{% if block.settings.copper_muted %} cls-copperwater10-comparison__cell--muted{% endif %}">
+                {{- block.settings.copper | escape -}}
+              </td>
+              <td>{{ block.settings.steel | escape }}</td>
+              <td>{{ block.settings.plastic | escape }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+
+    {%- if section.settings.transition_line != blank -%}
+      <p class="cls-copperwater10-comparison__transition">{{ section.settings.transition_line | escape }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Comparison table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column labels"
+    },
+    {
+      "type": "text",
+      "id": "col_1_label",
+      "label": "Highlighted column",
+      "default": "COPPER"
+    },
+    {
+      "type": "text",
+      "id": "col_2_label",
+      "label": "Second column",
+      "default": "STEEL"
+    },
+    {
+      "type": "text",
+      "id": "col_3_label",
+      "label": "Third column",
+      "default": "PLASTIC"
+    },
+    {
+      "type": "header",
+      "content": "Below the table"
+    },
+    {
+      "type": "text",
+      "id": "transition_line",
+      "label": "Transition line"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Row label"
+        },
+        {
+          "type": "text",
+          "id": "copper",
+          "label": "Highlighted column value"
+        },
+        {
+          "type": "checkbox",
+          "id": "copper_muted",
+          "label": "Show highlighted value in grey",
+          "info": "For a row where the highlighted column doesn't win.",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "steel",
+          "label": "Second column value"
+        },
+        {
+          "type": "text",
+          "id": "plastic",
+          "label": "Third column value"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Comparison table"
+    }
+  ]
+}
+{% endschema %}

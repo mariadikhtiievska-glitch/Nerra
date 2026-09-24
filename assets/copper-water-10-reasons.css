@@ -369,3 +369,130 @@
     padding: 24px;
   }
 }
+
+/* Block 3 — Comparison table + transition line (node 179:12). Real
+   <table>; columns keep Figma's 100/82/78/90 proportions via fixed
+   layout so they shrink evenly on phones narrower than 390px. The copper
+   column's header is solid copper, its body cells copper at 10% over
+   white (sampled from Figma: #f7f0ea). */
+
+.cls-copperwater10-comparison__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 8px 20px 36px;
+}
+
+.cls-copperwater10-comparison__frame {
+  border: 1px solid var(--cls-copperwater10-rule);
+  border-radius: var(--cls-copperwater10-radius-card);
+  background: var(--cls-copperwater10-white);
+  overflow: hidden;
+}
+
+.cls-copperwater10-comparison__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.cls-copperwater10-comparison__col--label {
+  width: 28.57%;
+}
+
+.cls-copperwater10-comparison__col--copper {
+  width: 23.43%;
+}
+
+.cls-copperwater10-comparison__col--steel {
+  width: 22.29%;
+}
+
+.cls-copperwater10-comparison__col--plastic {
+  width: 25.71%;
+}
+
+.cls-copperwater10-comparison__table th,
+.cls-copperwater10-comparison__table td {
+  padding: 12px 6px;
+  font-family: var(--cls-copperwater10-font-body);
+  text-align: center;
+  vertical-align: middle;
+  overflow-wrap: break-word;
+}
+
+.cls-copperwater10-comparison__table thead th,
+.cls-copperwater10-comparison__table thead td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: var(--cls-copperwater10-ink);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1.4px;
+  color: var(--cls-copperwater10-cream);
+}
+
+.cls-copperwater10-comparison__table thead .cls-copperwater10-comparison__highlight {
+  background: var(--cls-copperwater10-copper);
+  color: var(--cls-copperwater10-white);
+}
+
+.cls-copperwater10-comparison__table tbody tr:not(:last-child) > * {
+  border-bottom: 1px solid var(--cls-copperwater10-rule);
+}
+
+.cls-copperwater10-comparison__table tbody th {
+  padding-left: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--cls-copperwater10-ink);
+  text-align: left;
+}
+
+.cls-copperwater10-comparison__table tbody td {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--cls-copperwater10-ink);
+}
+
+.cls-copperwater10-comparison__table tbody .cls-copperwater10-comparison__highlight {
+  background: rgba(184, 115, 51, 0.1);
+}
+
+.cls-copperwater10-comparison__table tbody .cls-copperwater10-comparison__cell--muted {
+  color: var(--cls-copperwater10-ink-muted);
+}
+
+.cls-copperwater10-comparison__transition {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  color: var(--cls-copperwater10-ink);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  /* Single centred ~800px column — a 4-column table needs the full width
+     to itself; column proportions stay the same, cells just widen. */
+  .cls-copperwater10-comparison__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 24px;
+    padding: 0 40px 64px;
+  }
+
+  .cls-copperwater10-comparison__table th,
+  .cls-copperwater10-comparison__table td {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .cls-copperwater10-comparison__table tbody th {
+    padding-left: 16px;
+  }
+}
