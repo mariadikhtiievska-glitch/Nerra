@@ -663,4 +663,12 @@
     font-size: 32px;
     line-height: 38px;
   }
+
+  /* On mobile the fixed 438px card height leaves ~50px between image and
+     stat (Figma); on desktop the card's height follows its width, leaving
+     only the base 18px gap — too tight under the 60px numerals, whose
+     glyphs rise above their 40px line box. */
+  .cls-copperwater10-reason__card {
+    gap: 32px;
+  }
 }
