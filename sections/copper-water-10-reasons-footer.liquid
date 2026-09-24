@@ -4,13 +4,33 @@
       <p class="cls-copperwater10-footer__disclaimer">{{ section.settings.disclaimer | escape }}</p>
     {%- endif -%}
 
-    <p class="cls-copperwater10-footer__meta">
-      &copy; {{ 'now' | date: '%Y' }} {{ section.settings.company_name | escape }}
-      {%- if shop.privacy_policy.url != blank %}&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a>{% endif -%}
-      {%- if shop.refund_policy.url != blank %}&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>{% endif -%}
-      {%- if shop.shipping_policy.url != blank %}&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a>{% endif -%}
-      {%- if shop.terms_of_service.url != blank %}&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a>{% endif -%}
-    </p>
+    {%- liquid
+      # Policy URLs come from Settings → Policies; labels are editable here.
+      # Each link is only shown when that policy exists.
+      assign separator = '&nbsp;&nbsp;&middot;&nbsp;&nbsp;'
+      assign year = 'now' | date: '%Y'
+      assign company = section.settings.company_name | escape
+      assign privacy_label = section.settings.privacy_label | escape
+      assign refund_label = section.settings.refund_label | escape
+      assign shipping_label = section.settings.shipping_label | escape
+      assign terms_label = section.settings.terms_label | escape
+      capture meta
+        echo '&copy; ' | append: year | append: ' ' | append: company
+        if shop.privacy_policy.url != blank and section.settings.privacy_label != blank
+          echo separator | append: '<a href="' | append: shop.privacy_policy.url | append: '">' | append: privacy_label | append: '</a>'
+        endif
+        if shop.refund_policy.url != blank and section.settings.refund_label != blank
+          echo separator | append: '<a href="' | append: shop.refund_policy.url | append: '">' | append: refund_label | append: '</a>'
+        endif
+        if shop.shipping_policy.url != blank and section.settings.shipping_label != blank
+          echo separator | append: '<a href="' | append: shop.shipping_policy.url | append: '">' | append: shipping_label | append: '</a>'
+        endif
+        if shop.terms_of_service.url != blank and section.settings.terms_label != blank
+          echo separator | append: '<a href="' | append: shop.terms_of_service.url | append: '">' | append: terms_label | append: '</a>'
+        endif
+      endcapture
+    -%}
+    <p class="cls-copperwater10-footer__meta">{{ meta }}</p>
   </div>
 </div>
 
@@ -27,7 +47,39 @@
       "type": "text",
       "id": "company_name",
       "label": "Company name",
-      "info": "Shown after © and the current year. Policy links come from Settings → Policies."
+      "info": "Shown after © and the current year."
+    },
+    {
+      "type": "header",
+      "content": "Policy links"
+    },
+    {
+      "type": "paragraph",
+      "content": "Link addresses come from Settings → Policies. A link is hidden if that policy isn't set up or its label is blank."
+    },
+    {
+      "type": "text",
+      "id": "privacy_label",
+      "label": "Privacy policy label",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "text",
+      "id": "refund_label",
+      "label": "Refund policy label",
+      "default": "Refund Policy"
+    },
+    {
+      "type": "text",
+      "id": "shipping_label",
+      "label": "Shipping policy label",
+      "default": "Shipping Policy"
+    },
+    {
+      "type": "text",
+      "id": "terms_label",
+      "label": "Terms of service label",
+      "default": "Terms of Service"
     }
   ],
   "presets": [

@@ -404,7 +404,11 @@
       "type": "copper-water-10-reasons-footer",
       "settings": {
         "disclaimer": "Research cited on this page concerns plastic exposure generally, not Neera products specifically. Individual experiences vary. Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA.",
-        "company_name": "Neera Living"
+        "company_name": "Neera Living",
+        "privacy_label": "Privacy Policy",
+        "refund_label": "Refund Policy",
+        "shipping_label": "Shipping Policy",
+        "terms_label": "Terms of Service"
       }
     }
   },
