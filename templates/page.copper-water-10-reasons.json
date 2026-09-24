@@ -11,7 +11,9 @@
           }
         }
       },
-      "block_order": ["message-1"],
+      "block_order": [
+        "message-1"
+      ],
       "settings": {
         "interval": 4
       }
@@ -25,7 +27,21 @@
         "card_headline": "Plastic is already in your blood.",
         "card_line": "Your water bottle is the one source you control."
       }
+    },
+    "quote": {
+      "type": "copper-water-10-reasons-quote",
+      "settings": {
+        "stars": 5,
+        "quote": "“What delicious water from this bottle. I pour already filtered water and it turns out to be the purest taste, like from a spring.”",
+        "avatar_fallback": "copper-water-10-reasons-avatar.jpg",
+        "reviewer_name": "Alex",
+        "reviewer_label": "Verified Buyer"
+      }
     }
   },
-  "order": ["announcement", "hero"]
+  "order": [
+    "announcement",
+    "hero",
+    "quote"
+  ]
 }
