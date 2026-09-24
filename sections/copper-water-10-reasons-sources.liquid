@@ -1,0 +1,50 @@
+<div id="ClsCopperwater10Sources-{{ section.id }}" class="cls-copperwater10-sources">
+  <div class="cls-copperwater10-sources__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="cls-copperwater10-sources__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <ol class="cls-copperwater10-sources__list">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.text != blank -%}
+            <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ol>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sources",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SOURCES"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "source",
+      "name": "Source",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Citation",
+          "info": "Numbered automatically in list order."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Sources"
+    }
+  ]
+}
+{% endschema %}

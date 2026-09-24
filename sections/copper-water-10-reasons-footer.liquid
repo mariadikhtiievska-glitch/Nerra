@@ -1,0 +1,39 @@
+<div id="ClsCopperwater10Footer-{{ section.id }}" class="cls-copperwater10-footer">
+  <div class="cls-copperwater10-footer__inner">
+    {%- if section.settings.disclaimer != blank -%}
+      <p class="cls-copperwater10-footer__disclaimer">{{ section.settings.disclaimer | escape }}</p>
+    {%- endif -%}
+
+    <p class="cls-copperwater10-footer__meta">
+      &copy; {{ 'now' | date: '%Y' }} {{ section.settings.company_name | escape }}
+      {%- if shop.privacy_policy.url != blank %}&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a>{% endif -%}
+      {%- if shop.refund_policy.url != blank %}&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>{% endif -%}
+      {%- if shop.shipping_policy.url != blank %}&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a>{% endif -%}
+      {%- if shop.terms_of_service.url != blank %}&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a>{% endif -%}
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "disclaimer",
+      "label": "Disclaimer"
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company name",
+      "info": "Shown after © and the current year. Policy links come from Settings → Policies."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

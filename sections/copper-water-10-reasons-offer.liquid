@@ -1,0 +1,241 @@
+{%- liquid
+  assign has_desktop_image = false
+  if section.settings.image_desktop != blank
+    assign has_desktop_image = true
+  endif
+-%}
+
+<div id="ClsCopperwater10Offer-{{ section.id }}" class="cls-copperwater10-offer">
+  <div class="cls-copperwater10-offer__inner">
+    <div class="cls-copperwater10-offer__creative cls-copperwater10-card cls-copperwater10-card--dark{% if has_desktop_image %} cls-copperwater10-offer__creative--desktop-image{% endif %}">
+      <div class="cls-copperwater10-card__image cls-copperwater10-offer__image">
+        <picture>
+          {%- if has_desktop_image -%}
+            <source
+              media="(min-width: 768px)"
+              srcset="{{ section.settings.image_desktop | image_url: width: 900 }} 900w, {{ section.settings.image_desktop | image_url: width: 1280 }} 1280w"
+              sizes="560px"
+            >
+          {%- endif -%}
+          {%- if section.settings.image != blank -%}
+            <img
+              src="{{ section.settings.image | image_url: width: 900 }}"
+              srcset="{{ section.settings.image | image_url: width: 450 }} 450w, {{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1280 }} 1280w"
+              sizes="(min-width: 768px) 560px, calc(100vw - 76px)"
+              alt="{{ section.settings.image.alt | default: section.settings.card_headline | escape }}"
+              loading="lazy"
+            >
+          {%- elsif section.settings.image_fallback != blank -%}
+            <img
+              src="{{ section.settings.image_fallback | replace: '.jpg', '-900.jpg' | asset_url }}"
+              srcset="{{ section.settings.image_fallback | replace: '.jpg', '-450.jpg' | asset_url }} 450w, {{ section.settings.image_fallback | replace: '.jpg', '-900.jpg' | asset_url }} 900w, {{ section.settings.image_fallback | asset_url }} 1280w"
+              sizes="(min-width: 768px) 560px, calc(100vw - 76px)"
+              alt="{{ section.settings.card_headline | escape }}"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </picture>
+      </div>
+
+      <div class="cls-copperwater10-card__text">
+        {%- if section.settings.card_headline != blank -%}
+          <p class="cls-copperwater10-card__headline">{{ section.settings.card_headline | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.card_line != blank -%}
+          <p class="cls-copperwater10-card__line">{{ section.settings.card_line | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="cls-copperwater10-offer__card">
+      {%- if section.settings.headline != blank -%}
+        <h2 class="cls-copperwater10-offer__headline">{{ section.settings.headline | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subhead != blank -%}
+        <p class="cls-copperwater10-offer__subhead">{{ section.settings.subhead | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.price != blank or section.settings.price_note != blank -%}
+        <div class="cls-copperwater10-offer__price-row">
+          {%- if section.settings.price != blank -%}
+            <p class="cls-copperwater10-offer__price">{{ section.settings.price | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.price_note != blank -%}
+            <p class="cls-copperwater10-offer__price-note">{{ section.settings.price_note | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.discount_line_1 != blank or section.settings.discount_line_2 != blank -%}
+        <div class="cls-copperwater10-offer__box">
+          {%- if section.settings.discount_line_1 != blank -%}
+            <p>{{ section.settings.discount_line_1 }}</p>
+          {%- endif -%}
+          {%- if section.settings.discount_line_2 != blank -%}
+            <p>{{ section.settings.discount_line_2 }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.supporting_line != blank -%}
+        <div class="cls-copperwater10-offer__box">
+          <p>{{ section.settings.supporting_line | escape | newline_to_br }}</p>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a
+          class="cls-copperwater10-offer__button"
+          href="{{ section.settings.button_url | default: '/products/neera-copper-water-bottle-handcrafted-from-pure-copper' }}"
+        >
+          {{- section.settings.button_label | escape -}}
+        </a>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="cls-copperwater10-offer__trust">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank -%}
+              <li {{ block.shopify_attributes }}>
+                <span class="cls-copperwater10-offer__check" aria-hidden="true">✓</span>
+                <span>{{ block.settings.text | escape }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.guarantee != blank -%}
+        <p class="cls-copperwater10-offer__guarantee">{{ section.settings.guarantee | escape | newline_to_br }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.disclaimer != blank -%}
+      <p class="cls-copperwater10-offer__disclaimer">{{ section.settings.disclaimer | escape }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Offer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image card"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_fallback",
+      "label": "Image fallback asset",
+      "info": "Theme asset used when no image is picked above."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Desktop image (optional)",
+      "info": "16:9 image shown from 768px up. Leave empty to use the image above on all screens."
+    },
+    {
+      "type": "text",
+      "id": "card_headline",
+      "label": "Card headline"
+    },
+    {
+      "type": "text",
+      "id": "card_line",
+      "label": "Card line"
+    },
+    {
+      "type": "header",
+      "content": "Offer card"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline"
+    },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Subhead"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price"
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Text next to price"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "discount_line_1",
+      "label": "Discount line 1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "discount_line_2",
+      "label": "Discount line 2"
+    },
+    {
+      "type": "textarea",
+      "id": "supporting_line",
+      "label": "Supporting line",
+      "info": "Press Enter for a line break."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "textarea",
+      "id": "guarantee",
+      "label": "Guarantee line",
+      "info": "Press Enter for a line break."
+    },
+    {
+      "type": "header",
+      "content": "Below the card"
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "info": "Leave blank to hide."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Offer"
+    }
+  ]
+}
+{% endschema %}

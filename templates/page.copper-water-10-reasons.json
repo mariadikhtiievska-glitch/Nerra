@@ -296,6 +296,116 @@
         "image_position": "left",
         "sticky_trigger": false
       }
+    },
+    "offer": {
+      "type": "copper-water-10-reasons-offer",
+      "blocks": {
+        "trust-1": {
+          "type": "trust_item",
+          "settings": {
+            "text": "Lab-Verified 99.9% Pure Copper"
+          }
+        },
+        "trust-2": {
+          "type": "trust_item",
+          "settings": {
+            "text": "Zero Plastic, Zero Coatings"
+          }
+        },
+        "trust-3": {
+          "type": "trust_item",
+          "settings": {
+            "text": "Over 100,000+ Happy Customers"
+          }
+        },
+        "trust-4": {
+          "type": "trust_item",
+          "settings": {
+            "text": "Free Shipping · Ships in 1–2 Days"
+          }
+        }
+      },
+      "block_order": [
+        "trust-1",
+        "trust-2",
+        "trust-3",
+        "trust-4"
+      ],
+      "settings": {
+        "image_fallback": "copper-water-10-reasons-offer.jpg",
+        "card_headline": "Zero plastic. For decades.",
+        "card_line": "99.9% pure copper · lab-tested every batch",
+        "headline": "Cut the plastic tonight.",
+        "subhead": "Fill it before bed. Drink it tomorrow morning. That’s the whole routine.",
+        "price": "$79",
+        "price_note": "Buy More, Save More — up to 15% off",
+        "discount_line_1": "Buy More, Save More — up to 15% off",
+        "discount_line_2": "Extra 10% off with code <strong>NEERA10</strong>",
+        "supporting_line": "Costs less than a month of supplements.\nLasts for years.",
+        "button_label": "Start My Copper Ritual",
+        "button_url": "/products/neera-copper-water-bottle-handcrafted-from-pure-copper",
+        "guarantee": "Something not right?\nWe make it right — no run-around.",
+        "disclaimer": "Research cited on this page concerns plastic exposure generally, not Neera products specifically. Individual experiences vary. Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA."
+      }
+    },
+    "sources": {
+      "type": "copper-water-10-reasons-sources",
+      "blocks": {
+        "source-1": {
+          "type": "source",
+          "settings": {
+            "text": "Leslie HA et al. Discovery and quantification of plastic particle pollution in human blood. Environment International, 2022."
+          }
+        },
+        "source-2": {
+          "type": "source",
+          "settings": {
+            "text": "Marfella R et al. Microplastics and Nanoplastics in Atheromas and Cardiovascular Events. New England Journal of Medicine, 2024."
+          }
+        },
+        "source-3": {
+          "type": "source",
+          "settings": {
+            "text": "Nihart AJ et al. Bioaccumulation of microplastics in decedent human brains. Nature Medicine, 2025."
+          }
+        },
+        "source-4": {
+          "type": "source",
+          "settings": {
+            "text": "Qian N et al. Rapid single-particle chemical imaging of nanoplastics by SRS microscopy. PNAS, 2024."
+          }
+        },
+        "source-5": {
+          "type": "source",
+          "settings": {
+            "text": "Sudha VBP et al. Storing drinking-water in copper pots kills contaminating diarrhoeagenic bacteria. J Health Popul Nutr, 2012."
+          }
+        },
+        "source-6": {
+          "type": "source",
+          "settings": {
+            "text": "US FDA, BPA in baby bottles, 2012 · Commission Regulation (EU) 2024/3190 on BPA in food-contact materials."
+          }
+        }
+      },
+      "block_order": [
+        "source-1",
+        "source-2",
+        "source-3",
+        "source-4",
+        "source-5",
+        "source-6"
+      ],
+      "settings": {
+        "heading": "SOURCES"
+      }
+    },
+    "footer": {
+      "type": "copper-water-10-reasons-footer",
+      "settings": {
+        "disclaimer": "Research cited on this page concerns plastic exposure generally, not Neera products specifically. Individual experiences vary. Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA.",
+        "company_name": "Neera Living"
+      }
     }
   },
   "order": [
@@ -312,6 +422,9 @@
     "reason-07",
     "reason-08",
     "reason-09",
-    "reason-10"
+    "reason-10",
+    "offer",
+    "sources",
+    "footer"
   ]
 }

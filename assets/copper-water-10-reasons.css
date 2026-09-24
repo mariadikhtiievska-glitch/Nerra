@@ -674,3 +674,311 @@
     gap: 32px;
   }
 }
+
+/* Block 5 — Offer (node 181:87). The image card reuses the shared card
+   component; unlike the reason cards it has no fixed height — Figma
+   spaces image and text with a flat 46px gap. */
+
+.cls-copperwater10-offer {
+  background: var(--cls-copperwater10-ink);
+}
+
+.cls-copperwater10-offer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 20px 32px;
+}
+
+.cls-copperwater10-offer__creative {
+  justify-content: flex-start;
+  gap: 46px;
+  min-height: 0;
+}
+
+.cls-copperwater10-offer__image {
+  aspect-ratio: 314 / 357;
+  background: var(--cls-copperwater10-cream);
+}
+
+.cls-copperwater10-offer__card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 20px;
+  border-radius: var(--cls-copperwater10-radius-card);
+  background: var(--cls-copperwater10-white);
+  color: var(--cls-copperwater10-ink);
+  text-align: center;
+}
+
+.cls-copperwater10-offer__headline {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.cls-copperwater10-offer__subhead {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--cls-copperwater10-ink-muted);
+}
+
+.cls-copperwater10-offer__price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 12px;
+}
+
+.cls-copperwater10-offer__price {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-stat);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: -0.4px;
+  color: var(--cls-copperwater10-price-red);
+}
+
+.cls-copperwater10-offer__price-note {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--cls-copperwater10-espresso);
+}
+
+.cls-copperwater10-offer__box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--cls-copperwater10-cream-alt);
+}
+
+.cls-copperwater10-offer__box p {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.cls-copperwater10-offer__box strong {
+  font-weight: 600;
+}
+
+.cls-copperwater10-offer__button {
+  display: block;
+  width: 100%;
+  padding: 18px 16px;
+  border-radius: 10px;
+  background: var(--cls-copperwater10-copper-deep);
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: var(--cls-copperwater10-white);
+  text-align: center;
+  text-decoration: none;
+}
+
+.cls-copperwater10-offer__trust {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 4px 0 0;
+  list-style: none;
+  text-align: left;
+}
+
+.cls-copperwater10-offer__trust li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.cls-copperwater10-offer__check {
+  flex: 0 0 auto;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 28px;
+  color: var(--cls-copperwater10-copper);
+}
+
+.cls-copperwater10-offer__guarantee {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--cls-copperwater10-ink-muted);
+}
+
+.cls-copperwater10-offer__disclaimer {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+  color: var(--cls-copperwater10-cream);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  /* Two columns, 50/50: image card left, offer card right (capped at
+     480px), vertically centred; disclaimer spans both columns below. */
+  .cls-copperwater10-offer__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "creative card"
+      "disclaimer disclaimer";
+    align-items: center;
+    column-gap: 56px;
+    row-gap: 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+
+  .cls-copperwater10-offer__creative {
+    grid-area: creative;
+  }
+
+  .cls-copperwater10-offer__creative--desktop-image .cls-copperwater10-offer__image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .cls-copperwater10-offer__card {
+    grid-area: card;
+    justify-self: center;
+    width: 100%;
+    max-width: 480px;
+    padding: 32px;
+  }
+
+  .cls-copperwater10-offer__disclaimer {
+    grid-area: disclaimer;
+    justify-self: center;
+    max-width: 800px;
+  }
+}
+
+/* Block 6 — Sources (node 181:123). Real <ol>; numbers come from the list
+   so they stay correct when citations are reordered in the customizer. */
+
+.cls-copperwater10-sources {
+  background: var(--cls-copperwater10-cream-alt);
+  color: var(--cls-copperwater10-ink-muted);
+}
+
+.cls-copperwater10-sources__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px 20px 8px;
+}
+
+.cls-copperwater10-sources__heading {
+  margin: 0;
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.cls-copperwater10-sources__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: decimal inside;
+}
+
+.cls-copperwater10-sources__list li {
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+}
+
+@media (min-width: 768px) {
+  /* Single centred 800px column — a numbered reading list. */
+  .cls-copperwater10-sources__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px 40px 8px;
+  }
+}
+
+/* Block 7 — Disclaimer + footer (node 181:131). Bottom padding also
+   clears the fixed sticky bar (68px, shown on mobile and desktop) so the
+   last line is never hidden under it. */
+
+.cls-copperwater10-footer {
+  background: var(--cls-copperwater10-cream-alt);
+}
+
+.cls-copperwater10-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 20px calc(36px + 68px + env(safe-area-inset-bottom, 0px));
+  font-family: var(--cls-copperwater10-font-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.cls-copperwater10-footer__inner p {
+  margin: 0;
+}
+
+.cls-copperwater10-footer__disclaimer {
+  color: var(--cls-copperwater10-ink-muted);
+}
+
+.cls-copperwater10-footer__meta {
+  color: var(--cls-copperwater10-ink);
+}
+
+.cls-copperwater10-footer__meta a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cls-copperwater10-footer__meta a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .cls-copperwater10-footer__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
