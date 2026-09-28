@@ -3,15 +3,12 @@
   offer). Renders the video's cover frame as a responsive <img> plus an empty
   <video preload="none"> — no video bytes are downloaded on page load. The
   lazy-video behavior in copper-water-10-reasons.js attaches a single MP4
-  source (the smallest one wide enough for the card) only when:
-  - mode 'autoplay' (GIF-style): the card comes within 300px of the viewport.
-    It then plays muted on a loop while visible and pauses when scrolled away.
-    Visitors with "reduce motion" or data saver on get a play button instead.
-  - mode 'click': the visitor taps the play button (plays with sound).
+  source (the smallest one wide enough for the card) when the card comes
+  within 300px of the viewport; the video then autoplays muted on a loop
+  while visible and pauses when scrolled away.
 
   Params:
   - video: a video object from a "video" setting
-  - mode: 'autoplay' | 'click'
   - sizes: sizes attribute for the cover image
   - alt: accessible label fallback when the video has no alt text
   - eager: true for above-the-fold cards (hero) so the cover loads eagerly
@@ -24,7 +21,7 @@
   endif
 -%}
 
-<div class="cls-copperwater10-video" data-cls-copperwater10-video data-mode="{{ mode | default: 'autoplay' }}">
+<div class="cls-copperwater10-video" data-cls-copperwater10-video>
   {%- if video.preview_image -%}
     <img
       class="cls-copperwater10-video__poster"
@@ -40,7 +37,7 @@
     class="cls-copperwater10-video__player"
     muted
     playsinline
-    {% if mode != 'click' %}loop{% endif %}
+    loop
     preload="none"
     aria-label="{{ alt_text | escape }}"
   >
@@ -50,10 +47,4 @@
       {%- endif -%}
     {%- endfor -%}
   </video>
-
-  <button type="button" class="cls-copperwater10-video__play" aria-label="Play video" hidden>
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
-      <path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/>
-    </svg>
-  </button>
 </div>

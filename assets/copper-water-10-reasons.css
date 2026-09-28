@@ -219,34 +219,6 @@
   opacity: 1;
 }
 
-.cls-copperwater10-video__play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--cls-copperwater10-ink);
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
-
-.cls-copperwater10-video__play[hidden] {
-  display: none;
-}
-
-.cls-copperwater10-video__play svg {
-  width: 28px;
-  height: 28px;
-  margin-left: 3px;
-}
-
 .cls-copperwater10-card__text {
   display: flex;
   flex-direction: column;

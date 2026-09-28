@@ -12,7 +12,6 @@
         {%- if section.settings.video != blank -%}
           {%- render 'copper-water-10-reasons-video',
             video: section.settings.video,
-            mode: section.settings.video_mode,
             sizes: '(min-width: 768px) 560px, calc(100vw - 76px)',
             alt: section.settings.card_headline
           -%}
@@ -142,17 +141,7 @@
       "type": "video",
       "id": "video",
       "label": "Video (optional)",
-      "info": "Replaces the image when set. Upload an MP4 — for a GIF, convert it to MP4 first (far smaller). The video's cover image shows until it loads."
-    },
-    {
-      "type": "select",
-      "id": "video_mode",
-      "label": "Video playback",
-      "options": [
-        { "value": "autoplay", "label": "Autoplay, muted, looping (like a GIF)" },
-        { "value": "click", "label": "Play button, with sound" }
-      ],
-      "default": "autoplay"
+      "info": "Replaces the image when set. Upload an MP4 — for a GIF, convert it to MP4 first (far smaller). It plays muted on a loop; the video's cover image shows until it loads."
     },
     {
       "type": "text",

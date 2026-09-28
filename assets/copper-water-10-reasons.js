@@ -57,15 +57,10 @@
 // Lazy videos (snippets/copper-water-10-reasons-video.liquid) — the <video>
 // ships with preload="none" and no src, so nothing downloads on page load.
 // Only one MP4 is attached: the smallest rendition at least as wide as the
-// card on this screen. "autoplay" videos load when their card comes within
-// 300px of the viewport and play only while on screen; "click" videos (and
-// autoplay ones for visitors with reduce-motion or data saver on) load only
-// when the play button is tapped.
+// card on this screen. Each video loads when its card comes within 300px of
+// the viewport, then autoplays muted on a loop only while on screen.
 (function () {
   if (!('IntersectionObserver' in window)) return;
-
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var saveData = !!(navigator.connection && navigator.connection.saveData);
 
   function attachSource(wrapper, video) {
     if (wrapper.hasAttribute('data-loaded')) return;
@@ -121,32 +116,12 @@
     });
   }, { threshold: 0.25 });
 
-  function setUpClickToPlay(wrapper, video) {
-    var button = wrapper.querySelector('.cls-copperwater10-video__play');
-    if (!button) return;
-
-    button.hidden = false;
-    button.addEventListener('click', function () {
-      attachSource(wrapper, video);
-      button.hidden = true;
-      video.controls = true;
-      if (wrapper.dataset.mode === 'click') video.muted = false;
-      play(video);
-    });
-  }
-
   function init(root) {
     root.querySelectorAll('[data-cls-copperwater10-video]').forEach(function (wrapper) {
       if (wrapper.hasAttribute('data-initialized')) return;
       wrapper.setAttribute('data-initialized', '');
 
-      var video = wrapper.querySelector('video');
-      if (!video) return;
-
-      if (wrapper.dataset.mode === 'click' || reduceMotion || saveData) {
-        setUpClickToPlay(wrapper, video);
-        return;
-      }
+      if (!wrapper.querySelector('video')) return;
 
       loadObserver.observe(wrapper);
       playObserver.observe(wrapper);
