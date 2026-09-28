@@ -1402,3 +1402,18 @@ per section and confirmed by the user before building.
 All sections built, verified at 390px (positions match Figma except the
 two heading wraps above) and desktop, merged to `main` and **live** on
 Nerra/main; live files verified identical to the repo via pull-back.
+
+### Lazy video on image cards (2026-09-28)
+
+Hero, reason and offer sections each got an optional `video` setting
+(Shopify Files video). When set it replaces the image and renders
+`snippets/copper-water-10-reasons-video.liquid`: the video's cover frame as
+a responsive lazy `<img>` + an empty `<video muted loop playsinline
+preload="none">` whose MP4 `<source>`s carry only `data-src`. The "Lazy
+videos" IIFE in `copper-water-10-reasons.js` attaches the one smallest MP4
+at least as wide as the card (×DPR, capped at 2) when within 300px of the
+viewport, plays at ≥25% visible and pauses off screen. Offer: the
+desktop-image `<picture>` is skipped when a video is set.
+**User decision:** videos always autoplay + loop — a first version's
+"play button with sound" mode and the reduce-motion / Save-Data
+play-button fallback were removed at the user's request.

@@ -53,3 +53,85 @@
 
   observer.observe(trigger);
 })();
+
+// Lazy videos (snippets/copper-water-10-reasons-video.liquid) — the <video>
+// ships with preload="none" and no src, so nothing downloads on page load.
+// Only one MP4 is attached: the smallest rendition at least as wide as the
+// card on this screen. Each video loads when its card comes within 300px of
+// the viewport, then autoplays muted on a loop only while on screen.
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+
+  function attachSource(wrapper, video) {
+    if (wrapper.hasAttribute('data-loaded')) return;
+    wrapper.setAttribute('data-loaded', '');
+
+    var sources = Array.prototype.slice.call(video.querySelectorAll('source[data-src]'));
+    if (!sources.length) return;
+
+    sources.sort(function (a, b) {
+      return (parseInt(a.dataset.width, 10) || 0) - (parseInt(b.dataset.width, 10) || 0);
+    });
+    var needed = wrapper.clientWidth * Math.min(window.devicePixelRatio || 1, 2);
+    var chosen = sources[sources.length - 1];
+    for (var i = 0; i < sources.length; i++) {
+      if ((parseInt(sources[i].dataset.width, 10) || 0) >= needed) {
+        chosen = sources[i];
+        break;
+      }
+    }
+
+    sources.forEach(function (source) {
+      if (source !== chosen) source.remove();
+    });
+    chosen.src = chosen.dataset.src;
+    video.addEventListener('playing', function () {
+      wrapper.classList.add('cls-copperwater10-video--playing');
+    }, { once: true });
+    video.load();
+  }
+
+  function play(video) {
+    var promise = video.play();
+    if (promise && promise.catch) promise.catch(function () {});
+  }
+
+  var loadObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      attachSource(entry.target, entry.target.querySelector('video'));
+      loadObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: '300px 0px' });
+
+  var playObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var video = entry.target.querySelector('video');
+      if (entry.isIntersecting) {
+        attachSource(entry.target, video);
+        play(video);
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  function init(root) {
+    root.querySelectorAll('[data-cls-copperwater10-video]').forEach(function (wrapper) {
+      if (wrapper.hasAttribute('data-initialized')) return;
+      wrapper.setAttribute('data-initialized', '');
+
+      if (!wrapper.querySelector('video')) return;
+
+      loadObserver.observe(wrapper);
+      playObserver.observe(wrapper);
+    });
+  }
+
+  init(document);
+
+  // Theme editor: re-run on sections re-rendered after a settings change.
+  document.addEventListener('shopify:section:load', function (event) {
+    init(event.target);
+  });
+})();

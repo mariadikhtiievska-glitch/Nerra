@@ -11,7 +11,14 @@
 
     <div class="cls-copperwater10-hero__card cls-copperwater10-card cls-copperwater10-card--dark">
       <div class="cls-copperwater10-card__image">
-        {%- if section.settings.image != blank -%}
+        {%- if section.settings.video != blank -%}
+          {%- render 'copper-water-10-reasons-video',
+            video: section.settings.video,
+            sizes: '(min-width: 768px) 500px, calc(100vw - 76px)',
+            alt: section.settings.card_headline,
+            eager: true
+          -%}
+        {%- elsif section.settings.image != blank -%}
           <img
             src="{{ section.settings.image | image_url: width: 900 }}"
             srcset="{{ section.settings.image | image_url: width: 450 }} 450w, {{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1280 }} 1280w"
@@ -119,6 +126,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (optional)",
+      "info": "Replaces the image when set. Upload an MP4 — for a GIF, convert it to MP4 first (far smaller). It plays muted on a loop; the video's cover image shows until it loads."
     },
     {
       "type": "text",

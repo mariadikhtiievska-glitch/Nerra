@@ -198,6 +198,27 @@
   object-fit: cover;
 }
 
+/* Lazy video (snippets/copper-water-10-reasons-video.liquid) — the cover
+   image sits underneath; the video fades in over it once it starts playing. */
+.cls-copperwater10-video {
+  position: absolute;
+  inset: 0;
+}
+
+.cls-copperwater10-video__player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cls-copperwater10-video--playing .cls-copperwater10-video__player {
+  opacity: 1;
+}
+
 .cls-copperwater10-card__text {
   display: flex;
   flex-direction: column;

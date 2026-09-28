@@ -1,0 +1,50 @@
+{%- comment -%}
+  Lazy video for the copper-water-10-reasons image cards (hero, reasons,
+  offer). Renders the video's cover frame as a responsive <img> plus an empty
+  <video preload="none"> — no video bytes are downloaded on page load. The
+  lazy-video behavior in copper-water-10-reasons.js attaches a single MP4
+  source (the smallest one wide enough for the card) when the card comes
+  within 300px of the viewport; the video then autoplays muted on a loop
+  while visible and pauses when scrolled away.
+
+  Params:
+  - video: a video object from a "video" setting
+  - sizes: sizes attribute for the cover image
+  - alt: accessible label fallback when the video has no alt text
+  - eager: true for above-the-fold cards (hero) so the cover loads eagerly
+{%- endcomment -%}
+{%- liquid
+  assign alt_text = video.alt | default: alt
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+-%}
+
+<div class="cls-copperwater10-video" data-cls-copperwater10-video>
+  {%- if video.preview_image -%}
+    <img
+      class="cls-copperwater10-video__poster"
+      src="{{ video.preview_image | image_url: width: 900 }}"
+      srcset="{{ video.preview_image | image_url: width: 450 }} 450w, {{ video.preview_image | image_url: width: 900 }} 900w, {{ video.preview_image | image_url: width: 1280 }} 1280w"
+      sizes="{{ sizes }}"
+      alt="{{ alt_text | escape }}"
+      loading="{{ loading }}"
+    >
+  {%- endif -%}
+
+  <video
+    class="cls-copperwater10-video__player"
+    muted
+    playsinline
+    loop
+    preload="none"
+    aria-label="{{ alt_text | escape }}"
+  >
+    {%- for source in video.sources -%}
+      {%- if source.mime_type == 'video/mp4' -%}
+        <source data-src="{{ source.url }}" data-width="{{ source.width }}" type="video/mp4">
+      {%- endif -%}
+    {%- endfor -%}
+  </video>
+</div>
