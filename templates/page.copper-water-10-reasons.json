@@ -32,6 +32,7 @@
       "settings": {
         "heading": "10 Reasons Copper Water Is the Easiest Health Upgrade You’ll Make This Year",
         "subhead": "Plastic has been found in human blood, arteries and brains. Here’s the one source you can cut tonight.",
+        "video": "shopify://files/videos/1.mp4",
         "image_fallback": "copper-water-10-reasons-hero.jpg",
         "card_headline": "Plastic is already in your blood.",
         "card_line": "Your water bottle is the one source you control.",
@@ -126,6 +127,7 @@
       "settings": {
         "label": "01 / IN YOUR BLOOD",
         "heading": "Plastic has already been found in human blood.",
+        "video": "shopify://files/videos/2.mp4",
         "image_fallback": "copper-water-10-reasons-reason-01.jpg",
         "stat": "77%",
         "stat_style": "numeral-xl",
@@ -144,6 +146,7 @@
       "settings": {
         "label": "02 / IN YOUR HEART",
         "heading": "People with plastic in their arteries had 4.5× the risk of heart attack, stroke or death.",
+        "video": "shopify://files/videos/3.mp4",
         "image_fallback": "copper-water-10-reasons-reason-02.jpg",
         "stat": "4.5×",
         "stat_style": "numeral-xl",
@@ -162,6 +165,7 @@
       "settings": {
         "label": "03 / IN YOUR BRAIN",
         "heading": "There was about 50% more plastic in human brains in 2024 than in 2016.",
+        "video": "shopify://files/videos/4.mp4",
         "image_fallback": "copper-water-10-reasons-reason-03.jpg",
         "stat": "+50% in 8 years",
         "stat_style": "numeral-lg",
@@ -198,6 +202,7 @@
       "settings": {
         "label": "05 / THE SOURCE",
         "heading": "One litre of bottled water: about 240,000 plastic particles.",
+        "video": "shopify://files/videos/5.mp4",
         "image_fallback": "copper-water-10-reasons-reason-05.jpg",
         "stat": "240,000",
         "stat_style": "numeral-xl",
