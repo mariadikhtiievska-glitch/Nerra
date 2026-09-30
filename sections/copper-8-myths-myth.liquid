@@ -1,0 +1,118 @@
+{%- liquid
+  assign s = section.settings
+  assign img_alt = s.image.alt | default: s.image_headline
+-%}
+
+<section
+  class="cls-copper8myths-myth cls-copper8myths-myth--{{ s.background }}{% if s.reverse %} cls-copper8myths-myth--reverse{% endif %}"
+  aria-labelledby="ClsCopper8mythsMythHeading-{{ section.id }}"
+>
+  {%- if s.sticky_trigger -%}
+    <span class="cls-copper8myths-sticky-trigger" data-cls-copper8myths-sticky-trigger aria-hidden="true"></span>
+  {%- endif -%}
+
+  <div class="cls-copper8myths-myth__inner">
+    <header class="cls-copper8myths-myth__header">
+      {%- if s.label != blank -%}
+        <p class="cls-copper8myths-eyebrow">{{ s.label | escape }}</p>
+      {%- endif -%}
+      {%- if s.myth_line != blank -%}
+        <p class="cls-copper8myths-myth__myth-line"><s>{{ s.myth_line | escape }}</s></p>
+      {%- endif -%}
+      {%- if s.headline != blank -%}
+        <h2 id="ClsCopper8mythsMythHeading-{{ section.id }}" class="cls-copper8myths-h2">
+          {{- s.headline | escape | newline_to_br -}}
+        </h2>
+      {%- endif -%}
+    </header>
+
+    <div class="cls-copper8myths-myth__body">
+      <figure class="cls-copper8myths-card">
+        <div class="cls-copper8myths-card__myth">
+          <p class="cls-copper8myths-eyebrow">{{ s.card_myth_label | escape }}</p>
+          <p class="cls-copper8myths-card__quote"><s>{{ s.card_quote | escape }}</s></p>
+        </div>
+        <div class="cls-copper8myths-card__truth">
+          <p class="cls-copper8myths-eyebrow">{{ s.card_truth_label | escape }}</p>
+          {%- if s.truth_line != blank -%}
+            <p class="cls-copper8myths-card__truth-line">{{ s.truth_line | escape }}</p>
+          {%- endif -%}
+          <div class="cls-copper8myths-card__visual cls-copper8myths-card__visual--{{ s.image_style }}{% if s.image_sub_light %} cls-copper8myths-card__visual--light-sub{% endif %}">
+            {%- if s.image != blank -%}
+              {{
+                s.image
+                | image_url: width: 1200
+                | image_tag:
+                  widths: '350, 500, 700, 900, 1200',
+                  sizes: '(min-width: 990px) 400px, calc(100vw - 82px)',
+                  loading: 'lazy',
+                  alt: img_alt,
+                  class: 'cls-copper8myths-card__img'
+              }}
+            {%- endif -%}
+            {%- if s.image_headline != blank or s.image_subline != blank -%}
+              <figcaption class="cls-copper8myths-card__on-image">
+                {%- if s.image_headline != blank -%}
+                  <span class="cls-copper8myths-card__on-image-headline">{{ s.image_headline | escape }}</span>
+                {%- endif -%}
+                {%- if s.image_subline != blank -%}
+                  <span class="cls-copper8myths-card__on-image-sub">{{ s.image_subline | escape }}</span>
+                {%- endif -%}
+              </figcaption>
+            {%- endif -%}
+          </div>
+        </div>
+      </figure>
+
+      {%- if s.copy != blank -%}
+        <div class="cls-copper8myths-prose cls-copper8myths-myth__copy">{{ s.copy }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Myth",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "cream-alt", "label": "Cream (darker)" }
+      ],
+      "default": "cream"
+    },
+    { "type": "checkbox", "id": "reverse", "label": "Desktop: card on the right", "default": false },
+    { "type": "text", "id": "label", "label": "Label", "default": "MYTH 01" },
+    { "type": "text", "id": "myth_line", "label": "Myth line (struck through)" },
+    { "type": "textarea", "id": "headline", "label": "Truth headline", "info": "Press Enter for a line break." },
+    { "type": "header", "content": "Myth card" },
+    { "type": "text", "id": "card_myth_label", "label": "Myth label", "default": "MYTH" },
+    { "type": "text", "id": "card_quote", "label": "Myth quote (struck through)" },
+    { "type": "text", "id": "card_truth_label", "label": "Truth label", "default": "TRUTH" },
+    { "type": "text", "id": "truth_line", "label": "Truth line" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_headline", "label": "On-image headline" },
+    { "type": "text", "id": "image_subline", "label": "On-image subline" },
+    {
+      "type": "select",
+      "id": "image_style",
+      "label": "On-image headline size",
+      "options": [
+        { "value": "default", "label": "Regular" },
+        { "value": "large", "label": "Large number" }
+      ],
+      "default": "default"
+    },
+    { "type": "checkbox", "id": "image_sub_light", "label": "Light subline (for dark images)", "default": false },
+    { "type": "header", "content": "Body copy" },
+    { "type": "richtext", "id": "copy", "label": "Copy" },
+    { "type": "header", "content": "Sticky bar" },
+    { "type": "checkbox", "id": "sticky_trigger", "label": "Show sticky bar from this myth onward", "default": false }
+  ],
+  "presets": [{ "name": "Myth" }]
+}
+{% endschema %}

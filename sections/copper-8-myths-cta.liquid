@@ -1,0 +1,34 @@
+<div class="cls-copper8myths-cta cls-copper8myths-bg--{{ section.settings.background }}">
+  <div class="cls-copper8myths-cta__inner">
+    {%- if section.settings.button_label != blank -%}
+      <a class="cls-copper8myths-button" href="{{ section.settings.button_url | default: '/products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz' }}">
+        {{- section.settings.button_label | escape -}}
+      </a>
+    {%- endif -%}
+    {%- if section.settings.note != blank -%}
+      <p class="cls-copper8myths-cta__note">{{ section.settings.note }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Button CTA",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "cream-alt", "label": "Cream (darker)" }
+      ],
+      "default": "cream-alt"
+    },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "See the Bottle" },
+    { "type": "url", "id": "button_url", "label": "Button link" },
+    { "type": "inline_richtext", "id": "note", "label": "Note under button" }
+  ],
+  "presets": [{ "name": "Button CTA" }]
+}
+{% endschema %}

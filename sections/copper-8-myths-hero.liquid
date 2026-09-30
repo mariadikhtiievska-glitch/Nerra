@@ -1,0 +1,65 @@
+<div class="cls-copper8myths-hero">
+  <div class="cls-copper8myths-hero__media">
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 1400
+        | image_tag:
+          widths: '450, 700, 900, 1200, 1400',
+          sizes: '(min-width: 990px) 480px, 100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: section.settings.image.alt
+      }}
+    {%- endif -%}
+  </div>
+
+  <div class="cls-copper8myths-hero__content">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="cls-copper8myths-hero__heading">{{ section.settings.heading | escape }}</h1>
+    {%- endif -%}
+    {%- if section.settings.lead != blank -%}
+      <p class="cls-copper8myths-hero__lead">{{ section.settings.lead | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.note != blank -%}
+      <div class="cls-copper8myths-hero__note">{{ section.settings.note }}</div>
+    {%- endif -%}
+
+    <div class="cls-copper8myths-byline">
+      {%- if section.settings.author_photo != blank -%}
+        {{
+          section.settings.author_photo
+          | image_url: width: 80, height: 80, crop: 'center'
+          | image_tag: width: 40, height: 40, loading: 'eager', class: 'cls-copper8myths-byline__photo', alt: section.settings.author_name
+        }}
+      {%- endif -%}
+      <div class="cls-copper8myths-byline__text">
+        <p class="cls-copper8myths-byline__author">
+          By <strong>{{ section.settings.author_name | escape }}</strong>
+          {%- if section.settings.author_org != blank %}, {{ section.settings.author_org | escape }}{% endif -%}
+        </p>
+        {%- if section.settings.meta != blank -%}
+          <p class="cls-copper8myths-byline__meta">{{ section.settings.meta | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "8 Things People Get Wrong About Copper Water" },
+    { "type": "textarea", "id": "lead", "label": "Lead" },
+    { "type": "richtext", "id": "note", "label": "Pre-headline note", "info": "Leave blank to hide." },
+    { "type": "header", "content": "Byline" },
+    { "type": "image_picker", "id": "author_photo", "label": "Author photo", "info": "Square, shown as a 40px circle." },
+    { "type": "text", "id": "author_name", "label": "Author name" },
+    { "type": "text", "id": "author_org", "label": "Author organisation", "default": "Neera Living" },
+    { "type": "text", "id": "meta", "label": "Meta line" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

@@ -1,0 +1,70 @@
+<section class="cls-copper8myths-checks" aria-labelledby="ClsCopper8mythsChecksHeading-{{ section.id }}">
+  <div class="cls-copper8myths-checks__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 id="ClsCopper8mythsChecksHeading-{{ section.id }}" class="cls-copper8myths-h2">
+        {{- section.settings.heading | escape -}}
+      </h2>
+    {%- endif -%}
+
+    <div class="cls-copper8myths-checks__body">
+      <div class="cls-copper8myths-checks__card">
+        {%- if section.settings.card_title != blank -%}
+          <p class="cls-copper8myths-checks__card-title">{{ section.settings.card_title | escape }}</p>
+        {%- endif -%}
+        <ol class="cls-copper8myths-checks__grid" role="list">
+          {%- for block in section.blocks -%}
+            <li class="cls-copper8myths-checks__tile" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 600
+                  | image_tag:
+                    widths: '200, 300, 450, 600',
+                    sizes: '(min-width: 990px) 200px, calc(50vw - 42px)',
+                    loading: 'lazy',
+                    alt: '',
+                    class: 'cls-copper8myths-checks__tile-img'
+                }}
+              {%- endif -%}
+              <span class="cls-copper8myths-checks__num" aria-hidden="true">{{ forloop.index }}</span>
+              <span class="cls-copper8myths-checks__label">{{ block.settings.label | escape }}</span>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+
+      <div class="cls-copper8myths-checks__copy">
+        {%- if section.settings.copy != blank -%}
+          <div class="cls-copper8myths-prose">{{ section.settings.copy }}</div>
+        {%- endif -%}
+        {%- if section.settings.closing != blank -%}
+          <p class="cls-copper8myths-checks__closing">{{ section.settings.closing | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Four checks",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "card_title", "label": "Card title" },
+    { "type": "richtext", "id": "copy", "label": "Copy" },
+    { "type": "textarea", "id": "closing", "label": "Closing line (copper)" }
+  ],
+  "blocks": [
+    {
+      "type": "check",
+      "name": "Check tile",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Tile image (square)" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Magnet" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Four checks" }]
+}
+{% endschema %}

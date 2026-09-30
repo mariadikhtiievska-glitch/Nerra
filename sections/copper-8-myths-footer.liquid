@@ -1,0 +1,25 @@
+<footer class="cls-copper8myths-footer">
+  <div class="cls-copper8myths-footer__inner">
+    {%- if section.settings.disclaimer != blank -%}
+      <p>{{ section.settings.disclaimer | escape }}</p>
+    {%- endif -%}
+    <p class="cls-copper8myths-footer__links">
+      <span>© {{ 'now' | date: '%Y' }} {{ section.settings.brand | default: shop.name | escape }}</span>
+      {%- if shop.privacy_policy -%}<span aria-hidden="true">·</span><a href="{{ shop.privacy_policy.url }}">Privacy Policy</a>{%- endif -%}
+      {%- if shop.refund_policy -%}<span aria-hidden="true">·</span><a href="{{ shop.refund_policy.url }}">Refund Policy</a>{%- endif -%}
+      {%- if shop.shipping_policy -%}<span aria-hidden="true">·</span><a href="{{ shop.shipping_policy.url }}">Shipping Policy</a>{%- endif -%}
+      {%- if shop.terms_of_service -%}<span aria-hidden="true">·</span><a href="{{ shop.terms_of_service.url }}">Terms of Service</a>{%- endif -%}
+    </p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Disclaimer + footer",
+  "settings": [
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer" },
+    { "type": "text", "id": "brand", "label": "Brand name", "default": "Neera Living" }
+  ],
+  "presets": [{ "name": "Disclaimer + footer" }]
+}
+{% endschema %}

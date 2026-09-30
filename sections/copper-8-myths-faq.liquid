@@ -1,0 +1,59 @@
+<section class="cls-copper8myths-faq" aria-labelledby="ClsCopper8mythsFaqHeading-{{ section.id }}">
+  <div class="cls-copper8myths-faq__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 id="ClsCopper8mythsFaqHeading-{{ section.id }}" class="cls-copper8myths-h2">
+        {{- section.settings.heading | escape -}}
+      </h2>
+    {%- endif -%}
+    <div class="cls-copper8myths-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="cls-copper8myths-faq__item" {% if forloop.first and section.settings.open_first %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary class="cls-copper8myths-faq__question">
+            <span>{{ block.settings.question | escape }}</span>
+            <span class="cls-copper8myths-faq__toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="cls-copper8myths-faq__answer">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- if section.blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | json }},
+            "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | json }} }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently Asked Questions" },
+    { "type": "checkbox", "id": "open_first", "label": "Open the first question", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQ" }]
+}
+{% endschema %}

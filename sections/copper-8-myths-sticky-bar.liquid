@@ -1,0 +1,35 @@
+<div
+  class="cls-copper8myths-sticky-bar"
+  data-cls-copper8myths-sticky-bar
+  data-threshold="{{ section.settings.threshold }}"
+  aria-hidden="true"
+>
+  <div class="cls-copper8myths-sticky-bar__inner">
+    {%- if section.settings.text != blank -%}
+      <p class="cls-copper8myths-sticky-bar__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+    <a
+      class="cls-copper8myths-sticky-bar__button"
+      href="{{ section.settings.button_url | default: '/products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz' }}"
+      tabindex="-1"
+    >
+      {{- section.settings.button_label | escape -}}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sticky bar",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Mobile and tablet only. Slides up from the bottom once the visitor scrolls down past the share of the page set below, then stays."
+    },
+    { "type": "range", "id": "threshold", "label": "Show after scrolling", "min": 10, "max": 90, "step": 5, "unit": "%", "default": 50 },
+    { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Save 10% with <strong>NEERA10</strong>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "See the Bottle →" },
+    { "type": "url", "id": "button_url", "label": "Button link" }
+  ]
+}
+{% endschema %}

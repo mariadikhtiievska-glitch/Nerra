@@ -1,0 +1,28 @@
+<div class="cls-copper8myths-proof">
+  <ul class="cls-copper8myths-proof__grid" role="list">
+    {%- for block in section.blocks -%}
+      <li class="cls-copper8myths-proof__stat" {{ block.shopify_attributes }}>
+        <span class="cls-copper8myths-proof__value">{{ block.settings.value | escape }}</span>
+        <span class="cls-copper8myths-proof__label">{{ block.settings.label | escape }}</span>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Proof strip",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "100,000+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Happy Customers" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Proof strip" }]
+}
+{% endschema %}

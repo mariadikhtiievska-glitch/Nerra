@@ -1,0 +1,125 @@
+{%- liquid
+  assign s = section.settings
+  assign offer_product = s.product
+  assign button_url = s.button_url
+  if button_url == blank
+    if offer_product != blank
+      assign button_url = offer_product.url
+    else
+      assign button_url = '/products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz'
+    endif
+  endif
+  assign price_text = s.price_fallback
+  if offer_product != blank
+    assign price_text = offer_product.price | money_without_trailing_zeros
+  endif
+-%}
+
+<section id="Offer" class="cls-copper8myths-offer" aria-labelledby="ClsCopper8mythsOfferHeading-{{ section.id }}">
+  <div class="cls-copper8myths-offer__inner">
+    <div class="cls-copper8myths-offer__creative">
+      {%- if s.image != blank -%}
+        {{
+          s.image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '450, 700, 900, 1200',
+            sizes: '(min-width: 990px) 560px, calc(100vw - 40px)',
+            loading: 'lazy',
+            alt: s.image.alt,
+            class: 'cls-copper8myths-offer__img'
+        }}
+      {%- endif -%}
+      {%- if s.image_headline != blank or s.image_subline != blank -%}
+        <div class="cls-copper8myths-offer__on-image">
+          {%- if s.image_headline != blank -%}
+            <p class="cls-copper8myths-offer__on-image-headline">{{ s.image_headline | escape }}</p>
+          {%- endif -%}
+          {%- if s.image_subline != blank -%}
+            <p class="cls-copper8myths-offer__on-image-sub">{{ s.image_subline | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="cls-copper8myths-offer__card">
+      {%- if s.headline != blank -%}
+        <h2 id="ClsCopper8mythsOfferHeading-{{ section.id }}" class="cls-copper8myths-offer__headline">{{ s.headline | escape }}</h2>
+      {%- endif -%}
+      {%- if s.subhead != blank -%}
+        <p class="cls-copper8myths-offer__subhead">{{ s.subhead | escape }}</p>
+      {%- endif -%}
+
+      {%- if price_text != blank or s.price_note != blank -%}
+        <div class="cls-copper8myths-offer__price-row">
+          {%- if price_text != blank -%}
+            <p class="cls-copper8myths-offer__price">{{ price_text }}</p>
+          {%- endif -%}
+          {%- if s.price_note != blank -%}
+            <p class="cls-copper8myths-offer__price-note">{{ s.price_note | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if s.box_1 != blank -%}
+        <div class="cls-copper8myths-offer__box">{{ s.box_1 }}</div>
+      {%- endif -%}
+      {%- if s.box_2 != blank -%}
+        <div class="cls-copper8myths-offer__box">{{ s.box_2 }}</div>
+      {%- endif -%}
+
+      {%- if s.button_label != blank -%}
+        <a class="cls-copper8myths-button cls-copper8myths-button--deep" href="{{ button_url }}">
+          {{- s.button_label | escape -}}
+        </a>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="cls-copper8myths-offer__trust" role="list">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>
+              <span class="cls-copper8myths-offer__check" aria-hidden="true">✓</span>
+              <span>{{ block.settings.text | escape }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if s.promise != blank -%}
+        <div class="cls-copper8myths-offer__promise">{{ s.promise }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Offer",
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_headline", "label": "On-image headline" },
+    { "type": "text", "id": "image_subline", "label": "On-image subline" },
+    { "type": "header", "content": "Offer card" },
+    { "type": "product", "id": "product", "label": "Product", "info": "Price and button link come from this product." },
+    { "type": "text", "id": "headline", "label": "Headline" },
+    { "type": "textarea", "id": "subhead", "label": "Subhead" },
+    { "type": "text", "id": "price_fallback", "label": "Price (if no product selected)", "default": "$79" },
+    { "type": "text", "id": "price_note", "label": "Text next to price" },
+    { "type": "richtext", "id": "box_1", "label": "Offer box 1" },
+    { "type": "richtext", "id": "box_2", "label": "Offer box 2" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Start My Copper Ritual" },
+    { "type": "url", "id": "button_url", "label": "Button link", "info": "Defaults to the product page." },
+    { "type": "richtext", "id": "promise", "label": "Promise line" }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust line",
+      "settings": [{ "type": "text", "id": "text", "label": "Text" }]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Offer" }]
+}
+{% endschema %}

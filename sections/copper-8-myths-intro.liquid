@@ -1,0 +1,15 @@
+<div class="cls-copper8myths-intro">
+  <div class="cls-copper8myths-prose cls-copper8myths-intro__inner">
+    {{ section.settings.text }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Intro",
+  "settings": [
+    { "type": "richtext", "id": "text", "label": "Text" }
+  ],
+  "presets": [{ "name": "Intro" }]
+}
+{% endschema %}

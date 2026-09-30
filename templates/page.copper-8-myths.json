@@ -1,0 +1,461 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "copper-8-myths",
+  "sections": {
+    "topbar": {
+      "type": "copper-8-myths-topbar",
+      "settings": {
+        "interval": 4
+      },
+      "blocks": {
+        "msg_1": {
+          "type": "message",
+          "settings": {
+            "text": "Use code <strong>NEERA10</strong> for an extra 10% off"
+          }
+        },
+        "msg_2": {
+          "type": "message",
+          "settings": {
+            "text": "Free Shipping on All Orders"
+          }
+        },
+        "msg_3": {
+          "type": "message",
+          "settings": {
+            "text": "Buy More, Save More — up to 15% off"
+          }
+        }
+      },
+      "block_order": [
+        "msg_1",
+        "msg_2",
+        "msg_3"
+      ]
+    },
+    "hero": {
+      "type": "copper-8-myths-hero",
+      "settings": {
+        "image": "shopify://shop_images/copper-8-myths-hero.jpg",
+        "heading": "8 Things People Get Wrong About Copper Water",
+        "lead": "Half of what you’ve read is wrong. Some of it is wrong in our favour, and we’re going to say so anyway.",
+        "note": "<p>Read this <strong>BEFORE</strong> you buy a copper bottle —<br>or before you throw out the one you own.</p>",
+        "author_photo": "shopify://shop_images/copper-8-myths-author.jpg",
+        "author_name": "Eric Chandler",
+        "author_org": "Neera Living",
+        "meta": "Last updated September 2026  ·  3 min read"
+      }
+    },
+    "intro": {
+      "type": "copper-8-myths-intro",
+      "settings": {
+        "text": "<p>Copper water has a marketing problem. It has been sold as a detox, as a cure, as an alkaliser, and as a substitute for half a supplement shelf. None of that is true, and every time someone repeats it, the whole category gets less believable.</p><p>So here are the eight things people get wrong most often. Three of them are myths that would sell more bottles if we let them stand. We are correcting those too.</p><p>And four of them are the reason a lot of people think their copper bottle is broken when it is working perfectly.</p>"
+      }
+    },
+    "myth_01": {
+      "type": "copper-8-myths-myth",
+      "settings": {
+        "background": "cream",
+        "reverse": false,
+        "label": "MYTH 01",
+        "myth_line": "“Copper water detoxes your body.”",
+        "headline": "It doesn’t detox anything.\nIt removes one source of plastic.",
+        "card_myth_label": "MYTH",
+        "card_quote": "“Copper water detoxes your body.”",
+        "card_truth_label": "TRUTH",
+        "truth_line": "It stops one source. That’s all — and that’s enough.",
+        "image": "shopify://shop_images/copper-8-myths-myth-01.jpg",
+        "image_headline": "It’s not a detox.",
+        "image_subline": "It’s subtraction, not cleansing.",
+        "image_style": "default",
+        "image_sub_light": false,
+        "copy": "<p>This is the claim that put copper water on the map, and it is the one we would most like to be true. It isn’t. No water bottle detoxifies anyone, and any brand telling you otherwise is either guessing or lying.</p><p>Here is what actually changes. If you drink two litres a day, that is roughly 700 litres a year passing through whatever you are holding. Swap plastic for pure copper and you stop adding particles from that source. You are not cleaning anything out. You are stopping the addition.</p><p>It is a smaller claim. It also happens to be one we can prove, which is more than the detox version ever managed.</p>",
+        "sticky_trigger": false
+      }
+    },
+    "myth_02": {
+      "type": "copper-8-myths-myth",
+      "settings": {
+        "background": "cream-alt",
+        "reverse": true,
+        "label": "MYTH 02",
+        "myth_line": "“A copper bottle that goes dark is dirty or defective.”",
+        "headline": "Darkening is the proof it’s real copper.",
+        "card_myth_label": "MYTH",
+        "card_quote": "“It went dark, so it’s ruined.”",
+        "card_truth_label": "TRUTH",
+        "truth_line": "A bottle that never darkens isn’t copper.",
+        "image": "shopify://shop_images/copper-8-myths-myth-02.jpg",
+        "image_headline": "Patina is proof.",
+        "image_subline": "",
+        "image_style": "default",
+        "image_sub_light": false,
+        "copy": "<p>Around week three your bottle starts to change. Brown first, then patches closer to black, and the inside loses its brightness. This is the single most common reason people contact a copper brand, and it is always about a bottle that is working exactly as intended.</p><p>Copper does not rust. It oxidises: it reacts with air and water and grows a patina. Temple bells do it. A French copper pan in a kitchen for eighty years does it. It is the same reaction.</p><p>The bottles that stay factory-bright for a year are the ones worth worrying about. Either they are lacquered inside, or there isn’t enough copper on them to react with anything.</p>",
+        "sticky_trigger": false
+      }
+    },
+    "myth_03": {
+      "type": "copper-8-myths-myth",
+      "settings": {
+        "background": "cream",
+        "reverse": false,
+        "label": "MYTH 03",
+        "myth_line": "“All copper bottles are made of copper.”",
+        "headline": "Many are plated steel, or lined with plastic inside.",
+        "card_myth_label": "MYTH",
+        "card_quote": "“Copper is copper.”",
+        "card_truth_label": "TRUTH",
+        "truth_line": "Plated outside. Plastic inside. Neither is copper.",
+        "image": "shopify://shop_images/copper-8-myths-myth-03.jpg",
+        "image_headline": "Copper outside. Plastic inside.",
+        "image_subline": "Cut one open and you can see it.",
+        "image_style": "default",
+        "image_sub_light": false,
+        "copy": "<p>“Copper” is not a regulated word on drinkware. It can describe a colour, a finish, a plating or a solid metal — four different products sold under one word, with the distinction buried in the specification block.</p><p>Two things happen at the cheap end. Some bottles are a copper skin over steel or aluminium. Others are real copper with a lacquer or epoxy film sprayed on the inside so they never tarnish — which means the water never touches copper at all. You paid for copper and you are drinking out of a polymer.</p><p>Neera is bare copper inside and out: 99.9% pure, food grade, lab-tested after every batch, certificate published on the product page rather than produced on request.</p>",
+        "sticky_trigger": false
+      }
+    },
+    "cta_1": {
+      "type": "copper-8-myths-cta",
+      "settings": {
+        "background": "cream-alt",
+        "button_label": "See the Bottle",
+        "button_url": "/products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz",
+        "note": "Extra 10% off with code NEERA10  ·  Buy More, Save More — up to 15% off"
+      }
+    },
+    "myth_04": {
+      "type": "copper-8-myths-myth",
+      "settings": {
+        "background": "cream-alt",
+        "reverse": true,
+        "label": "MYTH 04",
+        "myth_line": "“You can put any drink in a copper bottle.”",
+        "headline": "Plain cool water only. Nothing acidic, nothing fizzy, nothing hot.",
+        "card_myth_label": "MYTH",
+        "card_quote": "“It’s a water bottle, anything goes.”",
+        "card_truth_label": "TRUTH",
+        "truth_line": "Plain, cool, still water. Nothing else.",
+        "image": "shopify://shop_images/copper-8-myths-myth-04.jpg",
+        "image_headline": "Water. Only water.",
+        "image_subline": "Acid and copper don’t mix.",
+        "image_style": "default",
+        "image_sub_light": false,
+        "copy": "<p>This is the one that gets people into trouble. Lemon water, citrus, electrolyte tablets and anything carbonated all react with copper. Hot drinks are not what the vessel is for either.</p><p>The rule is four words long: plain, cool, still water. Coffee, tea and your lemon-and-ginger routine belong in the steel bottle you already own.</p><p>We would rather tell you this on the page you are reading than in a support email three weeks after you bought it.</p>",
+        "sticky_trigger": false
+      }
+    },
+    "myth_05": {
+      "type": "copper-8-myths-myth",
+      "settings": {
+        "background": "cream",
+        "reverse": false,
+        "label": "MYTH 05",
+        "myth_line": "“The longer the water sits in copper, the better.”",
+        "headline": "Six to eight hours. Not days.",
+        "card_myth_label": "MYTH",
+        "card_quote": "“Longer is better.”",
+        "card_truth_label": "TRUTH",
+        "truth_line": "6–8 hours. A night, and no more.",
+        "image": "shopify://shop_images/copper-8-myths-myth-05.jpg",
+        "image_headline": "6–8 hours",
+        "image_subline": "Fill at night. Drink in the morning.",
+        "image_style": "large",
+        "image_sub_light": true,
+        "copy": "<p>Somewhere along the way “rest it overnight” turned into “the longer the better”, and people started leaving water in copper bottles for two or three days.</p><p>The window is six to eight hours — a night, basically. That is the Ayurvedic practice of Tamra Jal, and it is the same window the research used: in a 2012 study, water deliberately contaminated with bacteria was stored in copper pots for 16 hours at room temperature, and the bacteria could no longer be recovered afterwards.</p><p>Longer than twelve hours adds nothing. Fill it when you turn the kitchen light off, drink it in the morning, rinse, repeat.</p>",
+        "sticky_trigger": true
+      }
+    },
+    "myth_06": {
+      "type": "copper-8-myths-myth",
+      "settings": {
+        "background": "cream-alt",
+        "reverse": true,
+        "label": "MYTH 06",
+        "myth_line": "“Copper alkalizes your water.”",
+        "headline": "It doesn’t. And you should be suspicious of anyone who says it does.",
+        "card_myth_label": "MYTH",
+        "card_quote": "“Copper alkalizes your water.”",
+        "card_truth_label": "TRUTH",
+        "truth_line": "It doesn’t. We’re removing the claim from our own site.",
+        "image": "shopify://shop_images/copper-8-myths-myth-06.jpg",
+        "image_headline": "No, it doesn’t.",
+        "image_subline": "Even we had this wrong.",
+        "image_style": "default",
+        "image_sub_light": false,
+        "copy": "<p>You will find this claim on a lot of copper bottle listings, including some very reputable ones. It does not hold up: storing water in copper does not meaningfully change its pH.</p><p>We are saying this knowing it appears on our own website, and we are removing it there too.</p><p>What copper actually does is narrower and better documented: it is naturally antimicrobial, which is why copper alloys are EPA-registered as antimicrobial surfaces and why hospitals fit copper to door handles and bed rails. That is a real property. It does not need an invented one stapled to it.</p>",
+        "sticky_trigger": false
+      }
+    },
+    "myth_07": {
+      "type": "copper-8-myths-myth",
+      "settings": {
+        "background": "cream",
+        "reverse": false,
+        "label": "MYTH 07",
+        "myth_line": "“A copper bottle can replace your copper supplement.”",
+        "headline": "It gives you a trace. It is not a supplement.",
+        "card_myth_label": "MYTH",
+        "card_quote": "“It replaces your supplements.”",
+        "card_truth_label": "TRUTH",
+        "truth_line": "A trace, not a dose.",
+        "image": "shopify://shop_images/copper-8-myths-myth-07.jpg",
+        "image_headline": "A trace. Not a dose.",
+        "image_subline": "0.9 mg a day is what your body needs.",
+        "image_style": "default",
+        "image_sub_light": false,
+        "copy": "<p>Copper is genuinely an essential mineral — your body needs about 0.9 mg a day, cannot manufacture it, and uses it in iron metabolism, connective tissue and energy production.</p><p>Water rested in a copper vessel picks up a trace amount. A trace is not a dose, and a bottle is not a supplement. If a doctor has told you that you are deficient in something, a water bottle is not the answer.</p><p>What a copper bottle is good at is much more boring: it is the vessel you refill a thousand times a year, and it adds nothing artificial while doing it.</p>",
+        "sticky_trigger": false
+      }
+    },
+    "myth_08": {
+      "type": "copper-8-myths-myth",
+      "settings": {
+        "background": "cream-alt",
+        "reverse": true,
+        "label": "MYTH 08",
+        "myth_line": "“Copper bottles are high maintenance.”",
+        "headline": "One minute a week, with the brush that came in the box.",
+        "card_myth_label": "MYTH",
+        "card_quote": "“Too much upkeep.”",
+        "card_truth_label": "TRUTH",
+        "truth_line": "Lemon, salt, 60 seconds.",
+        "image": "shopify://shop_images/copper-8-myths-myth-08.jpg",
+        "image_headline": "60 seconds",
+        "image_subline": "Lemon, salt, brush. Once a week.",
+        "image_style": "large",
+        "image_sub_light": false,
+        "copy": "<p>People imagine polishing cloths and special compounds. The actual routine is lemon, salt and a minute.</p><p>One tablespoon of salt and the juice of half a lemon go in the bottle. Fill halfway with warm water, cap it, shake for thirty to sixty seconds, run the copper care brush around the inside, rinse. No soap, no chemicals, ever. Once a week, or whenever you want the shine back.</p><p>The brush and the travel sleeve are in the box, because you should not have to go and source a cleaning kit for something you just bought. The only real rules: never the dishwasher, never the fridge, no abrasives.</p>",
+        "sticky_trigger": false
+      }
+    },
+    "proof": {
+      "type": "copper-8-myths-proof",
+      "settings": {},
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "100,000+",
+            "label": "Happy Customers"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "400,000+",
+            "label": "Products Sold"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "4.8/5",
+            "label": "Across 10+ Countries"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "Free",
+            "label": "Shipping on All Orders"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ]
+    },
+    "checks": {
+      "type": "copper-8-myths-checks",
+      "settings": {
+        "heading": "Already own one? Four checks, one minute.",
+        "card_title": "Test yours in 60 seconds.",
+        "copy": "<p><strong>1. The magnet.</strong> Hold a fridge magnet to the body, then to the cap separately. Copper is not magnetic. Any grip means steel under the finish — and the cap is usually where it shows up first.</p><p><strong>2. The interior.</strong> Torch, phone camera, look down the neck. Bare copper is the same reddish-brown inside as out. Silver, grey or glossy means lined or plated.</p><p><strong>3. The patina.</strong> If it has been in daily use for a month and the inside is still bright, it is not bare copper.</p><p><strong>4. The certificate.</strong> Ask your seller for a composition report for your batch. The answer you get — or don’t get — is the test.</p>",
+        "closing": "Run all four on a Neera the day it arrives. We would rather invite the test than hope you skip it."
+      },
+      "blocks": {
+        "check_1": {
+          "type": "check",
+          "settings": {
+            "image": "shopify://shop_images/copper-8-myths-check-1.jpg",
+            "label": "Magnet"
+          }
+        },
+        "check_2": {
+          "type": "check",
+          "settings": {
+            "image": "shopify://shop_images/copper-8-myths-check-2.jpg",
+            "label": "Interior"
+          }
+        },
+        "check_3": {
+          "type": "check",
+          "settings": {
+            "image": "shopify://shop_images/copper-8-myths-check-3.jpg",
+            "label": "Patina"
+          }
+        },
+        "check_4": {
+          "type": "check",
+          "settings": {
+            "image": "shopify://shop_images/copper-8-myths-check-4.jpg",
+            "label": "Certificate"
+          }
+        }
+      },
+      "block_order": [
+        "check_1",
+        "check_2",
+        "check_3",
+        "check_4"
+      ]
+    },
+    "offer": {
+      "type": "copper-8-myths-offer",
+      "settings": {
+        "image": "shopify://shop_images/copper-8-myths-offer.jpg",
+        "image_headline": "Nothing between the metal and your water.",
+        "image_subline": "99.9% pure · lab-tested every batch",
+        "product": "neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz",
+        "headline": "Cut the plastic tonight.",
+        "subhead": "Fill it before bed. Drink it tomorrow morning. That’s the whole routine.",
+        "price_fallback": "$79",
+        "price_note": "Buy More, Save More — up to 15% off",
+        "box_1": "<p>Buy More, Save More — up to 15% off</p><p>Extra 10% off with code <strong>NEERA10</strong></p>",
+        "box_2": "<p>Costs less than a month of supplements.<br>Lasts for years.</p>",
+        "button_label": "Start My Copper Ritual",
+        "button_url": "",
+        "promise": "<p>Something not right?<br>We make it right — no run-around.</p>"
+      },
+      "blocks": {
+        "trust_1": {
+          "type": "trust",
+          "settings": {
+            "text": "Lab-Verified 99.9% Pure Copper"
+          }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": {
+            "text": "Zero Plastic, Zero Coatings"
+          }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": {
+            "text": "Over 100,000+ Happy Customers"
+          }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": {
+            "text": "Free Shipping · Ships in 1–2 Days"
+          }
+        }
+      },
+      "block_order": [
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4"
+      ]
+    },
+    "faq": {
+      "type": "copper-8-myths-faq",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "open_first": true
+      },
+      "blocks": {
+        "q_1": {
+          "type": "question",
+          "settings": {
+            "question": "Is it safe to drink from copper every day?",
+            "answer": "<p>Yes, with plain water and normal use. The EPA action level for copper in drinking water is 1.3 mg/L; water rested overnight in a copper bottle sits comfortably under it, and your body needs around 0.9 mg of copper a day anyway.</p>"
+          }
+        },
+        "q_2": {
+          "type": "question",
+          "settings": {
+            "question": "Why does the water taste slightly different?",
+            "answer": "<p>That faint mineral note is the copper. Most people stop noticing within a week and many come to prefer it. If it tastes strong, shorten the rest to four hours and work up.</p>"
+          }
+        },
+        "q_3": {
+          "type": "question",
+          "settings": {
+            "question": "My bottle passed the magnet test. Does that mean it’s pure copper?",
+            "answer": "<p>Not by itself. Brass, bronze and aluminium are all non-magnetic, so a plated aluminium bottle passes too. Check the interior colour and ask for a composition report.</p>"
+          }
+        },
+        "q_4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I put it in the dishwasher?",
+            "answer": "<p>No. Heat and detergent strip the interior. Hand wash only, and never leave it in the fridge — it will sweat.</p>"
+          }
+        },
+        "q_5": {
+          "type": "question",
+          "settings": {
+            "question": "How long does one bottle last?",
+            "answer": "<p>Copper does not degrade the way plastic does. With the weekly lemon-and-salt routine it serves for years, and in a lot of families it gets handed on.</p>"
+          }
+        },
+        "q_6": {
+          "type": "question",
+          "settings": {
+            "question": "What if something is wrong with my order?",
+            "answer": "<p>Free shipping on every order, shipped in 1–2 business days from the US. If something is not right when it arrives, contact us and we will make it right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q_1",
+        "q_2",
+        "q_3",
+        "q_4",
+        "q_5",
+        "q_6"
+      ]
+    },
+    "footer": {
+      "type": "copper-8-myths-footer",
+      "settings": {
+        "brand": "Neera Living",
+        "disclaimer": "Individual experiences vary. Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA."
+      }
+    }
+  },
+  "order": [
+    "topbar",
+    "hero",
+    "intro",
+    "myth_01",
+    "myth_02",
+    "myth_03",
+    "cta_1",
+    "myth_04",
+    "myth_05",
+    "myth_06",
+    "myth_07",
+    "myth_08",
+    "proof",
+    "checks",
+    "offer",
+    "faq",
+    "footer"
+  ]
+}

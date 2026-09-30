@@ -1,0 +1,40 @@
+<div
+  class="cls-copper8myths-topbar"
+  data-cls-copper8myths-topbar
+  data-interval="{{ section.settings.interval | times: 1000 }}"
+  role="region"
+  aria-label="Announcements"
+>
+  <div class="cls-copper8myths-topbar__track">
+    {%- for block in section.blocks -%}
+      <p
+        class="cls-copper8myths-topbar__message"
+        {% if forloop.first %}data-active{% endif %}
+        {{ block.shopify_attributes }}
+      >
+        {{- block.settings.text -}}
+      </p>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Top bar",
+  "class": "cls-copper8myths-topbar-wrap",
+  "settings": [
+    { "type": "range", "id": "interval", "label": "Seconds per message", "min": 2, "max": 10, "step": 1, "default": 4 }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Use code <strong>NEERA10</strong> for an extra 10% off" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [{ "name": "Top bar" }]
+}
+{% endschema %}

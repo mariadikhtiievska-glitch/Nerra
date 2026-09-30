@@ -1,0 +1,41 @@
+<!doctype html>
+<html
+  class="no-js{% if request.design_mode %} shopify-design-mode{% endif %}"
+  lang="{{ request.locale.iso_code | default: 'en' }}"
+  dir="ltr"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    {%- render 'theme-favicon', favicon_set: 'neera-living' -%}
+
+    <title>{{ page_title | escape }}</title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,wght@0,400;0,600;1,400&family=Lora:wght@600&display=swap"
+      rel="stylesheet"
+    >
+
+    {{ 'copper-8-myths.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="cls-copper8myths-body">
+    <a class="cls-copper8myths-skip" href="#MainContent">Skip to content</a>
+    <main id="MainContent" class="cls-copper8myths-main">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'copper-8-myths-sticky-bar' %}
+
+    <script src="{{ 'copper-8-myths.js' | asset_url }}" defer></script>
+  </body>
+</html>
