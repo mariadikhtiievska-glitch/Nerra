@@ -1,0 +1,13 @@
+{% comment %}
+  Payment methods badge shown under the product page dynamic checkout button.
+  Same Shopify Files image that Kaching Cart's custom CSS shows in the cart
+  drawer (.trust-badge-wrap) — if it changes, update it in both places.
+{% endcomment %}
+<div class="cleo-payment-badges">
+  <img
+    src="{{ 'trust_badge_alpine_in_cart.png' | file_url }}"
+    alt="Accepted payment methods"
+    width="1152"
+    height="65"
+  >
+</div>
