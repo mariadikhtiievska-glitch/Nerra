@@ -77,6 +77,15 @@
   }
 
   /*
+    The unused stock sections/header.liquid ships `.header { display: block }`
+    in compiled_assets/styles.css, which loads on product pages and breaks
+    the grid layout above 700px. Keep the header a grid on every page.
+  */
+  #shopify-section-{{ section.id }} .header {
+    display: grid;
+  }
+
+  /*
     Keep the natural theme header height, exactly like the reference code.
     The previous fixed height rules were making the sticky header appear
     unusually tall after scrolling.
