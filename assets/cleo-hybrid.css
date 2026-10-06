@@ -246,3 +246,14 @@ body {
   max-width: none;
   white-space: nowrap;
 }
+
+@media screen and (max-width: 480px) {
+  .kaching-cart-item__content {
+    gap: 10px;
+  }
+
+  .kaching-cart__badge {
+    padding: 4px 5px;
+    font-size: 11px;
+  }
+}
