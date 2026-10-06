@@ -75,7 +75,7 @@
           "type": "accordion",
           "settings": {
             "title": "Product specifications",
-            "icon": "award",
+            "icon": "medal_check",
             "use_product_description": true,
             "content": "<p>Add accordion content here.</p>",
             "open_by_default": false
@@ -85,7 +85,7 @@
           "type": "accordion",
           "settings": {
             "title": "Is it safe?",
-            "icon": "shield",
+            "icon": "shield_check",
             "use_product_description": false,
             "content": "<p>Yes. The Neera copper hammered tumbler is made from pure, food-grade copper and is safe for use as everyday drinkware.<br/><br/>Here is what you need to know:<br/>✓ Every batch is lab-tested after manufacturing for material purity<br/>- No mixed metals, no alloys, no chemical coatings of any kind<br/>✓ Use with clean, filtered, room-temperature or cool water for best results<br/>✓ Hand wash only — mild soap and lukewarm water, or lemon juice and salt for a deeper clean<br/>✓ Do not put it in Dishwasher or Refrigerator<br/>✓ Natural patina (color change or darkening) that develops over time is a normal characteristic of pure copper and is not a sign of damage or contamination<br/>✓ Not recommended for hot beverages, carbonated drinks, or acidic liquids stored for long periods<br/>✓ You might get slight metallic taste in the water once it is charged with copper<br/><br/></p>",
             "open_by_default": false
@@ -95,7 +95,7 @@
           "type": "accordion",
           "settings": {
             "title": "What Can I Expect?",
-            "icon": "sparkles",
+            "icon": "droplets",
             "use_product_description": false,
             "content": "<p>Here is what most Neera copper drinkware owners tell us they experience day to day:<br/>✓ A noticeably clean, fresh taste from a glass that is free of plastic and chemical residue<br/>✓ A hydration ritual that feels intentional, not just a habit<br/>Inspired by the centuries-old Ayurvedic practice of drinking water stored in copper vessels, the Neera copper drinkware is designed to make your daily hydration feel like a considered choice, not an afterthought.<br/><br/>*Individual experiences vary. The Neera copper tumbler is everyday drinkware. These statements have not been evaluated by the FDA and are not intended as medical claims.<br/><br/></p>",
             "open_by_default": false
@@ -116,7 +116,7 @@
           "type": "accordion",
           "settings": {
             "title": "Our Promise To You",
-            "icon": "heart",
+            "icon": "heart_handshake",
             "use_product_description": false,
             "content": "<p>✓   We built Neera around one idea that everyday drinkware should be made with natural materials, craftsmanship, and integrity.</p><p>✓   All Neera Products are Good for you and Better for the planet.</p><p>✓   We are a small brand that takes every order seriously. If something is not right with your Neera product when it arrives,<br/>reach out to us and we will make it right, no run-around, no hassle.</p><p>That is the Neera promise.<br/><br/>*<strong> Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent anydisease</strong>.</p>",
             "open_by_default": false
@@ -690,7 +690,7 @@
         "eyebrow_size": 22,
         "heading_size": 60,
         "question_size": 18,
-        "question_weight": "400",
+        "question_weight": "600",
         "answer_size": 16,
         "row_height": 52,
         "card_padding_x": 40,
