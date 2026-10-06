@@ -31,7 +31,7 @@
         "msg_3": {
           "type": "message",
           "settings": {
-            "text": "Buy More, Save More — up to 15% off"
+            "text": "Buy More, Save More - up to 15% off"
           }
         }
       },
@@ -129,7 +129,7 @@
         "background": "cream-alt",
         "button_label": "See the Bottle",
         "button_url": "/products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz",
-        "note": "Extra 10% off with code NEERA10  ·  Buy More, Save More — up to 15% off"
+        "note": "Extra 10% off with code NEERA10  ·  Buy More, Save More - up to 15% off"
       }
     },
     "myth_04": {
@@ -332,8 +332,8 @@
         "headline": "Cut the plastic tonight.",
         "subhead": "Fill it before bed. Drink it tomorrow morning. That’s the whole routine.",
         "price_fallback": "$79",
-        "price_note": "Buy More, Save More — up to 15% off",
-        "box_1": "<p>Buy More, Save More — up to 15% off</p><p>Extra 10% off with code <strong>NEERA10</strong></p>",
+        "price_note": "Buy More, Save More - up to 15% off",
+        "box_1": "<p>Buy More, Save More - up to 15% off</p><p>Extra 10% off with code <strong>NEERA10</strong></p>",
         "box_2": "<p>Costs less than a month of supplements.<br>Lasts for years.</p>",
         "button_label": "Start My Copper Ritual",
         "button_url": "",
