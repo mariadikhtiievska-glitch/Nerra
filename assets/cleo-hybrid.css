@@ -238,21 +238,16 @@ body {
 
 /* Kaching cart drawer: keep the "You save X%" badge on one line instead of
    letting the price column shrink to the price's width. */
-.kaching-cart-item__content-right {
+.kaching-cart .kaching-cart-item__content-right {
   flex-shrink: 0;
 }
 
-.kaching-cart__badge {
-  max-width: none;
+.kaching-cart .kaching-cart-item__content-right .kaching-cart__badge {
   white-space: nowrap;
 }
 
 @media screen and (max-width: 480px) {
-  .kaching-cart-item__content {
-    gap: 10px;
-  }
-
-  .kaching-cart__badge {
+  .kaching-cart .kaching-cart-item__content-right .kaching-cart__badge {
     padding: 4px 5px;
     font-size: 11px;
   }
