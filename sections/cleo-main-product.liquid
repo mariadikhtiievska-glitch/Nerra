@@ -3165,7 +3165,9 @@
                     column-gap: 8px !important;
                     row-gap: 0 !important;
                     margin-top: 20px !important;
+                    padding-top: 20px !important;
                     padding-bottom: 20px !important;
+                    border-top: 1px solid rgba(79, 53, 40, 0.18) !important;
                   }
                   #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-divider { display: none !important; }
                   #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item {
@@ -3189,6 +3191,29 @@
                     white-space: normal !important;
                     overflow: visible !important;
                     text-overflow: clip !important;
+                  }
+                }
+                /* Neera 2026-10-06: desktop - no bullets, three items across the full block width. */
+                @media screen and (min-width: 700px) {
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] {
+                    display: grid !important;
+                    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                    align-items: center !important;
+                    column-gap: 12px !important;
+                    margin-top: 16px !important;
+                    padding-top: 18px !important;
+                    padding-bottom: 18px !important;
+                    border-top: 1px solid rgba(79, 53, 40, 0.17) !important;
+                  }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-divider { display: none !important; }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item {
+                    justify-self: center !important;
+                    min-width: 0 !important;
+                  }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item:first-child { justify-self: start !important; }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item:last-child { justify-self: end !important; }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item .feature-text {
+                    white-space: normal !important;
                   }
                 }
               </style>
