@@ -38,7 +38,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_5.webp",
             "title": "Free US Shipping",
-            "text": "US warehouse, 3-5 business days"
+            "text": "US warehouse, 3-5 business days",
+            "neera_icon": "package_check"
           }
         },
         "product_usp_nDGaxj": {
@@ -46,7 +47,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_6.webp",
             "title": "SGS Lab Tested",
-            "text": "Over 99.9% copper, independent analysis"
+            "text": "Over 99.9% copper, independent analysis",
+            "neera_icon": "search_check"
           }
         },
         "product_usp_Pmyzfp": {
@@ -54,7 +56,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_11.png",
             "title": "Unlined Inside",
-            "text": "Bare copper, no lining or plating"
+            "text": "Bare copper, no lining or plating",
+            "neera_icon": "bottle"
           }
         },
         "product_usp_JiaYU9": {
@@ -62,7 +65,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_8.webp",
             "title": "Leak-Resistant Cap",
-            "text": "Threaded copper cap with a silicone seal"
+            "text": "Threaded copper cap with a silicone seal",
+            "neera_icon": "droplet_check"
           }
         },
         "benefit_pill_neeracopper1": {

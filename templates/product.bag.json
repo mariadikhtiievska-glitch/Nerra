@@ -38,7 +38,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_5.webp",
             "title": "Free US Shipping",
-            "text": "US warehouse, 3-5 business days"
+            "text": "US warehouse, 3-5 business days",
+            "neera_icon": "package_check"
           }
         },
         "product_usp_nDGaxj": {
@@ -46,7 +47,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_6.webp",
             "title": "Genuine Leather Pocket",
-            "text": "For your card, cash and keys"
+            "text": "For your card, cash and keys",
+            "neera_icon": "wallet"
           }
         },
         "product_usp_Pmyzfp": {
@@ -54,7 +56,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_11.png",
             "title": "Made for Neera",
-            "text": "Fits the 34 oz copper bottle"
+            "text": "Fits the 34 oz copper bottle",
+            "neera_icon": "bottle"
           }
         },
         "product_usp_JiaYU9": {
@@ -62,7 +65,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_8.webp",
             "title": "Hands-Free Carry",
-            "text": "Adjustable crossbody or shoulder strap"
+            "text": "Adjustable crossbody or shoulder strap",
+            "neera_icon": "backpack"
           }
         },
         "benefit_pill_neerabag1": {

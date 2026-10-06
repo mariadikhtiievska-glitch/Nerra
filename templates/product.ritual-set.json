@@ -38,7 +38,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_5.webp",
             "title": "Free US Shipping",
-            "text": "US warehouse, 3-5 business days"
+            "text": "US warehouse, 3-5 business days",
+            "neera_icon": "package_check"
           }
         },
         "product_usp_nDGaxj": {
@@ -46,7 +47,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_6.webp",
             "title": "SGS Lab Tested",
-            "text": "Over 99.9% copper, independent analysis"
+            "text": "Over 99.9% copper, independent analysis",
+            "neera_icon": "search_check"
           }
         },
         "product_usp_Pmyzfp": {
@@ -54,7 +56,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_11.png",
             "title": "Matching Tumbler",
-            "text": "Cut from the same copper sheet as the bottle"
+            "text": "Cut from the same copper sheet as the bottle",
+            "neera_icon": "tumbler"
           }
         },
         "product_usp_JiaYU9": {
@@ -62,7 +65,8 @@
           "settings": {
             "image": "shopify://shop_images/Icon_8.webp",
             "title": "Complete Ritual Set",
-            "text": "Bottle, tumbler, canvas bag and coir brush"
+            "text": "Bottle, tumbler, canvas bag and coir brush",
+            "neera_icon": "gift"
           }
         },
         "benefit_pill_neeracopper1": {
