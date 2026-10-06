@@ -605,32 +605,40 @@
         "faq_1": {
           "type": "question",
           "settings": {
-            "question": "How does it work?",
-            "answer": "<p>Copper naturally has antimicrobial properties that help keep water fresh. When water is stored in the bottle for a few hours, it absorbs trace benefits of copper.</p>",
+            "question": "What should I do before the first use?",
+            "answer": "<p>Rinse the inside with warm water, then do one lemon-and-salt wash inside and out and rinse until the water runs clear. Fill it with plain water, let it stand overnight and pour that first fill out. A brand-new, freshly polished surface gives a stronger taste than a settled one; from the second fill on, drink as usual.</p>",
             "open": false
           }
         },
         "faq_2": {
           "type": "question",
           "settings": {
-            "question": "Will it rust?",
-            "answer": "<p>No. Copper does not rust, but it naturally oxidizes over time and can be cleaned easily.</p>",
+            "question": "Will it dent if I drop it?",
+            "answer": "<p>Copper is softer than steel, so a drop onto a hard floor can leave a mark. Hand-hammering stiffens the wall and hides small marks, and the Neera Canvas Bottle Bag protects it on the go. A few marks only add to the character of a handmade piece.</p>",
             "open": false
           }
         },
         "faq_3": {
           "type": "question",
           "settings": {
-            "question": "How do I clean Neera Copper Water Bottle?",
-            "answer": "<p>Clean gently using lemon, salt, or mild soap with a soft bottle brush. Avoid harsh chemicals.</p>",
+            "question": "Is 9 oz too light for solid copper?",
+            "answer": "<p>No. The weight of a copper bottle comes from the thickness of the sheet, not the purity of the metal. At about 9 oz for 34 oz of water, Neera is in the normal range for a hand-formed, single-wall copper bottle, and light enough to carry all day. A heavier copper bottle is thicker, not purer.</p>",
             "open": false
           }
         },
         "faq_4": {
           "type": "question",
           "settings": {
-            "question": "What health benefits can I expect?",
-            "answer": "<p>Many customers say the ritual supports better hydration and mindful daily routines.</p>",
+            "question": "Copper or stainless steel: which should I choose?",
+            "answer": "<p>They do different jobs. Stainless steel is insulated, takes any drink and goes in the dishwasher. Neera is single-wall bare copper made for plain still water and the evening-to-morning ritual, washed by hand, and it ages with a patina instead of wearing out. Keep your steel tumbler for coffee; Neera is for your water.</p>",
+            "open": false
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "Is it normal for my bottle to turn green? Is it mold?",
+            "answer": "<p>It is not mold. Green spots are copper oxidation: real copper reacting with moisture and air, the same natural process that turns copper roofs and statues green. It is one of the clearest signs that your bottle is genuine, bare copper. Before the next fill, clean the green away with lemon juice and salt, rinse until the water runs clear and let the bottle dry fully.</p>",
             "open": false
           }
         }
@@ -639,7 +647,8 @@
         "faq_1",
         "faq_2",
         "faq_3",
-        "faq_4"
+        "faq_4",
+        "faq_5"
       ],
       "settings": {
         "eyebrow": "Common Questions",
