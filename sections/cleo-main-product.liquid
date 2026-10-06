@@ -3284,6 +3284,15 @@
                   }
                   #shopify-section-{{ section.id }} .product-usp-grid.cleo-product-usp-grid .product-usp-grid__item { align-items: center !important; }
                 }
+                /* Neera 2026-10-06: line icons sized to match the old image glyphs. */
+                #shopify-section-{{ section.id }} .cleo-product-usp-grid .cleo-usp-icon.cleo-usp-icon--neera svg {
+                  width: 26px !important; height: 26px !important; max-width: 26px !important; max-height: 26px !important;
+                }
+                @media screen and (max-width: 699px) {
+                  #shopify-section-{{ section.id }} .cleo-product-usp-grid .cleo-usp-icon.cleo-usp-icon--neera svg {
+                    width: 21px !important; height: 21px !important; max-width: 21px !important; max-height: 21px !important;
+                  }
+                }
               </style>
               <div class="feature-bar cleo-product-feature-bar" role="list">
                 {%- if feature_block_count > 0 -%}
@@ -3387,8 +3396,31 @@
                     {%- if block.type == 'product_usp' -%}
                       {%- assign usp_render_index = usp_render_index | plus: 1 -%}
                       <div class="product-usp-grid__item" {{ block.shopify_attributes }}>
-                        <span class="cleo-usp-icon" aria-hidden="true">
-                          {%- if block.settings.image != blank -%}
+                        <span class="cleo-usp-icon{% if block.settings.neera_icon != blank and block.settings.neera_icon != 'none' %} cleo-usp-icon--neera{% endif %}" aria-hidden="true">
+                          {%- if block.settings.neera_icon != blank and block.settings.neera_icon != 'none' -%}
+                            {%- case block.settings.neera_icon -%}
+                            {%- when 'package_check' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></svg>
+                            {%- when 'search_check' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.6-4.6"/><path d="m8 11 2 2 4-4"/></svg>
+                            {%- when 'bottle' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4v3l1.5 2.5V20a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2V7.5L10 5Z"/><path d="M8.5 11h7"/></svg>
+                            {%- when 'droplet_check' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/><path d="m9.3 15 1.9 1.9 3.6-3.6"/></svg>
+                            {%- when 'tumbler' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12l-1.5 15.6a2 2 0 0 1-2 1.8h-5a2 2 0 0 1-2-1.8Z"/><path d="M10 8.5h.01"/><path d="M14 10h.01"/><path d="M11 12.5h.01"/><path d="M13.6 15h.01"/></svg>
+                            {%- when 'gift' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+                            {%- when 'wallet' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+                            {%- when 'backpack' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8 10h8"/><path d="M8 22v-6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v6"/><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
+                            {%- when 'leaf' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                            {%- when 'coil' -%}
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h1.5"/><path d="M19.5 12H21"/><path d="M4.5 12c0-2.2 1.3-3.5 2.75-3.5S10 9.8 10 12s-1.3 3.5-2.75 3.5"/><path d="M7.25 15.5C8.7 15.5 10 14 10 12"/><path d="M10 12c0-2.2 1.3-3.5 2.75-3.5S15.5 9.8 15.5 12s-1.3 3.5-2.75 3.5S10 14.2 10 12"/><path d="M15.5 12c0-2.2 1.3-3.5 2-3.5"/><path d="M15.5 12c0 2.2 1.3 3.5 2 3.5S19.5 14 19.5 12"/></svg>
+                            {%- endcase -%}
+                          {%- elsif block.settings.image != blank -%}
                             {{
                               block.settings.image
                               | image_url: width: 160
@@ -4758,6 +4790,7 @@
       "name": "Product USP",
       "limit": 4,
       "settings": [
+        {"type": "select", "id": "neera_icon", "label": "Neera icon", "options": [{"value": "none", "label": "None (use image)"}, {"value": "package_check", "label": "Box with check"}, {"value": "search_check", "label": "Magnifier with check"}, {"value": "bottle", "label": "Bottle"}, {"value": "droplet_check", "label": "Droplet with check"}, {"value": "tumbler", "label": "Tumbler"}, {"value": "gift", "label": "Gift"}, {"value": "wallet", "label": "Wallet"}, {"value": "backpack", "label": "Backpack"}, {"value": "leaf", "label": "Leaf"}, {"value": "coil", "label": "Wire coil"}], "default": "none"},
         {
           "type": "image_picker",
           "id": "image",
