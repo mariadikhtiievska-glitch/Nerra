@@ -127,7 +127,7 @@
           "type": "accordion",
           "settings": {
             "title": "Product specifications",
-            "icon": "award",
+            "icon": "medal_check",
             "use_product_description": true,
             "content": "<p>Add accordion content here.</p>",
             "open_by_default": false
@@ -137,7 +137,7 @@
           "type": "accordion",
           "settings": {
             "title": "Is it safe?",
-            "icon": "shield",
+            "icon": "shield_check",
             "use_product_description": false,
             "content": "<p>Yes. The Neera Coir Bottle Brush is made for bare copper.<br/>✓ Natural coconut coir bristles: no steel bristles, no scouring pad, nothing harsh against your copper<br/>✓ A pure copper wire core, so only copper touches the inside of your copper bottle<br/>✓ A wooden handle shaped to reach inside the Neera 34 oz bottle<br/>✓ Rinse after use and let it air-dry with the bristles up<br/><br/></p>",
             "open_by_default": false
@@ -147,7 +147,7 @@
           "type": "accordion",
           "settings": {
             "title": "What Can I Expect?",
-            "icon": "sparkles",
+            "icon": "droplets",
             "use_product_description": false,
             "content": "<p>A cleaner bottle in seconds:<br/>✓ One quick pass after the last sip keeps the inside of your bottle fresh<br/>✓ Firm coir bristles with a curved tip that reaches into the shoulder of the bottle, where a sponge cannot<br/>✓ Natural materials only: coconut coir, copper wire and wood<br/>✓ Replace it when the bristles flatten<br/><br/></p>",
             "open_by_default": false
@@ -168,7 +168,7 @@
           "type": "accordion",
           "settings": {
             "title": "Our Promise To You",
-            "icon": "heart",
+            "icon": "heart_handshake",
             "use_product_description": false,
             "content": "<p>✓   Made for Neera: designed to clean the inside of the 34 oz copper bottle</p><p>✓   Natural by design: coir, copper and wood, the same honest materials as the bottle it cares for</p><p>✓   Free US shipping: every order ships free from our US warehouse and arrives in 3-5 business days</p><p>✓   Real people behind every order: we are a brand, and if anything is not right when your Neera arrives, we will make it right, no run-around, no hassle</p>",
             "open_by_default": false
@@ -671,7 +671,7 @@
         "eyebrow_size": 22,
         "heading_size": 60,
         "question_size": 18,
-        "question_weight": "400",
+        "question_weight": "600",
         "answer_size": 16,
         "row_height": 52,
         "card_padding_x": 40,

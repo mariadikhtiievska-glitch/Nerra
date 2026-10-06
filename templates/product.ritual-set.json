@@ -64,6 +64,30 @@
             "title": "Complete Ritual Set",
             "text": "Bottle, tumbler, canvas bag and coir brush"
           }
+        },
+        "benefit_pill_neeracopper1": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Ayurvedic Tradition"
+          }
+        },
+        "benefit_pill_neeracopper2": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Pure Copper"
+          }
+        },
+        "benefit_pill_neeracopper3": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Hand-Hammered"
+          }
+        },
+        "benefit_pill_neeracopper4": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Lab Verified"
+          }
         }
       },
       "block_order": [
@@ -73,7 +97,11 @@
         "product_usp_4xJe8G",
         "product_usp_nDGaxj",
         "product_usp_Pmyzfp",
-        "product_usp_JiaYU9"
+        "product_usp_JiaYU9",
+        "benefit_pill_neeracopper1",
+        "benefit_pill_neeracopper2",
+        "benefit_pill_neeracopper3",
+        "benefit_pill_neeracopper4"
       ],
       "settings": {
         "show_vendor": false,
@@ -99,7 +127,7 @@
           "type": "accordion",
           "settings": {
             "title": "Product specifications",
-            "icon": "award",
+            "icon": "medal_check",
             "use_product_description": true,
             "content": "<p>Add accordion content here.</p>",
             "open_by_default": false
@@ -109,7 +137,7 @@
           "type": "accordion",
           "settings": {
             "title": "Is it safe?",
-            "icon": "shield",
+            "icon": "shield_check",
             "use_product_description": false,
             "content": "<p>Yes, for healthy adults using plain still water. Neera bottles and tumblers are solid copper with no lining, plating or coating, and an independent SGS test report on a sample bottle measured over 99.9% copper.<br/><br/>Here is what you need to know:<br/>✓ Solid copper inside and out: no lining, no plating, no lacquer<br/>✓ Use plain still water, room temperature or cool: tap, filtered or still mineral water<br/>✓ Fill in the evening, drink the next day, and never keep the same water longer than 24 hours<br/>✓ Not for hot, sparkling or acidic drinks: no coffee, tea, juice or lemon water<br/>✓ Hand wash only: rinse with warm water, and clean with lemon juice and salt every week or two<br/>✓ No dishwasher, fridge or freezer<br/>✓ Darkening over time is natural patina, the sign of bare copper, not damage. Green or blue deposits mean it needs a lemon-and-salt clean before the next fill<br/>✓ A faint copper taste is normal for some people, especially in the first few fills<br/><br/></p>",
             "open_by_default": false
@@ -119,7 +147,7 @@
           "type": "accordion",
           "settings": {
             "title": "What Can I Expect?",
-            "icon": "sparkles",
+            "icon": "droplets",
             "use_product_description": false,
             "content": "<p>A morning ritual you will look forward to:<br/>✓ Fill it in the evening and wake up to water that has rested in copper overnight, the way Ayurveda has practiced it for centuries<br/>✓ The cool, solid weight of hand-hammered copper in your hand, every single day<br/>✓ A bottle that is yours alone: every hammer mark is made by hand, so no two Neera bottles share a pattern<br/>✓ A finish that deepens month by month into a warm, natural patina, the story of your daily ritual<br/>✓ A piece that earns its place on your desk, in your bag and on your nightstand, and ages beautifully instead of wearing out<br/><br/>Neera brings the ancient Ayurvedic tradition of tamra jal into modern life: a small, deliberate pause that turns plain water into a ritual.</p>",
             "open_by_default": false
@@ -140,7 +168,7 @@
           "type": "accordion",
           "settings": {
             "title": "Our Promise To You",
-            "icon": "heart",
+            "icon": "heart_handshake",
             "use_product_description": false,
             "content": "<p>For centuries, families across India have kept their drinking water in copper overnight. In Ayurveda it is called tamra jal. The tradition holds that copper water balances the three doshas, vata, pitta and kapha, and classical texts name copper as the vessel of choice for drinking water. Neera exists to bring that ritual into modern life, made the honest way.</p><p>✓   Real copper, nothing hidden: solid, unlined copper inside and out, backed by an independent SGS lab test</p><p>✓   Made by hand, made to last: every Neera is shaped and hammered by artisans in India, built to age beautifully for years, not to be replaced</p><p>✓   The ritual, made simple: fill it in the evening and drink in the morning, the way Ayurvedic practice recommends, after 6 to 8 hours or overnight</p><p>✓   A daily pause you will look forward to: a slower, more deliberate start to the morning and a bottle you reach for because you want to</p><p>✓   Free US shipping: every order ships free from our US warehouse and arrives in 3-5 business days</p><p>✓   Real people behind every order: we are a brand, and if anything is not right when your Neera arrives, we will make it right, no run-around, no hassle</p><p>We share the Ayurvedic tradition as it has been handed down.</p>",
             "open_by_default": false
@@ -643,7 +671,7 @@
         "eyebrow_size": 22,
         "heading_size": 60,
         "question_size": 18,
-        "question_weight": "400",
+        "question_weight": "600",
         "answer_size": 16,
         "row_height": 52,
         "card_padding_x": 40,

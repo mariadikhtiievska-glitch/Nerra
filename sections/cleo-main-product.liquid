@@ -3231,6 +3231,15 @@
                     border-top: 1px solid rgba(79, 53, 40, 0.17) !important;
                   }
                 }
+                /* Neera 2026-10-06: benefit pills in one row on desktop; phones keep the theme's two rows. */
+                @media screen and (min-width: 750px) {
+                  #shopify-section-{{ section.id }} .product-pills.cleo-product-pills {
+                    display: grid !important;
+                    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+                    gap: 8px !important;
+                  }
+                  #shopify-section-{{ section.id }} .product-pills.cleo-product-pills span { min-width: 0 !important; white-space: normal !important; overflow-wrap: break-word !important; }
+                }
               </style>
               <div class="feature-bar cleo-product-feature-bar" role="list">
                 {%- if feature_block_count > 0 -%}

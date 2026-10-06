@@ -127,7 +127,7 @@
           "type": "accordion",
           "settings": {
             "title": "Product specifications",
-            "icon": "award",
+            "icon": "medal_check",
             "use_product_description": true,
             "content": "<p>Add accordion content here.</p>",
             "open_by_default": false
@@ -137,7 +137,7 @@
           "type": "accordion",
           "settings": {
             "title": "Is it safe?",
-            "icon": "shield",
+            "icon": "shield_check",
             "use_product_description": false,
             "content": "<p>Yes. The Neera Canvas Bottle Bag only carries your bottle, and nothing in it touches your water.<br/>✓ Sturdy canvas body with a genuine leather front pocket<br/>✓ Cut for the Neera 34 oz copper bottle, so it sits snug instead of knocking against keys or a laptop<br/>✓ Protects the hand-hammered finish from the scuffs a backpack or tote would leave<br/>✓ Spot-clean with a damp cloth and mild soap, then air-dry; do not machine wash<br/><br/></p>",
             "open_by_default": false
@@ -147,7 +147,7 @@
           "type": "accordion",
           "settings": {
             "title": "What Can I Expect?",
-            "icon": "sparkles",
+            "icon": "droplets",
             "use_product_description": false,
             "content": "<p>Hands-free copper, wherever your day goes:<br/>✓ Your bottle on your shoulder or across your body, both hands free from the desk to the car to the trail<br/>✓ A leather front pocket and key clip for your card, cash and keys<br/>✓ An adjustable strap for crossbody or shoulder carry<br/>✓ Canvas that softens and gains character with use, just like the copper it carries<br/><br/></p>",
             "open_by_default": false
@@ -168,7 +168,7 @@
           "type": "accordion",
           "settings": {
             "title": "Our Promise To You",
-            "icon": "heart",
+            "icon": "heart_handshake",
             "use_product_description": false,
             "content": "<p>✓   Made for Neera: designed around the 34 oz copper bottle, not a one-size-fits-all sleeve</p><p>✓   Built for everyday carry: real canvas and genuine leather, made to be used daily</p><p>✓   Free US shipping: every order ships free from our US warehouse and arrives in 3-5 business days</p><p>✓   Real people behind every order: we are a brand, and if anything is not right when your Neera arrives, we will make it right, no run-around, no hassle</p>",
             "open_by_default": false
@@ -671,7 +671,7 @@
         "eyebrow_size": 22,
         "heading_size": 60,
         "question_size": 18,
-        "question_weight": "400",
+        "question_weight": "600",
         "answer_size": 16,
         "row_height": 52,
         "card_padding_x": 40,
