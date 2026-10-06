@@ -235,3 +235,14 @@ body {
 }
 
 /* Final product-page fidelity overrides for the Cleo reference layout. */
+
+/* Kaching cart drawer: keep the "You save X%" badge on one line instead of
+   letting the price column shrink to the price's width. */
+.kaching-cart-item__content-right {
+  flex-shrink: 0;
+}
+
+.kaching-cart__badge {
+  max-width: none;
+  white-space: nowrap;
+}
