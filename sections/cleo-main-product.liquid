@@ -877,6 +877,18 @@
     }
   }
   
+  .cleo-product-installments shopify-payment-terms {
+    color: #75665c;
+    font-family: inherit;
+    font-size: 13px;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .cleo-product-installments shopify-payment-terms {
+      font-size: 12px;
+    }
+  }
+  
   @media screen and (min-width: 1000px) {
   
   .cleo-product-page .section-spacing {
@@ -3057,6 +3069,14 @@
                 </div>
               </div>
 
+              {%- assign installments_form_id = 'cleo-installments-form-' | append: section.id -%}
+              <div class="cleo-product-installments">
+                {%- form 'product', product, id: installments_form_id, class: 'cleo-installments-form' -%}
+                  <input type="hidden" name="id" value="{{ current_variant.id }}">
+                  {{ form | payment_terms }}
+                {%- endform -%}
+              </div>
+
               {%- unless product.has_only_default_variant -%}
                 <div class="product-info__block-item" data-block-id="variants" data-block-type="variant-picker">
                   <div class="cleo-static-variants">
@@ -4112,6 +4132,23 @@
         scheduleStockUpdate(form);
         window.setTimeout(() => scheduleStockUpdate(form), 100);
       }
+    });
+
+    // cleo-theme.js sets the main form's variant id on option change without
+    // firing an event; mirror it into the installments form so the
+    // payment terms banner follows the selected variant.
+    root.addEventListener('change', (event) => {
+      if (!event.target.matches('[data-cleo-option]')) return;
+
+      const mainIdInput = document.getElementById(productFormId)?.querySelector('[name="id"]');
+      const installmentsIdInput = document
+        .getElementById(`cleo-installments-form-${sectionId}`)
+        ?.querySelector('[name="id"]');
+
+      if (!mainIdInput?.value || !installmentsIdInput || installmentsIdInput.value === mainIdInput.value) return;
+
+      installmentsIdInput.value = mainIdInput.value;
+      installmentsIdInput.dispatchEvent(new Event('change', { bubbles: true }));
     });
 
     root.addEventListener('input', (event) => {
