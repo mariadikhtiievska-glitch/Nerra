@@ -37,32 +37,32 @@
           "type": "product_usp",
           "settings": {
             "image": "shopify://shop_images/Icon_5.webp",
-            "title": "Express USA Shipping",
-            "text": "Ships in 1–2 business days"
+            "title": "Free US Shipping",
+            "text": "Arrives in 3-5 business days from our US warehouse"
           }
         },
         "product_usp_nDGaxj": {
           "type": "product_usp",
           "settings": {
             "image": "shopify://shop_images/Icon_6.webp",
-            "title": "Lab-Tested Pure Copper",
-            "text": "99.9% purity verified"
+            "title": "Genuine Leather Pocket",
+            "text": "For your card, cash and keys"
           }
         },
         "product_usp_Pmyzfp": {
           "type": "product_usp",
           "settings": {
             "image": "shopify://shop_images/Icon_11.png",
-            "title": "Copper Care Brush and Travel Sleeve",
-            "text": "Included with every bottle"
+            "title": "Made for Neera",
+            "text": "Fits the 34 oz copper bottle"
           }
         },
         "product_usp_JiaYU9": {
           "type": "product_usp",
           "settings": {
             "image": "shopify://shop_images/Icon_8.webp",
-            "title": "Leak-proof",
-            "text": "Leak-proof threaded cap"
+            "title": "Hands-Free Carry",
+            "text": "Adjustable crossbody or shoulder strap"
           }
         },
         "benefit_pill_neerabag1": {
