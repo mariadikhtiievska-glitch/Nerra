@@ -3243,7 +3243,7 @@
                 /* Neera 2026-10-06: "Not sold on Amazon" bar with tooltip (bottle, Essentials, Ritual). */
                 #shopify-section-{{ section.id }} .neera-amazon {
                   position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px;
-                  margin: 20px 0 0; padding: 11px 18px; box-sizing: border-box; width: 100%;
+                  margin: 20px 0 20px; padding: 11px 18px; box-sizing: border-box; width: 100%;
                   border: 1px solid #E8D4C0; border-radius: 8px;
                   background: linear-gradient(180deg, #f7ede2, #f4e6d8);
                   box-shadow: inset 0 1px #ffffffa6, 0 1px 2px #00000008;
@@ -3336,6 +3336,17 @@
                 {%- endif -%}
               </div>
 
+              <div class="certificate-pdf-block cleo-certificate">
+                <div class="certificate-pdf-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v4h4M9 10h6M9 13h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="17" cy="16" r="2.2" stroke="currentColor" stroke-width="1.5"/><path d="m15.8 18-.6 3 1.8-1 1.8 1-.6-3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="certificate-pdf-content">
+                  <div class="certificate-pdf-title">Independently Lab Tested</div>
+                  <div class="certificate-pdf-subtitle">SGS analysis: over 99.9% copper</div>
+                </div>
+                <div class="certificate-pdf-stars">&#9733;<br>&#9733;<br>&#9733;</div>
+              </div>
+
               {%- if template.suffix == 'bottle-essentials' or template.suffix == 'ritual-set' -%}
                 <div class="neera-amazon">
                   <div class="neera-amazon__left">
@@ -3361,17 +3372,6 @@
                   })();
                 </script>
               {%- endif -%}
-              <div class="certificate-pdf-block cleo-certificate">
-                <div class="certificate-pdf-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v4h4M9 10h6M9 13h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="17" cy="16" r="2.2" stroke="currentColor" stroke-width="1.5"/><path d="m15.8 18-.6 3 1.8-1 1.8 1-.6-3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-                </div>
-                <div class="certificate-pdf-content">
-                  <div class="certificate-pdf-title">Independently Lab Tested</div>
-                  <div class="certificate-pdf-subtitle">SGS analysis: over 99.9% copper</div>
-                </div>
-                <div class="certificate-pdf-stars">&#9733;<br>&#9733;<br>&#9733;</div>
-              </div>
-
               <div class="product-usp-grid cleo-product-usp-grid">
                 {%- if usp_block_count > 0 -%}
                   {%- assign usp_render_index = 0 -%}
