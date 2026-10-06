@@ -3155,6 +3155,43 @@
                 {%- endform -%}
               </product-form>
 
+              <style>
+                /* Neera 2026-10-06: readable feature bar on phones - 3 columns, icon above text, 12px. */
+                @media screen and (max-width: 699px) {
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] {
+                    display: grid !important;
+                    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                    align-items: start !important;
+                    column-gap: 8px !important;
+                    row-gap: 0 !important;
+                    margin-top: 20px !important;
+                    padding-bottom: 20px !important;
+                  }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-divider { display: none !important; }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item {
+                    display: flex !important;
+                    flex-flow: column nowrap !important;
+                    align-items: center !important;
+                    justify-content: flex-start !important;
+                    gap: 6px !important;
+                    min-width: 0 !important;
+                    text-align: center !important;
+                  }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-icon {
+                    flex: 0 0 auto !important;
+                    width: 21.5px !important;
+                    height: 21.5px !important;
+                  }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item .feature-text {
+                    font-size: 11.5px !important;
+                    line-height: 1.25 !important;
+                    letter-spacing: 0 !important;
+                    white-space: normal !important;
+                    overflow: visible !important;
+                    text-overflow: clip !important;
+                  }
+                }
+              </style>
               <div class="feature-bar cleo-product-feature-bar" role="list">
                 {%- if feature_block_count > 0 -%}
                   {%- assign feature_rendered_index = 0 -%}
