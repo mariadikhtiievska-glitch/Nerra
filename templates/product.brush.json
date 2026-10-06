@@ -37,32 +37,56 @@
           "type": "product_usp",
           "settings": {
             "image": "shopify://shop_images/Icon_5.webp",
-            "title": "Express USA Shipping",
-            "text": "Ships in 1–2 business days"
+            "title": "Free US Shipping",
+            "text": "Arrives in 3-5 business days from our US warehouse"
           }
         },
         "product_usp_nDGaxj": {
           "type": "product_usp",
           "settings": {
             "image": "shopify://shop_images/Icon_6.webp",
-            "title": "Lab-Tested Pure Copper",
-            "text": "99.9% purity verified"
+            "title": "Natural Coconut Coir",
+            "text": "Firm natural bristles, no steel"
           }
         },
         "product_usp_Pmyzfp": {
           "type": "product_usp",
           "settings": {
             "image": "shopify://shop_images/Icon_11.png",
-            "title": "Copper Care Brush and Travel Sleeve",
-            "text": "Included with every bottle"
+            "title": "Copper Wire Core",
+            "text": "Only copper touches your bottle"
           }
         },
         "product_usp_JiaYU9": {
           "type": "product_usp",
           "settings": {
             "image": "shopify://shop_images/Icon_8.webp",
-            "title": "Leak-proof",
-            "text": "Leak-proof threaded cap"
+            "title": "Made for Neera",
+            "text": "Reaches inside the 34 oz bottle"
+          }
+        },
+        "benefit_pill_neerabrush1": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Coconut Coir"
+          }
+        },
+        "benefit_pill_neerabrush2": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Copper Wire Core"
+          }
+        },
+        "benefit_pill_neerabrush3": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Wooden Handle"
+          }
+        },
+        "benefit_pill_neerabrush4": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Made for Copper"
           }
         }
       },
@@ -73,7 +97,11 @@
         "product_usp_4xJe8G",
         "product_usp_nDGaxj",
         "product_usp_Pmyzfp",
-        "product_usp_JiaYU9"
+        "product_usp_JiaYU9",
+        "benefit_pill_neerabrush1",
+        "benefit_pill_neerabrush2",
+        "benefit_pill_neerabrush3",
+        "benefit_pill_neerabrush4"
       ],
       "settings": {
         "show_vendor": false,
@@ -111,7 +139,7 @@
             "title": "Is it safe?",
             "icon": "shield",
             "use_product_description": false,
-            "content": "<p>Yes. The Neera copper hammered tumbler is made from pure, food-grade copper and is safe for use as everyday drinkware.<br/><br/>Here is what you need to know:<br/>✓ Every batch is lab-tested after manufacturing for material purity<br/>- No mixed metals, no alloys, no chemical coatings of any kind<br/>✓ Use with clean, filtered, room-temperature or cool water for best results<br/>✓ Hand wash only — mild soap and lukewarm water, or lemon juice and salt for a deeper clean<br/>✓ Do not put it in Dishwasher or Refrigerator<br/>✓ Natural patina (color change or darkening) that develops over time is a normal characteristic of pure copper and is not a sign of damage or contamination<br/>✓ Not recommended for hot beverages, carbonated drinks, or acidic liquids stored for long periods<br/>✓ You might get slight metallic taste in the water once it is charged with copper<br/><br/></p>",
+            "content": "<p>Yes. The Neera Coir Bottle Brush is made for bare copper.<br/>✓ Natural coconut coir bristles: no steel bristles, no scouring pad, nothing harsh against your copper<br/>✓ A pure copper wire core, so only copper touches the inside of your copper bottle<br/>✓ A wooden handle shaped to reach inside the Neera 34 oz bottle<br/>✓ Rinse after use and let it air-dry with the bristles up<br/><br/></p>",
             "open_by_default": false
           }
         },
@@ -121,7 +149,7 @@
             "title": "What Can I Expect?",
             "icon": "sparkles",
             "use_product_description": false,
-            "content": "<p>Here is what most Neera copper drinkware owners tell us they experience day to day:<br/>✓ A noticeably clean, fresh taste from a glass that is free of plastic and chemical residue<br/>✓ A hydration ritual that feels intentional, not just a habit<br/>Inspired by the centuries-old Ayurvedic practice of drinking water stored in copper vessels, the Neera copper drinkware is designed to make your daily hydration feel like a considered choice, not an afterthought.<br/><br/>*Individual experiences vary. The Neera copper tumbler is everyday drinkware. These statements have not been evaluated by the FDA and are not intended as medical claims.<br/><br/></p>",
+            "content": "<p>A cleaner bottle in seconds:<br/>✓ One quick pass after the last sip keeps the inside of your bottle fresh<br/>✓ Firm coir bristles with a curved tip that reaches into the shoulder of the bottle, where a sponge cannot<br/>✓ Natural materials only: coconut coir, copper wire and wood<br/>✓ Replace it when the bristles flatten<br/><br/></p>",
             "open_by_default": false
           }
         },
@@ -142,7 +170,7 @@
             "title": "Our Promise To You",
             "icon": "heart",
             "use_product_description": false,
-            "content": "<p>✓   We built Neera around one idea that everyday drinkware should be made with natural materials, craftsmanship, and integrity.</p><p>✓   All Neera Products are Good for you and Better for the planet.</p><p>✓   We are a small brand that takes every order seriously. If something is not right with your Neera product when it arrives,<br/>reach out to us and we will make it right, no run-around, no hassle.</p><p>That is the Neera promise.<br/><br/>*<strong> Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent anydisease</strong>.</p>",
+            "content": "<p>✓   Made for Neera: designed to clean the inside of the 34 oz copper bottle</p><p>✓   Natural by design: coir, copper and wood, the same honest materials as the bottle it cares for</p><p>✓   Free US shipping: every order ships free from our US warehouse and arrives in 3-5 business days</p><p>✓   Real people behind every order: we are a brand, and if anything is not right when your Neera arrives, we will make it right, no run-around, no hassle</p>",
             "open_by_default": false
           }
         }
@@ -577,32 +605,40 @@
         "faq_1": {
           "type": "question",
           "settings": {
-            "question": "How does it work?",
-            "answer": "<p>Copper naturally has antimicrobial properties that help keep water fresh. When water is stored in the bottle for a few hours, it absorbs trace benefits of copper.</p>",
+            "question": "What should I do before the first use?",
+            "answer": "<p>Rinse the inside with warm water, then do one lemon-and-salt wash inside and out and rinse until the water runs clear. Fill it with plain water, let it stand overnight and pour that first fill out. A brand-new, freshly polished surface gives a stronger taste than a settled one; from the second fill on, drink as usual.</p>",
             "open": false
           }
         },
         "faq_2": {
           "type": "question",
           "settings": {
-            "question": "Will it rust?",
-            "answer": "<p>No. Copper does not rust, but it naturally oxidizes over time and can be cleaned easily.</p>",
+            "question": "Will it dent if I drop it?",
+            "answer": "<p>Copper is softer than steel, so a drop onto a hard floor can leave a mark. Hand-hammering stiffens the wall and hides small marks, and the Neera Canvas Bottle Bag protects it on the go. A few marks only add to the character of a handmade piece.</p>",
             "open": false
           }
         },
         "faq_3": {
           "type": "question",
           "settings": {
-            "question": "How do I clean Neera Copper Water Bottle?",
-            "answer": "<p>Clean gently using lemon, salt, or mild soap with a soft bottle brush. Avoid harsh chemicals.</p>",
+            "question": "Is 9 oz too light for solid copper?",
+            "answer": "<p>No. The weight of a copper bottle comes from the thickness of the sheet, not the purity of the metal. At about 9 oz for 34 oz of water, Neera is in the normal range for a hand-formed, single-wall copper bottle, and light enough to carry all day. A heavier copper bottle is thicker, not purer.</p>",
             "open": false
           }
         },
         "faq_4": {
           "type": "question",
           "settings": {
-            "question": "What health benefits can I expect?",
-            "answer": "<p>Many customers say the ritual supports better hydration and mindful daily routines.</p>",
+            "question": "Copper or stainless steel: which should I choose?",
+            "answer": "<p>They do different jobs. Stainless steel is insulated, takes any drink and goes in the dishwasher. Neera is single-wall bare copper made for plain still water and the evening-to-morning ritual, washed by hand, and it ages with a patina instead of wearing out. Keep your steel tumbler for coffee; Neera is for your water.</p>",
+            "open": false
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "Is it normal for my bottle to turn green? Is it mold?",
+            "answer": "<p>It is not mold. Green spots are copper oxidation: real copper reacting with moisture and air, the same natural process that turns copper roofs and statues green. It is one of the clearest signs that your bottle is genuine, bare copper. Before the next fill, clean the green away with lemon juice and salt, rinse until the water runs clear and let the bottle dry fully.</p>",
             "open": false
           }
         }
@@ -611,7 +647,8 @@
         "faq_1",
         "faq_2",
         "faq_3",
-        "faq_4"
+        "faq_4",
+        "faq_5"
       ],
       "settings": {
         "eyebrow": "Common Questions",

@@ -150,6 +150,13 @@
           {{ card_product.title | default: fallback_title }}
         </a>
 
+        {%- liquid
+          assign card_subtitle = card_product.metafields.custom.subtitle.value | default: card_product.metafields.custom.short_description.value
+        -%}
+        {%- if card_subtitle != blank -%}
+          <p class="card-product-subtitle text-subdued line-clamp" style="--line-clamp-count: 2; margin: 0; font-size: 14px; line-height: 1.4; text-align: left; justify-self: stretch;">{{ card_subtitle }}</p>
+        {%- endif -%}
+
         <price-list class="price-list">
           <sale-price class="custom-card-sale-price h6 text-subdued">
             <span class="sr-only">Sale price</span>

@@ -2897,7 +2897,7 @@
   assign product_form_id = 'product-form-main-' | append: product.id | append: '-template--21732445290636__main'
   assign gallery_id = 'product-gallery-carousel-' | append: product.id | append: '-template--21732445290636__main'
   assign badge_text = product.metafields.custom.badge.value | default: product.metafields.custom.product_badge.value
-  assign subtitle = product.metafields.custom.subtitle.value | default: product.metafields.custom.short_description.value | default: 'With Copper Care Brush and Travel Sleeve'
+  assign subtitle = product.metafields.custom.subtitle.value | default: product.metafields.custom.short_description.value | default: 'With Canvas Bottle Bag and Coir Bottle Brush'
   assign sold_message = product.metafields.custom.sold_message.value | default: '9k plus sold last month'
   assign review_text = section.settings.review_text | default: '4.8 (380 reviews)'
   assign pill_block_count = 0
@@ -3166,6 +3166,43 @@
                 {%- endform -%}
               </product-form>
 
+              <style>
+                /* Neera 2026-10-06: readable feature bar on phones - 3 columns, icon above text, 12px. */
+                @media screen and (max-width: 699px) {
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] {
+                    display: grid !important;
+                    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                    align-items: start !important;
+                    column-gap: 8px !important;
+                    row-gap: 0 !important;
+                    margin-top: 20px !important;
+                    padding-bottom: 20px !important;
+                  }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-divider { display: none !important; }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item {
+                    display: flex !important;
+                    flex-flow: column nowrap !important;
+                    align-items: center !important;
+                    justify-content: flex-start !important;
+                    gap: 6px !important;
+                    min-width: 0 !important;
+                    text-align: center !important;
+                  }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-icon {
+                    flex: 0 0 auto !important;
+                    width: 21.5px !important;
+                    height: 21.5px !important;
+                  }
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] .feature-item .feature-text {
+                    font-size: 11.5px !important;
+                    line-height: 1.25 !important;
+                    letter-spacing: 0 !important;
+                    white-space: normal !important;
+                    overflow: visible !important;
+                    text-overflow: clip !important;
+                  }
+                }
+              </style>
               <div class="feature-bar cleo-product-feature-bar" role="list">
                 {%- if feature_block_count > 0 -%}
                   {%- assign feature_rendered_index = 0 -%}
@@ -3230,8 +3267,8 @@
                   <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v4h4M9 10h6M9 13h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="17" cy="16" r="2.2" stroke="currentColor" stroke-width="1.5"/><path d="m15.8 18-.6 3 1.8-1 1.8 1-.6-3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="certificate-pdf-content">
-                  <div class="certificate-pdf-title">Access Your Certificate of Authenticity</div>
-                  <div class="certificate-pdf-subtitle">Verified lab certification PDF &darr;</div>
+                  <div class="certificate-pdf-title">Independently Lab Tested</div>
+                  <div class="certificate-pdf-subtitle">SGS analysis: over 99.9% copper</div>
                 </div>
                 <div class="certificate-pdf-stars">&#9733;<br>&#9733;<br>&#9733;</div>
               </div>
