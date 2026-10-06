@@ -64,6 +64,30 @@
             "title": "Leak-proof",
             "text": "Leak-proof threaded cap"
           }
+        },
+        "benefit_pill_neerabrush1": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Coconut Coir"
+          }
+        },
+        "benefit_pill_neerabrush2": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Copper Wire Core"
+          }
+        },
+        "benefit_pill_neerabrush3": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Wooden Handle"
+          }
+        },
+        "benefit_pill_neerabrush4": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Made for Copper"
+          }
         }
       },
       "block_order": [
@@ -73,7 +97,11 @@
         "product_usp_4xJe8G",
         "product_usp_nDGaxj",
         "product_usp_Pmyzfp",
-        "product_usp_JiaYU9"
+        "product_usp_JiaYU9",
+        "benefit_pill_neerabrush1",
+        "benefit_pill_neerabrush2",
+        "benefit_pill_neerabrush3",
+        "benefit_pill_neerabrush4"
       ],
       "settings": {
         "show_vendor": false,

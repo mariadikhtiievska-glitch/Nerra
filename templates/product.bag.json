@@ -64,6 +64,30 @@
             "title": "Leak-proof",
             "text": "Leak-proof threaded cap"
           }
+        },
+        "benefit_pill_neerabag1": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Leather Pocket"
+          }
+        },
+        "benefit_pill_neerabag2": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Key Clip"
+          }
+        },
+        "benefit_pill_neerabag3": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Crossbody Strap"
+          }
+        },
+        "benefit_pill_neerabag4": {
+          "type": "benefit_pill",
+          "settings": {
+            "text": "Fits 34 oz Bottle"
+          }
         }
       },
       "block_order": [
@@ -73,7 +97,11 @@
         "product_usp_4xJe8G",
         "product_usp_nDGaxj",
         "product_usp_Pmyzfp",
-        "product_usp_JiaYU9"
+        "product_usp_JiaYU9",
+        "benefit_pill_neerabag1",
+        "benefit_pill_neerabag2",
+        "benefit_pill_neerabag3",
+        "benefit_pill_neerabag4"
       ],
       "settings": {
         "show_vendor": false,
