@@ -3240,7 +3240,68 @@
                   }
                   #shopify-section-{{ section.id }} .product-pills.cleo-product-pills span { min-width: 0 !important; white-space: normal !important; overflow-wrap: break-word !important; }
                 }
+                /* Neera 2026-10-06: "Not sold on Amazon" bar with tooltip (bottle, Essentials, Ritual). */
+                #shopify-section-{{ section.id }} .neera-amazon {
+                  position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+                  margin: 16px 0 0; padding: 11px 18px; box-sizing: border-box; width: 100%;
+                  border: 1px solid #E8D4C0; border-radius: 8px;
+                  background: linear-gradient(180deg, #f7ede2, #f4e6d8);
+                  box-shadow: inset 0 1px #ffffffa6, 0 1px 2px #00000008;
+                  color: #a0643f; font-size: 14px; font-weight: 600; line-height: 1.3; text-align: left;
+                }
+                #shopify-section-{{ section.id }} .neera-amazon__left { display: flex; align-items: center; gap: 8px; min-width: 0; }
+                #shopify-section-{{ section.id }} .neera-amazon__icon { width: 18px; height: 18px; flex: 0 0 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+                #shopify-section-{{ section.id }} .neera-amazon__why {
+                  display: inline-flex !important; align-items: center; gap: 4px; flex: 0 0 auto;
+                  background: none !important; border: 0 !important; padding: 0 !important; margin: 0 !important; min-height: 0 !important;
+                  color: inherit !important; font: inherit !important; font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; text-transform: none !important; letter-spacing: 0 !important;
+                  cursor: pointer; white-space: nowrap; box-shadow: none !important;
+                }
+                #shopify-section-{{ section.id }} .neera-amazon__why svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+                #shopify-section-{{ section.id }} .neera-amazon__tip {
+                  position: absolute; right: 0; bottom: calc(100% + 10px); width: min(300px, calc(100vw - 40px));
+                  background: #fff; color: #3b2a20; border-radius: 10px; padding: 12px 14px;
+                  font-size: 13px; font-weight: 500; line-height: 1.45; text-align: left;
+                  box-shadow: 0 8px 24px rgba(59, 42, 32, 0.18);
+                  opacity: 0; visibility: hidden; transition: opacity 0.15s ease; z-index: 20;
+                }
+                #shopify-section-{{ section.id }} .neera-amazon__tip::after { content: ""; position: absolute; right: 24px; top: 100%; border: 7px solid transparent; border-top-color: #fff; }
+                #shopify-section-{{ section.id }} .neera-amazon.is-open .neera-amazon__tip { opacity: 1; visibility: visible; }
+                @media (hover: hover) {
+                  #shopify-section-{{ section.id }} .neera-amazon__why:hover + .neera-amazon__tip, #shopify-section-{{ section.id }} .neera-amazon__why:focus-visible + .neera-amazon__tip { opacity: 1; visibility: visible; }
+                }
+                @media screen and (max-width: 699px) {
+                  #shopify-section-{{ section.id }} .neera-amazon { padding: 10px 14px; font-size: 12.5px; border-radius: 8px; }
+                  #shopify-section-{{ section.id }} .neera-amazon__sep { display: none; }
+                  #shopify-section-{{ section.id }} .neera-amazon__l2 { display: block; }
+                  #shopify-section-{{ section.id }} .neera-amazon__tip { font-size: 12.5px; }
+                }
               </style>
+              {%- if template.suffix == 'bottle-essentials' or template.suffix == 'ritual-set' -%}
+                <div class="neera-amazon">
+                  <div class="neera-amazon__left">
+                    <svg class="neera-amazon__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 19 6v5.2c0 4.6-2.9 7.8-7 9.8-4.1-2-7-5.2-7-9.8V6l7-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                    <span class="neera-amazon__text">Not sold on Amazon<span class="neera-amazon__sep"> - </span><span class="neera-amazon__l2">Beware of copper-plated fakes</span></span>
+                  </div>
+                  <button type="button" class="neera-amazon__why" aria-expanded="false" aria-controls="NeeraAmazonTip-{{ section.id }}">Why? <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg></button>
+                  <div class="neera-amazon__tip" id="NeeraAmazonTip-{{ section.id }}" role="tooltip">We don't sell on Amazon because 94% of "copper" bottles there are fake - copper-plated aluminum that provides zero health benefits. When you buy direct, you get the real thing with our lab certificate and full guarantee.</div>
+                </div>
+                <script>
+                  (function () {
+                    var bar = document.currentScript && document.currentScript.previousElementSibling;
+                    if (!bar || !bar.classList.contains('neera-amazon')) return;
+                    var btn = bar.querySelector('.neera-amazon__why');
+                    btn.addEventListener('click', function (e) {
+                      e.stopPropagation();
+                      var open = bar.classList.toggle('is-open');
+                      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    });
+                    document.addEventListener('click', function (e) {
+                      if (!bar.contains(e.target)) { bar.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
+                    });
+                  })();
+                </script>
+              {%- endif -%}
               <div class="feature-bar cleo-product-feature-bar" role="list">
                 {%- if feature_block_count > 0 -%}
                   {%- assign feature_rendered_index = 0 -%}
