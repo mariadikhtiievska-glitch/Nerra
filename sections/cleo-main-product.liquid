@@ -3216,6 +3216,21 @@
                     white-space: normal !important;
                   }
                 }
+                /* Neera 2026-10-06: lab-tested banner box centered between the two lines. */
+                @media screen and (max-width: 699px) {
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] { margin-bottom: 0 !important; }
+                  #shopify-section-{{ section.id }} .certificate-pdf-block.cleo-certificate { margin-top: 20px !important; margin-bottom: 20px !important; }
+                  #shopify-section-{{ section.id }} .product-usp-grid.cleo-product-usp-grid { margin-top: 0 !important; }
+                }
+                @media screen and (min-width: 700px) {
+                  #shopify-section-{{ section.id }} .feature-bar.cleo-product-feature-bar[role="list"] { margin-bottom: 0 !important; }
+                  #shopify-section-{{ section.id }} .certificate-pdf-block.cleo-certificate { margin-top: 20px !important; margin-bottom: 20px !important; }
+                  #shopify-section-{{ section.id }} .product-usp-grid.cleo-product-usp-grid {
+                    margin-top: 0 !important;
+                    padding-top: 18px !important;
+                    border-top: 1px solid rgba(79, 53, 40, 0.17) !important;
+                  }
+                }
               </style>
               <div class="feature-bar cleo-product-feature-bar" role="list">
                 {%- if feature_block_count > 0 -%}
