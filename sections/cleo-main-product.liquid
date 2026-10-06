@@ -3276,6 +3276,14 @@
                   #shopify-section-{{ section.id }} .neera-amazon__l2 { display: block; }
                   #shopify-section-{{ section.id }} .neera-amazon__tip { font-size: 12.5px; }
                 }
+                /* Neera 2026-10-06: advantages list in one column on phones. */
+                @media screen and (max-width: 749px) {
+                  #shopify-section-{{ section.id }} .product-usp-grid.cleo-product-usp-grid {
+                    grid-template-columns: minmax(0, 1fr) !important;
+                    row-gap: 14px !important;
+                  }
+                  #shopify-section-{{ section.id }} .product-usp-grid.cleo-product-usp-grid .product-usp-grid__item { align-items: center !important; }
+                }
               </style>
               <div class="feature-bar cleo-product-feature-bar" role="list">
                 {%- if feature_block_count > 0 -%}
