@@ -56,7 +56,7 @@
           "settings": {
             "image": "shopify://shop_images/Icon_11.png",
             "title": "Copper Wire Core",
-            "text": "Only copper touches your bottle",
+            "text": "Nothing harder than copper goes inside",
             "neera_icon": "coil"
           }
         },
@@ -143,7 +143,7 @@
             "title": "Is it safe?",
             "icon": "shield_check",
             "use_product_description": false,
-            "content": "<p>Yes. The Neera Coir Bottle Brush is made for bare copper.<br/>✓ Natural coconut coir bristles: no steel bristles, no scouring pad, nothing harsh against your copper<br/>✓ A pure copper wire core, so only copper touches the inside of your copper bottle<br/>✓ A wooden handle shaped to reach inside the Neera 34 oz bottle<br/>✓ Rinse after use and let it air-dry with the bristles up<br/><br/></p>",
+            "content": "<p>Yes. The Neera Coir Bottle Brush is made for bare copper.<br/>✓ Natural coconut coir bristles: no steel bristles, no scouring pad, nothing harsh against your copper<br/>✓ A pure copper wire core, so nothing harder than copper goes inside your copper bottle<br/>✓ A wooden handle shaped to reach inside the Neera 34 oz bottle<br/>✓ Rinse after use and let it air-dry with the bristles up<br/><br/></p>",
             "open_by_default": false
           }
         },
