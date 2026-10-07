@@ -87,8 +87,8 @@
       },
       "block_order": [
         "footer_main",
-        "app_terms",
-        "policies"
+        "policies",
+        "app_terms"
       ],
       "settings": {
         "logo": "shopify://shop_images/Horizontal_logo_neera_living_white.svg",
