@@ -46,7 +46,6 @@
         },
         "app_terms": {
           "type": "menu",
-          "disabled": true,
           "settings": {
             "heading": "Info",
             "menu": "",
