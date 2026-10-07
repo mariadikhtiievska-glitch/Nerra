@@ -107,7 +107,10 @@
         "pinterest_url": "",
         "youtube_url": "",
         "tiktok_url": ""
-      }
+      },
+      "custom_css": [
+        "@media screen and (min-width: 1000px) {.footer-custom-link a {white-space: nowrap;}}"
+      ]
     }
   },
   "order": [
