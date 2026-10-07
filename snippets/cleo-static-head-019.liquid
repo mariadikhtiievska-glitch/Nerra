@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ 'cleo-static-preview.css' | asset_url }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Handcrafted copper drinkware for healthy living by Neera Living.">
+    <meta name="description" content="{{ page_description | default: 'Handcrafted copper drinkware for healthy living by Neera Living.' | escape }}">
 <meta charset="utf-8"> <style>
   #stabalizer_view {
     position: fixed;
@@ -28,7 +28,7 @@
 {%- assign neera_social_image = 'neera-tab-icon-v2-180.png' | asset_url | prepend: 'https:' -%}
 <meta property="og:type" content="website">
 <meta property="og:title" content="Neera Living">
-<meta property="og:description" content="Handcrafted copper drinkware for healthy living by Neera Living.">
+<meta property="og:description" content="{{ page_description | default: 'Handcrafted copper drinkware for healthy living by Neera Living.' | escape }}">
 <meta property="og:image" content="{{ neera_social_image }}">
 <meta property="og:image:secure_url" content="{{ neera_social_image }}">
 <meta property="og:image:width" content="180">
@@ -37,7 +37,7 @@
 <meta property="og:site_name" content="Neera Living">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Neera Living">
-<meta name="twitter:description" content="Handcrafted copper drinkware for healthy living by Neera Living.">
+<meta name="twitter:description" content="{{ page_description | default: 'Handcrafted copper drinkware for healthy living by Neera Living.' | escape }}">
 <meta name="twitter:image" content="{{ neera_social_image }}">
 <meta name="twitter:image:alt" content="Neera Living">
 
@@ -56,7 +56,7 @@
 
     <title>{{ page_title | escape }}</title>
     
-    <link rel="canonical" href="/"><link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin><link rel="preload" href="{{ 'cleo-static-0899519018ec.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin><link rel="preload" href="{{ 'cleo-static-0899519018ec.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin><style>/* Typography (heading) */
+    <link rel="canonical" href="{{ canonical_url }}"><link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin><link rel="preload" href="{{ 'cleo-static-0899519018ec.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin><link rel="preload" href="{{ 'cleo-static-0899519018ec.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin><style>/* Typography (heading) */
   @font-face {
   font-family: Inter;
   font-weight: 400;
