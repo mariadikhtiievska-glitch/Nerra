@@ -3053,20 +3053,15 @@
 
 
               <div class="custom-product-price-box cleo-product-price-box">
-                <price-list class="price-list price-list--product">
+                <div class="neera-price-row"><price-list class="price-list price-list--product">
                   <sale-price class="h4 product-page-custom-price" data-cleo-product-price>
                     <span class="sr-only">Sale price</span>{{ current_variant.price | money }}
                   </sale-price>
                   <compare-at-price class="h5 text-subdued line-through" data-cleo-product-compare {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}>
                     {{ current_variant.compare_at_price | money }}
                   </compare-at-price>
-                </price-list>
-                <div class="custom-extra-offer-text cleo-product-offer">
-                  <span class="cleo-offer-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-4 0-7-2.7-7-6.7 0-3 1.7-5.1 4-7.2.2 2.2 1.1 3.5 2.7 4.3-.2-3.3 1.1-6.2 4.1-8.4.2 3 1.3 4.7 2.7 6.5 1 1.3 1.5 2.8 1.5 4.8 0 4-3 6.7-8 6.7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.5 16.2c0 1.8 1.2 3 2.8 3 1.8 0 3.1-1.1 3.1-3 0-1.2-.5-2.1-1.4-3.1-.8 1.3-1.7 2-3.1 2.2.2-1.1.1-2.1-.3-3.1-1 .9-1.1 2.3-1.1 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-                  </span>
-                  <p>Use code <strong>NEERA10</strong> for an extra 10% off at checkout</p>
-                </div>
+                </price-list>{%- assign neera_code_price = current_variant.price | times: 90 | divided_by: 100 -%}<p class="neera-code-price"><span class="neera-code-price__label">Your price with code</span> <span class="neera-code-price__value">{{ neera_code_price | money }}</span></p></div>
+                <div class="neera-offer-strip"><span>Extra 10% off at checkout</span><span class="neera-offer-strip__code">NEERA10</span></div>
               </div>
 
               {%- assign installments_form_id = 'cleo-installments-form-' | append: section.id -%}
@@ -3306,6 +3301,21 @@
                   #shopify-section-{{ section.id }} .neera-amazon__sep { display: none; }
                   #shopify-section-{{ section.id }} .neera-amazon__l2 { display: block; }
                   #shopify-section-{{ section.id }} .neera-amazon__tip { font-size: 12.5px; }
+                }
+                /* Neera 2026-10-07: price box - price with code on the right + copper strip with NEERA10. */
+                #shopify-section-{{ section.id }} .cleo-product-price-box { overflow: hidden; padding-bottom: 0 !important; }
+                #shopify-section-{{ section.id }} .neera-price-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+                #shopify-section-{{ section.id }} .neera-code-price { margin: 0; display: flex; align-items: baseline; gap: 6px; color: #7A5440; font-size: 13px; line-height: 1.2; }
+                #shopify-section-{{ section.id }} .neera-code-price__value { color: #8A4B2A; font-size: 18px; font-weight: 700; }
+                #shopify-section-{{ section.id }} .neera-offer-strip { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #8A4B2A; color: #FBF4EC; font-size: 14px; line-height: 1.3; margin: 16px -28px 0; padding: 12px 28px; }
+                #shopify-section-{{ section.id }} .neera-offer-strip__code { background: #FBF4EC; color: #5A2E1C; border-radius: 6px; padding: 4px 9px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; letter-spacing: .5px; white-space: nowrap; }
+                @media screen and (min-width: 1000px) {
+                  #shopify-section-{{ section.id }} .cleo-product-price-box .product-page-custom-price { font-size: clamp(22px, 1.6vw, 26px); }
+                }
+                @media screen and (max-width: 999px) {
+                  #shopify-section-{{ section.id }} .neera-offer-strip { margin: 14px -14px 0; padding: 10px 16px; font-size: 13px; }
+                  #shopify-section-{{ section.id }} .neera-code-price { font-size: 12px; }
+                  #shopify-section-{{ section.id }} .neera-code-price__value { font-size: 16px; }
                 }
                 /* Neera 2026-10-06: advantages list in one column on phones. */
                 @media screen and (max-width: 749px) {
