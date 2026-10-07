@@ -14,7 +14,7 @@
       "disabled": true,
       "settings": {
         "heading": "How to Clean",
-        "text": "<p>Clean your Cleo copper bottle gently using lemon, salt, or mild soap with a soft bottle brush. Rinse well, dry fully, and avoid harsh chemicals or aggressive scrubbing.</p>",
+        "text": "<p>Clean your Neera copper bottle gently using lemon, salt, or mild soap with a soft bottle brush. Rinse well, dry fully, and avoid harsh chemicals or aggressive scrubbing.</p>",
         "button_label": "Shop cleaning accessories",
         "button_link": "/collections/all",
         "text_alignment": "center",
@@ -27,7 +27,7 @@
     "cleo_rich_text_c3JHxB": {
       "type": "cleo-rich-text",
       "disabled": true,
-      "name": "Cleo rich text",
+      "name": "Neera rich text",
       "settings": {
         "heading": "{{ page.title }}",
         "text": "{{ page.content }}",
@@ -97,10 +97,18 @@
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 56
+      },
+      "disabled": true
+    },
+    "neera_htc": {
+      "type": "neera-how-to-clean",
+      "settings": {
+        "heading": "How to Clean a Copper Water Bottle"
       }
     }
   },
   "order": [
+    "neera_htc",
     "main",
     "cleo_rich_text_c3JHxB",
     "faq",

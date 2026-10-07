@@ -29,7 +29,7 @@
         "highlight_text": "",
         "highlight_background": "#a07a57",
         "highlight_text_color": "#ffffff",
-        "text": "<p>Modern Living Has Made Wellness Complicated. Neera Living exists to bring simplicity back through mindful rituals rooted in ancient wisdom.</p>",
+        "text": "<p>Neera Living makes solid copper water bottles, hand-hammered by artisans in India and shipped from our US warehouse. Simple pieces for a daily ritual that has been part of Indian homes for generations.</p>",
         "button_label": "",
         "button_link": "",
         "background_color": "#f3e9dc",
@@ -60,8 +60,8 @@
     "story": {
       "type": "cleo-rich-text",
       "settings": {
-        "heading": "It's About Choosing Better.",
-        "text": "<p>At Neera Living, we believe modern living should support both personal well-being and the world around us. Our products are inspired by authentic Ayurvedic principles, crafted with sustainable materials, and designed to bring balance into everyday life.</p>",
+        "heading": "Real Copper, Made by Hand",
+        "text": "<p>Every Neera bottle is shaped and hammered by hand, so no two share the same pattern. Inside, it is smooth, unlined copper with no plating between your water and the metal, and an independent SGS test report confirmed over 99.9% copper on a sample bottle. In the Ayurvedic tradition, water rests in copper overnight and is poured the next morning. We make the vessel for that ritual, and we stand behind it with free US shipping and 60-day returns.</p>",
         "button_label": "",
         "button_link": "",
         "text_alignment": "center",
@@ -88,8 +88,8 @@
           "settings": {
             "fallback_asset": "",
             "icon_text": "2",
-            "heading": "Sustainable",
-            "text": "Reusable materials chosen with intention."
+            "heading": "Reusable & Recyclable",
+            "text": "Solid copper you refill every day, and copper is 100% recyclable."
           }
         },
         "value_3": {
@@ -98,7 +98,7 @@
             "fallback_asset": "",
             "icon_text": "3",
             "heading": "Timeless",
-            "text": "Functional products made to last."
+            "text": "Bare copper develops a natural patina and grows more personal with use."
           }
         }
       },
