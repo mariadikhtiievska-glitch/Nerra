@@ -44,26 +44,6 @@
             "custom_links": "<p><a href=\"/\">Home</a><br/><a href=\"/collections/all\">Shop</a><br/><a href=\"/pages/contact\">Contact</a><br/><a href=\"/pages/about\" title=\"About\">About</a></p>"
           }
         },
-        "app_terms": {
-          "type": "menu",
-          "settings": {
-            "heading": "Info",
-            "menu": "",
-            "link_1_label": "FAQ",
-            "link_1_url": "shopify://pages/faq",
-            "link_2_label": "How to Clean",
-            "link_2_url": "shopify://pages/how-to-clean",
-            "link_3_label": "",
-            "link_3_url": "",
-            "link_4_label": "",
-            "link_4_url": "",
-            "link_5_label": "",
-            "link_5_url": "",
-            "link_6_label": "",
-            "link_6_url": "",
-            "custom_links": "<p><a href=\"/pages/terms-of-service-cleo-community-ios\">Terms of Service (iOS)</a><br/><a href=\"/pages/terms-of-service-cleo-community-android\">Terms of Service (Android)</a><br/><a href=\"/pages/privacy-policy-cleo-community-ios\">Privacy Policy (iOS)</a><br/><a href=\"/pages/privacy-policy-cleo-lifestyle-android\">Privacy Policy (Android)</a><br/><a href=\"/pages/account-deletion\">Account & Data Deletion</a></p>"
-          }
-        },
         "policies": {
           "type": "menu",
           "settings": {
@@ -83,12 +63,35 @@
             "link_6_url": "",
             "custom_links": "<p><a href=\"/policies/privacy-policy\">Privacy policy</a><br/><a href=\"/policies/refund-policy\">Refund Policy</a><br/><a href=\"/policies/shipping-policy\">Shipping Policy</a><br/><a href=\"/policies/terms-of-service\">Terms of Service</a></p>"
           }
+        },
+        "app_terms": {
+          "type": "menu",
+          "settings": {
+            "heading": "Info",
+            "menu": "",
+            "link_1_label": "FAQ",
+            "link_1_url": "shopify://pages/faq",
+            "link_2_label": "How to Clean",
+            "link_2_url": "shopify://pages/how-to-clean",
+            "link_3_label": "Blog",
+            "link_3_url": "shopify://blogs/news",
+            "link_4_label": "",
+            "link_4_url": "",
+            "link_5_label": "",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": "",
+            "custom_links": "<p><a href=\"/pages/terms-of-service-cleo-community-ios\">Terms of Service (iOS)</a><br/><a href=\"/pages/terms-of-service-cleo-community-android\">Terms of Service (Android)</a><br/><a href=\"/pages/privacy-policy-cleo-community-ios\">Privacy Policy (iOS)</a><br/><a href=\"/pages/privacy-policy-cleo-lifestyle-android\">Privacy Policy (Android)</a><br/><a href=\"/pages/account-deletion\">Account & Data Deletion</a></p>"
+          }
         }
       },
       "block_order": [
         "footer_main",
         "policies",
         "app_terms"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 1000px) {.footer-custom-link a {white-space: nowrap; }}"
       ],
       "settings": {
         "logo": "shopify://shop_images/Horizontal_logo_neera_living_white.svg",
@@ -107,10 +110,7 @@
         "pinterest_url": "",
         "youtube_url": "",
         "tiktok_url": ""
-      },
-      "custom_css": [
-        "@media screen and (min-width: 1000px) {.footer-custom-link a {white-space: nowrap;}}"
-      ]
+      }
     }
   },
   "order": [
