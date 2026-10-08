@@ -118,7 +118,7 @@
         "type": "copper-bottles-cut-open-sticky-bar",
         "settings": {
           "button_label": "CHECK AVAILABILITY 👉",
-          "button_url": "shopify://products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz"
+          "button_url": "shopify://products/neera-copper-water-bottle-essentials-set"
         }
       },
       "copper-water-10-reasons-sticky-bar": {
@@ -126,7 +126,7 @@
         "settings": {
           "text": "Save 10% with <strong>NEERA10</strong>",
           "button_label": "Start Your Ritual →",
-          "button_url": "shopify://products/neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz"
+          "button_url": "shopify://products/neera-copper-water-bottle-essentials-set"
         }
       }
     },
@@ -166,14 +166,6 @@
         "type": "shopify://apps/kaching-cart/blocks/embed/7705621e-3c0f-4e97-9d29-5c8528b19fb7",
         "disabled": false,
         "settings": {}
-      },
-      "3667842014806057753": {
-        "type": "shopify://apps/one-click-upsell/blocks/app-embed/bfe6e378-b73a-4871-b8d3-7d6ede22678e",
-        "disabled": false,
-        "settings": {
-          "allowed_templates": "",
-          "js_preloading_enabled": true
-        }
       },
       "18228966181090706294": {
         "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
