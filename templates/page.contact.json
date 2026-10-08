@@ -16,7 +16,7 @@
         "text": "<p>Fill out the contact form below and one of our customer support representatives will get back to you as soon as possible. Please give us 1-2 business days to get back to you.</p>",
         "button_label": "Send message",
         "reason_placeholder": "Reason for reaching out",
-        "reason_options": "Return/Exchange - Help\nShipping - Tracking Issue\nShipping - Address Update Request\nShipping - Modify Order Request\nCancel Order Request\nOrder Issue - Damaged Item\nOrder Issue - Order Lost\nOrder Issue - Wrong Item Received\nTechnical / Account Issue\nFeedback / Complaint / Suggestion\nWholesale Orders\nPromo / Discount Code Issue\nPayment Issue\nCollaboration Inquiry\nGeneral Inquiry",
+        "reason_options": "Return/Exchange - Help\nShipping - Tracking Issue\nShipping - Address Update Request\nShipping - Modify Order Request\nCancel Order Request\nOrder Issue - Damaged Item\nOrder Issue - Order Lost\nOrder Issue - Wrong Item Received\nProduct Issue - Leak or Defect\nProduct Question - Use & Care\nTechnical / Account Issue\nFeedback / Complaint / Suggestion\nWholesale Orders\nPromo / Discount Code Issue\nPayment Issue\nCollaboration Inquiry\nGeneral Inquiry",
         "quiz_mode": true,
         "quiz_button_label": "Contact support",
         "quiz_back_label": "Back to common questions"
