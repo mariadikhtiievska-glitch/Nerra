@@ -7,7 +7,6 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-
 {
   "sections": {
     "cleo_hero": {
@@ -99,7 +98,7 @@
           "type": "category",
           "settings": {
             "title": "Carafes",
-            "link": "shopify://products/cleo-copper-water-dispenser-with-2-glasses-handcrafted-from-pure-copper-271-oz",
+            "link": "shopify://products/neera-copper-water-dispenser-with-2-glasses",
             "fallback_asset": "cleo-static-4e1e630e78e4.png"
           }
         },

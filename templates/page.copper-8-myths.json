@@ -12,9 +12,6 @@
   "sections": {
     "topbar": {
       "type": "copper-8-myths-topbar",
-      "settings": {
-        "interval": 4
-      },
       "blocks": {
         "msg_1": {
           "type": "message",
@@ -39,7 +36,10 @@
         "msg_1",
         "msg_2",
         "msg_3"
-      ]
+      ],
+      "settings": {
+        "interval": 4
+      }
     },
     "hero": {
       "type": "copper-8-myths-hero",
@@ -239,7 +239,6 @@
     },
     "proof": {
       "type": "copper-8-myths-proof",
-      "settings": {},
       "blocks": {
         "stat_1": {
           "type": "stat",
@@ -275,16 +274,11 @@
         "stat_2",
         "stat_3",
         "stat_4"
-      ]
+      ],
+      "settings": {}
     },
     "checks": {
       "type": "copper-8-myths-checks",
-      "settings": {
-        "heading": "Already own one? Four checks, one minute.",
-        "card_title": "Test yours in 60 seconds.",
-        "copy": "<p><strong>1. The magnet.</strong> Hold a fridge magnet to the body, then to the cap separately. Copper is not magnetic. Any grip means steel under the finish — and the cap is usually where it shows up first.</p><p><strong>2. The interior.</strong> Torch, phone camera, look down the neck. Bare copper is the same reddish-brown inside as out. Silver, grey or glossy means lined or plated.</p><p><strong>3. The patina.</strong> If it has been in daily use for a month and the inside is still bright, it is not bare copper.</p><p><strong>4. The certificate.</strong> Ask your seller for a composition report for your batch. The answer you get — or don’t get — is the test.</p>",
-        "closing": "Run all four on a Neera the day it arrives. We would rather invite the test than hope you skip it."
-      },
       "blocks": {
         "check_1": {
           "type": "check",
@@ -320,25 +314,16 @@
         "check_2",
         "check_3",
         "check_4"
-      ]
+      ],
+      "settings": {
+        "heading": "Already own one? Four checks, one minute.",
+        "card_title": "Test yours in 60 seconds.",
+        "copy": "<p><strong>1. The magnet.</strong> Hold a fridge magnet to the body, then to the cap separately. Copper is not magnetic. Any grip means steel under the finish — and the cap is usually where it shows up first.</p><p><strong>2. The interior.</strong> Torch, phone camera, look down the neck. Bare copper is the same reddish-brown inside as out. Silver, grey or glossy means lined or plated.</p><p><strong>3. The patina.</strong> If it has been in daily use for a month and the inside is still bright, it is not bare copper.</p><p><strong>4. The certificate.</strong> Ask your seller for a composition report for your batch. The answer you get — or don’t get — is the test.</p>",
+        "closing": "Run all four on a Neera the day it arrives. We would rather invite the test than hope you skip it."
+      }
     },
     "offer": {
       "type": "copper-8-myths-offer",
-      "settings": {
-        "image": "shopify://shop_images/copper-8-myths-offer.jpg",
-        "image_headline": "Nothing between the metal and your water.",
-        "image_subline": "99.9% pure · lab-tested every batch",
-        "product": "neera-copper-water-bottle-handcrafted-from-pure-copper-34-oz",
-        "headline": "Cut the plastic tonight.",
-        "subhead": "Fill it before bed. Drink it tomorrow morning. That’s the whole routine.",
-        "price_fallback": "$79",
-        "price_note": "Buy More, Save More - up to 15% off",
-        "box_1": "<p>Buy More, Save More - up to 15% off</p><p>Extra 10% off with code <strong>NEERA10</strong></p>",
-        "box_2": "<p>Costs less than a month of supplements.<br>Lasts for years.</p>",
-        "button_label": "Start My Copper Ritual",
-        "button_url": "",
-        "promise": "<p>Something not right?<br>We make it right — no run-around.</p>"
-      },
       "blocks": {
         "trust_1": {
           "type": "trust",
@@ -370,14 +355,25 @@
         "trust_2",
         "trust_3",
         "trust_4"
-      ]
+      ],
+      "settings": {
+        "image": "shopify://shop_images/copper-8-myths-offer.jpg",
+        "image_headline": "Nothing between the metal and your water.",
+        "image_subline": "99.9% pure · lab-tested every batch",
+        "product": "neera-copper-water-bottle-essentials-set",
+        "headline": "Cut the plastic tonight.",
+        "subhead": "Fill it before bed. Drink it tomorrow morning. That’s the whole routine.",
+        "price_fallback": "$79",
+        "price_note": "Buy More, Save More - up to 15% off",
+        "box_1": "<p>Buy More, Save More - up to 15% off</p><p>Extra 10% off with code <strong>NEERA10</strong></p>",
+        "box_2": "<p>Costs less than a month of supplements.<br>Lasts for years.</p>",
+        "button_label": "Start My Copper Ritual",
+        "button_url": "",
+        "promise": "<p>Something not right?<br>We make it right — no run-around.</p>"
+      }
     },
     "faq": {
       "type": "copper-8-myths-faq",
-      "settings": {
-        "heading": "Frequently Asked Questions",
-        "open_first": true
-      },
       "blocks": {
         "q_1": {
           "type": "question",
@@ -429,13 +425,17 @@
         "q_4",
         "q_5",
         "q_6"
-      ]
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "open_first": true
+      }
     },
     "footer": {
       "type": "copper-8-myths-footer",
       "settings": {
-        "brand": "Neera Living",
-        "disclaimer": "Individual experiences vary. Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA."
+        "disclaimer": "Individual experiences vary. Information on this page is for general wellness and lifestyle purposes only and is not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA.",
+        "brand": "Neera Living"
       }
     }
   },
