@@ -140,7 +140,7 @@
       {% endfor %}
     </div>
   </div>
-</section>
+</section><script>(function(){var root=document.getElementById("ProductAccordion-{{ section.id }}");if(!root)return;var items=root.querySelectorAll("details.pa-item");items.forEach(function(d){d.addEventListener("toggle",function(){if(!d.open)return;items.forEach(function(o){if(o!==d&&o.open)o.open=false})})})})();</script>
 
 {% if section.settings.enable_faq_schema and section.blocks.size > 0 %}
   <script type="application/ld+json">

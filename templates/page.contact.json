@@ -16,7 +16,91 @@
         "text": "<p>Have a question about your order or copper care? Send us a message.</p>",
         "button_label": "Send"
       }
+    },
+    "care_faq": {
+      "type": "product-accordion",
+      "blocks": {
+        "care_inside": {
+          "type": "accordion",
+          "settings": {
+            "title": "How to clean the inside?",
+            "icon": "droplets",
+            "use_product_description": false,
+            "open_by_default": false,
+            "content": "<p>Add 1 tablespoon of lemon juice, 1 teaspoon of salt and a splash of warm water. Swirl for about 2 minutes, pour it out and rinse with plain water until it runs clear. Let the bottle air-dry upside down with the cap off.</p><p>Soap is not needed. If you prefer it, a drop of mild dish soap is fine; rinse well. Never use the dishwasher, scouring pads or metal brushes.</p><p>Full step-by-step guide: <a href=\"/pages/how-to-clean\" title=\"How to clean a copper water bottle\"><u>How to clean a copper water bottle</u></a>.</p>"
+          }
+        },
+        "care_outside": {
+          "type": "accordion",
+          "settings": {
+            "title": "How to clean the outside of a copper bottle?",
+            "icon": "sparkles",
+            "use_product_description": false,
+            "open_by_default": false,
+            "content": "<p>Dip half a lemon in salt and rub the surface, following the hammer marks. Rinse, then dry with a soft cloth. The copper brightens within minutes.</p><p>If you prefer the deeper tone of aged copper, simply skip this step - both looks are normal.</p>"
+          }
+        },
+        "care_dark_green": {
+          "type": "accordion",
+          "settings": {
+            "title": "Why is my copper bottle turning dark or green?",
+            "icon": "leaf",
+            "use_product_description": false,
+            "open_by_default": false,
+            "content": "<p>Darkening is normal. Bare copper reacts with air and water and slowly forms a darker patina, inside and out. It is the sign of bare copper, not damage, and a lemon-and-salt clean brings the shine back.</p><p>Green or blue spots form when acid or trapped moisture sits on the copper, for example juice or lemon water in the bottle, or putting it away wet. Pour the water out, clean with lemon and salt, rinse until the water runs clear and dry before the next fill. Do not drink water that has a blue tint.</p>"
+          }
+        },
+        "care_how_often": {
+          "type": "accordion",
+          "settings": {
+            "title": "How often should you clean a copper water bottle?",
+            "icon": "shield_check",
+            "use_product_description": false,
+            "open_by_default": false,
+            "content": "<p>Rinse it with warm water every day after the last sip and let it air-dry upside down with the cap off. Give it a lemon-and-salt clean every week or two, or whenever the copper darkens more than you like or you notice green spots.</p>"
+          }
+        },
+        "care_metallic": {
+          "type": "accordion",
+          "settings": {
+            "title": "Why does my water taste metallic?",
+            "icon": "glass_water",
+            "use_product_description": false,
+            "open_by_default": false,
+            "content": "<p>Some people notice a faint copper taste even in plain water. A clear metallic or bitter taste usually comes from an acidic or hot drink, water left too many hours, very soft or reverse-osmosis water, a bottle due for its lemon-and-salt clean, or a brand-new bottle.</p><p>Pour that water out and refill with plain still water. Do not keep the same water longer than 24 hours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "care_inside",
+        "care_outside",
+        "care_dark_green",
+        "care_how_often",
+        "care_metallic"
+      ],
+      "settings": {
+        "max_width": 720,
+        "item_gap": 10,
+        "card_radius": 9,
+        "heading_size": 18,
+        "content_size": 15,
+        "mobile_heading_size": 16,
+        "mobile_content_size": 14,
+        "padding_top": 8,
+        "padding_bottom": 72,
+        "mobile_padding_top": 8,
+        "mobile_padding_bottom": 44,
+        "background_color": "#efefef",
+        "card_background": "#ffffff",
+        "text_color": "#96512d",
+        "icon_background": "#f5f3f0",
+        "border_color": "#efefef",
+        "enable_faq_schema": true
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "care_faq"
+  ]
 }
