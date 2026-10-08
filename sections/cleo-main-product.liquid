@@ -3316,6 +3316,7 @@
                 #shopify-section-{{ section.id }} .neera-offer-strip__code.is-applied .neera-offer-strip__icon--copy { display: none; }
                 #shopify-section-{{ section.id }} .neera-offer-strip__code.is-applied .neera-offer-strip__icon--check { display: block; }
                 #shopify-section-{{ section.id }} .cleo-product-price-box .product-page-custom-price { font-weight: 500; }
+                #shopify-section-{{ section.id }} .cleo-payment-button shopify-accelerated-checkout { --shopify-accelerated-checkout-button-block-size: 55px; }
                 #shopify-section-{{ section.id }} .cleo-product-installments { container-type: inline-size; }
                 #shopify-section-{{ section.id }} .cleo-product-installments shopify-payment-terms { color: inherit; font-size: 15px; }
                 #shopify-section-{{ section.id }} .cleo-product-installments shopify-payment-terms[data-neera-fit] { white-space: nowrap; font-size: min(15px, calc((100cqw - 64px) * 0.044)); }
@@ -3326,6 +3327,8 @@
                 @media screen and (min-width: 1000px) {
                   #shopify-section-{{ section.id }} .cleo-product-price-box .product-page-custom-price { font-size: 22px; }
                   #shopify-section-{{ section.id }} .neera-code-price__value { font-size: 22px; }
+                  #shopify-section-{{ section.id }} .cleo-product-actions:has(.cleo-payment-button) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+                  #shopify-section-{{ section.id }} .cleo-product-actions > :not(.cleo-product-atc):not(.cleo-payment-button) { grid-column: 1 / -1; }
                 }
                 @media screen and (max-width: 999px) {
                   #shopify-section-{{ section.id }} .neera-offer-strip { margin: 14px -14px 0; padding: 10px 16px; font-size: 13px; }
