@@ -1,24 +1,70 @@
-<section class="cleo-form-shell">
-  <h1 class="cleo-page-title">{{ section.settings.heading }}</h1>
+{%- if section.settings.quiz_mode -%}
+  <div class="neera-quiz-cta" data-neera-quiz-cta>
+    <button type="button" class="cleo-button neera-quiz-next" data-neera-quiz-next>{{ section.settings.quiz_button_label | escape }}</button>
+  </div>
+{%- endif -%}
+<section class="cleo-form-shell{% if section.settings.quiz_mode %} neera-quiz-step2{% endif %}"{% if section.settings.quiz_mode %} id="contact-form" data-neera-quiz-step2{% endif %}>
+  {%- if section.settings.quiz_mode -%}
+    <button type="button" class="neera-quiz-back" data-neera-quiz-back>&larr; {{ section.settings.quiz_back_label | escape }}</button>
+    <h2 class="cleo-page-title" tabindex="-1" data-neera-quiz-title>{{ section.settings.heading }}</h2>
+  {%- else -%}
+    <h1 class="cleo-page-title">{{ section.settings.heading }}</h1>
+  {%- endif -%}
   <div class="cleo-rich-text">{{ section.settings.text }}</div>
 
   {%- form 'contact', class: 'cleo-form-grid' -%}
     {%- if form.posted_successfully? -%}
       <p>Thanks for contacting us. We'll get back to you as soon as possible.</p>
     {%- endif -%}
+    {%- if form.posted_successfully? or form.errors -%}<span data-neera-quiz-open hidden></span>{%- endif -%}
     {{ form.errors | default_errors }}
-    <input type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% endif %}" placeholder="Name" autocomplete="name">
-    <input type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% endif %}" placeholder="Email" autocomplete="email" required>
-    <textarea rows="7" name="contact[body]" placeholder="Message">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+    <div class="neera-form-row">
+      <input type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% endif %}" placeholder="Your name" aria-label="Your name" autocomplete="name">
+      <input type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% endif %}" placeholder="Your email" aria-label="Your email" autocomplete="email" required>
+    </div>
+    {%- assign neera_reasons = section.settings.reason_options | newline_to_br | split: '<br />' -%}
+    <select class="neera-form-select" name="contact[Reason for reaching out]" aria-label="Reason for reaching out" required>
+      <option value="" disabled selected>{{ section.settings.reason_placeholder }}</option>
+      {%- for neera_reason in neera_reasons -%}
+        {%- assign neera_reason_clean = neera_reason | strip -%}
+        {%- if neera_reason_clean != blank -%}
+          <option value="{{ neera_reason_clean | escape }}">{{ neera_reason_clean | escape }}</option>
+        {%- endif -%}
+      {%- endfor -%}
+    </select>
+    <textarea rows="7" name="contact[body]" placeholder="Your message" aria-label="Your message">{% if form.body %}{{ form.body }}{% endif %}</textarea>
     <button class="cleo-button" type="submit">{{ section.settings.button_label }}</button>
   {%- endform -%}
 </section>
+{%- if section.settings.quiz_mode -%}
+<script>(function(){var root=document.getElementById("shopify-section-{{ section.id }}");if(!root)return;var step2=root.querySelector("[data-neera-quiz-step2]"),cta=root.querySelector("[data-neera-quiz-cta]"),next=root.querySelector("[data-neera-quiz-next]"),back=root.querySelector("[data-neera-quiz-back]"),title=root.querySelector("[data-neera-quiz-title]");if(!step2||!cta)return;var prev=[],s=root.previousElementSibling;while(s){if(s.classList&&s.classList.contains("shopify-section"))prev.push(s);s=s.previousElementSibling}function show(two){prev.forEach(function(p){p.hidden=two});cta.hidden=two;step2.hidden=!two}var open=location.hash==="#contact-form"||/[?&]contact_posted=true/.test(location.search)||!!root.querySelector("[data-neera-quiz-open]");show(open);if(next)next.addEventListener("click",function(){show(true);try{history.pushState({neeraQuiz:2},"","#contact-form")}catch(e){}window.scrollTo(0,0);if(title)title.focus({preventScroll:true})});if(back)back.addEventListener("click",function(){show(false);try{history.pushState({neeraQuiz:1},"",location.pathname+location.search)}catch(e){}window.scrollTo(0,0)});window.addEventListener("popstate",function(){show(location.hash==="#contact-form")})})();</script>
+{%- endif -%}
+
+<style>
+  #shopify-section-{{ section.id }} .cleo-rich-text { max-width: 720px; margin-left: auto; margin-right: auto; text-align: left; }
+  #shopify-section-{{ section.id }} .cleo-rich-text p + p { margin-top: 12px; }
+  #shopify-section-{{ section.id }} .neera-form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+  #shopify-section-{{ section.id }} .neera-form-row input { width: 100%; min-width: 0; }
+  #shopify-section-{{ section.id }} .neera-form-select { display: block; width: 100%; min-height: 53px; padding: 14px 44px 14px 16px; border: 1px solid rgba(137, 87, 55, 0.18); border-radius: 8px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23201814' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m2 4.25 4 4 4-4'/%3E%3C/svg%3E") no-repeat right 16px center / 12px 12px; color: rgb(32, 24, 20); font-family: inherit; font-size: 14px; font-weight: 400; line-height: 23.1px; -webkit-appearance: none; appearance: none; cursor: pointer; }
+  #shopify-section-{{ section.id }} .neera-form-select:invalid { color: rgba(28, 28, 28, 0.65); }
+  #shopify-section-{{ section.id }} .neera-form-select option { color: rgb(32, 24, 20); }
+  #shopify-section-{{ section.id }} .neera-quiz-cta { width: min(720px, calc(100% - 24px)); margin: 0 auto; padding: 8px 0 72px; }
+  #shopify-section-{{ section.id }} .neera-quiz-cta .cleo-button { display: block; width: 100%; }
+  #shopify-section-{{ section.id }} .neera-quiz-back { display: block; max-width: 720px; margin: 0 auto 8px; padding: 0; border: 0; background: none; color: inherit; font-family: inherit; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  #shopify-section-{{ section.id }} .cleo-page-title:focus { outline: none; }
+  @media screen and (max-width: 599px) {
+    #shopify-section-{{ section.id }} .neera-form-row { grid-template-columns: minmax(0, 1fr); }
+    #shopify-section-{{ section.id }} .neera-quiz-cta { padding-bottom: 44px; }
+  }
+</style>
 
 {% schema %}
 {
   "name": "Cleo contact form",
   "enabled_on": {
-    "templates": ["page"]
+    "templates": [
+      "page"
+    ]
   },
   "settings": [
     {
@@ -38,6 +84,36 @@
       "id": "button_label",
       "label": "Button label",
       "default": "Send"
+    },
+    {
+      "type": "text",
+      "id": "reason_placeholder",
+      "label": "Reason dropdown placeholder",
+      "default": "Reason for reaching out"
+    },
+    {
+      "type": "textarea",
+      "id": "reason_options",
+      "label": "Reason options (one per line)",
+      "default": "Return/Exchange - Help\nShipping - Tracking Issue\nShipping - Address Update Request\nShipping - Modify Order Request\nCancel Order Request\nOrder Issue - Damaged Item\nOrder Issue - Order Lost\nOrder Issue - Wrong Item Received\nTechnical / Account Issue\nFeedback / Complaint / Suggestion\nWholesale Orders\nPromo / Discount Code Issue\nPayment Issue\nCollaboration Inquiry\nGeneral Inquiry"
+    },
+    {
+      "type": "checkbox",
+      "id": "quiz_mode",
+      "label": "Quiz mode: show the questions above first, form after the button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "quiz_button_label",
+      "label": "Quiz button label",
+      "default": "Contact support"
+    },
+    {
+      "type": "text",
+      "id": "quiz_back_label",
+      "label": "Quiz back link label",
+      "default": "Back to common questions"
     }
   ],
   "presets": [

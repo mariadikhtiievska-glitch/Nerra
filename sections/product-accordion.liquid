@@ -134,6 +134,15 @@
               {% else %}
                 {{ block.settings.content }}
               {% endif %}
+              {%- if block.settings.show_order_tracking -%}
+                <form class="pa-track" action="{{ block.settings.tracking_url | default: '/apps/17TRACK' }}" method="get">
+                  <div class="pa-track-row">
+                    <input type="text" name="order_no" placeholder="Order number" aria-label="Order number" autocomplete="off" required>
+                    <input type="email" name="customer_email" placeholder="Email used at checkout" aria-label="Email used at checkout" autocomplete="email" required>
+                  </div>
+                  <button type="submit" class="pa-track-btn">{{ block.settings.tracking_button_label | default: 'Track my order' | escape }}</button>
+                </form>
+              {%- endif -%}
             </div>
           </div>
         </details>
@@ -272,6 +281,15 @@
     transition: transform 180ms ease;
   }
 
+  #ProductAccordion-{{ section.id }} .pa-track { display: grid; gap: 10px; margin-top: 14px; }
+  #ProductAccordion-{{ section.id }} .pa-track-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+  #ProductAccordion-{{ section.id }} .pa-track input { width: 100%; min-width: 0; min-height: 48px; padding: 12px 14px; border: 1px solid rgba(137, 87, 55, 0.22); border-radius: 8px; background: #fff; color: rgb(32, 24, 20); font-family: inherit; font-size: 16px; }
+  #ProductAccordion-{{ section.id }} .pa-track input::placeholder { color: rgba(28, 28, 28, 0.6); }
+  #ProductAccordion-{{ section.id }} .pa-track-btn { min-height: 48px; padding: 12px 20px; border: 0; border-radius: 999px; background: rgb(137, 87, 55); color: #fff; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
+  #ProductAccordion-{{ section.id }} .pa-track-btn:hover { opacity: 0.92; }
+  @media screen and (max-width: 599px) {
+    #ProductAccordion-{{ section.id }} .pa-track-row { grid-template-columns: minmax(0, 1fr); }
+  }
   #ProductAccordion-{{ section.id }} .pa-item[open] .pa-chevron {
     transform: rotate(180deg);
   }
@@ -619,6 +637,24 @@
           "id": "open_by_default",
           "label": "Open by default",
           "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_order_tracking",
+          "label": "Show order tracking form (order number + email)",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "tracking_url",
+          "label": "Tracking page URL",
+          "default": "/apps/17TRACK"
+        },
+        {
+          "type": "text",
+          "id": "tracking_button_label",
+          "label": "Tracking button label",
+          "default": "Track my order"
         }
       ]
     }
