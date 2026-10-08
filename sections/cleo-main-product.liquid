@@ -3065,12 +3065,13 @@
               </div>
 
               {%- assign installments_form_id = 'cleo-installments-form-' | append: section.id -%}
-              <div class="cleo-product-installments">
+              {%- assign neera_pay4 = current_variant.price | divided_by: 4 -%}
+              <div class="cleo-product-installments" data-neera-pay4="{{ neera_pay4 | money }}">
                 {%- form 'product', product, id: installments_form_id, class: 'cleo-installments-form' -%}
                   <input type="hidden" name="id" value="{{ current_variant.id }}">
                   {{ form | payment_terms }}
                 {%- endform -%}
-              </div>
+              </div><script>(function(){var w=document.currentScript&&document.currentScript.previousElementSibling;if(!w||!w.getAttribute("data-neera-pay4"))return;var amt=w.getAttribute("data-neera-pay4"),n=0,iv;function apply(el){var sr=el.shadowRoot,c=sr&&sr.querySelector("#shopify-installments-content");if(!c)return;var t=c.textContent||"";if(/^\s*Pay (in \d|over time)/i.test(t)){el.setAttribute("data-neera-fit","")}if(c.getAttribute("data-neera")==="1")return;if(!/^\s*4 interest-free installments/i.test(t))return;var logo=c.querySelector("div");if(!logo)return;c.textContent="";c.appendChild(document.createTextNode("Pay in 4 interest-free installments of "));var b=document.createElement("span");b.className="font-bold";b.textContent=amt;c.appendChild(b);c.appendChild(document.createTextNode(" with "));c.appendChild(logo);c.setAttribute("data-neera","1");el.setAttribute("data-neera-fit","")}function tick(){n++;var el=w.querySelector("shopify-payment-terms");if(el&&el.shadowRoot&&el.shadowRoot.querySelector("#shopify-installments-content")){apply(el);if(!el.__neeraObs){el.__neeraObs=new MutationObserver(function(){apply(el)});el.__neeraObs.observe(el.shadowRoot,{childList:true,subtree:true,characterData:true})}clearInterval(iv)}else if(n>60){clearInterval(iv)}}iv=setInterval(tick,250);tick()})();</script>
 
               {%- unless product.has_only_default_variant -%}
                 <div class="product-info__block-item" data-block-id="variants" data-block-type="variant-picker">
@@ -3315,6 +3316,13 @@
                 #shopify-section-{{ section.id }} .neera-offer-strip__code.is-applied .neera-offer-strip__icon--copy { display: none; }
                 #shopify-section-{{ section.id }} .neera-offer-strip__code.is-applied .neera-offer-strip__icon--check { display: block; }
                 #shopify-section-{{ section.id }} .cleo-product-price-box .product-page-custom-price { font-weight: 500; }
+                #shopify-section-{{ section.id }} .cleo-product-installments { container-type: inline-size; }
+                #shopify-section-{{ section.id }} .cleo-product-installments shopify-payment-terms { color: inherit; font-size: 15px; }
+                #shopify-section-{{ section.id }} .cleo-product-installments shopify-payment-terms[data-neera-fit] { white-space: nowrap; font-size: min(15px, calc((100cqw - 64px) * 0.044)); }
+                @media screen and (max-width: 999px) {
+                  #shopify-section-{{ section.id }} .cleo-product-installments shopify-payment-terms { font-size: 13px; }
+                  #shopify-section-{{ section.id }} .cleo-product-installments shopify-payment-terms[data-neera-fit] { font-size: min(13px, calc((100vw - 88px) * 0.044)); font-size: min(13px, calc((100cqw - 64px) * 0.044)); }
+                }
                 @media screen and (min-width: 1000px) {
                   #shopify-section-{{ section.id }} .cleo-product-price-box .product-page-custom-price { font-size: 22px; }
                   #shopify-section-{{ section.id }} .neera-code-price__value { font-size: 22px; }
