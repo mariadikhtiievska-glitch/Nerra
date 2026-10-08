@@ -3315,6 +3315,11 @@
                 #shopify-section-{{ section.id }} .neera-price-row--tight .product-page-custom-price { font-size: 16px !important; }
                 #shopify-section-{{ section.id }} .neera-price-row--tight .neera-code-price { font-size: 11px !important; }
                 #shopify-section-{{ section.id }} .neera-price-row--tight .neera-code-price__value { font-size: 16px !important; }
+                #shopify-section-{{ section.id }} .cleo-payment-badges { flex-direction: column; align-items: center; container-type: inline-size; }
+                #shopify-section-{{ section.id }} .cleo-payment-badges__title { margin: 4px 0 10px; color: inherit; font-size: 15px; font-size: min(15px, calc(100cqw / 21.8)); font-weight: 600; line-height: 1.3; text-align: center; white-space: nowrap; }
+                @media screen and (max-width: 999px) {
+                  #shopify-section-{{ section.id }} .cleo-payment-badges__title { font-size: 14px; font-size: min(14px, calc(100cqw / 21.8)); }
+                }
                 #shopify-section-{{ section.id }} .cleo-payment-button shopify-accelerated-checkout { --shopify-accelerated-checkout-button-block-size: 55px; }
                 #shopify-section-{{ section.id }} .cleo-product-installments { container-type: inline-size; }
                 #shopify-section-{{ section.id }} .cleo-product-installments shopify-payment-terms { color: inherit; font-size: 15px; }
