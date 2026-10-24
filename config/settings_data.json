@@ -167,22 +167,6 @@
         "disabled": false,
         "settings": {}
       },
-      "3667842014806057753": {
-        "type": "shopify://apps/one-click-upsell/blocks/app-embed/bfe6e378-b73a-4871-b8d3-7d6ede22678e",
-        "disabled": false,
-        "settings": {
-          "allowed_templates": "",
-          "js_preloading_enabled": true
-        }
-      },
-      "18228966181090706294": {
-        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
-        "disabled": false,
-        "settings": {
-          "storefrontAccessToken": "",
-          "scriptInitMode": "immediate"
-        }
-      },
       "13897900069594145190": {
         "type": "shopify://apps/accessibility-assistant/blocks/app-embed/e146c6fb-5384-4cc3-946f-03621d06f241",
         "disabled": false,
