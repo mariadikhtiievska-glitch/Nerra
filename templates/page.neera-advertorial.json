@@ -207,7 +207,7 @@
         "step-4": {
           "type": "step",
           "settings": {
-            "text": "Once a week, or whenever you notice tarnish, clean with lemon and salt or mild soap and the included soft brush. Rinse thoroughly."
+            "text": "Roughly weekly, or as soon as tarnish appears, wash the bottle with a little lemon juice and salt, or a gentle soap, using a soft bottle brush (included in the Essentials Set). Rinse well."
           }
         }
       },
@@ -373,7 +373,7 @@
         "faq-1": {
           "type": "faq",
           "settings": {
-            "question": "Is it safe to drink from every day?",
+            "question": "Can I use the bottle daily?",
             "answer": "<p>Yes. The Neera bottle is made from pure, food-grade copper and is safe for everyday use as drinkware. Use with clean, filtered, room-temperature or cool water. Follow the simple care instructions. These statements have not been evaluated by the FDA and are not intended as medical claims.</p>",
             "open": true
           }
@@ -399,13 +399,13 @@
         "faq-5": {
           "type": "faq",
           "settings": {
-            "question": "Can I put lemon water or hot drinks in it?"
+            "question": "What about lemon water, juice or hot drinks?"
           }
         },
         "faq-6": {
           "type": "faq",
           "settings": {
-            "question": "How do I know this is real copper?"
+            "question": "How can I tell the bottle is solid copper?"
           }
         },
         "faq-7": {
