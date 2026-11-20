@@ -27,11 +27,22 @@
     },
     "hero": {
       "type": "cls-neera-hero",
-      "settings": {}
+      "settings": {
+        "heading": "Afternoon Slump? 10 Reasons to Rethink Your Water Bottle",
+        "subhead": "There is one object you drink from all day and almost never think about. When the afternoons drag, the stomach is unsettled and you feel older than your years, it is the last thing you would suspect. Here are ten reasons to give it a second look.",
+        "avatar_image_fallback": "neera-favicon-180.png",
+        "byline_details": "By the Neera Living team\n\nUpdated November 2026\nLab-Tested Pure Copper Collection"
+      }
     },
     "problem": {
       "type": "cls-neera-problem",
-      "settings": {}
+      "settings": {
+        "heading": "The one thing we never question",
+        "paragraph_1": "<p>When the afternoons get heavy and the body feels a little older, we look at sleep, at food and at the calendar. Almost nobody looks at <strong>the bottle they drink from every day</strong>, year after year.</p>",
+        "paragraph_2": "<p>It is worth a look. <strong>Plastic bottles</strong> shed tiny particles into the water they hold, more so with heat and reuse. <strong>Aluminum bottles</strong> rely on an inner coating you never see. <strong>Steel</strong> is sturdy, but it is only a container. <strong>Copper is different.</strong> Families in India have kept their drinking water in copper for centuries, and the metal itself behaves differently from the rest.</p>",
+        "paragraph_3": "<p>We are not promising that one bottle changes how you feel. This is an invitation to take one constant source of plastic out of your day and put a <strong>solid copper vessel</strong> in its place.</p>",
+        "photo_image_fallback": "neera-problem-materials.jpg"
+      }
     },
     "why-copper": {
       "type": "cls-neera-why-copper",
@@ -77,8 +88,8 @@
       "type": "cls-neera-reason",
       "settings": {
         "number": "10",
-        "heading": "Microplastics accumulate. Your bottle may be part of the load.",
-        "body": "<p>Studies suggest the average person has already ingested a significant amount of microplastics through <strong>drinking water alone.</strong> These particles do not simply pass through; they can accumulate. Every time you drink from a <strong>plastic bottle</strong>, you may be adding to that load. Switching to a pure copper vessel removes one daily source of <strong>microplastic</strong> exposure. You are not <strong>performing</strong> a dramatic <strong>“detox.”</strong> You are simply stopping the addition.</p>",
+        "heading": "One source of microplastics you can simply stop adding.",
+        "body": "<p>Plastic bottles shed <strong>tiny plastic particles</strong> into the water they hold, and researchers now find those particles in people. Nobody can yet say what a lifetime of them does. What you can decide is how many more you add. Water kept in a <strong>solid copper bottle</strong> touches copper, not plastic. You are not doing a dramatic <strong>“detox.”</strong> You are simply closing one tap.</p>",
         "photo_image_fallback": "neera-reason-10.jpg",
         "image_position": "left",
         "background": "cream"
@@ -89,8 +100,8 @@
       "settings": {
         "number": "9",
         "heading": "Plastic and even some metals are not neutral.",
-        "body": "<p><strong>Plastic can release BPA, </strong>phthalates, and other compounds into water, especially when bottles sit in heat or are reused for long periods. Stainless steel is more stable, yet microscopic scratches become places where bacteria thrive. <strong>Aluminum often relies on an inner lining that can degrade. </strong>Pure copper does not leach plastic compounds. Its surface has natural antimicrobial properties that have been studied for decades. The difference is not theoretical — it is material science.</p>",
-        "photo_image_fallback": "neera-reason-9.jpg",
+        "body": "<p>Every bottle puts something against your water. In <strong>plastic</strong>, it is plastic, and its compounds move into the water faster in a hot car or after months of refills. In most <strong>aluminum</strong> bottles, it is a thin inner coating rather than the metal you see. <strong>Steel</strong> is the stable one, yet it adds nothing and does nothing. <strong>Bare copper</strong> is the exception: nothing is coated onto it, and its surface is naturally hard on microbes, a property documented for more than a century. The difference is in the material itself.</p>",
+        "photo_image_fallback": "neera-reason-9-materials.jpg",
         "image_position": "right",
         "background": "cream-alt"
       }
@@ -111,7 +122,7 @@
       "settings": {
         "number": "7",
         "heading": "A naturally antimicrobial surface.",
-        "body": "<p><strong>Copper</strong> is one of only a handful of materials with inherent antimicrobial properties. Hospitals have <strong>installed copper surfaces</strong> for this reason. When water rests inside a pure copper bottle, it sits against a surface that <strong>actively discourages</strong> many common bacteria. Plastic and scratched steel do not offer the same environment. <strong>This is not a marketing slogan — it is a documented characteristic of the metal.</strong></p>",
+        "body": "<p><strong>Bare copper</strong> is hard on microbes, and that is measured, not folklore. In a 2012 lab study, water deliberately contaminated with bacteria such as E. coli and kept in copper pots at room temperature had <strong>no recoverable bacteria after 16 hours</strong> (Sudha et al., J Health Popul Nutr). In a Neera bottle the water rests against that same kind of surface, with no lining in between. Plastic and steel simply hold your water. <strong>This comes from the metal itself, not from a slogan</strong>, and it is still no substitute for starting with water that is safe to drink.</p>",
         "photo_image_fallback": "neera-reason-7.jpg",
         "image_position": "right",
         "background": "cream-alt"
@@ -122,7 +133,7 @@
       "settings": {
         "number": "6",
         "heading": "It turns hydration into a ritual.",
-        "body": "<p>Fill the bottle in the evening. Let it rest overnight. <strong>Drink in the morning.</strong> That simple sequence transforms something automatic into something intentional. Many <strong>Neera </strong>owners tell us the ritual itself <strong>changes</strong> how they <strong>relate to water.</strong> It is no longer just another bottle on the desk — it is a <strong>quiet daily practice.</strong></p>",
+        "body": "<p>It asks for very little: pour the water in before bed and it is <strong>ready when you wake.</strong> That simple sequence transforms something automatic into something intentional. Many <strong>Neera </strong>owners tell us the ritual itself <strong>changes</strong> how they <strong>relate to water.</strong> It is no longer just another bottle on the desk - it is a <strong>quiet daily practice.</strong></p>",
         "photo_image_fallback": "neera-reason-6.jpg",
         "image_position": "left",
         "background": "cream"
@@ -133,7 +144,7 @@
       "settings": {
         "number": "5",
         "heading": "Hand-hammered means more contact area.",
-        "body": "<p>Machine-smooth<strong> copper </strong>is<strong> beautiful.</strong> Hand-hammered copper is functional. Each strike creates micro-indentations that increase the surface area in <strong>contact</strong> with the <strong>water.</strong> The texture is not decoration alone — it is part of how the vessel works. <strong>No two Neera bottles are identical.</strong> That irregularity is the point.</p>",
+        "body": "<p>A smooth, machine-made <strong>copper</strong> bottle looks fine. A hammered one works harder. Every dimple leaves a little more copper against the <strong>water</strong>, and working the metal by hand hardens it, so the thin wall shrugs off small knocks and the texture sits securely in your hand. Artisans in India hammer each Neera bottle by hand. <strong>No two are identical</strong>, and that is exactly the idea.</p>",
         "photo_image_fallback": "neera-reason-5.jpg",
         "image_position": "right",
         "background": "cream-alt"
@@ -144,7 +155,7 @@
       "settings": {
         "number": "4",
         "heading": "Lab-tested purity you can verify.",
-        "body": "<p>The market is full of bottles that look like copper and are not. Some are copper-plated <strong>aluminum.</strong> Some contain mixed metals. Every batch of <strong>Neera</strong> bottles is tested after manufacturing for material purity. We provide access to the Certificate of Authenticity so you can see the verification yourself. <strong>Real copper is non-magnetic. </strong>The hand-hammered pattern is irregular. The certificate is available. These are the simple checks that matter.</p>",
+        "body": "<p>Not every bottle sold as copper is solid copper. Some are steel or <strong>aluminum</strong> under a thin copper layer, and some mix in other metals. An independent <strong>SGS lab analysis</strong> of the Neera bottle measured over 99.9% copper, and the Essentials Set comes with access to the Certificate of Authenticity, so you can read the result yourself. Two quick checks at home: <strong>a magnet does not grip solid copper</strong>, and the bare inside darkens within a week or two of daily use. Simple checks, and they are the ones that matter.</p>",
         "photo_image_fallback": "neera-reason-4.jpg",
         "image_position": "left",
         "background": "cream"
